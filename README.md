@@ -43,8 +43,8 @@ The repository includes the experiment notebook, a thin shared-helper module, a 
 ### 1. Set up the environment
 
 ```bash
-git clone https://github.com/johnny031010-ctrl/<repo-name>.git
-cd <repo-name>
+git clone https://github.com/KuriPantsu/Multi-Agent-Communication-Protocol-Study.git
+cd Multi-Agent-Communication-Protocol-Study
 python3 -m venv .venv && source .venv/bin/activate    # optional but recommended
 pip install -r requirements.txt
 ```
