@@ -1,0 +1,23 @@
+# Secrets
+.env
+.env.*
+!.env.example
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.ipynb_checkpoints/
+
+# OS
+.DS_Store
+
+# Jupyter
+.jupyter/
+
+# VS Code
+.vscode/
+
+# Streamlit
+.streamlit/secrets.toml

@@ -1,0 +1,53 @@
+{
+  "project": "Communication Protocol Effects on Multi-Agent System Efficiency",
+  "course": "GR5293 Generative AI using Large Language Models",
+  "model": "gpt-4o-mini",
+  "temperature": 0.3,
+  "domain_max_tokens": {
+    "MATH": 256,
+    "READING": 256,
+    "NEWS": 512
+  },
+  "protocols": [
+    "NL",
+    "MARKDOWN",
+    "JSON",
+    "SHARED_MEMORY"
+  ],
+  "domains": [
+    "MATH",
+    "READING",
+    "NEWS"
+  ],
+  "n_math_samples": 10,
+  "n_reading_samples": 10,
+  "n_news_samples": 10,
+  "n_reps": 3,
+  "total_runs": 360,
+  "agent_architecture": {
+    "agents": [
+      "Planning Agent",
+      "Execution Agent",
+      "Integration Agent"
+    ],
+    "pipeline": "Sequential: Planner -> Executor -> Integrator"
+  },
+  "evaluation": {
+    "math": "Numeric exact match (binary 0/1)",
+    "reading": "SQuAD token-level F1 vs gold answers (continuous 0-1)",
+    "news": "Mean of ROUGE-2 F1 and ROUGE-L F1 vs key-facts reference (continuous 0-1)"
+  },
+  "methodology_notes": {
+    "shared_memory": "Every agent is injected the full JSON snapshot of the blackboard; overhead scales with state size.",
+    "nl_protocol": "Explicit plain-English-prose instruction to prevent default-to-markdown drift.",
+    "json_protocol": "OpenAI response_format=json_object + one parse-retry.",
+    "reproducibility": "OpenAI seed parameter matches rep index; random / numpy seeded for sampling."
+  },
+  "metrics": [
+    "total_prompt_tokens",
+    "total_completion_tokens",
+    "total_tokens",
+    "total_latency_ms",
+    "completion_score"
+  ]
+}

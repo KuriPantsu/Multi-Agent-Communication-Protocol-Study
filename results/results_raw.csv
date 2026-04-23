@@ -1,0 +1,1356 @@
+run_id,protocol,task_domain,sample_index,repetition,total_prompt_tokens,total_completion_tokens,total_tokens,total_latency_ms,total_messages,any_truncation,any_json_parse_error,completion_score,final_answer
+94988703,NL,MATH,0,0,615,290,905,6931.0,3,False,False,1.0,"Janet's ducks lay 16 eggs each day. After consuming three eggs for breakfast and four for baking, she has seven eggs consumed daily. This leaves her with nine eggs. She sells these nine eggs at the fa"
+f1719d31,NL,MATH,0,1,602,255,857,6248.97,3,False,False,1.0,"Janet's ducks lay 16 eggs each day. After consuming 7 eggs for her meals, she has 9 eggs left. Selling these at $2 each, she earns a total of 18 dollars daily. Therefore, the final answer is 18.  ####"
+f8a8632a,NL,MATH,0,2,651,310,961,5550.37,3,False,False,1.0,"Janet's ducks lay 16 eggs each day. After using 7 eggs for her breakfast and baking, she has 9 eggs remaining. Selling these eggs at $2 each, she earns a total of $18 at the farmers' market. Therefore"
+80a938f9,NL,MATH,1,0,515,227,742,5059.21,3,False,False,1.0,"The total amount of fiber needed for the robe is 3 bolts, which includes 2 bolts of blue fiber and 1 bolt of white fiber. Therefore, the final numeric answer is 3.  #### 3"
+cfdc3e33,NL,MATH,1,1,550,262,812,6135.33,3,False,False,1.0,"The total amount of fiber needed for the robe is 3 bolts, which includes 2 bolts of blue fiber and 1 bolt of white fiber. Therefore, the final numeric answer is 3. 
+
+#### 3"
+3f487f8c,NL,MATH,1,2,489,200,689,5077.97,3,False,False,1.0,"The total amount of fiber needed for the robe is 3 bolts, which includes 2 bolts of blue fiber and 1 bolt of white fiber. Therefore, the final numeric answer is 3. #### 3"
+c7a4d7bd,NL,MATH,2,0,662,370,1032,6693.15,3,False,False,1.0,"The total investment made by Josh in the house was $130,000, which includes the purchase price of $80,000 and repair costs of $50,000. After a 150% increase, the new value of the house became $200,000"
+46fa440d,NL,MATH,2,1,652,360,1012,6252.87,3,False,False,1.0,"The total investment made by Josh was $130,000, which includes the purchase price of the house at $80,000 and $50,000 spent on repairs. After a 150% increase in value, the house is now worth $200,000."
+8ba8c83c,NL,MATH,2,2,681,380,1061,7648.09,3,False,False,1.0,"The total investment made by Josh was $130,000, which includes the purchase price of the house and the repair costs. After a 150% increase, the value of the house rose to $200,000. By subtracting the "
+4f44b006,NL,MATH,3,0,589,258,847,5134.28,3,False,False,1.0,"The total distance James runs in a week is 540 meters. 
+
+#### 540"
+a30d4649,NL,MATH,3,1,570,238,808,4704.23,3,False,False,1.0,The total distance James runs in one week is 540 meters. #### 540
+178c951c,NL,MATH,3,2,560,229,789,4890.85,3,False,False,1.0,"The total distance James runs in a week is 540 meters. 
+
+#### 540"
+a5803556,NL,MATH,4,0,770,351,1121,6773.35,3,False,False,1.0,"The total amount of feed Wendi gives to her chickens in the morning and afternoon is 40 cups. For 20 chickens, the total daily feed requirement is 60 cups. After subtracting the 40 cups already given,"
+8b56fb66,NL,MATH,4,1,814,396,1210,7229.87,3,False,False,1.0,"Wendi gives her chickens a total of 40 cups of feed in the morning and afternoon combined. Since her flock of 20 chickens requires a total of 60 cups of feed each day, after providing 40 cups, she nee"
+51edb7e8,NL,MATH,4,2,788,375,1163,6973.21,3,False,False,1.0,The total amount of feed Wendi gives to her chickens in the morning and afternoon is 40 cups. The total daily feed requirement for her 20 chickens is 60 cups. After subtracting the 40 cups given in th
+03d88195,NL,MATH,5,0,641,292,933,5787.41,3,False,False,1.0,"The total amount Kylar needs to pay for 16 glasses, with 8 at full price and 8 at a discounted price, is 64. 
+
+#### 64"
+6eb845de,NL,MATH,5,1,720,350,1070,7065.79,3,False,False,1.0,Kylar needs to pay $64 for the glasses. #### 64
+1a05911c,NL,MATH,5,2,672,369,1041,6662.66,3,False,False,1.0,"Kylar will buy a total of 16 glasses, consisting of 8 first glasses at $5 each and 8 second glasses at $3 each. The total cost for the first glasses amounts to $40, while the total cost for the second"
+ad17fc32,NL,MATH,6,0,556,289,845,5155.72,3,False,False,1.0,"The total number of sheep is calculated by first noting that Seattle has 20 sheep. Charleston has four times as many sheep as Seattle, resulting in 80 sheep. Toulouse has twice as many sheep as Charle"
+27dc73b4,NL,MATH,6,1,553,273,826,4802.07,3,False,False,1.0,"The total number of sheep is calculated by first noting that Seattle has 20 sheep. Charleston has four times as many sheep as Seattle, resulting in 80 sheep. Toulouse has twice as many sheep as Charle"
+0150967c,NL,MATH,6,2,528,194,722,4460.29,3,False,False,1.0,"The total number of sheep for Seattle, Charleston, and Toulouse is 260. The final numeric answer is 260."
+167a01fd,NL,MATH,7,0,778,421,1199,8124.3,3,False,False,0.0,"The total download time for Carla to complete the download of the 200 GB file, including the time taken for the first 40%, the forced restart due to Windows updates, and the time for the remaining 60%"
+8a0f69ce,NL,MATH,7,1,771,410,1181,6560.74,3,False,False,0.0,"The total time taken for Carla to download the entire 200 GB file, including the time for the initial 40% download, the Windows update restart, and the download of the remaining 60%, is 120 minutes. 
+"
+d3cf1142,NL,MATH,7,2,765,415,1180,7583.1,3,False,False,0.0,"The total time taken for Carla to download the 200 GB file, including the time for the initial 40% download, the forced restart due to Windows updates, and the remaining 60% download, is 120 minutes. "
+142d0ef2,NL,MATH,8,0,848,546,1394,9048.77,3,True,False,0.0,"To determine how far John is from home at the end of his 4-hour trip, we first calculate the distance he traveled on his outbound trip, which was 180 miles. On his return trip, he was in standstill tr"
+be767a9d,NL,MATH,8,1,847,485,1332,8200.21,3,True,False,1.0,"John initially drives 180 miles away from home. On his return trip, he spends 2 hours in traffic, covering 0 miles, then drives 15 miles in the next half-hour, and finally drives 120 miles in the rema"
+550d177c,NL,MATH,8,2,792,329,1121,9075.57,3,False,False,0.0,John is 85 miles from home at the end of those 4 hours. #### 85
+552116ef,NL,MATH,9,0,646,269,915,6053.92,3,False,False,1.0,"Eliza's total earnings for the week amount to $460. 
+
+#### 460"
+839e27ea,NL,MATH,9,1,649,271,920,5943.08,3,False,False,1.0,Eliza's total earnings for the week amount to $460. #### 460
+273c3a47,NL,MATH,9,2,662,285,947,5430.61,3,False,False,1.0,"Eliza's total earnings for the week amount to $460. 
+
+#### 460"
+df729444,NL,READING,0,0,722,98,820,3171.12,3,False,False,0.4,The Denver Broncos represented the AFC in Super Bowl 50.
+43e470e0,NL,READING,0,1,725,101,826,3797.71,3,False,False,0.4,The Denver Broncos represented the AFC in Super Bowl 50.
+93ace71e,NL,READING,0,2,724,102,826,2680.88,3,False,False,0.333,The Denver Broncos played as the AFC representative in Super Bowl 50.
+c35a398c,NL,READING,1,0,720,96,816,3225.37,3,False,False,0.4,The Carolina Panthers represented the NFC in Super Bowl 50.
+a6daa25a,NL,READING,1,1,711,87,798,2907.5,3,False,False,0.4,The Carolina Panthers represented the NFC in Super Bowl 50.
+7eab269c,NL,READING,1,2,721,99,820,3179.69,3,False,False,0.333,The Carolina Panthers played as the NFC representative in Super Bowl 50.
+9688c24e,NL,READING,2,0,712,98,810,2855.76,3,False,False,0.64,"Super Bowl 50 was held at Levi's Stadium in Santa Clara, California."
+cdc6b748,NL,READING,2,1,704,90,794,2604.23,3,False,False,0.64,"Super Bowl 50 was held at Levi's Stadium in Santa Clara, California."
+d09d04e7,NL,READING,2,2,704,90,794,4300.09,3,False,False,0.64,"Super Bowl 50 was held at Levi's Stadium in Santa Clara, California."
+e610a49f,NL,READING,3,0,711,93,804,2852.09,3,False,False,0.4,The Denver Broncos were the champions of Super Bowl 50.
+a2fe7db3,NL,READING,3,1,699,81,780,3074.06,3,False,False,0.4,The Denver Broncos were the champions of Super Bowl 50.
+c059aace,NL,READING,3,2,708,90,798,2675.34,3,False,False,0.4,The Denver Broncos were the champions of Super Bowl 50.
+20242842,NL,READING,4,0,741,112,853,3314.86,3,False,False,0.182,Gold was used to highlight the 50th anniversary of the Super Bowl.
+4dcb85d4,NL,READING,4,1,739,110,849,2979.41,3,False,False,0.182,Gold was used to highlight the 50th anniversary of the Super Bowl.
+7fab7044,NL,READING,4,2,721,92,813,3404.52,3,False,False,0.182,Gold was used to highlight the 50th anniversary of the Super Bowl.
+9f0951ce,NL,READING,5,0,736,134,870,3331.38,3,False,False,0.174,"The theme of Super Bowl 50 was the ""golden anniversary,"" featuring gold-themed initiatives and the use of Arabic numerals for the game's logo."
+0a6fcfab,NL,READING,5,1,737,141,878,3121.32,3,False,False,0.143,"The theme of Super Bowl 50 was the ""golden anniversary,"" highlighted by gold-themed initiatives and the use of Arabic numerals for the game's logo instead of Roman numerals."
+93c88700,NL,READING,5,2,734,131,865,2942.89,3,False,False,0.167,"Super Bowl 50 celebrated its ""golden anniversary"" with gold-themed initiatives and featured Arabic numerals in its logo instead of Roman numerals."
+fc9525ab,NL,READING,6,0,715,100,815,5117.12,3,False,False,0.6,"The game took place on February 7, 2016."
+33cf940f,NL,READING,6,1,699,84,783,2659.9,3,False,False,0.6,"The game took place on February 7, 2016."
+c572e02d,NL,READING,6,2,700,85,785,2652.81,3,False,False,0.6,"The game took place on February 7, 2016."
+88886cb2,NL,READING,7,0,714,95,809,2857.84,3,False,False,0.75,AFC means American Football Conference.
+a9a4d81e,NL,READING,7,1,714,97,811,2934.83,3,False,False,0.667,AFC refers to the American Football Conference.
+f90ab948,NL,READING,7,2,707,89,796,2937.67,3,False,False,0.667,AFC stands for American Football Conference.
+0d91a5b8,NL,READING,8,0,742,137,879,3501.59,3,False,False,0.167,Super Bowl 50 celebrated its golden anniversary with gold-themed initiatives and a special logo that used Arabic numerals instead of Roman numerals.
+7c4dc6c6,NL,READING,8,1,737,141,878,3856.66,3,False,False,0.143,"The theme of Super Bowl 50 was the ""golden anniversary,"" highlighted by gold-themed initiatives and the use of Arabic numerals for the game's logo instead of Roman numerals."
+7ffdb4f8,NL,READING,8,2,734,131,865,3749.3,3,False,False,0.167,"Super Bowl 50 celebrated its ""golden anniversary"" with gold-themed initiatives and featured Arabic numerals in its logo instead of Roman numerals."
+e998503d,NL,READING,9,0,704,88,792,2807.82,3,False,False,0.667,AFC stands for American Football Conference.
+3a985d0b,NL,READING,9,1,695,80,775,2459.01,3,False,False,0.667,AFC refers to the American Football Conference.
+03a8aec3,NL,READING,9,2,687,72,759,2665.07,3,False,False,0.667,AFC refers to the American Football Conference.
+e87b80b0,NL,NEWS,0,0,717,321,1038,5430.06,3,False,False,0.342,"In March 2025, the Federal Reserve decided to maintain its benchmark interest rate at 4.25% to 4.50%. Chair Jerome Powell highlighted that inflation stands at 2.8%, which exceeds the Fed's target of 2"
+fb2210fb,NL,NEWS,0,1,712,319,1031,5534.35,3,False,False,0.335,"In March 2025, the Federal Reserve maintained its benchmark interest rate at 4.25% to 4.50%. Chair Jerome Powell noted that inflation is currently at 2.8%, which exceeds the Fed's target of 2%. The un"
+35bb1211,NL,NEWS,0,2,701,308,1009,6904.59,3,False,False,0.305,"In March 2025, the Federal Reserve opted to maintain its benchmark interest rate at a range of 4.25% to 4.50%. The inflation rate stands at 2.8%, which exceeds the Fed's target of 2%. The labor market"
+6f707b1a,NL,NEWS,1,0,654,291,945,5998.59,3,False,False,0.32,"Apple's total revenue for the first quarter of fiscal year 2025 was $124.3 billion, marking a 4% increase from the previous year. Revenue from iPhones accounted for $69.1 billion, while services reven"
+98fa6925,NL,NEWS,1,1,664,291,955,5611.3,3,False,False,0.275,"Apple's total revenue for the first quarter of fiscal year 2025 reached $124.3 billion, marking a 4% increase from the previous year. iPhone sales contributed significantly to this figure, generating "
+e763d443,NL,NEWS,1,2,660,284,944,4943.24,3,False,False,0.333,"Apple's Q1 FY2025 revenue reached $124.3 billion, marking a 4% increase from the previous year. The company generated $69.1 billion from iPhone sales and achieved a record $26.3 billion in services re"
+5532de5d,NL,NEWS,2,0,674,305,979,6537.26,3,False,False,0.289,"Tesla has introduced a new affordable electric vehicle called the Model Q, which is priced at $25,000. This model is designed for mass-market adoption and offers a range of 280 miles, with the ability"
+81671743,NL,NEWS,2,1,681,313,994,6567.89,3,False,False,0.314,"Tesla has introduced a new affordable electric vehicle called the Model Q, priced at $25,000. This model is designed to encourage mass-market adoption and offers a range of 280 miles, with the ability"
+8ddbb8c0,NL,NEWS,2,2,676,303,979,6355.41,3,False,False,0.32,"Tesla has introduced the Model Q, an affordable electric vehicle priced at $25,000, aimed at encouraging mass-market adoption. The Model Q boasts a range of 280 miles and can accelerate from 0 to 60 m"
+ceac1f19,NL,NEWS,3,0,709,354,1063,8403.84,3,False,False,0.282,"TSMC's Arizona facility is successfully producing 4nm chips with a high yield rate of 90%. The global semiconductor lead times have improved significantly, dropping from 26 weeks to 14 weeks, which su"
+4dfbdb27,NL,NEWS,3,1,766,422,1188,7090.87,3,False,False,0.278,"TSMC, located in Arizona, has started producing 4nm chips with an impressive yield rate of 90%. This advancement has significantly reduced global semiconductor lead times from 26 weeks to 14 weeks. In"
+25e49112,NL,NEWS,3,2,694,341,1035,6508.48,3,False,False,0.3,"TSMC's Arizona facility is successfully producing 4nm chips with an impressive yield rate of 90%. The global semiconductor lead times have improved significantly, dropping from 26 weeks to just 14 wee"
+ccb3d93c,NL,NEWS,4,0,653,337,990,5751.47,3,False,False,0.231,"The European Union has introduced the AI Act, which is the first comprehensive regulation for artificial intelligence in the world. This law mandates that high-risk AI systems must undergo conformity "
+6d8dd7c4,NL,NEWS,4,1,665,353,1018,7321.41,3,False,False,0.215,"The European Union has introduced the AI Act, the first comprehensive global legislation on artificial intelligence. This law mandates that high-risk AI systems must undergo conformity assessments to "
+f5a253ed,NL,NEWS,4,2,657,335,992,6241.36,3,False,False,0.242,"The European Union has introduced the AI Act, marking the first comprehensive regulation of artificial intelligence worldwide. This law mandates that high-risk AI systems must undergo conformity asses"
+e1f644e3,NL,NEWS,5,0,676,303,979,5449.63,3,False,False,0.224,"SpaceX's Starship has successfully completed its inaugural orbital flight, which lasted 90 minutes before splashing down in the Indian Ocean. During this mission, the Super Heavy booster was successfu"
+30bb5813,NL,NEWS,5,1,663,293,956,5206.96,3,False,False,0.234,"SpaceX's Starship has successfully completed its inaugural orbital flight, which lasted 90 minutes and reached an altitude of 250 kilometers before landing in the Indian Ocean. Notably, the Super Heav"
+59e2a9a4,NL,NEWS,5,2,670,295,965,5684.34,3,False,False,0.205,"SpaceX's Starship has successfully completed its inaugural orbital flight, which lasted 90 minutes and reached an altitude of 250 kilometers before splashing down in the Indian Ocean. The Super Heavy "
+7f2eb2f5,NL,NEWS,6,0,676,319,995,5816.96,3,False,False,0.327,"Amazon has launched its Prime Air drone delivery service in ten major US cities, including New York, Los Angeles, and Chicago. This service allows for the delivery of packages weighing under 5 pounds "
+d7a769a9,NL,NEWS,6,1,717,368,1085,7089.73,3,False,False,0.243,"Amazon is expanding its Prime Air drone delivery service to 10 major US cities, including New York, Los Angeles, and Chicago. This expansion marks a significant advancement in delivery logistics and t"
+e3e97923,NL,NEWS,6,2,692,338,1030,6646.46,3,False,False,0.22,"Amazon has expanded its Prime Air drone delivery service to ten major cities in the United States, including New York, Los Angeles, and Chicago. This expansion represents a significant enhancement in "
+41cd1d20,NL,NEWS,7,0,641,271,912,5330.82,3,False,False,0.273,"OpenAI has launched GPT-5, which shows a significant 40% improvement in graduate-level reasoning benchmarks over the previous version. It scored 92% on the MATH benchmark and 88% on GPQA. The pricing "
+4a5d2798,NL,NEWS,7,1,657,287,944,5950.2,3,False,False,0.262,"OpenAI has launched GPT-5, which shows a 40% improvement in graduate-level reasoning benchmarks compared to the previous version. It scored 92% on the MATH benchmark and 88% on the GPQA. The API prici"
+0d6d022a,NL,NEWS,7,2,641,271,912,5096.63,3,False,False,0.23,"OpenAI has launched GPT-5, which demonstrates a significant 40% enhancement in graduate-level reasoning tasks. The model scored 92% on the MATH benchmark and 88% on GPQA. The pricing for the API is es"
+a73b89ba,NL,NEWS,8,0,670,300,970,6010.45,3,False,False,0.363,"A 7.4 magnitude earthquake struck off the coast of Hokkaido, Japan at 3:42 AM local time. In the aftermath, a tsunami warning was issued for coastal areas within a 300 km radius, with wave heights obs"
+60b1871d,NL,NEWS,8,1,664,288,952,8478.69,3,False,False,0.275,"A 7.4 magnitude earthquake struck off the coast of Hokkaido, Japan at 3:42 AM local time, prompting a tsunami warning for coastal areas within 300 kilometers. Waves as high as 3 meters were recorded, "
+35c2ebf3,NL,NEWS,8,2,670,296,966,5832.06,3,False,False,0.342,"A 7.4 magnitude earthquake struck off the coast of Hokkaido, Japan at 3:42 AM local time, prompting a tsunami warning for coastal areas within a 300 km radius. Waves were observed reaching heights of "
+17f1ebe3,NL,NEWS,9,0,670,290,960,5232.57,3,False,False,0.24,"In 2024, global carbon dioxide emissions fell by 2.1%, marking the first annual decline not associated with an economic recession. Renewable energy now accounts for 35% of global electricity generatio"
+ddea741b,NL,NEWS,9,1,709,344,1053,6707.65,3,False,False,0.243,"In 2024, global carbon emissions declined for the first time without being tied to an economic recession, dropping by 2.1%. This reduction is accompanied by a significant increase in renewable energy,"
+5787a343,NL,NEWS,9,2,696,322,1018,5549.53,3,False,False,0.199,"In 2024, global carbon dioxide emissions fell by 2.1%, marking the first annual decrease not associated with an economic recession. The share of renewable energy in global electricity generation rose "
+c374a16a,MARKDOWN,MATH,0,0,701,326,1027,5539.14,3,False,False,1.0,"## Final Answer
+Janet makes **$18** every day at the farmers' market.
+
+#### <18>"
+a237294a,MARKDOWN,MATH,0,1,714,367,1081,6946.93,3,False,False,1.0,"## Final Answer
+
+- Total number of eggs after laying: **16 eggs**
+- Eggs consumed: **7 eggs**
+- Remaining eggs: **9 eggs**
+- Eggs sold: **9 eggs**
+- Total revenue: **$18**
+
+#### 18"
+b3567336,MARKDOWN,MATH,0,2,716,366,1082,6290.01,3,False,False,1.0,"## Final Answer
+- Total eggs laid per day: **16 eggs**
+- Total eggs consumed: **7 eggs**
+- Remaining eggs for sale: **9 eggs**
+- Daily earnings from selling eggs: **$18**
+
+#### 18"
+ee4be33d,MARKDOWN,MATH,1,0,532,268,800,4745.85,3,False,False,1.0,"## Final Answer
+- The robe requires:
+  - **2 bolts of blue fiber**
+  - **1 bolt of white fiber**
+- Total fiber needed:
+  - \( 2 \text{ bolts} + 1 \text{ bolt} = 3 \text{ bolts} \)
+
+#### 3"
+bab39b42,MARKDOWN,MATH,1,1,532,268,800,5467.71,3,False,False,1.0,"## Final Answer
+- The robe requires:
+  - **2 bolts** of blue fiber.
+  - **1 bolt** of white fiber (half of the blue fiber).
+- Total amount of fiber required:
+  - **3 bolts** (2 bolts of blue + 1 bolt "
+7265be0f,MARKDOWN,MATH,1,2,510,242,752,4709.46,3,False,False,1.0,"## Final Answer
+
+- The robe requires:
+  - **2 bolts of blue fiber**
+  - **1 bolt of white fiber** (half of the blue fiber)
+
+- Total amount of fiber needed:
+  - \( 2 + 1 = 3 \) bolts
+
+#### 3"
+3dc10297,MARKDOWN,MATH,2,0,606,294,900,5077.67,3,False,False,1.0,"## Final Answer
+- Total cost of the house including repairs: **$130,000**
+- Increased value of the house after a 150% increase: **$200,000**
+- Profit calculated by subtracting total cost from increase"
+d6e859d0,MARKDOWN,MATH,2,1,638,310,948,6044.16,3,False,False,1.0,"## Final Numeric Answer for the Profit
+- Total investment made by Josh: $130,000
+- Increased value of the house: $200,000
+- Profit calculated: $70,000
+
+#### 70000"
+fb15d07c,MARKDOWN,MATH,2,2,609,244,853,5731.82,3,False,False,1.0,"#### Final Answer
+$70,000"
+cba891ea,MARKDOWN,MATH,3,0,546,215,761,4558.7,3,False,False,1.0,"## Final Answer
+**540 meters**
+
+#### 540"
+0bfc541c,MARKDOWN,MATH,3,1,566,243,809,5431.51,3,False,False,1.0,"## Final Answer
+- Total meters run in a week = **540 meters**
+
+#### 540"
+819b814c,MARKDOWN,MATH,3,2,524,230,754,5227.56,3,False,False,1.0,"## Final Answer
+
+- Total distance James runs in one sprint: 60 meters
+- Total distance James runs in one day of sprints: 180 meters
+- Total distance James runs in a week: 540 meters
+
+#### 540"
+db09eddf,MARKDOWN,MATH,4,0,801,362,1163,7823.69,3,False,False,1.0,"## Final Answer
+
+- Total feed requirement for 20 chickens for one day: 60 cups
+- Total feed given in the morning and afternoon: 40 cups
+- Remaining feed for the final meal: 20 cups
+
+#### 20"
+895fb03d,MARKDOWN,MATH,4,1,787,349,1136,6721.64,3,False,False,1.0,"## Final Answer
+
+- Total daily feed requirement for 20 chickens: **60 cups**
+- Morning feed amount: **15 cups**
+- Afternoon feed amount: **25 cups**
+- Remaining feed for final meal: **20 cups**
+
+#### "
+2677ac39,MARKDOWN,MATH,4,2,797,350,1147,7198.87,3,False,False,1.0,"## Final Answer
+
+- Total daily feed requirement: 60 cups
+- Total feed given in morning and afternoon: 40 cups
+- Remaining feed for final meal: 20 cups
+
+#### 20"
+6114d038,MARKDOWN,MATH,5,0,704,361,1065,6472.43,3,False,False,1.0,"## Final Answer
+- Total cost of full price glasses: $40
+- Total cost of discounted glasses: $24
+- Overall total cost: $64
+
+#### 64"
+0718926e,MARKDOWN,MATH,5,1,770,482,1252,7577.15,3,True,False,1.0,"## Final Calculation of Total Cost for 16 Glasses
+
+- **Cost of Full-Price Glasses:**
+  - 8 glasses * $5 = **$40**.
+
+- **Cost of Discounted Glasses:**
+  - 8 glasses * $3 = **$24**.
+
+- **Total Cost for "
+bc699a76,MARKDOWN,MATH,5,2,792,550,1342,10263.61,3,True,False,1.0,"## Final Calculation of Total Cost
+
+- **Cost of the first glass:** $5
+- **Cost of every second glass:** $3
+- **Total number of glasses purchased:** 16
+  - Full-price glasses: 8
+  - Discounted glasses:"
+8ce63350,MARKDOWN,MATH,6,0,591,254,845,4694.9,3,False,False,1.0,"## Final Answer
+- Total number of sheep: 260
+
+#### 260"
+0a24f5aa,MARKDOWN,MATH,6,1,623,312,935,4986.71,3,False,False,1.0,"## Final Answer
+
+- Total number of sheep:
+  - Seattle: 20
+  - Charleston: 80
+  - Toulouse: 160
+- Sum of sheep: 260
+
+#### 260"
+c640519a,MARKDOWN,MATH,6,2,577,240,817,5408.52,3,False,False,1.0,"## Final Answer
+- Total number of sheep = 260
+
+#### 260"
+7e12d36d,MARKDOWN,MATH,7,0,690,306,996,6129.03,3,False,False,0.0,"## Final Answer
+- Total time taken for the entire download process = 120 minutes
+
+#### 120"
+26673ffc,MARKDOWN,MATH,7,1,737,355,1092,6533.65,3,True,False,0.0,"## Final Answer
+- Total time taken for the download including the restart delay = 120 minutes
+
+#### 120"
+c151141d,MARKDOWN,MATH,7,2,701,317,1018,35574.04,3,False,False,0.0,"## Final Answer
+- Total time taken for the entire download process = 120 minutes
+
+#### 120"
+ecdeac7c,MARKDOWN,MATH,8,0,932,603,1535,9300.16,3,True,False,1.0,"## Final Calculation of John's Distance from Home
+
+- **Distance driven away from home:** 180 miles
+- **Distance driven back towards home:**
+  - Distance during standstill traffic: 0 miles
+  - Distance"
+3c09bb79,MARKDOWN,MATH,8,1,972,600,1572,9369.69,3,True,False,0.0,"## Final Distance Calculation
+
+- Distance driven away from home at 60 mph: **180 miles**
+- Distance covered while driving at 30 mph: **15 miles**
+- Distance covered while driving at 80 mph: **120 mile"
+88afa7b9,MARKDOWN,MATH,8,2,940,573,1513,8504.89,3,True,False,1.0,"## Final Calculation of Distance from Home
+
+- **Distance John drove away from home:** 
+  - 180 miles
+
+- **Distance driven back towards home:**
+  - 15 miles (in the next half-hour)
+  - 120 miles (in th"
+c9a52d18,MARKDOWN,MATH,9,0,768,425,1193,7643.62,3,False,False,1.0,"## Final Answer
+- Total earnings calculated from regular and overtime pay: 
+  - Regular earnings: 400 dollars
+  - Overtime earnings: 60 dollars
+- Combined total earnings: 460 dollars
+
+#### 460"
+473cf1c5,MARKDOWN,MATH,9,1,760,392,1152,6431.27,3,False,False,1.0,"## Final Answer
+Eliza's earnings for this week are **$460**.
+
+#### 460"
+596a4f1f,MARKDOWN,MATH,9,2,700,333,1033,6018.9,3,False,False,1.0,"## Final Answer
+- Eliza's earnings for this week are **$460**.
+
+#### 460"
+a49b90ac,MARKDOWN,READING,0,0,854,241,1095,5341.45,3,False,False,0.333,"## Final Answer
+- The Denver Broncos represented the AFC at Super Bowl 50."
+5af336fb,MARKDOWN,READING,0,1,870,257,1127,4985.06,3,False,False,0.333,"## Final Answer
+- The Denver Broncos represented the AFC at Super Bowl 50."
+f6b7387f,MARKDOWN,READING,0,2,777,171,948,3514.83,3,False,False,0.25,"## Final Answer
+
+- The NFL team that represented the AFC at Super Bowl 50 is the **Denver Broncos**."
+f694ae29,MARKDOWN,READING,1,0,864,256,1120,5689.29,3,False,False,0.25,"## Final Answer
+- The NFL team that represented the NFC at Super Bowl 50 was the Carolina Panthers."
+c88743a4,MARKDOWN,READING,1,1,772,164,936,3846.63,3,False,False,0.25,"## Final Answer
+
+- The NFL team that represented the NFC at Super Bowl 50 was the Carolina Panthers."
+ddc1d845,MARKDOWN,READING,1,2,772,164,936,4786.28,3,False,False,0.25,"## Final Answer
+
+- The NFL team that represented the NFC at Super Bowl 50 was the Carolina Panthers."
+8d21143d,MARKDOWN,READING,2,0,778,185,963,4089.27,3,False,False,0.75,"## Final Answer
+
+- Super Bowl 50 was held at Levi's Stadium.
+- Location: Santa Clara, California, in the San Francisco Bay Area."
+22ef6ad4,MARKDOWN,READING,2,1,868,265,1133,4982.18,3,False,False,0.593,"## Final Answer
+- Super Bowl 50 took place at Levi's Stadium in Santa Clara, California."
+920013cc,MARKDOWN,READING,2,2,761,158,919,3436.0,3,False,False,0.593,"## Final Answer
+
+- Super Bowl 50 took place at Levi's Stadium in Santa Clara, California."
+6c6cdf28,MARKDOWN,READING,3,0,742,137,879,3379.0,3,False,False,0.286,"## Final Answer
+
+- The NFL team that won Super Bowl 50 is the Denver Broncos."
+db779948,MARKDOWN,READING,3,1,859,249,1108,4617.63,3,False,False,0.4,"## Final Answer
+- The Denver Broncos won Super Bowl 50."
+9e1c5cb0,MARKDOWN,READING,3,2,856,246,1102,5218.45,3,False,False,0.4,"## Final Answer
+- The Denver Broncos won Super Bowl 50."
+8a234656,MARKDOWN,READING,4,0,721,105,826,3150.26,3,False,False,0.143,"## Final Answer
+
+- The color used to emphasize the 50th anniversary of the Super Bowl was gold."
+dd010954,MARKDOWN,READING,4,1,782,168,950,3920.11,3,False,False,0.143,"## Final Answer
+
+- The color used to emphasize the 50th anniversary of the Super Bowl was **gold**."
+f5991289,MARKDOWN,READING,4,2,821,205,1026,3828.13,3,False,False,0.143,"## Final Answer
+
+- The color used to emphasize the 50th anniversary of the Super Bowl was gold."
+acfb8365,MARKDOWN,READING,5,0,743,169,912,3346.82,3,False,False,0.133,"## Super Bowl 50 Theme
+
+- Emphasized the ""golden anniversary"" of the Super Bowl.
+- Implemented various gold-themed initiatives.
+- Suspended the traditional use of Roman numerals to highlight the Arabi"
+cc198397,MARKDOWN,READING,5,1,739,163,902,3342.53,3,False,False,0.125,"## Theme of Super Bowl 50
+
+- Emphasis on the ""golden anniversary"" of the Super Bowl.
+- Implementation of various gold-themed initiatives.
+- Temporary suspension of Roman numerals to highlight the Arab"
+3613a9e6,MARKDOWN,READING,5,2,751,173,924,4653.23,3,False,False,0.125,"## Theme of Super Bowl 50
+
+- The theme is the ""golden anniversary"" of the Super Bowl.
+- Gold-themed initiatives were prominently featured.
+- The traditional Roman numeral naming was replaced with Arab"
+cdcf395e,MARKDOWN,READING,6,0,754,152,906,3935.09,3,False,False,0.5,"## Final Answer
+
+- The game was played on **February 7, 2016**."
+efaf2934,MARKDOWN,READING,6,1,767,165,932,3684.63,3,False,False,0.5,"## Final Answer
+
+- The game was played on **February 7, 2016**."
+0eabe9f2,MARKDOWN,READING,6,2,754,152,906,3624.25,3,False,False,0.5,"## Final Answer
+
+- The game was played on **February 7, 2016**."
+eb465a0f,MARKDOWN,READING,7,0,854,246,1100,4879.64,3,False,False,0.545,"## Final Answer
+- AFC stands for American Football Conference."
+da382fd2,MARKDOWN,READING,7,1,767,164,931,3513.98,3,False,False,0.545,"## Final Answer
+
+- **AFC** stands for **American Football Conference**."
+f816da6e,MARKDOWN,READING,7,2,858,251,1109,5146.31,3,False,False,0.5,"## Final Answer
+- AFC is short for American Football Conference."
+2ddda11f,MARKDOWN,READING,8,0,828,319,1147,5512.66,3,False,False,0.062,"## Super Bowl 50 Overview
+- **Game Date:** February 7, 2016
+- **Location:** Levi's Stadium, Santa Clara, California
+- **Teams:** Denver Broncos (AFC) vs. Carolina Panthers (NFC)
+- **Result:** Denver B"
+d93b3c21,MARKDOWN,READING,8,1,823,318,1141,5568.33,3,False,False,0.068,"## Super Bowl 50 Overview
+
+- **Game Date:** February 7, 2016
+- **Location:** Levi's Stadium, Santa Clara, California
+- **Teams:** 
+  - Denver Broncos (AFC)
+  - Carolina Panthers (NFC)
+- **Final Score:"
+c8bc0e9f,MARKDOWN,READING,8,2,811,310,1121,5052.33,3,False,False,0.062,"## Super Bowl 50 Key Details
+- **Game Date:** February 7, 2016
+- **Location:** Levi's Stadium, Santa Clara, California
+- **Teams:** Denver Broncos (AFC) vs. Carolina Panthers (NFC)
+- **Result:** Denve"
+bd020a8a,MARKDOWN,READING,9,0,760,158,918,3547.07,3,False,False,0.545,"## Final Answer
+
+- **AFC stands for**: American Football Conference."
+98a8b747,MARKDOWN,READING,9,1,760,159,919,3896.49,3,False,False,0.545,"## Final Answer
+
+- **AFC** stands for **American Football Conference**."
+672b732c,MARKDOWN,READING,9,2,754,152,906,4406.88,3,False,False,0.545,"## Final Answer
+
+- **AFC stands for**: American Football Conference."
+bbdf500f,MARKDOWN,NEWS,0,0,929,666,1595,9918.31,3,False,False,0.259,"## Federal Reserve Interest Rate Decision - March 2025
+
+### Key Information
+- **Main Subject**: Federal Reserve's interest rate decision
+- **Date of Meeting**: March 2025
+
+### Current Economic Indicat"
+521f199c,MARKDOWN,NEWS,0,1,959,691,1650,11892.86,3,False,False,0.217,"## Summary of Federal Reserve's Interest Rate Decision - March 2025
+
+### Key Information
+- **Main Subject**: Federal Reserve's interest rate decision
+- **Date of Meeting**: March 2025
+
+### Economic In"
+0a04abfb,MARKDOWN,NEWS,0,2,956,677,1633,10548.11,3,False,False,0.242,"## Federal Reserve Interest Rate Decision - March 2025
+
+### Key Information
+- **Main Topic**: Federal Reserve holds interest rates steady.
+- **Date**: March 2025 meeting.
+
+### Current Economic Indicat"
+ef510f1c,MARKDOWN,NEWS,1,0,990,812,1802,14333.03,3,False,False,0.253,"## Key Financial Figures
+- **Total Revenue for Q1 FY2025:** $124.3 billion
+- **iPhone Revenue:** $69.1 billion
+- **Services Revenue:** $26.3 billion
+- **Earnings Per Share (EPS):** $2.40
+- **Gross Mar"
+3480e836,MARKDOWN,NEWS,1,1,878,581,1459,9520.9,3,False,False,0.352,"## Financial Performance Summary for Q1 FY2025
+
+- **Total Revenue**: $124.3 billion
+  - **Year-over-Year Growth**: 4%
+  
+- **Earnings Per Share (EPS)**: 
+  - Actual: $2.40 
+  - Analyst Estimates: $2.3"
+d814b7ca,MARKDOWN,NEWS,1,2,910,717,1627,9363.29,3,False,False,0.263,"## Key Financial Metrics
+- **Revenue for Q1 FY2025**: $124.3 billion
+- **Year-over-Year Growth**: 4%
+- **Earnings Per Share (EPS)**: $2.40
+- **Analyst Estimates for EPS**: $2.35
+
+## Revenue Breakdown
+"
+4bd51586,MARKDOWN,NEWS,2,0,896,573,1469,9168.44,3,False,False,0.317,"## Tesla Model Q Launch Summary
+
+- **Model Name:** Model Q
+- **Price:** $25,000
+- **Specifications:**
+  - **Range:** 280 miles
+  - **Acceleration:** 0-60 mph in 5.8 seconds
+
+## Production Information
+"
+a738bd02,MARKDOWN,NEWS,2,1,911,667,1578,10824.19,3,False,False,0.213,"## Tesla Model Q Overview
+
+- **Name:** Model Q
+- **Price:** $25,000
+- **Target Market:** Mass-market adoption
+
+## Technical Specifications
+
+- **Range:** 280 miles
+- **Acceleration (0-60 mph):** 5.8 se"
+ae988c11,MARKDOWN,NEWS,2,2,887,627,1514,10710.89,3,False,False,0.236,"## Tesla Model Q Overview
+
+- **Name:** Model Q
+- **Price:** $25,000
+- **Target Market:** Mass-market adoption
+
+## Performance Specifications
+
+- **Range:** 280 miles
+- **Acceleration (0-60 mph):** 5.8 "
+db44c248,MARKDOWN,NEWS,3,0,780,455,1235,8832.32,3,False,False,0.355,"## Key Companies
+- TSMC
+- Intel
+- Samsung
+
+## Production Details
+- **TSMC's Arizona Fab:**
+  - Chip Size: 4nm
+  - Yield Rates: 90%
+
+## Market Trends
+- Global semiconductor lead times have decreased fr"
+7c9253a4,MARKDOWN,NEWS,3,1,833,551,1384,9886.21,3,False,False,0.321,"## Key Entities
+- **Companies Involved**: 
+  - TSMC
+  - Intel
+  - Samsung
+- **Location of TSMC's New Facility**: 
+  - Arizona
+
+## Production Details
+- **Type of Chips Being Produced**: 
+  - 4nm chips
+"
+8eb30ff0,MARKDOWN,NEWS,3,2,779,457,1236,7245.14,3,False,False,0.409,"## Key Companies
+- TSMC
+- Intel
+- Samsung
+
+## Production Details
+- TSMC's Arizona fab is producing:
+  - **4nm chips**
+  - **Yield rates:** 90%
+
+## Lead Time Information
+- Global semiconductor lead tim"
+4f9de39d,MARKDOWN,NEWS,4,0,834,602,1436,8731.11,3,False,False,0.277,"## Final Summary of the EU AI Regulation Act
+
+### Key Facts
+- **Title**: EU Passes Comprehensive AI Regulation Act
+- **Significance**: First comprehensive law globally regulating artificial intelligen"
+2291292d,MARKDOWN,NEWS,4,1,888,610,1498,11229.82,3,False,False,0.306,"## Final Summary of the EU AI Regulation Act
+
+- **Title**: EU Passes Comprehensive AI Regulation Act
+- **Significance**: First comprehensive law regulating artificial intelligence globally.
+
+### Key F"
+8f9b307f,MARKDOWN,NEWS,4,2,748,458,1206,8293.11,3,False,False,0.254,"## Final Summary of the EU AI Regulation Act
+
+### Key Facts
+- **Title:** EU Passes Comprehensive AI Regulation Act
+- **Primary Subject Matter:** First comprehensive law governing artificial intelligen"
+2d539876,MARKDOWN,NEWS,5,0,726,354,1080,6150.04,3,False,False,0.25,"## Key Events
+- SpaceX's Starship completed its first successful orbital flight.
+
+## Key Facts
+- **Duration of the flight:** 90 minutes
+- **Altitude reached:** 250 km
+- **Location of splashdown:** Ind"
+7fca1da8,MARKDOWN,NEWS,5,1,905,702,1607,11171.21,3,False,False,0.21,"## Summary of SpaceX's Starship Orbital Flight
+
+### Key Events
+- **Main Event**: SpaceX's Starship completed its first successful orbital flight.
+- **Duration of Flight**: 90 minutes in orbit.
+- **Lan"
+fe34c402,MARKDOWN,NEWS,5,2,801,442,1243,8270.94,3,False,False,0.209,"## Final Summary of SpaceX's Starship Orbital Flight
+
+- **Main Event**: 
+  - SpaceX's Starship completed its first successful orbital flight.
+
+- **Key Facts**:
+  - Duration of flight: 90 minutes
+  - A"
+461bf077,MARKDOWN,NEWS,6,0,809,510,1319,9113.53,3,False,False,0.301,"## Key Locations
+- New York
+- Los Angeles
+- Chicago
+- 7 additional unspecified cities
+
+## Delivery Specifications
+- **Weight Limit for Deliveries:** Under 5 pounds
+- **Time Frame for Delivery:** Withi"
+4780304a,MARKDOWN,NEWS,6,1,804,504,1308,8615.83,3,False,False,0.304,"## Key Locations
+- New York
+- Los Angeles
+- Chicago
+- 7 additional unspecified cities
+
+## Delivery Specifications
+- **Weight Limit for Deliveries:** Under 5 pounds
+- **Time Frame for Arrival:** Within"
+42a12fc2,MARKDOWN,NEWS,6,2,809,514,1323,8657.47,3,False,False,0.264,"## Key Locations
+- New York
+- Los Angeles
+- Chicago
+- Additional 7 unspecified cities
+
+## Delivery Specifications
+- **Weight Limit for Deliveries:** Under 5 pounds
+- **Time Frame for Arrival:** Within"
+fa3ad2c7,MARKDOWN,NEWS,7,0,833,491,1324,9433.47,3,False,False,0.223,"## Summary of GPT-5 Release
+
+- **Release Information**
+  - OpenAI has released GPT-5.
+
+- **Performance Improvements**
+  - 40% improvement on graduate-level reasoning benchmarks.
+  - MATH benchmark sco"
+e25eb8f0,MARKDOWN,NEWS,7,1,770,441,1211,8195.45,3,False,False,0.223,"## Summary of GPT-5 Execution Results
+
+### Key Claims
+- OpenAI has released GPT-5.
+- Claimed a **40% improvement** on graduate-level reasoning benchmarks.
+
+### Performance Metrics
+- **MATH Benchmark S"
+1eaa36b7,MARKDOWN,NEWS,7,2,745,415,1160,7680.81,3,False,False,0.267,"## Key Claims
+- OpenAI released GPT-5, claiming a **40% improvement** on graduate-level reasoning benchmarks.
+
+## Performance Metrics
+- **Graduate-level reasoning**: 40% improvement
+- **MATH benchmark"
+59a3a0d0,MARKDOWN,NEWS,8,0,913,569,1482,9860.22,3,False,False,0.364,"## Earthquake Summary
+
+- **Magnitude:** 7.4
+- **Location:** Off the coast of Hokkaido, Japan
+- **Time:** 3:42 AM local time
+
+## Tsunami Warning
+
+- **Issued for:** Coastal areas within 300 km
+- **Obser"
+63fd89f1,MARKDOWN,NEWS,8,1,901,577,1478,8882.87,3,False,False,0.311,"## Earthquake Summary
+
+- **Magnitude:** 7.4
+- **Location and Time:** Off the coast of Hokkaido, Japan at 3:42 AM local time
+- **Tsunami Warning:** Issued for coastal areas within 300 km
+- **Observed W"
+cfcafee6,MARKDOWN,NEWS,8,2,869,545,1414,9031.01,3,False,False,0.293,"## Earthquake Summary
+
+- **Magnitude:** 7.4
+- **Time:** 3:42 AM local time
+- **Location:** Off the coast of Hokkaido, Japan
+- **Tsunami Warning Radius:** 300 km
+
+## Impact on Population
+
+- **Injuries "
+dae2ca76,MARKDOWN,NEWS,9,0,994,778,1772,12979.09,3,False,False,0.176,"## Summary of Global CO2 Emissions and Renewable Energy Trends
+
+### Key Statistics
+- **Global CO2 Emissions Decline**: 2.1%
+- **Renewable Energy Share in Electricity Generation**: 35%
+- **Global Solar"
+f52e8b49,MARKDOWN,NEWS,9,1,884,682,1566,10857.2,3,False,False,0.228,"## Key Statistics
+- **Global CO2 Emissions**: Fell by **2.1%** in **2024**.
+- **Renewable Energy Share**: Accounts for **35%** of global electricity generation.
+- **Solar Capacity Additions**: Reached"
+b19ec7fa,MARKDOWN,NEWS,9,2,848,541,1389,7883.91,3,False,False,0.247,"## Final Summary of Execution Results
+
+### Key Statistics
+- **Global CO2 Emissions Decline**: 2.1%
+- **Renewable Energy in Electricity Generation**: 35%
+- **Solar Capacity Additions**: 450 GW (record "
+4c9b3c12,JSON,MATH,0,0,581,231,812,5318.4,3,False,False,1.0,"{
+  ""total_eggs"": 16,
+  ""eggs_consumed"": 7,
+  ""remaining_eggs"": 9,
+  ""revenue"": 18,
+  ""total_daily_earnings"": 18,
+  ""final_numeric_answer"": 18
+}"
+5925e1a6,JSON,MATH,0,1,592,250,842,4815.2,3,False,False,0.0,"{
+  ""total_eggs_after_laying"": 16,
+  ""eggs_consumed_for_breakfast"": 3,
+  ""eggs_used_for_baking"": 4,
+  ""remaining_eggs"": 9,
+  ""total_revenue"": 18,
+  ""final_numeric_answer"": 9
+}"
+25f9b460,JSON,MATH,0,2,592,258,850,6909.94,3,False,False,0.0,"{
+  ""total_eggs_after_laying"": 16,
+  ""eggs_consumed_for_breakfast"": 3,
+  ""eggs_used_for_baking"": 4,
+  ""eggs_remaining_for_sale"": 9,
+  ""total_revenue_from_selling_remaining_eggs"": 18,
+  ""final_numeric_"
+07decbd1,JSON,MATH,1,0,484,194,678,4858.48,3,False,False,1.0,"{
+  ""final_result"": {
+    ""blue_fiber_needed"": 2,
+    ""white_fiber_needed"": 1,
+    ""total_fiber"": 3,
+    ""final_numeric_answer"": 3
+  }
+}"
+69383ca6,JSON,MATH,1,1,540,212,752,4305.16,3,False,False,1.0,"{
+  ""final_answer"": 3
+}"
+a3d9010d,JSON,MATH,1,2,543,215,758,4298.66,3,False,False,1.0,"{
+  ""final_answer"": 3
+}"
+512f96e4,JSON,MATH,2,0,519,185,704,4573.91,3,False,False,1.0,"{
+  ""total_investment"": 130000,
+  ""increased_value"": 200000,
+  ""profit"": 70000,
+  ""final_profit"": 70000,
+  ""final_numeric_answer"": 70000
+}"
+3ca0f60c,JSON,MATH,2,1,515,179,694,5997.76,3,False,False,1.0,"{
+  ""total_cost"": 130000,
+  ""increased_value"": 200000,
+  ""profit"": 70000,
+  ""final_profit"": 70000,
+  ""final_numeric_answer"": 70000
+}"
+e522ab76,JSON,MATH,2,2,517,180,697,4060.72,3,False,False,1.0,"{
+  ""total_cost"": 130000,
+  ""new_value"": 200000,
+  ""profit"": 70000,
+  ""final_profit"": 70000,
+  ""final_numeric_answer"": 70000
+}"
+3925b0bf,JSON,MATH,3,0,516,227,743,5372.3,3,False,False,1.0,"{
+  ""total_distance_per_sprint"": 60,
+  ""number_of_sprints_per_session"": 3,
+  ""number_of_sessions_per_week"": 3,
+  ""total_distance_per_session"": 180,
+  ""total_distance_per_week"": 540,
+  ""final_numeric_a"
+e7e5b2a8,JSON,MATH,3,1,556,243,799,5703.09,3,False,False,1.0,"{
+  ""total_distance_one_sprint"": 180,
+  ""total_distance_per_week"": 540,
+  ""weekly_total_distance"": 540,
+  ""final_numeric_answer"": 540
+}"
+b365497a,JSON,MATH,3,2,496,194,690,4573.48,3,False,False,1.0,"{
+  ""total_distance_one_sprint"": 60,
+  ""total_distance_per_session"": 180,
+  ""total_distance_per_week"": 540,
+  ""summary_total_distance_run"": 540,
+  ""final_numeric_answer"": 540
+}"
+76574bc4,JSON,MATH,4,0,680,222,902,4884.02,3,False,False,1.0,"{
+  ""total_feed_needed_per_day"": 60,
+  ""total_feed_given"": 40,
+  ""final_meal_feed_needed"": 20,
+  ""final_numeric_answer"": 20
+}"
+5029e125,JSON,MATH,4,1,662,223,885,5527.18,3,False,False,1.0,"{
+  ""total_feed_morning"": 15,
+  ""total_feed_afternoon"": 25,
+  ""total_feed_given"": 40,
+  ""total_daily_feed_requirement"": 60,
+  ""final_meal_feed_needed"": 20,
+  ""final_numeric_answer"": 20
+}"
+f0151dce,JSON,MATH,4,2,658,219,877,4331.26,3,False,False,1.0,"{
+  ""total_feed_morning"": 15,
+  ""total_feed_afternoon"": 25,
+  ""total_feed_given"": 40,
+  ""total_daily_feed_requirement"": 60,
+  ""final_meal_feed_needed"": 20,
+  ""final_numeric_answer"": 20
+}"
+011b7bbc,JSON,MATH,5,0,732,372,1104,6084.11,3,False,False,0.0,"{
+  ""final_answer"": {
+    ""description"": ""Total amount Kylar needs to pay."",
+    ""amount"": 40
+  }
+}"
+a057bf94,JSON,MATH,5,1,794,438,1232,7788.62,3,False,False,1.0,"{
+  ""final_answer"": {
+    ""description"": ""Total amount Kylar needs to pay for 16 glasses."",
+    ""amount"": 64
+  }
+}"
+03c334db,JSON,MATH,5,2,548,218,766,5204.19,3,False,False,1.0,"{
+  ""first_glass_cost"": 5,
+  ""second_glass_cost"": 3,
+  ""total_first_glasses"": 8,
+  ""total_second_glasses"": 8,
+  ""total_cost"": 64,
+  ""final_answer"": ""#### 64""
+}"
+b8f71483,JSON,MATH,6,0,617,287,904,6767.01,3,False,False,1.0,"{
+  ""final_answer"": {
+    ""description"": ""Total number of sheep across Seattle, Charleston, and Toulouse."",
+    ""value"": 260
+  }
+}"
+f2c52383,JSON,MATH,6,1,526,193,719,5047.44,3,False,False,1.0,"{
+  ""final_answer"": {
+    ""total_sheep_count"": 260
+  },
+  ""numeric_answer"": ""#### 260""
+}"
+8e5a649d,JSON,MATH,6,2,587,236,823,5586.72,3,False,False,1.0,"{
+  ""total_sheep_count"": 260
+}"
+39a08c5a,JSON,MATH,7,0,610,259,869,5238.4,3,False,False,0.0,"{
+  ""total_download_time"": 100,
+  ""time_to_download_40_percent"": 20,
+  ""time_lost_due_to_restart"": 20,
+  ""remaining_percentage_to_download"": 60,
+  ""time_to_download_remaining_file"": 60,
+  ""final_numer"
+e1367e78,JSON,MATH,7,1,681,335,1016,6862.8,3,False,False,0.0,"{
+  ""data_downloaded"": 80,
+  ""time_taken_before_restart"": 40,
+  ""restart_time"": 20,
+  ""remaining_data_to_download"": 120,
+  ""time_to_download_remaining_data"": 60,
+  ""total_time_to_download_file"": 120,
+"
+9bd60711,JSON,MATH,7,2,621,279,900,5461.79,3,False,False,0.0,"{
+  ""final_download_time"": 160,
+  ""explanation"": {
+    ""total_download_time_without_interruptions"": 100,
+    ""downloaded_before_restart"": 80,
+    ""time_taken_to_download_40_percent"": 40,
+    ""total_ti"
+1a5863e4,JSON,MATH,8,0,713,307,1020,6789.85,3,False,False,0.0,"{
+  ""total_distance_driven"": 285,
+  ""distance_driven_first_3_hours"": 180,
+  ""time_spent_driving_after_traffic"": 2,
+  ""distance_covered_at_30_mph"": 15,
+  ""remaining_time_after_30_mph"": 1.5,
+  ""distance"
+527ac13f,JSON,MATH,8,1,688,259,947,4776.36,3,False,False,0.0,"{
+  ""total_distance"": 215,
+  ""details"": {
+    ""distance_first_3_hours"": 180,
+    ""distance_standstill_traffic"": 0,
+    ""distance_next_half_hour"": 15,
+    ""distance_remaining_time"": 40
+  }
+}"
+c161bf00,JSON,MATH,8,2,701,293,994,5611.67,3,False,False,1.0,"{
+  ""distance_driven_away_from_home"": 180,
+  ""distance_traveled_in_traffic"": 0,
+  ""distance_driven_in_half_hour"": 15,
+  ""time_remaining"": 1.5,
+  ""distance_driven_in_remaining_time"": 120,
+  ""total_dist"
+2b9d747c,JSON,MATH,9,0,575,236,811,4811.54,3,False,False,1.0,"{
+  ""earnings_regular_hours"": 400,
+  ""overtime_hours"": 5,
+  ""overtime_pay_rate"": 12,
+  ""earnings_overtime_hours"": 60,
+  ""total_earnings"": 460,
+  ""final_numeric_answer"": 460
+}"
+26fd8e2f,JSON,MATH,9,1,574,235,809,5531.29,3,False,False,1.0,"{
+  ""regular_earnings"": 400,
+  ""overtime_hours"": 5,
+  ""overtime_pay_rate"": 12,
+  ""overtime_earnings"": 60,
+  ""total_earnings"": 460,
+  ""final_numeric_answer"": 460
+}"
+1d5f788e,JSON,MATH,9,2,567,236,803,4916.46,3,False,False,1.0,"{
+  ""final_answer"": {
+    ""regular_earnings"": 400,
+    ""overtime_hours"": 5,
+    ""overtime_pay_rate"": 12,
+    ""overtime_earnings"": 60,
+    ""total_earnings"": 460,
+    ""final_numeric_answer"": 460
+  }
+}"
+f7d0c2fa,JSON,READING,0,0,769,145,914,3694.27,3,False,False,0.5,"{
+  ""team_name"": ""Denver Broncos"",
+  ""league"": ""NFL""
+}"
+76db63db,JSON,READING,0,1,776,176,952,8962.76,3,False,False,0.286,"{
+  ""representative_teams"": {
+    ""AFC"": ""Denver Broncos"",
+    ""NFC"": ""Carolina Panthers""
+  },
+  ""afc_representation"": ""Denver Broncos""
+}"
+825a7dae,JSON,READING,0,2,777,181,958,4559.48,3,False,False,0.235,"{
+  ""super_bowl_teams"": {
+    ""afc_team"": ""Denver Broncos"",
+    ""nfc_team"": ""Carolina Panthers""
+  },
+  ""afc_representative"": ""Denver Broncos""
+}"
+264a7f8e,JSON,READING,1,0,776,174,950,4099.41,3,False,False,0.286,"{
+  ""winning_team"": ""Carolina Panthers"",
+  ""teams_involved"": [
+    ""Denver Broncos"",
+    ""Carolina Panthers""
+  ],
+  ""conference"": ""NFC""
+}"
+2f5ff00a,JSON,READING,1,1,776,177,953,4398.13,3,False,False,0.25,"{
+  ""winning_team"": ""Carolina Panthers"",
+  ""teams_involved"": [
+    ""Denver Broncos"",
+    ""Carolina Panthers""
+  ],
+  ""nfc_team"": ""Carolina Panthers""
+}"
+a4053289,JSON,READING,1,2,776,181,957,4423.5,3,False,False,0.235,"{
+  ""super_bowl_teams"": {
+    ""afc_champion"": ""Denver Broncos"",
+    ""nfc_champion"": ""Carolina Panthers""
+  },
+  ""nfc_team"": ""Carolina Panthers""
+}"
+b4effd07,JSON,READING,2,0,827,215,1042,4823.04,3,False,False,0.593,"{
+  ""final_answer"": ""Super Bowl 50 took place at Levi's Stadium in Santa Clara, California.""
+}"
+8182f895,JSON,READING,2,1,838,294,1132,5973.44,3,False,False,0.25,"{
+  ""event"": ""Super Bowl 50"",
+  ""date"": ""February 7, 2016"",
+  ""location"": ""Levi's Stadium, Santa Clara, California"",
+  ""specific_location"": ""Levi's Stadium, Santa Clara, California"",
+  ""short_answer"":"
+426b0670,JSON,READING,2,2,797,215,1012,4765.74,3,False,False,0.645,"{
+  ""event"": ""Super Bowl 50"",
+  ""venue"": {
+    ""name"": ""Levi's Stadium"",
+    ""city"": ""Santa Clara"",
+    ""region"": ""California"",
+    ""area"": ""San Francisco Bay Area""
+  }
+}"
+8c6d0da6,JSON,READING,3,0,715,97,812,3139.77,3,False,False,0.571,"{
+  ""result"": {
+    ""winning_team"": ""Denver Broncos""
+  }
+}"
+a830f6be,JSON,READING,3,1,746,151,897,3627.42,3,False,False,0.286,"{
+  ""champions"": {
+    ""AFC"": ""Denver Broncos"",
+    ""NFC"": ""Carolina Panthers""
+  },
+  ""super_bowl_winner"": ""Denver Broncos""
+}"
+a89f84cb,JSON,READING,3,2,718,100,818,3162.46,3,False,False,0.667,"{
+  ""result"": {
+    ""winningTeam"": ""Denver Broncos""
+  }
+}"
+bbbc078f,JSON,READING,4,0,766,127,893,6672.81,3,False,False,0.5,"{
+  ""anniversary_color"": ""gold""
+}"
+b0c8e328,JSON,READING,4,1,741,112,853,3688.88,3,False,False,0.25,"{
+  ""super_bowl_number"": 50,
+  ""anniversary_color"": ""gold""
+}"
+69de15a6,JSON,READING,4,2,863,298,1161,5026.46,3,False,False,0.065,"{
+  ""super_bowl_details"": {
+    ""number"": 50,
+    ""winning_team"": ""Denver Broncos"",
+    ""losing_team"": ""Carolina Panthers"",
+    ""score"": ""24–10"",
+    ""date"": ""February 7, 2016"",
+    ""location"": ""Levi'"
+6e5d91fa,JSON,READING,5,0,770,174,944,3685.71,3,False,False,0.235,"{
+  ""event"": ""Super Bowl 50"",
+  ""theme"": ""Golden anniversary"",
+  ""initiatives"": ""Gold-themed initiatives"",
+  ""numerals"": ""Arabic numerals 50""
+}"
+473f3ec1,JSON,READING,5,1,769,147,916,4201.58,3,False,False,0.5,"{
+  ""super_bowl_50_theme"": ""golden anniversary""
+}"
+e162331b,JSON,READING,5,2,817,289,1106,5611.54,3,False,False,0.098,"{
+  ""event"": {
+    ""theme"": ""golden anniversary"",
+    ""game_date"": ""February 7, 2016"",
+    ""location"": ""Levi's Stadium, Santa Clara, California"",
+    ""result"": {
+      ""winning_team"": ""Denver Broncos"""
+3dafa34b,JSON,READING,6,0,763,169,932,4224.24,3,False,False,0.3,"{
+  ""identified_date"": ""February 7, 2016"",
+  ""day_of_week"": ""Sunday"",
+  ""game_day_info"": ""The game was played on a Sunday.""
+}"
+dd5a5411,JSON,READING,6,1,740,122,862,3442.3,3,False,False,0.857,"{
+  ""executionDate"": ""February 7, 2016""
+}"
+32466863,JSON,READING,6,2,764,163,927,4548.33,3,False,False,0.429,"{
+  ""identified_date"": ""February 7, 2016"",
+  ""day"": ""7"",
+  ""formatted_date"": ""February 7""
+}"
+ff3e59c4,JSON,READING,7,0,824,221,1045,4641.32,3,False,False,0.5,"{
+  ""final_answer"": {
+    ""abbreviation"": ""AFC"",
+    ""full_form"": ""American Football Conference""
+  }
+}"
+5a0c4991,JSON,READING,7,1,748,135,883,5552.47,3,False,False,0.75,"{
+  ""AFC"": {
+    ""Meaning"": ""American Football Conference""
+  }
+}"
+15472245,JSON,READING,7,2,759,149,908,3745.68,3,False,False,0.6,"{
+  ""acronym"": ""AFC"",
+  ""full_form"": ""American Football Conference""
+}"
+add98109,JSON,READING,8,0,785,192,977,4631.13,3,False,False,0.211,"{
+  ""super_bowl_number"": 50,
+  ""theme"": ""golden anniversary"",
+  ""initiatives"": ""gold-themed initiatives"",
+  ""name_change"": ""suspension of Roman numerals""
+}"
+420dba1f,JSON,READING,8,1,842,292,1134,6037.53,3,False,False,0.114,"{
+  ""event_details"": {
+    ""date"": ""February 7, 2016"",
+    ""location"": ""Levi's Stadium, Santa Clara, California"",
+    ""winning_team"": ""Denver Broncos"",
+    ""losing_team"": ""Carolina Panthers"",
+    ""sco"
+282e7b1d,JSON,READING,8,2,755,165,920,4317.33,3,False,False,0.267,"{
+  ""celebration"": {
+    ""occasion"": ""golden anniversary"",
+    ""initiatives"": ""gold-themed initiatives"",
+    ""logo"": {
+      ""design"": ""Arabic numerals 50""
+    }
+  }
+}"
+a0b2b4de,JSON,READING,9,0,732,124,856,4082.88,3,False,False,0.6,"{
+  ""acronym"": ""AFC"",
+  ""full_form"": ""American Football Conference""
+}"
+e93411f1,JSON,READING,9,1,792,174,966,5376.56,3,False,False,0.75,"{
+  ""final_answer"": ""American Football Conference""
+}"
+efbf01d7,JSON,READING,9,2,794,176,970,4681.69,3,False,False,0.75,"{
+  ""final_answer"": ""American Football Conference""
+}"
+256728b8,JSON,NEWS,0,0,792,451,1243,8750.91,3,False,False,0.356,"{
+  ""main_decision"": {
+    ""interest_rate"": ""4.25%-4.50%"",
+    ""action"": ""held unchanged""
+  },
+  ""inflation"": {
+    ""current_rate"": 2.8,
+    ""target_rate"": 2,
+    ""above_target"": true
+  },
+  ""unemploy"
+5d7baf6b,JSON,NEWS,0,1,799,468,1267,8313.7,3,False,False,0.305,"{
+  ""federal_reserve_decision"": {
+    ""benchmark_interest_rate"": ""4.25%-4.50%"",
+    ""decision"": ""unchanged""
+  },
+  ""inflation"": {
+    ""current_rate"": 2.8,
+    ""target_rate"": 2.0,
+    ""comparison"": ""ab"
+cd693f60,JSON,NEWS,0,2,814,475,1289,10079.33,3,False,False,0.36,"{
+  ""federal_reserve_decision"": {
+    ""interest_rate"": ""4.25%-4.50%"",
+    ""decision"": ""unchanged""
+  },
+  ""inflation"": {
+    ""current_rate"": 2.8,
+    ""target_rate"": 2,
+    ""status"": ""above target""
+  },"
+cb0a5322,JSON,NEWS,1,0,705,356,1061,6613.31,3,False,False,0.365,"{
+  ""financial_summary"": {
+    ""total_revenue_million"": 124.3,
+    ""revenue_sources"": {
+      ""iPhone_million"": 69.1,
+      ""services_million"": 26.3
+    },
+    ""earnings_per_share"": {
+      ""reported"""
+3255532f,JSON,NEWS,1,1,701,344,1045,6320.22,3,False,False,0.371,"{
+  ""financial_summary"": {
+    ""total_revenue_million"": 124.3,
+    ""revenue_sources"": {
+      ""iPhone_million"": 69.1,
+      ""services_million"": 26.3
+    },
+    ""earnings_per_share"": {
+      ""actual"": "
+d29b7fa1,JSON,NEWS,1,2,688,316,1004,6188.98,3,False,False,0.451,"{
+  ""financial_summary"": {
+    ""total_revenue_million"": 124.3,
+    ""iphone_revenue_million"": 69.1,
+    ""services_revenue_million"": 26.3,
+    ""earnings_per_share"": {
+      ""reported"": 2.40,
+      ""anal"
+7d2d94ce,JSON,NEWS,2,0,903,635,1538,13427.82,3,False,False,0.235,"{
+  ""announcement_details"": {
+    ""subject"": ""Tesla's announcement of a new affordable EV model"",
+    ""model_name"": ""Model Q"",
+    ""price"": 25000,
+    ""range"": 280,
+    ""acceleration"": ""0-60 mph in 5."
+86c54281,JSON,NEWS,2,1,944,672,1616,11687.7,3,False,False,0.267,"{
+  ""announcement"": {
+    ""subject"": ""Tesla's new affordable EV model"",
+    ""model_details"": {
+      ""name"": ""Model Q"",
+      ""price"": 25000,
+      ""range"": 280,
+      ""acceleration"": ""0-60 mph in 5.8"
+d4a41e9e,JSON,NEWS,2,2,957,676,1633,10574.24,3,False,False,0.222,"{
+  ""announcement_details"": {
+    ""model_name"": ""Model Q"",
+    ""price"": 25000,
+    ""range"": 280,
+    ""acceleration"": ""0-60 mph in 5.8 seconds""
+  },
+  ""production_schedule"": {
+    ""production_start_dat"
+9da33a59,JSON,NEWS,3,0,901,656,1557,11083.39,3,False,False,0.226,"{
+  ""summary"": {
+    ""company"": ""TSMC"",
+    ""production"": {
+      ""location"": ""Arizona"",
+      ""chip_size"": ""4nm"",
+      ""yield_rate"": ""90%""
+    },
+    ""financials"": {
+      ""revenue"": {
+        ""amou"
+462cccce,JSON,NEWS,3,1,893,592,1485,11266.24,3,False,False,0.269,"{
+  ""summary"": {
+    ""main_subject"": ""TSMC and the global chip shortage"",
+    ""tsmc_production"": {
+      ""location"": ""Arizona fab"",
+      ""chip_type"": ""4nm"",
+      ""yield_rate"": ""90%""
+    },
+    ""glob"
+5672e7b8,JSON,NEWS,3,2,900,594,1494,16624.08,3,False,False,0.286,"{
+  ""summary"": {
+    ""main_subject"": ""TSMC and the global chip shortage"",
+    ""tsmc_production"": {
+      ""location"": ""Arizona fab"",
+      ""chip_type"": ""4nm"",
+      ""yield_rate"": ""90%""
+    },
+    ""glob"
+8bed2ee6,JSON,NEWS,4,0,806,515,1321,8022.04,3,False,False,0.367,"{
+  ""summary"": {
+    ""main_subject"": ""The article discusses the EU's enactment of the AI Regulation Act."",
+    ""key_facts"": {
+      ""first_comprehensive_AI_law"": true,
+      ""conformity_assessments_re"
+1e41f5d5,JSON,NEWS,4,1,796,504,1300,9781.69,3,False,False,0.195,"{
+  ""main_subject"": ""The article discusses the EU's enactment of the AI Act."",
+  ""key_facts"": {
+    ""law_requirements"": ""High-risk AI systems must undergo conformity assessments."",
+    ""penalties"": {
+"
+dce7e6f6,JSON,NEWS,4,2,783,466,1249,7271.04,3,False,False,0.324,"{
+  ""main_subject"": ""EU's enactment of the AI Act"",
+  ""key_facts"": {
+    ""high_risk_AI_systems"": ""Must undergo conformity assessments"",
+    ""penalties"": {
+      ""description"": ""Fines for violations"",
+"
+a3ffe932,JSON,NEWS,5,0,875,553,1428,9785.48,3,False,False,0.212,"{
+  ""event"": ""SpaceX's Starship completed its first successful orbital flight."",
+  ""flight_details"": {
+    ""duration"": ""90 minutes"",
+    ""altitude"": ""250 km"",
+    ""payload_weight"": ""100 tons""
+  },
+  """
+22c35dd2,JSON,NEWS,5,1,845,505,1350,8668.81,3,False,False,0.267,"{
+  ""event_summary"": {
+    ""event"": ""Successful orbital flight of SpaceX's Starship"",
+    ""flight_details"": {
+      ""duration"": ""90 minutes"",
+      ""altitude"": ""250 km"",
+      ""splashdown_location"": """
+eeab5a68,JSON,NEWS,5,2,828,521,1349,8896.91,3,False,False,0.196,"{
+  ""main_event"": ""SpaceX's Starship completed its first successful orbital flight."",
+  ""key_facts_and_figures"": {
+    ""flight_duration"": ""90 minutes"",
+    ""altitude"": ""250 km"",
+    ""payload_weight"": "
+c68efcd0,JSON,NEWS,6,0,720,386,1106,7385.71,3,False,False,0.328,"{
+  ""summary"": {
+    ""identifiedCities"": [
+      ""New York"",
+      ""Los Angeles"",
+      ""Chicago""
+    ],
+    ""droneSpecifications"": {
+      ""model"": ""MK30"",
+      ""deliveryRadius"": ""15 miles"",
+      """
+d4d968a9,JSON,NEWS,6,1,740,417,1157,7564.15,3,False,False,0.371,"{
+  ""summary"": {
+    ""identifiedCities"": [
+      ""New York"",
+      ""Los Angeles"",
+      ""Chicago""
+    ],
+    ""deliverySpecifications"": {
+      ""weightLimit"": ""5 pounds"",
+      ""deliveryTime"": ""30 minu"
+93168f77,JSON,NEWS,6,2,721,386,1107,7777.39,3,False,False,0.404,"{
+  ""summary"": {
+    ""identified_cities"": [
+      ""New York"",
+      ""Los Angeles"",
+      ""Chicago""
+    ],
+    ""drone_delivery_capabilities"": {
+      ""model"": ""MK30"",
+      ""weight_limit"": ""5 pounds"",
+"
+60958f8f,JSON,NEWS,7,0,754,412,1166,10759.57,3,False,False,0.138,"{
+  ""main_subject"": ""OpenAI releases GPT-5 with improved reasoning capabilities."",
+  ""key_performance_metrics"": {
+    ""reasoning_improvement_percentage"": 40,
+    ""MATH_score_percentage"": 92,
+    ""GPQA"
+db88b0ff,JSON,NEWS,7,1,886,629,1515,9836.73,3,False,False,0.182,"{
+  ""main_claim"": ""OpenAI released GPT-5, claiming a 40% improvement on graduate-level reasoning benchmarks."",
+  ""performance_metrics"": {
+    ""reasoning_improvement"": ""40%"",
+    ""MATH_benchmark_score"""
+0582c3fd,JSON,NEWS,7,2,772,435,1207,8463.63,3,False,False,0.158,"{
+  ""release_information"": {
+    ""subject"": ""OpenAI releases GPT-5"",
+    ""context_window_size"": ""256K""
+  },
+  ""performance_metrics"": {
+    ""reasoning_improvement_percentage"": 40,
+    ""math_benchmark_s"
+81e93b8f,JSON,NEWS,8,0,886,574,1460,10456.2,3,False,False,0.369,"{
+  ""earthquake_details"": {
+    ""magnitude"": 7.4,
+    ""location"": ""off the coast of Hokkaido, Japan"",
+    ""time"": ""3:42 AM local time""
+  },
+  ""tsunami_warning"": {
+    ""affected_areas"": ""coastal areas "
+e9cc36ea,JSON,NEWS,8,1,863,529,1392,9055.81,3,False,False,0.406,"{
+  ""earthquake_details"": {
+    ""magnitude"": 7.4,
+    ""location"": ""off the coast of Hokkaido, Japan"",
+    ""time"": ""3:42 AM local time""
+  },
+  ""tsunami_warning"": {
+    ""issued_for"": ""coastal areas with"
+9e662240,JSON,NEWS,8,2,777,448,1225,7399.12,3,False,False,0.415,"{
+  ""earthquake"": {
+    ""magnitude"": 7.4,
+    ""location"": ""off the coast of Hokkaido, Japan"",
+    ""time"": ""3:42 AM local time""
+  },
+  ""tsunami_warning"": {
+    ""affected_areas"": ""coastal areas within 3"
+7ac927f2,JSON,NEWS,9,0,729,341,1070,7472.6,3,False,False,0.336,"{
+  ""summary"": {
+    ""co2_emissions_decline_2024_percentage"": 2.1,
+    ""renewable_energy_contribution_to_global_electricity_generation_percentage"": 35,
+    ""total_solar_capacity_additions_gigawatts"": "
+eb56e9b7,JSON,NEWS,9,1,779,469,1248,8528.53,3,False,False,0.305,"{
+  ""main_topic"": ""Global CO2 emissions decline for the first time not linked to economic recession."",
+  ""key_statistics"": {
+    ""emissions_decline"": ""2.1% in 2024"",
+    ""renewable_energy_share"": ""35%"
+fb80fb27,JSON,NEWS,9,2,892,620,1512,10684.88,3,False,False,0.186,"{
+  ""summary"": {
+    ""main_theme"": ""Global carbon emissions have declined for the first time without an economic recession, highlighting the impact of renewable energy."",
+    ""key_statistics"": {
+     "
+a6a90e53,SHARED_MEMORY,MATH,0,0,987,315,1302,7659.53,3,False,False,1.0,#### 18
+b6a78d56,SHARED_MEMORY,MATH,0,1,876,209,1085,5782.08,3,False,False,1.0,#### 18
+2ad189e6,SHARED_MEMORY,MATH,0,2,1058,362,1420,7706.46,3,False,False,1.0,#### 18
+df610c8d,SHARED_MEMORY,MATH,1,0,752,207,959,5803.97,3,False,False,1.0,#### 3
+579ff182,SHARED_MEMORY,MATH,1,1,737,195,932,4543.12,3,False,False,1.0,#### 3
+35ffb689,SHARED_MEMORY,MATH,1,2,752,205,957,5077.37,3,False,False,1.0,#### 3
+d2fb409e,SHARED_MEMORY,MATH,2,0,888,267,1155,6671.78,3,False,False,1.0,#### 70000
+c72658e4,SHARED_MEMORY,MATH,2,1,880,263,1143,5973.71,3,False,False,1.0,#### 70000
+bbef3f1e,SHARED_MEMORY,MATH,2,2,862,242,1104,5349.39,3,False,False,1.0,#### 70000
+5ee716d6,SHARED_MEMORY,MATH,3,0,751,180,931,4445.5,3,False,False,1.0,#### 540
+f04b1d07,SHARED_MEMORY,MATH,3,1,768,194,962,4687.77,3,False,False,1.0,#### 540
+0e3bfea6,SHARED_MEMORY,MATH,3,2,752,192,944,4166.66,3,False,False,1.0,#### 540
+0688decd,SHARED_MEMORY,MATH,4,0,1120,306,1426,6301.07,3,False,False,1.0,#### 20
+fd5de350,SHARED_MEMORY,MATH,4,1,1053,233,1286,5300.79,3,False,False,1.0,#### 20
+2c2074c5,SHARED_MEMORY,MATH,4,2,1053,243,1296,5169.01,3,False,False,1.0,#### 20
+97c9f24e,SHARED_MEMORY,MATH,5,0,890,247,1137,5220.53,3,False,False,1.0,#### 64
+4025380f,SHARED_MEMORY,MATH,5,1,942,284,1226,4644.88,3,False,False,1.0,#### 64
+606263d5,SHARED_MEMORY,MATH,5,2,874,229,1103,4586.06,3,False,False,1.0,#### 64
+22bb36b2,SHARED_MEMORY,MATH,6,0,745,161,906,3875.91,3,False,False,1.0,#### 260
+18bcf516,SHARED_MEMORY,MATH,6,1,737,156,893,4096.11,3,False,False,1.0,#### 260
+e2597fe7,SHARED_MEMORY,MATH,6,2,755,165,920,3485.72,3,False,False,1.0,#### 260
+62fae3e7,SHARED_MEMORY,MATH,7,0,1089,369,1458,6759.11,3,False,False,0.0,#### 120
+6fa6fc83,SHARED_MEMORY,MATH,7,1,1097,377,1474,6487.04,3,False,False,0.0,#### 120
+37e2b74a,SHARED_MEMORY,MATH,7,2,1027,338,1365,5912.98,3,False,False,0.0,#### 120
+e749e8b9,SHARED_MEMORY,MATH,8,0,1183,377,1560,6449.87,3,True,False,0.0,"John's final distance from home at the end of those 4 hours is 180 miles. 
+
+#### 180"
+a6d8ad55,SHARED_MEMORY,MATH,8,1,1182,505,1687,9119.01,3,True,False,0.0,"John drives a total distance of 180 miles away from home in the first 3 hours. He spends 2 hours in standstill traffic, covering 0 miles. Then, he drives 15 miles in the next half-hour at 30 mph. Fina"
+299ab645,SHARED_MEMORY,MATH,8,2,1188,500,1688,7601.6,3,True,False,1.0,"John drives a total distance of 180 miles initially. After spending 2 hours in standstill traffic, he drives 15 miles in the next half-hour at 30 mph and then drives 120 miles in the remaining 1.5 hou"
+6badc883,SHARED_MEMORY,MATH,9,0,976,297,1273,4689.84,3,False,False,1.0,#### 460
+a71c823d,SHARED_MEMORY,MATH,9,1,976,296,1272,5018.81,3,False,False,1.0,#### 460
+44a6903e,SHARED_MEMORY,MATH,9,2,970,287,1257,4898.02,3,False,False,1.0,#### 460
+ffc7a169,SHARED_MEMORY,READING,0,0,1120,113,1233,3809.78,3,False,False,0.286,The NFL team that represented the AFC at Super Bowl 50 was the Denver Broncos.
+02da4e0f,SHARED_MEMORY,READING,0,1,1106,106,1212,4410.68,3,False,False,0.286,The NFL team that represented the AFC at Super Bowl 50 is the Denver Broncos.
+2c03c7fd,SHARED_MEMORY,READING,0,2,1072,85,1157,2967.89,3,False,False,0.4,The Denver Broncos represented the AFC at Super Bowl 50.
+2291b28e,SHARED_MEMORY,READING,1,0,1074,86,1160,2771.59,3,False,False,0.4,The Carolina Panthers represented the NFC at Super Bowl 50.
+d3f052e9,SHARED_MEMORY,READING,1,1,1106,106,1212,3138.57,3,False,False,0.286,The NFL team that represented the NFC at Super Bowl 50 is the Carolina Panthers.
+3a9fd0b8,SHARED_MEMORY,READING,1,2,1084,96,1180,3317.81,3,False,False,0.286,The NFL team that represented the NFC at Super Bowl 50 was the Carolina Panthers.
+eecea09e,SHARED_MEMORY,READING,2,0,1116,114,1230,5351.61,3,False,False,0.64,"Super Bowl 50 took place at Levi's Stadium in Santa Clara, California."
+08f263a1,SHARED_MEMORY,READING,2,1,1094,103,1197,4542.6,3,False,False,0.64,"Super Bowl 50 took place at Levi's Stadium in Santa Clara, California."
+8f4850ef,SHARED_MEMORY,READING,2,2,1116,114,1230,3430.72,3,False,False,0.64,"Super Bowl 50 took place at Levi's Stadium in Santa Clara, California."
+3225febe,SHARED_MEMORY,READING,3,0,1093,92,1185,3688.04,3,False,False,0.5,The Denver Broncos won Super Bowl 50.
+8f9ed5a6,SHARED_MEMORY,READING,3,1,1094,95,1189,2995.57,3,False,False,0.5,The Denver Broncos won Super Bowl 50.
+b9f8196c,SHARED_MEMORY,READING,3,2,1071,82,1153,2432.58,3,False,False,0.5,The Denver Broncos won Super Bowl 50.
+aaaed285,SHARED_MEMORY,READING,4,0,1115,80,1195,3013.02,3,False,False,1.0,Gold
+9ddcf9e1,SHARED_MEMORY,READING,4,1,1115,80,1195,2845.05,3,False,False,1.0,Gold
+67081632,SHARED_MEMORY,READING,4,2,1091,69,1160,2954.62,3,False,False,1.0,Gold
+d100e46c,SHARED_MEMORY,READING,5,0,1096,111,1207,3074.5,3,False,False,0.25,"The theme of Super Bowl 50 was the ""golden anniversary,"" emphasized with various gold-themed initiatives."
+28bd14d6,SHARED_MEMORY,READING,5,1,1126,125,1251,3896.95,3,False,False,0.25,"The theme of Super Bowl 50 was the ""golden anniversary,"" emphasized with various gold-themed initiatives."
+b70705e3,SHARED_MEMORY,READING,5,2,1100,113,1213,4109.31,3,False,False,0.25,"The theme of Super Bowl 50 was the ""golden anniversary,"" emphasized through various gold-themed initiatives."
+978005e4,SHARED_MEMORY,READING,6,0,1088,92,1180,3276.39,3,False,False,1.0,"February 7, 2016."
+3836c304,SHARED_MEMORY,READING,6,1,1086,91,1177,2863.22,3,False,False,1.0,"February 7, 2016."
+6d9bbea1,SHARED_MEMORY,READING,6,2,1088,97,1185,3585.86,3,False,False,0.6,"The game was played on February 7, 2016."
+63c3d7f8,SHARED_MEMORY,READING,7,0,1094,86,1180,2794.11,3,False,False,1.0,American Football Conference
+159d0e56,SHARED_MEMORY,READING,7,1,1097,97,1194,5047.54,3,False,False,0.6,The AFC is short for American Football Conference.
+569cd1ed,SHARED_MEMORY,READING,7,2,1073,86,1159,3169.19,3,False,False,0.6,The AFC is short for American Football Conference.
+5e056949,SHARED_MEMORY,READING,8,0,1106,115,1221,4365.66,3,False,False,0.25,"The theme of Super Bowl 50 was the ""golden anniversary,"" emphasized with various gold-themed initiatives."
+f1acc601,SHARED_MEMORY,READING,8,1,1100,113,1213,3890.88,3,False,False,0.25,"The theme of Super Bowl 50 was the ""golden anniversary,"" emphasized through various gold-themed initiatives."
+22bc85ed,SHARED_MEMORY,READING,8,2,1100,113,1213,3163.26,3,False,False,0.25,"The theme of Super Bowl 50 was the ""golden anniversary,"" emphasized through various gold-themed initiatives."
+ec19d000,SHARED_MEMORY,READING,9,0,1077,87,1164,3295.57,3,False,False,0.667,AFC stands for American Football Conference.
+22cd2f3d,SHARED_MEMORY,READING,9,1,1083,90,1173,3428.69,3,False,False,0.667,AFC stands for American Football Conference.
+abe2cb4a,SHARED_MEMORY,READING,9,2,1065,81,1146,2833.17,3,False,False,0.667,AFC stands for American Football Conference.
+3a3626b0,SHARED_MEMORY,NEWS,0,0,1043,306,1349,6572.26,3,False,False,0.403,"The Federal Reserve held its benchmark interest rate steady at 4.25%-4.50% during its March 2025 meeting. Inflation remains above the target at 2.8%, while the unemployment rate is at 3.9%. The Fed in"
+95fcadc0,SHARED_MEMORY,NEWS,0,1,1095,370,1465,7553.19,3,False,False,0.35,"The article titled ""Fed Holds Interest Rates Steady in March 2025"" discusses the Federal Reserve's decision to maintain its benchmark interest rate at 4.25%-4.50% during its March 2025 meeting. Inflat"
+8bb4484e,SHARED_MEMORY,NEWS,0,2,1053,325,1378,6864.35,3,False,False,0.368,"The Federal Reserve held its benchmark interest rate steady at 4.25%-4.50% during its March 2025 meeting. Chair Jerome Powell noted that inflation is at 2.8%, which is above the target of 2%, while th"
+bae09129,SHARED_MEMORY,NEWS,1,0,1097,387,1484,8130.04,3,False,False,0.381,"Apple reported a record Q1 FY2025 revenue of $124.3 billion, marking a 4% increase year-over-year. iPhone revenue was $69.1 billion, while services revenue reached $26.3 billion. The earnings per shar"
+ae3aa973,SHARED_MEMORY,NEWS,1,1,1145,436,1581,7848.59,3,False,False,0.401,"Apple reported record Q1 FY2025 earnings with a revenue of $124.3 billion, reflecting a 4% increase year-over-year. iPhone revenue reached $69.1 billion, while services revenue hit a record $26.3 bill"
+65923cf7,SHARED_MEMORY,NEWS,1,2,1189,473,1662,8987.61,3,False,False,0.401,"Apple reported record Q1 FY2025 earnings with total revenue of $124.3 billion, reflecting a 4% year-over-year increase. iPhone revenue reached $69.1 billion, while services revenue hit a record $26.3 "
+c3c83e8e,SHARED_MEMORY,NEWS,2,0,981,298,1279,6996.17,3,False,False,0.32,"Tesla has announced its new affordable electric vehicle, the Model Q, which is priced at $25,000. This model aims for mass-market adoption, featuring a range of 280 miles and an acceleration of 0-60 m"
+e4dac7ac,SHARED_MEMORY,NEWS,2,1,1077,374,1451,7971.79,3,False,False,0.401,"Tesla has announced the Model Q, an affordable electric vehicle priced at $25,000, featuring a 280-mile range and 0-60 mph acceleration in 5.8 seconds. Production is set to begin at Gigafactory Texas "
+6377d6f4,SHARED_MEMORY,NEWS,2,2,996,311,1307,7277.23,3,False,False,0.329,"Tesla has announced a new affordable electric vehicle, the Model Q, which is priced at $25,000. This model is designed for mass-market adoption, featuring a range of 280 miles and an acceleration of 0"
+6b1bfdf6,SHARED_MEMORY,NEWS,3,0,1009,329,1338,7074.67,3,False,False,0.371,"Title: Global Chip Shortage Eases as TSMC Expands
+
+Key Facts:
+- TSMC's Arizona fab is now producing 4nm chips with a yield rate of 90%.
+- Global semiconductor lead times have decreased from 26 weeks t"
+ecaee20f,SHARED_MEMORY,NEWS,3,1,1034,359,1393,6448.54,3,False,False,0.392,"Title: Global Chip Shortage Eases as TSMC Expands
+
+Key Facts:
+- TSMC's Arizona fab is now producing 4nm chips at a 90% yield rate.
+- Global semiconductor lead times have decreased from 26 weeks to 14 "
+94721ede,SHARED_MEMORY,NEWS,3,2,1082,407,1489,9048.35,3,False,False,0.327,"Title: Global Chip Shortage Eases as TSMC Expands
+
+Key Facts:
+- TSMC's Arizona fabrication facility is now producing 4nm chips with a yield rate of 90%.
+- Global semiconductor lead times have decrease"
+c6b2ab65,SHARED_MEMORY,NEWS,4,0,1002,357,1359,6499.58,3,False,False,0.282,"The European Union has enacted the AI Act, the world's first comprehensive AI law, aimed at ensuring the safe and ethical use of AI technologies within the EU. Key facts include:
+
+- High-risk AI syste"
+ab16a546,SHARED_MEMORY,NEWS,4,1,1008,353,1361,6158.62,3,False,False,0.32,"The European Union has officially enacted the AI Act, the world's first comprehensive AI law, which establishes a regulatory framework for AI technologies, particularly focusing on high-risk systems. "
+6a959cae,SHARED_MEMORY,NEWS,4,2,1027,426,1453,7458.99,3,False,False,0.25,"The European Union has enacted the AI Act, which is the world's first comprehensive AI law. Key facts include:
+
+1. **Title**: EU Passes Comprehensive AI Regulation Act.
+2. **Significance**: This law r"
+1e12acf3,SHARED_MEMORY,NEWS,5,0,1029,320,1349,11192.88,3,False,False,0.441,"Title: SpaceX Starship Completes First Orbital Flight
+
+Key Facts:
+- Duration: 90 minutes in orbit
+- Altitude: 250 km
+- Landing: Splashdown in the Indian Ocean
+- Super Heavy booster was successfully ca"
+09e7f800,SHARED_MEMORY,NEWS,5,1,991,309,1300,6333.77,3,False,False,0.417,"Title: SpaceX Starship Completes First Orbital Flight
+
+Key Facts about the Orbital Flight:
+- Duration: 90 minutes in orbit
+- Altitude: 250 km
+- Landing details: Splashdown in the Indian Ocean; Super H"
+400bbfa6,SHARED_MEMORY,NEWS,5,2,1030,352,1382,8289.97,3,False,False,0.256,"SpaceX's Starship has successfully completed its first orbital flight, lasting 90 minutes and reaching an altitude of 250 km before splashing down in the Indian Ocean. Notably, the Super Heavy booster"
+cd16bac9,SHARED_MEMORY,NEWS,6,0,1044,368,1412,7470.21,3,False,False,0.36,"Amazon has launched its Prime Air drone delivery service in 10 major US cities, including New York, Los Angeles, and Chicago. The service allows for deliveries of packages under 5 pounds to arrive wit"
+020729cc,SHARED_MEMORY,NEWS,6,1,1001,328,1329,6964.65,3,False,False,0.363,"Amazon has expanded its Prime Air drone delivery service to 10 major US cities, including New York, Los Angeles, and Chicago. The service allows for deliveries of packages weighing under 5 pounds to a"
+cab74016,SHARED_MEMORY,NEWS,6,2,1022,343,1365,6500.28,3,False,False,0.364,"Amazon has launched its Prime Air drone delivery service in 10 major US cities, including New York, Los Angeles, and Chicago. Deliveries of packages weighing under 5 pounds will arrive within 30 minut"
+356341e5,SHARED_MEMORY,NEWS,7,0,973,296,1269,5482.97,3,False,False,0.31,"OpenAI has released GPT-5, which boasts a 40% improvement on graduate-level reasoning benchmarks. The model achieves a score of 92% on the MATH benchmark and 88% on GPQA. API pricing is set at $15 per"
+f6f850c0,SHARED_MEMORY,NEWS,7,1,986,302,1288,6138.22,3,False,False,0.307,"OpenAI has released GPT-5, which boasts a 40% improvement on graduate-level reasoning benchmarks. The model achieves a score of 92% on the MATH benchmark and 88% on GPQA. API pricing for GPT-5 is set "
+22be8c0d,SHARED_MEMORY,NEWS,7,2,978,305,1283,6966.62,3,False,False,0.3,"OpenAI has released GPT-5, which boasts a 40% improvement on graduate-level reasoning benchmarks. The model achieves impressive scores of 92% on the MATH benchmark and 88% on GPQA. API pricing for GPT"
+f77d8367,SHARED_MEMORY,NEWS,8,0,1171,450,1621,8296.31,3,False,False,0.371,"A 7.4 magnitude earthquake struck off the coast of Hokkaido, Japan at 3:42 AM local time, leading to a tsunami warning for coastal areas within 300 km, with observed wave heights reaching up to 3 mete"
+6f243b11,SHARED_MEMORY,NEWS,8,1,962,276,1238,6245.21,3,False,False,0.375,"A 7.4 magnitude earthquake struck off the coast of Hokkaido, Japan at 3:42 AM local time, triggering a tsunami warning for coastal areas within 300 km, with observed wave heights reaching up to 3 mete"
+adbe56cf,SHARED_MEMORY,NEWS,8,2,1039,387,1426,7226.2,3,False,False,0.347,"Title: Japan Earthquake Triggers Tsunami Warning
+
+Key Facts:
+- Magnitude of the earthquake: 7.4
+- Location: Off the coast of Hokkaido, Japan
+- Time of occurrence: 3:42 AM local time
+
+Tsunami Warning D"
+404e7534,SHARED_MEMORY,NEWS,9,0,1204,525,1729,9462.05,3,False,False,0.256,"In 2024, global CO2 emissions declined by 2.1%, marking the first annual decrease not linked to an economic recession. This decline is attributed to a significant increase in renewable energy usage, w"
+a6d1a9e0,SHARED_MEMORY,NEWS,9,1,1161,468,1629,9212.38,3,False,False,0.294,"In 2024, global CO2 emissions fell by 2.1%, marking the first annual decline not linked to an economic recession. This decrease coincided with a 5% reduction in coal power generation. Renewable energy"
+7c6ec316,SHARED_MEMORY,NEWS,9,2,1141,445,1586,8844.97,3,False,False,0.332,"In 2024, global CO2 emissions fell by 2.1%, marking the first annual decline not linked to an economic recession. Renewable energy now represents 35% of global electricity generation. Solar capacity a"
