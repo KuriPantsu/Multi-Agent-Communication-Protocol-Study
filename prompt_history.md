@@ -182,3 +182,117 @@ Commit `7cd6016` 已推送到新用户名下的仓库 ✅。
 **User:** 能不能帮我把我跟你对话的提示词和回答整理进 prompt_history.md？
 
 **Assistant:** 生成本文件（`prompt_history.md`）。
+
+---
+
+## Session 7 — Final Presentation 幻灯片生成与清理
+
+**User:** 仔细阅读并理解当前仓库，然后按照 Project_Rubric_STATGR5293_2026.pdf 里对 final presentation 的要求，用当前的项目的成果写一份 latex 的文件来生成 pdf 格式的幻灯片。幻灯片风格保持简洁实用。
+
+**Assistant:**
+先读取并理解了当前仓库结构、rubric、README、report outline、pipeline/demo 代码、实验配置、结果表和六张图：
+
+- `Project_Rubric_STATGR5293_2026.pdf`：确认 final presentation 评分由三块组成：Problem Statement 10%、Major Contributions 10%、Evaluation 10%。
+- `README.md` / `report/REPORT_OUTLINE.md`：确认项目主题、实验设计、主要结果、统计结论和 demo 叙事。
+- `pipeline.py`：确认固定三代理链路 Planning → Execution → Integration，协议变量为 `NL`、`MARKDOWN`、`JSON`、`SHARED_MEMORY`。
+- `results/results_summary.csv` / `results/experiment_config.json`：确认 360-run grid、模型 `gpt-4o-mini`、temperature 0.3、每格 N=30。
+- `figures/fig1`–`fig6`：确认可用于幻灯片中的 token、completion、interaction、Pareto、input/output token、latency 图。
+
+生成了 Beamer 幻灯片源码：
+
+```text
+presentation/final_presentation.tex
+```
+
+并用 `pdflatex` 编译生成：
+
+```text
+presentation/final_presentation.pdf
+```
+
+幻灯片结构：
+
+1. Title page
+2. Presentation Roadmap（显式对齐 rubric 三块）
+3. Problem Statement
+4. Research Questions and Hypotheses
+5. System Model
+6. Experimental Design
+7. Contribution 1: Controlled Protocol Benchmark
+8. Result: Protocol Strongly Affects Token Cost
+9. Why the Cost Changes
+10. Result: Quality Effects Are Domain-Dependent
+11. Interaction Pattern
+12. Efficiency--Effectiveness Trade-off
+13. Latency and Operational Cost
+14. Project Demo
+15. Limitations and Future Work
+16. Takeaways
+17. Backup: Cell-Level Summary
+
+关键内容：
+
+- 强调项目研究的是 protocol layer，而不是一个新的 task-specific agent application。
+- 展示 4 × 3 × 10 × 3 = 360 pipeline runs 的实验设计。
+- 汇报 token ANOVA：Protocol F=87.40, p<.001, η²=.262；Domain F=148.19, p<.001, η²=.296；Interaction F=15.66, p<.001, η²=.094。
+- 汇报 completion per-domain ANOVA：MATH η²=.017，READING η²=.102，NEWS η²=.197。
+- 给出 practitioner recommendations：MATH 质量优先选 Markdown、成本优先选 JSON；READING/NEWS 质量优先选 Shared Memory，预算优先选 NL。
+- 加入 Streamlit demo 说明：自动分类 domain、从 `results_summary.csv` 选择最佳协议、运行三代理 pipeline、展示 tokens/latency/cost/message log。
+
+编译验证：
+
+```bash
+cd presentation
+pdflatex -interaction=nonstopmode final_presentation.tex
+```
+
+最终 PDF 正常生成，共 17 页；第二次调整后无 LaTeX warning。
+
+---
+
+**User:** 清理掉 presentation 下 tex 和 pdf 以外后缀的文件，或者设置成不上传到 github
+
+**Assistant:**
+删除了 `presentation/` 下的 LaTeX 编译临时文件：
+
+```text
+presentation/final_presentation.aux
+presentation/final_presentation.snm
+presentation/final_presentation.log
+presentation/final_presentation.nav
+presentation/final_presentation.toc
+presentation/final_presentation.out
+```
+
+清理后 `presentation/` 只保留：
+
+```text
+presentation/final_presentation.tex
+presentation/final_presentation.pdf
+```
+
+同时更新 `.gitignore`，加入常见 LaTeX build artifacts，避免后续误上传：
+
+```gitignore
+*.aux
+*.bbl
+*.bcf
+*.blg
+*.fdb_latexmk
+*.fls
+*.log
+*.nav
+*.out
+*.run.xml
+*.snm
+*.synctex.gz
+*.toc
+```
+
+`git status --short` 显示当前新增 `presentation/`，并修改了 `.gitignore`。
+
+---
+
+**User:** 更新这次的对话到 prompt_history.md
+
+**Assistant:** 将本次 final presentation 生成、PDF 编译验证、LaTeX 临时文件清理和 `.gitignore` 更新记录追加到 `prompt_history.md`。
