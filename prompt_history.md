@@ -296,3 +296,72 @@ presentation/final_presentation.pdf
 **User:** 更新这次的对话到 prompt_history.md
 
 **Assistant:** 将本次 final presentation 生成、PDF 编译验证、LaTeX 临时文件清理和 `.gitignore` 更新记录追加到 `prompt_history.md`。
+
+---
+
+## Session 8 — Final Presentation v0.2 视觉风格重做
+
+**User:**  
+给出新的 Design Philosophy，要求按照 Academic-minimal 风格改进原来的 v0.1 幻灯片：
+
+- Style: Nature journal meets Figma's design system.
+- NO gradients, glowing effects, glassmorphism, or techy dark backgrounds.
+- Clean white/off-white `#FAFAFA` backgrounds.
+- One accent color only: muted indigo `#4F46E5`.
+- Generous whitespace.
+- Simple matplotlib-style charts embedded as images.
+- Font: Helvetica Neue or fallback to Calibri. Headers 32pt bold, body 18pt regular.
+- Icons: flat line icons only, minimal usage.
+
+**Assistant:**
+重写了 `presentation/final_presentation.tex` 的 Beamer 样式和页面结构，把原来的默认 Beamer/Madrid 风格改成更接近 academic-minimal 的版本：
+
+- 移除 `Madrid` 主题和默认 block-heavy 样式。
+- 自定义白底 `#FAFAFA`、正文墨色、灰色辅助文本、单一 accent `#4F46E5`。
+- 自定义 frame title、footer、item bullet、细线 divider。
+- 页面改为更疏朗的排版：少量关键文字 + 大数字 + 左图右结论。
+- 保留现有六张 matplotlib-style 实验图。
+- 将部分表格型内容改成更清晰的 stats/key takeaway 结构。
+- 将 v0.1 的 17 页调整为 v0.2 的 18 页，增加呼吸感。
+
+技术处理：
+
+- 尝试 `xelatex` + Helvetica Neue 时，发现本机 Helvetica Neue 触发 XeTeX 字体驱动错误。
+- 尝试 `lualatex` 时，sandbox 中 LuaTeX font cache 不可写，不能稳定使用。
+- 最终使用 `xelatex` + Arial fallback 编译，视觉仍保持 Helvetica/Calibri 系无衬线风格。
+- 避免使用已被 LaTeX 占用的 `\accent` 宏名，改为 `\hl`。
+- 对图表页进行高度约束和文字压缩，降低 overfull 风险。
+
+生成并验证：
+
+```bash
+cd presentation
+xelatex -interaction=nonstopmode final_presentation.tex
+```
+
+输出：
+
+```text
+presentation/final_presentation.tex
+presentation/final_presentation.pdf
+```
+
+`pdfinfo` 显示新版 PDF 共 18 页，文件大小约 371 KB。编译后清理了 LaTeX 临时文件，`presentation/` 下只保留：
+
+```text
+presentation/final_presentation.tex
+presentation/final_presentation.pdf
+```
+
+当前 git diff 显示：
+
+```text
+presentation/final_presentation.pdf | Bin 539828 -> 371281 bytes
+presentation/final_presentation.tex | 636 ++++++++++++++++++------------------
+```
+
+---
+
+**User:** 更新 prompt_history.md
+
+**Assistant:** 将本次 v0.2 幻灯片视觉重做、编译验证、字体 fallback 处理和临时文件清理记录追加到 `prompt_history.md`。
