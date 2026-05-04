@@ -365,3 +365,63 @@ presentation/final_presentation.tex | 636 ++++++++++++++++++------------------
 **User:** 更新 prompt_history.md
 
 **Assistant:** 将本次 v0.2 幻灯片视觉重做、编译验证、字体 fallback 处理和临时文件清理记录追加到 `prompt_history.md`。
+
+---
+
+## Session 9 — Final Presentation 图表替换与 Slide 6 修正
+
+**User:** 为什么图没有插进去
+
+**Assistant:** 说明当前 `presentation/final_presentation.tex` 仍使用 chart placeholder，占位框来自 `\chartbox` 宏，需要把第 9-14 页替换为真实图片引用。
+
+---
+
+**User:** 替换。然后你注意改进一下第六页，# Heading 和state.json 这俩和上面的文本重叠，往下移一点点
+
+**Assistant:** 更新了 `presentation/final_presentation.tex` 和重新编译 `presentation/final_presentation.pdf`：
+
+- 将第 9-14 页的 `\chartbox{...}` 占位框替换为真实图表。
+- 增加 `graphicx` 支持和 `\chartimage` 宏，用于统一控制图表插入尺寸。
+- 修正第 6 页 protocol card 代码提示位置，将底部 monospace hint 下移，避免 `# Heading` 和 `state.json` 与说明文本重叠。
+- 生成并引用透明背景图，避免原始 matplotlib PNG 的白色底块破坏 off-white slide 背景：
+
+```text
+figures/fig1_tokens_by_protocol_domain_transparent.png
+figures/fig2_completion_by_cell_transparent.png
+figures/fig3_interaction_transparent.png
+figures/fig4_pareto_transparent.png
+figures/fig5_input_vs_output_transparent.png
+figures/fig6_latency_transparent.png
+```
+
+图表页对应关系：
+
+```text
+Slide 9  -> fig1_tokens_by_protocol_domain_transparent.png
+Slide 10 -> fig5_input_vs_output_transparent.png
+Slide 11 -> fig2_completion_by_cell_transparent.png
+Slide 12 -> fig3_interaction_transparent.png
+Slide 13 -> fig4_pareto_transparent.png
+Slide 14 -> fig6_latency_transparent.png
+```
+
+编译验证：
+
+```bash
+cd presentation
+xelatex -interaction=nonstopmode final_presentation.tex
+```
+
+结果：
+
+- `presentation/final_presentation.pdf` 成功生成。
+- `pdfinfo` 确认 PDF 共 18 页。
+- `rg -n -F '\begin{frame}' final_presentation.tex` 确认 tex 中有 18 个 frame。
+- 预览检查第 9 页确认真实图表已插入，且不再显示 LaTeX 占位框。
+- 编译后清理了 LaTeX 临时文件，`presentation/` 下只保留 `.tex` 和 `.pdf`。
+
+---
+
+**User:** 更新 prompt_history.md
+
+**Assistant:** 将本次图表替换、透明背景图生成、Slide 6 重叠修正、PDF 编译验证和临时文件清理记录追加到 `prompt_history.md`。
