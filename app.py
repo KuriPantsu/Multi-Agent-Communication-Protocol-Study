@@ -1,13 +1,12 @@
 """
-Streamlit demo — Multi-Agent Communication Protocol Study.
+Streamlit dashboard — Multi-Agent Communication Protocol Study.
 
-Workflow (matches old_proposal §7 Frontend Demo Design):
-  1. User enters a free-text task.
-  2. A small LLM call classifies the task domain (MATH / READING / NEWS / OTHER).
-  3. The app looks up the best-performing protocol for that domain from the
-     experiment summary (`results/results_summary.csv`) and displays the rationale.
-  4. The three-agent pipeline runs; each agent's output is rendered as it arrives.
-  5. A metrics dashboard shows tokens, latency, cost, and the protocol used.
+This app is both an experiment walkthrough and a live demo:
+  1. Explain the research question and fixed three-agent system.
+  2. Show the 4 x 3 x 10 x 3 experimental design.
+  3. Compare protocols using saved experiment results and figures.
+  4. Browse real inter-agent messages from the 360-run log.
+  5. Run a new user task through Planner -> Executor -> Integrator.
 
 Run: `streamlit run app.py`
 """
@@ -24,23 +23,122 @@ import pandas as pd
 import streamlit as st
 from openai import OpenAI
 
-from pipeline import (
-    DOMAIN_MAX_TOKENS,
-    EVALUATORS,
-    Protocol,
-    TaskDomain,
-    run_pipeline,
+from pipeline import Protocol, TaskDomain, run_pipeline
+
+
+RESULTS_SUMMARY = Path("results/results_summary.csv")
+RESULTS_RAW = Path("results/results_raw.csv")
+RESULTS_MESSAGES = Path("results/results_messages.jsonl")
+EXPERIMENT_CONFIG = Path("results/experiment_config.json")
+FIGURES_DIR = Path("figures")
+COST_PER_1M = {"prompt": 0.15, "completion": 0.60}  # gpt-4o-mini pricing
+
+
+PROTOCOL_DETAILS = {
+    "NL": {
+        "label": "Natural Language",
+        "short": "Plain prose between agents.",
+        "implementation": "Adds an explicit plain-English instruction and forbids bullets, Markdown, JSON, and headings.",
+        "strength": "Low framing overhead; good budget baseline.",
+        "risk": "Can under-specify intermediate state and leaves structure implicit.",
+    },
+    "MARKDOWN": {
+        "label": "Markdown",
+        "short": "Headings and bullet lists.",
+        "implementation": "Asks agents to use headings, bullets, and numbered lists for intermediate outputs.",
+        "strength": "Readable, good for math work traces, easy to inspect in demos.",
+        "risk": "More verbose completion tokens; can hit max-token limits on longer reasoning.",
+    },
+    "JSON": {
+        "label": "JSON",
+        "short": "Validated structured objects.",
+        "implementation": 'Uses OpenAI response_format={"type": "json_object"} and validates parseability with one retry.',
+        "strength": "Compact and machine-readable; cheapest protocol on math in this run.",
+        "risk": "Schema-like outputs can compress away useful nuance in reading/news tasks.",
+    },
+    "SHARED_MEMORY": {
+        "label": "Shared Memory",
+        "short": "Blackboard state shared across agents.",
+        "implementation": "Injects the full accumulated JSON blackboard snapshot into downstream agents.",
+        "strength": "Best quality on reading and news because context persists across the whole chain.",
+        "risk": "Highest prompt-token overhead because state grows at each step.",
+    },
+}
+
+
+DOMAIN_LABELS = {
+    "MATH": "GSM8K math reasoning",
+    "READING": "SQuAD reading comprehension",
+    "NEWS": "Curated news analysis",
+}
+
+
+RECOMMENDATIONS = pd.DataFrame(
+    [
+        {"Domain": "MATH", "Quality first": "MARKDOWN", "Cost first": "JSON", "Why": "Markdown preserves arithmetic steps; JSON is the cheapest math cell."},
+        {"Domain": "READING", "Quality first": "SHARED_MEMORY", "Cost first": "NL", "Why": "Shared Memory keeps passage evidence available; NL is cheapest and second-best."},
+        {"Domain": "NEWS", "Quality first": "SHARED_MEMORY", "Cost first": "NL", "Why": "The blackboard preserves facts and figures; NL is the budget choice."},
+    ]
 )
 
-RESULTS_SUMMARY = Path('results/results_summary.csv')
-COST_PER_1M = {'prompt': 0.15, 'completion': 0.60}  # gpt-4o-mini pricing
 
-
-# ── Page config ──────────────────────────────────────────────────────────────
 st.set_page_config(
-    page_title='Multi-Agent Protocol Study — Demo',
-    page_icon='🔀',
-    layout='wide',
+    page_title="Multi-Agent Protocol Study",
+    page_icon="MA",
+    layout="wide",
+    initial_sidebar_state="expanded",
+)
+
+
+st.markdown(
+    """
+    <style>
+      .main .block-container { padding-top: 1.6rem; max-width: 1280px; }
+      div[data-testid="stMetric"] {
+        background: #ffffff;
+        border: 1px solid #e5e7eb;
+        border-radius: 8px;
+        padding: 0.8rem 0.9rem;
+      }
+      .hero {
+        background: linear-gradient(135deg, #f8f7f4 0%, #eef5f0 100%);
+        border: 1px solid #e5e7eb;
+        border-radius: 8px;
+        padding: 1.25rem 1.4rem;
+        margin-bottom: 1rem;
+      }
+      .section-card {
+        background: #ffffff;
+        border: 1px solid #e5e7eb;
+        border-radius: 8px;
+        padding: 1rem 1.1rem;
+        height: 100%;
+      }
+      .muted { color: #6b7280; }
+      .smallcaps {
+        color: #6b7280;
+        font-size: 0.76rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+      .flow-node {
+        background: #ffffff;
+        border: 1px solid #d1d5db;
+        border-radius: 8px;
+        padding: 0.75rem;
+        text-align: center;
+        min-height: 92px;
+      }
+      .flow-arrow {
+        text-align: center;
+        color: #6b7280;
+        font-size: 1.3rem;
+        padding-top: 1.6rem;
+      }
+      code { white-space: pre-wrap; }
+    </style>
+    """,
+    unsafe_allow_html=True,
 )
 
 
@@ -51,226 +149,529 @@ def load_summary() -> Optional[pd.DataFrame]:
     return pd.read_csv(RESULTS_SUMMARY)
 
 
+@st.cache_data
+def load_raw() -> Optional[pd.DataFrame]:
+    if not RESULTS_RAW.exists():
+        return None
+    return pd.read_csv(RESULTS_RAW)
+
+
+@st.cache_data
+def load_messages() -> pd.DataFrame:
+    if not RESULTS_MESSAGES.exists():
+        return pd.DataFrame()
+    records = []
+    with RESULTS_MESSAGES.open("r", encoding="utf-8") as f:
+        for line in f:
+            if line.strip():
+                records.append(json.loads(line))
+    return pd.DataFrame(records)
+
+
+@st.cache_data
+def load_config() -> dict:
+    if not EXPERIMENT_CONFIG.exists():
+        return {}
+    with EXPERIMENT_CONFIG.open("r", encoding="utf-8") as f:
+        return json.load(f)
+
+
 def best_protocol(summary: pd.DataFrame, domain: str) -> tuple[str, float, float]:
     """Return (best_protocol, completion_rate, mean_tokens) for a domain."""
-    sub = summary[summary['Domain'] == domain]
-    row = sub.sort_values(
-        ['Completion Rate', 'Mean Tokens'], ascending=[False, True]
-    ).iloc[0]
-    return row['Protocol'], row['Completion Rate'], row['Mean Tokens']
+    sub = summary[summary["Domain"] == domain]
+    row = sub.sort_values(["Completion Rate", "Mean Tokens"], ascending=[False, True]).iloc[0]
+    return row["Protocol"], row["Completion Rate"], row["Mean Tokens"]
+
+
+def cheapest_protocol(summary: pd.DataFrame, domain: str) -> tuple[str, float, float]:
+    sub = summary[summary["Domain"] == domain]
+    row = sub.sort_values(["Mean Tokens", "Completion Rate"], ascending=[True, False]).iloc[0]
+    return row["Protocol"], row["Completion Rate"], row["Mean Tokens"]
 
 
 def classify_domain(client: OpenAI, model: str, task_text: str) -> tuple[str, float]:
     """Ask the LLM to classify the task. Returns (domain, confidence 0-1)."""
     classifier_prompt = (
-        'Classify the following user task into exactly one category:\n'
-        '  MATH     — numerical / arithmetic / word problems with a number answer\n'
-        '  READING  — question answering where the answer is a short span from a passage\n'
-        '  NEWS     — article summarization or factual analysis of a news-style passage\n'
-        '  OTHER    — anything that clearly does not fit the above\n\n'
+        "Classify the following user task into exactly one category:\n"
+        "  MATH     - numerical / arithmetic / word problems with a number answer\n"
+        "  READING  - question answering where the answer is a short span from a passage\n"
+        "  NEWS     - article summarization or factual analysis of a news-style passage\n"
+        "  OTHER    - anything that clearly does not fit the above\n\n"
         'Respond with JSON: {"domain": "...", "confidence": 0.0-1.0}.\n\n'
-        f'TASK:\n{task_text}'
+        f"TASK:\n{task_text}"
     )
     resp = client.chat.completions.create(
         model=model,
         messages=[
-            {'role': 'system', 'content': 'You are a concise task classifier.'},
-            {'role': 'user', 'content': classifier_prompt},
+            {"role": "system", "content": "You are a concise task classifier."},
+            {"role": "user", "content": classifier_prompt},
         ],
-        response_format={'type': 'json_object'},
+        response_format={"type": "json_object"},
         temperature=0.0,
         max_tokens=60,
     )
     try:
         parsed = json.loads(resp.choices[0].message.content)
-        domain = parsed.get('domain', 'OTHER').upper()
-        conf = float(parsed.get('confidence', 0.5))
+        domain = parsed.get("domain", "OTHER").upper()
+        conf = float(parsed.get("confidence", 0.5))
     except (json.JSONDecodeError, ValueError, TypeError):
-        domain, conf = 'OTHER', 0.5
-    if domain not in {'MATH', 'READING', 'NEWS', 'OTHER'}:
-        domain = 'OTHER'
+        domain, conf = "OTHER", 0.5
+    if domain not in {"MATH", "READING", "NEWS", "OTHER"}:
+        domain = "OTHER"
     return domain, conf
 
 
 def build_sample(domain: str, task_text: str) -> tuple[TaskDomain, dict]:
-    """Coerce the user's free text into the dict shape each TaskDomain expects."""
-    if domain == 'MATH':
-        return TaskDomain.MATH, {'question': task_text, 'answer': ''}
-    if domain == 'READING':
-        parts = task_text.split('?', 1)
-        if len(parts) == 2:
-            ctx, q = parts[0].strip(), parts[1].strip() or 'Answer the question.'
+    """Coerce free text into the sample shape expected by each evaluator."""
+    if domain == "MATH":
+        return TaskDomain.MATH, {"question": task_text, "answer": ""}
+    if domain == "READING":
+        marker = "Question:"
+        if marker in task_text:
+            ctx, q = task_text.rsplit(marker, 1)
+            q = q.strip() or "Answer the question."
+        elif "?" in task_text:
+            ctx, q = task_text.rsplit("?", 1)
+            q = (q.strip() + "?") if q.strip() else "Answer the question."
         else:
-            ctx, q = task_text, 'Answer based on the passage.'
-        return TaskDomain.READING, {'context': ctx, 'question': q, 'answers': []}
-    # NEWS and OTHER both route to NEWS (most general analysis flow)
-    return TaskDomain.NEWS, {'title': 'User input', 'content': task_text, 'key_facts': []}
+            ctx, q = task_text, "Answer based on the passage."
+        return TaskDomain.READING, {"context": ctx.strip(), "question": q.strip(), "answers": []}
+    return TaskDomain.NEWS, {"title": "User input", "content": task_text, "key_facts": []}
 
 
-# ── Sidebar ──────────────────────────────────────────────────────────────────
-st.sidebar.title('⚙️ Settings')
-api_key = st.sidebar.text_input(
-    'OpenAI API key',
-    value=os.environ.get('OPENAI_API_KEY', ''),
-    type='password',
-    help='Stored in session only. Defaults to OPENAI_API_KEY env var.',
-)
-model = st.sidebar.selectbox('Model', ['gpt-4o-mini', 'gpt-4o'], index=0)
-auto_protocol = st.sidebar.checkbox(
-    'Auto-select protocol (recommended)', value=True,
-    help='When off, you choose the protocol manually.',
-)
-manual_protocol = st.sidebar.selectbox(
-    'Manual protocol override',
-    [p.value for p in Protocol],
-    index=2,
-    disabled=auto_protocol,
-)
-st.sidebar.markdown('---')
-st.sidebar.caption(
-    'Protocol recommendations are derived from the 360-run experiment '
-    '(results/results_summary.csv). If the summary file is missing the app '
-    'falls back to JSON for MATH, NL for NEWS/OTHER, JSON for READING.'
-)
+def metric_row(summary: Optional[pd.DataFrame], raw: Optional[pd.DataFrame]) -> None:
+    total_runs = int(raw.shape[0]) if raw is not None else 360
+    protocols = int(summary["Protocol"].nunique()) if summary is not None else 4
+    domains = int(summary["Domain"].nunique()) if summary is not None else 3
+    total_messages = int(total_runs * 3)
+    c1, c2, c3, c4 = st.columns(4)
+    c1.metric("Pipeline runs", f"{total_runs:,}")
+    c2.metric("Protocols", protocols)
+    c3.metric("Task domains", domains)
+    c4.metric("Message logs", f"{total_messages:,}")
 
 
-# ── Header ───────────────────────────────────────────────────────────────────
-st.title('Multi-Agent Communication Protocol Study')
-st.markdown(
-    'A three-agent pipeline **Planning → Execution → Integration** routes a free-text '
-    'task through an empirically selected inter-agent communication protocol.'
-)
+def show_image(path: Path, caption: str) -> None:
+    if path.exists():
+        st.image(str(path), caption=caption, width="stretch")
+    else:
+        st.info(f"Missing figure: `{path}`")
 
-summary = load_summary()
-if summary is None:
-    st.warning(
-        '`results/results_summary.csv` not found. Run the notebook end-to-end first '
-        '(`jupyter nbconvert --execute Multi_Agent_Communication_Protocol_Study.ipynb`). '
-        'The demo will use fallback recommendations until then.',
-        icon='⚠️',
+
+def render_flow() -> None:
+    cols = st.columns([1.2, 0.25, 1.1, 0.25, 1.25, 0.25, 1.1, 0.25, 1.2])
+    nodes = [
+        ("Task data", "GSM8K, SQuAD, curated news"),
+        ("Protocol", "NL, Markdown, JSON, Shared Memory"),
+        ("Agents", "Planner -> Executor -> Integrator"),
+        ("Logs", "Tokens, latency, final answer, message content"),
+        ("Analysis", "ANOVA, Tukey HSD, effect sizes, bootstrap CIs"),
+    ]
+    for i, col in enumerate(cols):
+        if i % 2 == 0:
+            title, body = nodes[i // 2]
+            col.markdown(
+                f"<div class='flow-node'><div class='smallcaps'>{title}</div><strong>{body}</strong></div>",
+                unsafe_allow_html=True,
+            )
+        else:
+            col.markdown("<div class='flow-arrow'>-></div>", unsafe_allow_html=True)
+
+
+def render_protocol_card(key: str, detail: dict) -> None:
+    st.markdown(
+        f"""
+        <div class="section-card">
+          <div class="smallcaps">{key}</div>
+          <h4 style="margin: 0.2rem 0 0.35rem 0;">{detail["label"]}</h4>
+          <p class="muted">{detail["short"]}</p>
+          <p><strong>Implementation:</strong> {detail["implementation"]}</p>
+          <p><strong>Best use:</strong> {detail["strength"]}</p>
+          <p><strong>Watch out:</strong> {detail["risk"]}</p>
+        </div>
+        """,
+        unsafe_allow_html=True,
     )
 
-FALLBACK_RECS = {
-    'MATH': ('JSON', None, None),
-    'READING': ('JSON', None, None),
-    'NEWS': ('NL', None, None),
-    'OTHER': ('NL', None, None),
-}
 
+def render_live_demo(summary: Optional[pd.DataFrame]) -> None:
+    st.subheader("Run the Pipeline on a New Task")
+    st.caption("This is the original demo runner, now embedded inside the full experiment dashboard.")
 
-# ── User input ───────────────────────────────────────────────────────────────
-task_text = st.text_area(
-    'Enter your task',
-    height=160,
-    placeholder=(
-        'Example (MATH): Janet has 16 eggs, eats 3, bakes 4 muffins, sells the rest at $2/egg. '
-        'How much does she make?\n\n'
-        'Example (READING): [passage]… Question: Who invented X?\n\n'
-        'Example (NEWS): [news article text]'
-    ),
-)
+    api_key = st.session_state.get("api_key", "")
+    model = st.session_state.get("model", "gpt-4o-mini")
+    auto_protocol = st.checkbox("Auto-select protocol from experiment results", value=True)
+    manual_protocol = st.selectbox(
+        "Manual protocol override",
+        [p.value for p in Protocol],
+        index=2,
+        disabled=auto_protocol,
+    )
 
-col_run, col_clear = st.columns([1, 4])
-run_clicked = col_run.button('Run pipeline', type='primary', disabled=not (api_key and task_text.strip()))
-col_clear.caption('Protocol, tokens, latency, and cost update live below.')
+    examples = {
+        "Math": "Janet has 24 apples. She gives 6 to her friend, buys 12 more, and then sells half of the total for $3 each. How much money does she make?",
+        "Reading": "The Eiffel Tower is a wrought-iron lattice tower in Paris, France. It was named after engineer Gustave Eiffel, whose company designed and built the tower. Question: Who was the Eiffel Tower named after?",
+        "News": "A city council approved a $42 million transit plan on Monday, adding 18 electric buses and three new rapid routes by 2027. Summarize the key facts.",
+    }
+    example_name = st.selectbox("Load an example", ["Custom"] + list(examples))
+    default_text = examples.get(example_name, "")
+    task_text = st.text_area("Enter your task", value=default_text, height=150)
 
+    col_run, col_note = st.columns([1, 4])
+    run_clicked = col_run.button("Run pipeline", type="primary", disabled=not (api_key and task_text.strip()))
+    col_note.caption("The run will classify the domain, select a protocol, run three agents, and report cost/latency.")
 
-if run_clicked:
+    if not run_clicked:
+        if not api_key:
+            st.info("Add your OpenAI API key in the sidebar to enable live runs.")
+        return
+
     client = OpenAI(api_key=api_key)
 
-    # Step 1 — classification
-    with st.status('Step 1 — classifying task domain…', expanded=False) as status:
+    with st.status("Step 1 - classifying task domain", expanded=False) as status:
         try:
             domain_str, conf = classify_domain(client, model, task_text)
         except Exception as exc:
-            st.error(f'Classification failed: {exc}')
+            st.error(f"Classification failed: {exc}")
             st.stop()
-        status.update(label=f'Step 1 ✓ — domain = **{domain_str}**  (conf {conf:.2f})', state='complete')
+        status.update(label=f"Step 1 complete - domain = {domain_str} (confidence {conf:.2f})", state="complete")
 
-    # Step 2 — protocol recommendation
+    fallback_recs = {
+        "MATH": ("JSON", None, None),
+        "READING": ("JSON", None, None),
+        "NEWS": ("NL", None, None),
+        "OTHER": ("NL", None, None),
+    }
+
     if auto_protocol:
-        if summary is not None and domain_str in summary['Domain'].values:
+        if summary is not None and domain_str in summary["Domain"].values:
             proto_name, completion_rate, mean_tokens = best_protocol(summary, domain_str)
             rationale = (
-                f'{proto_name} recommended for {domain_str}: mean completion '
-                f'{completion_rate:.3f}, ~{mean_tokens:.0f} tokens/run '
-                '(based on our 360-run experiment).'
+                f"{proto_name} recommended for {domain_str}: mean completion "
+                f"{completion_rate:.3f}, about {mean_tokens:.0f} tokens/run."
             )
         else:
-            proto_name, _, _ = FALLBACK_RECS.get(domain_str, FALLBACK_RECS['OTHER'])
-            rationale = f'{proto_name} (fallback — experiment summary unavailable).'
+            proto_name, _, _ = fallback_recs.get(domain_str, fallback_recs["OTHER"])
+            rationale = f"{proto_name} fallback recommendation because summary data is unavailable."
     else:
         proto_name = manual_protocol
-        rationale = f'{proto_name} (manual override).'
+        rationale = f"{proto_name} selected manually."
 
-    st.info(f'**Step 2 — protocol: {proto_name}**  ·  {rationale}', icon='🔀')
+    st.info(f"Step 2 - protocol: **{proto_name}**. {rationale}")
 
     protocol = Protocol(proto_name)
     task_domain, sample = build_sample(domain_str, task_text)
 
-    # Step 3 — run pipeline with live streaming
-    st.markdown('### Step 3 — Agent messages')
-    planner_box = st.empty()
-    executor_box = st.empty()
-    integrator_box = st.empty()
-
     t_start = time.time()
     try:
-        with st.spinner('Running Planner → Executor → Integrator…'):
+        with st.spinner("Running Planner -> Executor -> Integrator"):
             result, msgs = run_pipeline(
-                protocol, task_domain, sample, sample_idx=0,
-                client=client, model=model, seed=0,
+                protocol,
+                task_domain,
+                sample,
+                sample_idx=0,
+                client=client,
+                model=model,
+                seed=0,
             )
     except Exception as exc:
-        st.error(f'Pipeline failed: {exc}')
+        st.error(f"Pipeline failed: {exc}")
         st.stop()
-    total_time = time.time() - t_start
+    elapsed = time.time() - t_start
 
-    # Render each agent's contribution
     by_sender = {m.sender: m for m in msgs}
-    if 'Planner' in by_sender:
-        with planner_box.container():
-            st.markdown(f"**🧭 Planner** · {by_sender['Planner'].total_tokens} tok · {by_sender['Planner'].latency_ms:.0f} ms")
-            st.code(str(by_sender['Planner'].content), language='markdown')
-    if 'Executor' in by_sender:
-        with executor_box.container():
-            st.markdown(f"**⚙️ Executor** · {by_sender['Executor'].total_tokens} tok · {by_sender['Executor'].latency_ms:.0f} ms")
-            st.code(str(by_sender['Executor'].content), language='markdown')
-    if 'Integrator' in by_sender:
-        with integrator_box.container():
-            st.markdown(f"**🧩 Integrator** · {by_sender['Integrator'].total_tokens} tok · {by_sender['Integrator'].latency_ms:.0f} ms")
-            st.code(str(by_sender['Integrator'].content), language='markdown')
+    st.subheader("Agent Messages")
+    agent_cols = st.columns(3)
+    for col, sender, label in zip(agent_cols, ["Planner", "Executor", "Integrator"], ["Planner", "Executor", "Integrator"]):
+        if sender in by_sender:
+            msg = by_sender[sender]
+            with col:
+                st.markdown(f"**{label}**")
+                st.caption(f"{msg.total_tokens} tokens | {msg.latency_ms:.0f} ms")
+                st.code(str(msg.content), language="markdown")
 
-    # Step 4 — dashboard
     cost_usd = (
-        result.total_prompt_tokens / 1e6 * COST_PER_1M['prompt']
-        + result.total_completion_tokens / 1e6 * COST_PER_1M['completion']
+        result.total_prompt_tokens / 1e6 * COST_PER_1M["prompt"]
+        + result.total_completion_tokens / 1e6 * COST_PER_1M["completion"]
     )
-    st.markdown('### Step 4 — Run metrics')
+    st.subheader("Run Metrics")
     c1, c2, c3, c4, c5 = st.columns(5)
-    c1.metric('Protocol', proto_name)
-    c2.metric('Total tokens', f'{result.total_tokens:,}',
-              f'{result.total_prompt_tokens}p + {result.total_completion_tokens}c')
-    c3.metric('Latency (ms)', f'{result.total_latency_ms:,.0f}')
-    c4.metric('Est. cost (USD)', f'${cost_usd:.5f}')
-    c5.metric('Domain conf.', f'{conf:.2f}')
+    c1.metric("Protocol", proto_name)
+    c2.metric("Total tokens", f"{result.total_tokens:,}", f"{result.total_prompt_tokens}p + {result.total_completion_tokens}c")
+    c3.metric("Latency", f"{result.total_latency_ms:,.0f} ms", f"{elapsed:.1f}s wall")
+    c4.metric("Est. cost", f"${cost_usd:.5f}")
+    c5.metric("Domain confidence", f"{conf:.2f}")
 
     if result.any_truncation:
-        st.warning('⚠️ At least one agent hit `finish_reason=length` — output may be truncated.')
+        st.warning("At least one agent hit finish_reason=length; output may be truncated.")
     if result.any_json_parse_error:
-        st.warning('⚠️ JSON protocol output failed to parse even after retry.')
+        st.warning("JSON protocol output failed to parse even after retry.")
 
-    # Final answer
-    st.markdown('### Final answer')
-    st.success(str(by_sender.get('Integrator').content) if 'Integrator' in by_sender else '(no integrator output)')
+    st.subheader("Final Answer")
+    st.success(str(by_sender["Integrator"].content) if "Integrator" in by_sender else "(no integrator output)")
 
-    # Debug pane
-    with st.expander('🔍 Raw message log'):
+    with st.expander("Raw message log"):
         for m in msgs:
             st.markdown(
-                f"**{m.sender} → {m.receiver}** · {m.total_tokens} tok "
-                f"({m.prompt_tokens}p + {m.completion_tokens}c) · "
-                f"{m.latency_ms:.0f} ms · finish_reason={m.finish_reason}"
+                f"**{m.sender} -> {m.receiver}** | {m.total_tokens} tokens "
+                f"({m.prompt_tokens}p + {m.completion_tokens}c) | "
+                f"{m.latency_ms:.0f} ms | finish_reason={m.finish_reason}"
             )
             st.text(str(m.content))
-            st.markdown('---')
+            st.markdown("---")
+
+
+summary = load_summary()
+raw = load_raw()
+messages = load_messages()
+config = load_config()
+
+with st.sidebar:
+    st.title("Dashboard Controls")
+    st.session_state["api_key"] = st.text_input(
+        "OpenAI API key",
+        value=os.environ.get("OPENAI_API_KEY", ""),
+        type="password",
+        help="Stored only in this Streamlit session. You can also set OPENAI_API_KEY in your shell.",
+    )
+    st.session_state["model"] = st.selectbox("Live demo model", ["gpt-4o-mini", "gpt-4o"], index=0)
+    st.markdown("---")
+    page = st.radio(
+        "Sections",
+        [
+            "Overview",
+            "Experiment Design",
+            "Protocol Explorer",
+            "Results Dashboard",
+            "Message Log",
+            "Live Demo",
+            "Recommendations",
+        ],
+    )
+    st.markdown("---")
+    st.caption("Data source: saved results in `results/` plus figures in `figures/`.")
+
+
+st.markdown(
+    """
+    <div class="hero">
+      <div class="smallcaps">STAT GR5293 | Multi-Agent Communication Protocol Study</div>
+      <h1 style="margin: 0.25rem 0 0.4rem 0;">Communication Protocols Change Multi-Agent Cost and Quality</h1>
+      <p class="muted" style="font-size: 1.05rem; margin-bottom: 0;">
+        A full experiment dashboard for the fixed Planner -> Executor -> Integrator pipeline.
+      </p>
+    </div>
+    """,
+    unsafe_allow_html=True,
+)
+
+if summary is None:
+    st.warning("`results/results_summary.csv` is missing. Run the notebook first to enable full dashboard results.")
+
+
+if page == "Overview":
+    metric_row(summary, raw)
+    st.subheader("Research Question")
+    st.markdown(
+        """
+        Multi-agent LLM systems often let developers choose how agents communicate, but that choice is usually treated as an implementation detail.
+        This project turns the communication protocol into the experimental factor and asks:
+
+        **How do NL, Markdown, JSON, and Shared Memory affect token cost, latency, and task completion quality?**
+        """
+    )
+    render_flow()
+
+    st.subheader("Project Artifacts")
+    c1, c2, c3 = st.columns(3)
+    with c1:
+        st.markdown("#### Core code")
+        st.write("`pipeline.py` defines agents, protocol instructions, shared memory, evaluators, and the pipeline runner.")
+    with c2:
+        st.markdown("#### Experiment")
+        st.write("The notebook executes the 360-run grid and writes results, message logs, summary tables, and figures.")
+    with c3:
+        st.markdown("#### Demo")
+        st.write("This Streamlit app converts the offline experiment into a protocol recommendation and live pipeline runner.")
+
+    st.subheader("What the Study Found")
+    st.markdown(
+        """
+        - Protocol choice has a large effect on token cost.
+        - Shared Memory is the most expensive protocol, but wins on reading and news quality.
+        - Markdown is best for math completion in this run, while JSON is the cheapest math option.
+        - The right protocol depends on the domain and whether the priority is quality or cost.
+        """
+    )
+
+
+elif page == "Experiment Design":
+    st.subheader("4 x 3 Factorial Experiment")
+    c1, c2, c3, c4 = st.columns(4)
+    c1.metric("Protocols", "4", "NL, Markdown, JSON, Shared Memory")
+    c2.metric("Domains", "3", "Math, Reading, News")
+    c3.metric("Samples/domain", "10")
+    c4.metric("Repetitions/cell", "3")
+
+    st.subheader("Fixed Three-Agent Pipeline")
+    render_flow()
+
+    st.subheader("Experimental Matrix")
+    if summary is not None:
+        matrix = summary.pivot(index="Protocol", columns="Domain", values="Completion Rate")
+        st.dataframe(matrix.style.format("{:.3f}"), width="stretch")
+    else:
+        st.info("Summary data is not available.")
+
+    st.subheader("Evaluation Metrics")
+    metrics = pd.DataFrame(
+        [
+            {"Domain": "MATH", "Completion metric": "Numeric exact match", "Efficiency metrics": "Prompt, completion, total tokens; latency"},
+            {"Domain": "READING", "Completion metric": "SQuAD-style token F1", "Efficiency metrics": "Prompt, completion, total tokens; latency"},
+            {"Domain": "NEWS", "Completion metric": "Mean of ROUGE-2 F1 and ROUGE-L F1", "Efficiency metrics": "Prompt, completion, total tokens; latency"},
+        ]
+    )
+    st.dataframe(metrics, width="stretch", hide_index=True)
+
+    if config:
+        with st.expander("Experiment configuration snapshot"):
+            st.json(config)
+
+
+elif page == "Protocol Explorer":
+    st.subheader("Four Communication Protocols")
+    cols = st.columns(2)
+    for idx, (key, detail) in enumerate(PROTOCOL_DETAILS.items()):
+        with cols[idx % 2]:
+            render_protocol_card(key, detail)
+
+    st.subheader("Protocol Trade-offs From the Experiment")
+    if summary is not None:
+        selected_domain = st.selectbox("Domain", ["MATH", "READING", "NEWS"])
+        sub = summary[summary["Domain"] == selected_domain].copy()
+        sub["Tokens per completion point"] = sub["Mean Tokens"] / sub["Completion Rate"].replace(0, pd.NA)
+        st.dataframe(
+            sub[["Protocol", "Mean Tokens", "Mean Prompt Tok", "Mean Compl Tok", "Mean Latency (ms)", "Completion Rate", "Tokens per completion point"]]
+            .sort_values("Completion Rate", ascending=False)
+            .style.format({
+                "Mean Tokens": "{:.0f}",
+                "Mean Prompt Tok": "{:.0f}",
+                "Mean Compl Tok": "{:.0f}",
+                "Mean Latency (ms)": "{:.0f}",
+                "Completion Rate": "{:.3f}",
+                "Tokens per completion point": "{:.0f}",
+            }),
+            width="stretch",
+            hide_index=True,
+        )
+
+
+elif page == "Results Dashboard":
+    st.subheader("Headline Results")
+    if summary is not None:
+        for domain in ["MATH", "READING", "NEWS"]:
+            q_proto, q_score, q_tokens = best_protocol(summary, domain)
+            c_proto, c_score, c_tokens = cheapest_protocol(summary, domain)
+            col1, col2 = st.columns(2)
+            with col1:
+                st.metric(f"{domain} quality winner", q_proto, f"score {q_score:.3f}, {q_tokens:.0f} tokens")
+            with col2:
+                st.metric(f"{domain} cost winner", c_proto, f"score {c_score:.3f}, {c_tokens:.0f} tokens")
+
+        st.subheader("Summary Table")
+        st.dataframe(
+            summary.style.format({
+                "Mean Tokens": "{:.0f}",
+                "Mean Prompt Tok": "{:.0f}",
+                "Mean Compl Tok": "{:.0f}",
+                "Mean Latency (ms)": "{:.0f}",
+                "Completion Rate": "{:.3f}",
+            }),
+            width="stretch",
+            hide_index=True,
+        )
+
+        st.subheader("Interactive Charts")
+        chart_df = summary.copy()
+        chart_df["Protocol / Domain"] = chart_df["Protocol"] + " / " + chart_df["Domain"]
+        left, right = st.columns(2)
+        with left:
+            st.markdown("#### Mean tokens by cell")
+            st.bar_chart(chart_df, x="Protocol / Domain", y="Mean Tokens", color="Domain", width="stretch")
+        with right:
+            st.markdown("#### Completion rate by cell")
+            st.bar_chart(chart_df, x="Protocol / Domain", y="Completion Rate", color="Domain", width="stretch")
+
+    st.subheader("Report Figures")
+    fig_cols = st.columns(2)
+    figure_specs = [
+        ("fig1_tokens_by_protocol_domain.png", "Token cost by protocol and domain"),
+        ("fig2_completion_by_cell.png", "Completion quality by protocol and domain"),
+        ("fig4_pareto.png", "Efficiency-effectiveness Pareto trade-off"),
+        ("fig6_latency.png", "Latency distribution by protocol"),
+    ]
+    for i, (filename, caption) in enumerate(figure_specs):
+        with fig_cols[i % 2]:
+            show_image(FIGURES_DIR / filename, caption)
+
+
+elif page == "Message Log":
+    st.subheader("Message-Level Audit Browser")
+    st.caption("Each saved run has three messages: Planner -> Executor, Executor -> Integrator, and Integrator -> Output.")
+    if messages.empty:
+        st.info("No message log found at `results/results_messages.jsonl`.")
+    else:
+        col1, col2, col3 = st.columns(3)
+        protocols = ["All"] + sorted(messages["protocol"].dropna().unique().tolist())
+        domains = ["All"] + sorted(messages["task_domain"].dropna().unique().tolist())
+        senders = ["All"] + sorted(messages["sender"].dropna().unique().tolist())
+        protocol_filter = col1.selectbox("Protocol", protocols)
+        domain_filter = col2.selectbox("Domain", domains)
+        sender_filter = col3.selectbox("Sender", senders)
+
+        filtered = messages.copy()
+        if protocol_filter != "All":
+            filtered = filtered[filtered["protocol"] == protocol_filter]
+        if domain_filter != "All":
+            filtered = filtered[filtered["task_domain"] == domain_filter]
+        if sender_filter != "All":
+            filtered = filtered[filtered["sender"] == sender_filter]
+
+        st.metric("Matching messages", f"{len(filtered):,}")
+        run_ids = filtered["run_id"].drop_duplicates().head(50).tolist()
+        selected_run = st.selectbox("Run ID", run_ids)
+        run_messages = messages[messages["run_id"] == selected_run].sort_values("timestamp")
+
+        if raw is not None:
+            run_row = raw[raw["run_id"] == selected_run]
+            if not run_row.empty:
+                st.dataframe(run_row, width="stretch", hide_index=True)
+
+        for _, m in run_messages.iterrows():
+            with st.expander(f'{m["sender"]} -> {m["receiver"]} | {m["total_tokens"]} tokens | {m["latency_ms"]:.0f} ms', expanded=True):
+                st.code(str(m["content"]), language="markdown")
+
+
+elif page == "Live Demo":
+    render_live_demo(summary)
+
+
+elif page == "Recommendations":
+    st.subheader("Protocol Selection Matrix")
+    st.dataframe(RECOMMENDATIONS, width="stretch", hide_index=True)
+
+    st.subheader("How to Present This Project")
+    st.markdown(
+        """
+        1. Start with the protocol-format gap: frameworks expose communication format, but rarely quantify its cost or quality impact.
+        2. Show the controlled design: same model, same agents, same tasks, only protocol changes.
+        3. Walk through one live task so the audience sees Planner -> Executor -> Integrator in action.
+        4. Use the results dashboard to show the cost/quality trade-off.
+        5. Close on the recommendation matrix: choose protocol by domain and priority.
+        """
+    )
+
+    st.subheader("Final Takeaway")
+    st.info(
+        "Do not choose one communication protocol globally. Choose by domain and by whether your priority is cost, latency, or completion quality."
+    )

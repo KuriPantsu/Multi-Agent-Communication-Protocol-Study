@@ -8,7 +8,7 @@
 
 A controlled experimental study of how inter-agent communication protocol choice affects multi-agent LLM system performance. Using a fixed three-agent pipeline (**Planning → Execution → Integration**), we compare four communication protocols — Natural Language, Markdown, JSON, Shared Memory — across three task domains (GSM8K mathematical reasoning, SQuAD reading comprehension, curated news analysis) drawn from standard benchmarks. A full 4 × 3 factorial design with 10 samples per domain and 3 repetitions per cell yields 360 pipeline runs. We measure token consumption (input / output / total), wall-clock latency, and task completion quality, and analyze the results with two-way ANOVA, Tukey HSD post-hoc, Cohen's d effect sizes, and 2 000-resample bootstrap confidence intervals.
 
-The repository includes the experiment notebook, a thin shared-helper module, a live Streamlit demo that auto-selects the empirically optimal protocol for a user task, and figures + tables for the final report.
+The repository includes the experiment notebook, a thin shared-helper module, a Streamlit demo, a FastAPI-powered experiment dashboard, and figures + tables for the final report.
 
 ## Repository layout
 
@@ -16,7 +16,12 @@ The repository includes the experiment notebook, a thin shared-helper module, a 
 .
 ├── pipeline.py                                  Shared helpers (agents, logger, evaluators, runner)
 ├── Multi_Agent_Communication_Protocol_Study.ipynb   Experiment driver: data loading → 360-run grid → analysis → figures
-├── app.py                                       Streamlit demo
+├── app.py                                       Streamlit dashboard / legacy demo
+├── fastapi_app.py                               FastAPI backend for the polished experiment dashboard
+├── dashboard/                                   Static frontend served by FastAPI
+│   ├── index.html
+│   ├── styles.css
+│   └── app.js
 ├── requirements.txt                             Python dependencies
 ├── results/                                     Populated by the notebook
 │   ├── results_raw.csv                          one row per pipeline run
@@ -49,7 +54,7 @@ python3 -m venv .venv && source .venv/bin/activate    # optional but recommended
 pip install -r requirements.txt
 ```
 
-Python 3.10+ is expected. The notebook and the Streamlit app share `pipeline.py`, so both must run from the project root.
+Python 3.10+ is expected. The notebook, Streamlit app, and FastAPI dashboard share `pipeline.py`, so all commands should run from the project root.
 
 ### 2. Provide your OpenAI API key
 
@@ -61,7 +66,7 @@ cp .env.example .env
 # OPENAI_API_KEY=sk-proj-...
 ```
 
-Both the notebook (via `python-dotenv`) and the Streamlit app pick the key up from here. You can also simply `export OPENAI_API_KEY=sk-...` in the shell before launching, and skip the `.env` file.
+The notebook, Streamlit app, and FastAPI dashboard pick the key up from here. You can also simply `export OPENAI_API_KEY=sk-...` in the shell before launching, and skip the `.env` file.
 
 ### 3. Run the experiment end-to-end (~10 min, ~$0.40)
 
@@ -81,7 +86,29 @@ Outputs:
 - `results/experiment_config.json` — configuration snapshot
 - `figures/fig1 … fig6.png` — 150 DPI report figures
 
-### 4. Launch the Streamlit demo
+### 4. Launch the FastAPI experiment dashboard
+
+```bash
+uvicorn fastapi_app:app --host 127.0.0.1 --port 8010 --http h11
+```
+
+Then open http://127.0.0.1:8010.
+
+This is the recommended interactive project showcase. It is a polished dashboard rather than a notebook or Streamlit utility page. The OpenAI API key is read locally from `.env` or `OPENAI_API_KEY`; the browser never asks the user to paste a key.
+
+**Dashboard story flow:**
+
+1. **Overview** — introduces the research question: whether protocol choice changes cost, latency, and completion quality.
+2. **Experiment Design** — explains the 4 × 3 × 10 × 3 design and the metrics.
+3. **Protocol Explorer** — describes NL, Markdown, JSON, and Shared Memory plus domain-level trade-offs.
+4. **Live Demo** — runs the same user task under selected protocols and compares total tokens, prompt/completion split, estimated cost, latency, and tokens/sec. It intentionally hides agent messages and final answer text so the focus stays on protocol overhead.
+5. **Experiment Database** — browses saved message-level audit records from the 360-run experiment.
+6. **Results Dashboard** — shows aggregate token, completion, latency, Pareto, and summary-table results.
+7. **Recommendations** — summarizes which protocol to choose by task domain and priority.
+
+The Live Demo also generates a recommendation for the current input, using the live protocol comparison plus the offline experiment findings. For example, it can recommend Shared Memory for quality-sensitive reading/news tasks, or JSON/NL when token cost is the priority.
+
+### 5. Launch the Streamlit dashboard / legacy demo
 
 ```bash
 streamlit run app.py
@@ -89,7 +116,9 @@ streamlit run app.py
 
 Then open the printed `Local URL` (default http://localhost:8501) in your browser.
 
-**Demo workflow (5 steps, all in one page):**
+`app.py` remains available as a Streamlit version of the dashboard and demo flow. The FastAPI dashboard above is the preferred presentation artifact.
+
+**Streamlit demo workflow (5 steps, all in one page):**
 
 1. **Enter a task** in the text area — free-form English. Three example tasks are shown in the placeholder.
 2. The app runs an LLM **domain classifier** and displays the predicted domain (MATH / READING / NEWS / OTHER) with a confidence score.
@@ -149,7 +178,7 @@ All three evaluators are self-tested at the bottom of `pipeline.py` — run `pyt
 | Proposal | 10% | `STAT_GR5293_Proposal_yz5104_xz3447_tz2704.pdf` (submitted) |
 | Final Presentation | 30% | slides (see `report/REPORT_OUTLINE.md` for the narrative) |
 | Final Report | 30% | see `report/REPORT_OUTLINE.md` |
-| Project Demo | 20% | `app.py` (Streamlit) — auto-classifies domain, selects empirically-best protocol, streams agent messages, shows cost dashboard |
+| Project Demo | 20% | `fastapi_app.py` + `dashboard/` — full experiment walkthrough, live protocol comparison, database audit, results dashboard, recommendations |
 | GitHub Repo | 10% | this repository |
 
 ## Related files worth reading

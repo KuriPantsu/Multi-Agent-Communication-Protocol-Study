@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Multi-Agent Protocol Study</title>
+    <link rel="stylesheet" href="/static/styles.css" />
+  </head>
+  <body>
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="brand-mark">MA</div>
+        <div>
+          <p class="eyebrow">STAT GR5293</p>
+          <h1>Protocol Study</h1>
+        </div>
+      </div>
+      <nav>
+        <button class="nav-item active" data-section="overview">Overview</button>
+        <button class="nav-item" data-section="design">Experiment Design</button>
+        <button class="nav-item" data-section="protocols">Protocol Explorer</button>
+        <button class="nav-item" data-section="demo">Live Demo</button>
+        <button class="nav-item" data-section="logs">Experiment Database</button>
+        <button class="nav-item" data-section="results">Results Dashboard</button>
+        <button class="nav-item" data-section="recommendations">Recommendations</button>
+      </nav>
+      <div class="status-panel">
+        <span class="status-dot" id="keyDot"></span>
+        <div>
+          <strong id="keyStatus">Checking key</strong>
+          <p>OpenAI key is read locally by FastAPI, never typed into this page.</p>
+        </div>
+      </div>
+    </aside>
+
+    <main>
+      <section class="hero">
+        <div>
+          <p class="eyebrow">Multi-Agent Communication Protocol Study</p>
+          <h2>Communication format is an experimental variable, not just an implementation detail.</h2>
+          <p>
+            The walkthrough moves from experiment idea to protocol basics, then runs one live protocol comparison,
+            opens the saved experiment database, and finishes with aggregate results and recommendations.
+          </p>
+        </div>
+        <div class="hero-card">
+          <p class="eyebrow">Fixed pipeline</p>
+          <div class="pipeline-mini">
+            <span>Planner</span><b></b><span>Executor</span><b></b><span>Integrator</span>
+          </div>
+        </div>
+      </section>
+
+      <section id="overview" class="view active">
+        <div class="metrics-grid" id="topMetrics"></div>
+        <div class="panel">
+          <p class="eyebrow">Research Question</p>
+          <h3>How do NL, Markdown, JSON, and Shared Memory affect multi-agent cost, latency, and completion quality?</h3>
+          <p>
+            The project holds the model, agent roles, task domains, and prompts constant, then varies only the
+            inter-agent communication protocol.
+          </p>
+        </div>
+        <div class="flow">
+          <div><span>Task data</span><strong>GSM8K, SQuAD, news</strong></div>
+          <i></i>
+          <div><span>Protocol</span><strong>NL / Markdown / JSON / Shared Memory</strong></div>
+          <i></i>
+          <div><span>Agents</span><strong>Planner -> Executor -> Integrator</strong></div>
+          <i></i>
+          <div><span>Analysis</span><strong>ANOVA, Tukey, effect sizes</strong></div>
+        </div>
+        <div class="three-col">
+          <article class="panel"><p class="eyebrow">Core code</p><h4>pipeline.py</h4><p>Agent prompts, protocol instructions, shared memory, evaluators, and runner.</p></article>
+          <article class="panel"><p class="eyebrow">Experiment</p><h4>Notebook + results</h4><p>360 runs, 1,080 messages, summary tables, and report figures.</p></article>
+          <article class="panel"><p class="eyebrow">Artifact</p><h4>FastAPI dashboard</h4><p>Interactive report, message audit, recommendation matrix, and live runner.</p></article>
+        </div>
+      </section>
+
+      <section id="design" class="view">
+        <div class="section-head"><p class="eyebrow">Methodology</p><h3>4 x 3 factorial design with 360 pipeline runs</h3></div>
+        <div class="metrics-grid fixed">
+          <article class="metric"><span>Protocols</span><strong>4</strong><p>NL, Markdown, JSON, Shared Memory</p></article>
+          <article class="metric"><span>Domains</span><strong>3</strong><p>Math, Reading, News</p></article>
+          <article class="metric"><span>Samples/domain</span><strong>10</strong><p>Curated benchmark samples</p></article>
+          <article class="metric"><span>Repetitions/cell</span><strong>3</strong><p>Seeded repeated runs</p></article>
+        </div>
+        <div class="split">
+          <div class="panel">
+            <h4>Completion metrics</h4>
+            <table>
+              <tbody>
+                <tr><th>MATH</th><td>Numeric exact match</td></tr>
+                <tr><th>READING</th><td>SQuAD-style token F1</td></tr>
+                <tr><th>NEWS</th><td>Mean of ROUGE-2 F1 and ROUGE-L F1</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="panel">
+            <h4>Efficiency metrics</h4>
+            <p>Prompt tokens, completion tokens, total tokens, wall-clock latency, truncation, and JSON parse failures.</p>
+            <button class="secondary" id="configBtn">Show config snapshot</button>
+          </div>
+        </div>
+        <pre class="code-block hidden" id="configBlock"></pre>
+      </section>
+
+      <section id="protocols" class="view">
+        <div class="section-head"><p class="eyebrow">Protocol Explorer</p><h3>Four communication formats, four different cost/quality profiles</h3></div>
+        <div class="protocol-grid" id="protocolCards"></div>
+        <div class="panel">
+          <div class="toolbar">
+            <h4>Domain trade-off table</h4>
+            <select id="protocolDomain">
+              <option>MATH</option>
+              <option>READING</option>
+              <option>NEWS</option>
+            </select>
+          </div>
+          <div id="protocolTable"></div>
+        </div>
+      </section>
+
+      <section id="demo" class="view">
+        <div class="section-head"><p class="eyebrow">Protocol Benchmark Runner</p><h3>Run the same task under multiple protocols and compare cost, speed, and latency</h3></div>
+        <div class="demo-layout">
+          <div class="panel">
+            <label>Example</label>
+            <select id="exampleSelect">
+              <option value="">Custom</option>
+              <option value="math">Math example</option>
+              <option value="reading">Reading example</option>
+              <option value="news">News example</option>
+            </select>
+            <label>Task</label>
+            <textarea id="taskInput" placeholder="Enter a math problem, reading passage with Question:, or news article..."></textarea>
+            <label>Protocols to compare</label>
+            <div class="protocol-checks">
+              <label><input type="checkbox" class="protocolChoice" value="NL" checked /> NL</label>
+              <label><input type="checkbox" class="protocolChoice" value="MARKDOWN" checked /> Markdown</label>
+              <label><input type="checkbox" class="protocolChoice" value="JSON" checked /> JSON</label>
+              <label><input type="checkbox" class="protocolChoice" value="SHARED_MEMORY" checked /> Shared Memory</label>
+            </div>
+            <div class="run-controls">
+              <select id="modelSelect"><option>gpt-4o-mini</option><option>gpt-4o</option></select>
+            </div>
+            <button id="runBtn">Run protocol comparison</button>
+            <p class="muted" id="runStatus">Uses OPENAI_API_KEY from your local backend environment.</p>
+          </div>
+          <div class="panel">
+            <h4>Protocol format preview</h4>
+            <div id="protocolPreview" class="protocol-preview"></div>
+          </div>
+        </div>
+        <div class="panel">
+          <h4>Comparison results</h4>
+          <p class="muted">This table intentionally hides agent messages and final answer content. The focus is protocol overhead: token cost, API cost, runtime speed, and latency.</p>
+          <div id="runOutput" class="run-output empty">No comparison run yet.</div>
+        </div>
+        <div class="chart-grid">
+          <div class="panel">
+            <h4>Tokens by protocol</h4>
+            <canvas id="demoTokenChart" height="230"></canvas>
+          </div>
+          <div class="panel">
+            <h4>Latency by protocol</h4>
+            <canvas id="demoLatencyChart" height="230"></canvas>
+          </div>
+        </div>
+      </section>
+
+      <section id="logs" class="view">
+        <div class="section-head"><p class="eyebrow">Experiment Database</p><h3>Audit the saved 360-run experiment database before reading the final dashboard</h3></div>
+        <div class="panel">
+          <p class="muted">Each run stores three protocol-specific message records plus token, latency, sender, receiver, and finish reason metadata. This is the evidence layer behind the aggregate results.</p>
+          <div class="filters">
+            <select id="logProtocol"><option>All</option><option>NL</option><option>MARKDOWN</option><option>JSON</option><option>SHARED_MEMORY</option></select>
+            <select id="logDomain"><option>All</option><option>MATH</option><option>READING</option><option>NEWS</option></select>
+            <select id="logSender"><option>All</option><option>Planner</option><option>Executor</option><option>Integrator</option></select>
+            <select id="logRun"></select>
+            <button id="loadLogs">Load records</button>
+          </div>
+          <div id="messageList" class="message-list"></div>
+        </div>
+      </section>
+
+      <section id="results" class="view">
+        <div class="section-head"><p class="eyebrow">Results Dashboard</p><h3>Aggregate evidence from all saved runs: token cost, latency, and completion quality</h3></div>
+        <div class="recommend-grid" id="winnerCards"></div>
+        <div class="chart-grid">
+          <div class="panel"><h4>Mean tokens by protocol/domain</h4><canvas id="tokenChart" height="260"></canvas></div>
+          <div class="panel"><h4>Completion rate by protocol/domain</h4><canvas id="completionChart" height="260"></canvas></div>
+        </div>
+        <div class="figure-grid">
+          <img src="/figures/fig1_tokens_by_protocol_domain.png" alt="Token cost by protocol and domain" />
+          <img src="/figures/fig2_completion_by_cell.png" alt="Completion by protocol and domain" />
+          <img src="/figures/fig4_pareto.png" alt="Pareto frontier" />
+          <img src="/figures/fig6_latency.png" alt="Latency distribution" />
+        </div>
+        <div class="panel"><h4>Summary table</h4><div id="summaryTable"></div></div>
+      </section>
+
+      <section id="recommendations" class="view">
+        <div class="section-head"><p class="eyebrow">Recommendations</p><h3>Choose protocol by domain and priority</h3></div>
+        <div class="panel"><div id="recommendTable"></div></div>
+        <div class="panel callout">
+          <h4>Final takeaway</h4>
+          <p>Do not choose one communication protocol globally. Choose by domain and by whether your priority is cost, latency, or completion quality.</p>
+        </div>
+      </section>
+    </main>
+
+    <script src="/static/app.js"></script>
+  </body>
+</html>
