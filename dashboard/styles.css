@@ -88,7 +88,7 @@ main { margin-left: 280px; padding: 28px; }
   border-radius: 18px;
   background:
     linear-gradient(120deg, rgba(25, 25, 35, 0.78), rgba(47, 111, 85, 0.72)),
-    url("/figures/fig4_pareto.png");
+    url("/figures/fig4_pareto.png?v=fig4-legends-outside");
   background-size: cover;
   background-position: center;
   color: white;
@@ -155,6 +155,12 @@ main { margin-left: 280px; padding: 28px; }
 .chart-grid, .split, .demo-layout { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 .figure-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 .figure-grid img { width: 100%; border: 1px solid var(--line); border-radius: 16px; background: white; padding: 12px; box-shadow: var(--shadow); }
+.demo-chart {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+}
 
 table { width: 100%; border-collapse: collapse; }
 th, td { border-bottom: 1px solid var(--line); padding: 11px 10px; text-align: left; vertical-align: top; }

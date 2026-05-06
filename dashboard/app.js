@@ -2,6 +2,7 @@ const state = {
   summary: [],
   recommendations: [],
   runIds: [],
+  comparisonRows: [],
 };
 
 const protocolDetails = {
@@ -30,6 +31,8 @@ const protocolDetails = {
     risk: "Highest prompt-token overhead.",
   },
 };
+
+const protocolOrder = ["NL", "MARKDOWN", "JSON", "SHARED_MEMORY"];
 
 const examples = {
   math: "Janet has 24 apples. She gives 6 to her friend, buys 12 more, and then sells half of the total for $3 each. How much money does she make?",
@@ -312,7 +315,17 @@ function renderProtocolPreview() {
   `).join("") || `<p class="muted">Select at least one protocol to preview.</p>`;
 }
 
-function drawDemoMetricChart(canvasId, rows, field, color) {
+function protocolAxisLabel(protocol) {
+  if (protocol === "SHARED_MEMORY") return ["Shared", "Memory"];
+  if (protocol === "MARKDOWN") return ["Markdown"];
+  return [protocol];
+}
+
+function sortByProtocolOrder(rows) {
+  return [...rows].sort((a, b) => protocolOrder.indexOf(a.protocol) - protocolOrder.indexOf(b.protocol));
+}
+
+function drawDemoMetricChart(canvasId, rows, field, color, yAxisLabel) {
   const canvas = $(`#${canvasId}`);
   if (!canvas || !rows.length) return;
   const ctx = canvas.getContext("2d");
@@ -323,13 +336,39 @@ function drawDemoMetricChart(canvasId, rows, field, color) {
   ctx.scale(dpr, dpr);
   ctx.clearRect(0, 0, rect.width, rect.height);
 
-  const padding = { left: 46, right: 14, top: 18, bottom: 46 };
+  const padding = { left: 72, right: 18, top: 22, bottom: 68 };
   const width = rect.width - padding.left - padding.right;
   const height = rect.height - padding.top - padding.bottom;
   const max = Math.max(...rows.map((r) => Number(r[field]) || 0), 1);
-  const barW = width / rows.length * 0.56;
+  const yMax = Math.ceil(max * 1.12);
+  const slotW = width / rows.length;
+  const barW = Math.min(62, slotW * 0.46);
 
-  ctx.strokeStyle = "#ddd8cc";
+  ctx.textBaseline = "middle";
+  ctx.font = "12px system-ui";
+  ctx.fillStyle = "#67706f";
+  ctx.save();
+  ctx.translate(18, padding.top + height / 2);
+  ctx.rotate(-Math.PI / 2);
+  ctx.textAlign = "center";
+  ctx.fillText(yAxisLabel, 0, 0);
+  ctx.restore();
+
+  ctx.strokeStyle = "#e4dfd4";
+  ctx.lineWidth = 1;
+  ctx.textAlign = "right";
+  for (let tick = 0; tick <= 4; tick += 1) {
+    const value = yMax * tick / 4;
+    const y = padding.top + height - (value / yMax) * height;
+    ctx.beginPath();
+    ctx.moveTo(padding.left, y);
+    ctx.lineTo(padding.left + width, y);
+    ctx.stroke();
+    ctx.fillStyle = "#67706f";
+    ctx.fillText(formatNumber(value), padding.left - 10, y);
+  }
+
+  ctx.strokeStyle = "#cfc8ba";
   ctx.beginPath();
   ctx.moveTo(padding.left, padding.top);
   ctx.lineTo(padding.left, padding.top + height);
@@ -338,24 +377,31 @@ function drawDemoMetricChart(canvasId, rows, field, color) {
 
   rows.forEach((row, i) => {
     const value = Number(row[field]) || 0;
-    const x = padding.left + (width / rows.length) * i + (width / rows.length - barW) / 2;
-    const h = (value / max) * height;
+    const centerX = padding.left + slotW * i + slotW / 2;
+    const x = centerX - barW / 2;
+    const h = (value / yMax) * height;
     const y = padding.top + height - h;
     ctx.fillStyle = color;
-    ctx.fillRect(x, y, barW, h);
+    ctx.fillRect(x, y, barW, Math.max(h, 1));
     ctx.fillStyle = "#191923";
     ctx.font = "700 12px system-ui";
-    ctx.fillText(formatNumber(value), x, y - 6);
+    ctx.textAlign = "center";
+    ctx.textBaseline = "bottom";
+    ctx.fillText(formatNumber(value), centerX, y - 6);
     ctx.fillStyle = "#67706f";
-    ctx.font = "11px system-ui";
-    ctx.fillText(row.protocol.replace("SHARED_MEMORY", "MEM"), x - 4, padding.top + height + 20);
+    ctx.font = "12px system-ui";
+    ctx.textBaseline = "top";
+    protocolAxisLabel(row.protocol).forEach((label, line) => {
+      ctx.fillText(label, centerX, padding.top + height + 14 + line * 15);
+    });
   });
 }
 
 function renderComparisonCharts(rows) {
+  state.comparisonRows = rows;
   requestAnimationFrame(() => {
-    drawDemoMetricChart("demoTokenChart", rows, "total_tokens", "#2f6f55");
-    drawDemoMetricChart("demoLatencyChart", rows, "latency_ms", "#315f83");
+    drawDemoMetricChart("demoTokenChart", rows, "total_tokens", "#2f6f55", "Tokens");
+    drawDemoMetricChart("demoLatencyChart", rows, "latency_ms", "#315f83", "Latency (ms)");
   });
 }
 
@@ -409,7 +455,7 @@ async function runProtocolComparison() {
         { key: "tokens_per_second", label: "Tokens/sec", format: (v) => formatNumber(v, 2) },
       ])}
     `;
-    renderComparisonCharts(rows);
+    renderComparisonCharts(sortByProtocolOrder(result.rows));
   } catch (error) {
     $("#runStatus").textContent = "Run failed.";
     $("#runOutput").innerHTML = `<p class="muted">${htmlEscape(error.message)}</p>`;
@@ -425,7 +471,10 @@ function setupEvents() {
     $(selector).addEventListener("change", loadLogs);
   });
   $("#loadLogs").addEventListener("click", loadLogs);
-  window.addEventListener("resize", drawCharts);
+  window.addEventListener("resize", () => {
+    drawCharts();
+    if (state.comparisonRows.length) renderComparisonCharts(state.comparisonRows);
+  });
 }
 
 async function init() {

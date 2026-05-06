@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Multi-Agent Protocol Study</title>
-    <link rel="stylesheet" href="/static/styles.css" />
+    <link rel="stylesheet" href="/static/styles.css?v=fig4-legends-outside" />
   </head>
   <body>
     <aside class="sidebar">
@@ -160,11 +160,11 @@
         <div class="chart-grid">
           <div class="panel">
             <h4>Tokens by protocol</h4>
-            <canvas id="demoTokenChart" height="230"></canvas>
+            <canvas id="demoTokenChart" class="demo-chart" width="720" height="405"></canvas>
           </div>
           <div class="panel">
             <h4>Latency by protocol</h4>
-            <canvas id="demoLatencyChart" height="230"></canvas>
+            <canvas id="demoLatencyChart" class="demo-chart" width="720" height="405"></canvas>
           </div>
         </div>
       </section>
@@ -194,7 +194,7 @@
         <div class="figure-grid">
           <img src="/figures/fig1_tokens_by_protocol_domain.png" alt="Token cost by protocol and domain" />
           <img src="/figures/fig2_completion_by_cell.png" alt="Completion by protocol and domain" />
-          <img src="/figures/fig4_pareto.png" alt="Pareto frontier" />
+          <img src="/figures/fig4_pareto.png?v=fig4-legends-outside" alt="Pareto frontier" />
           <img src="/figures/fig6_latency.png" alt="Latency distribution" />
         </div>
         <div class="panel"><h4>Summary table</h4><div id="summaryTable"></div></div>
