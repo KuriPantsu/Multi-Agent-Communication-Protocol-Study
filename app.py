@@ -19,9 +19,11 @@ import time
 from pathlib import Path
 from typing import Optional
 
+import numpy as np
 import pandas as pd
 import streamlit as st
 from openai import OpenAI
+from scipy import stats
 
 from pipeline import Protocol, TaskDomain, run_pipeline
 
@@ -31,7 +33,12 @@ RESULTS_RAW = Path("results/results_raw.csv")
 RESULTS_MESSAGES = Path("results/results_messages.jsonl")
 EXPERIMENT_CONFIG = Path("results/experiment_config.json")
 FIGURES_DIR = Path("figures")
-COST_PER_1M = {"prompt": 0.15, "completion": 0.60}  # gpt-4o-mini pricing
+# Per-model API pricing (USD per 1M tokens). Update when OpenAI prices change.
+COST_PER_1M = {
+    "gpt-4o-mini": {"prompt": 0.15, "completion": 0.60},
+    "gpt-4o":      {"prompt": 2.50, "completion": 10.00},
+    "gpt-4.1":     {"prompt": 2.00, "completion": 8.00},
+}
 
 
 PROTOCOL_DETAILS = {
@@ -62,6 +69,13 @@ PROTOCOL_DETAILS = {
         "implementation": "Injects the full accumulated JSON blackboard snapshot into downstream agents.",
         "strength": "Best quality on reading and news because context persists across the whole chain.",
         "risk": "Highest prompt-token overhead because state grows at each step.",
+    },
+    "SHARED_MEMORY_JSON": {
+        "label": "Shared Memory + JSON (ablation)",
+        "short": "Blackboard mechanism with forced JSON output — used to disentangle mechanism from format.",
+        "implementation": "Combines the blackboard preamble with response_format=json_object enforcement.",
+        "strength": "Cleanly isolates the cost of the blackboard mechanism alone (vs. JSON-relay) for H1 testing.",
+        "risk": "Pure ablation protocol — not intended for general use; layers JSON verbosity on top of state injection.",
     },
 }
 
@@ -390,9 +404,10 @@ def render_live_demo(summary: Optional[pd.DataFrame]) -> None:
                 st.caption(f"{msg.total_tokens} tokens | {msg.latency_ms:.0f} ms")
                 st.code(str(msg.content), language="markdown")
 
+    prices = COST_PER_1M.get(model, COST_PER_1M["gpt-4o-mini"])
     cost_usd = (
-        result.total_prompt_tokens / 1e6 * COST_PER_1M["prompt"]
-        + result.total_completion_tokens / 1e6 * COST_PER_1M["completion"]
+        result.total_prompt_tokens / 1e6 * prices["prompt"]
+        + result.total_completion_tokens / 1e6 * prices["completion"]
     )
     st.subheader("Run Metrics")
     c1, c2, c3, c4, c5 = st.columns(5)
@@ -613,6 +628,94 @@ elif page == "Results Dashboard":
     for i, (filename, caption) in enumerate(figure_specs):
         with fig_cols[i % 2]:
             show_image(FIGURES_DIR / filename, caption)
+
+    # ── Ablation Study: Mechanism vs Format ─────────────────────────────────
+    st.markdown("---")
+    st.subheader("Ablation Study: Mechanism vs Format (SHARED_MEMORY_JSON)")
+
+    ablation_path = Path("results/results_ablation_sm_json.csv")
+    if not ablation_path.exists():
+        st.info(
+            "Ablation results not found. Run notebook §5b "
+            "(or `python _run_ablation.py`) to generate "
+            "`results/results_ablation_sm_json.csv` (90 runs)."
+        )
+    elif raw is None:
+        st.info("Main experiment data not found — cannot compute decomposition.")
+    else:
+        st.markdown(
+            "The main 4-protocol grid confounds **mechanism** (blackboard injection) and "
+            "**default output format** in `SHARED_MEMORY`. We added a 5th protocol — "
+            "`SHARED_MEMORY_JSON` — that combines the blackboard mechanism with forced "
+            "JSON output (90 supplementary runs). This decomposes the SM cost into clean "
+            "mechanism and format components."
+        )
+
+        df_abl = pd.read_csv(ablation_path)
+
+        # Combined 3-protocol view for the chart
+        compare = pd.concat([
+            raw[raw["protocol"].isin(["JSON", "SHARED_MEMORY"])][
+                ["protocol", "task_domain", "total_tokens", "completion_score"]
+            ],
+            df_abl[["protocol", "task_domain", "total_tokens", "completion_score"]],
+        ], ignore_index=True)
+        token_means = (
+            compare.groupby(["task_domain", "protocol"])["total_tokens"]
+            .mean().round(0).reset_index()
+        )
+        token_means["Protocol / Domain"] = (
+            token_means["protocol"] + " / " + token_means["task_domain"]
+        )
+
+        st.markdown("#### Mean tokens — JSON vs SHARED_MEMORY vs SHARED_MEMORY_JSON")
+        st.bar_chart(
+            token_means,
+            x="Protocol / Domain", y="total_tokens", color="protocol",
+            width="stretch",
+        )
+
+        # Comparison table: Welch's t-test + Cohen's d
+        rows = []
+        for dom in ["MATH", "READING", "NEWS"]:
+            j = raw[(raw["protocol"] == "JSON") & (raw["task_domain"] == dom)]["total_tokens"].values
+            sm = raw[(raw["protocol"] == "SHARED_MEMORY") & (raw["task_domain"] == dom)]["total_tokens"].values
+            sj = df_abl[(df_abl["protocol"] == "SHARED_MEMORY_JSON") & (df_abl["task_domain"] == dom)]["total_tokens"].values
+            d_mech = (sj.mean() - j.mean()) / np.sqrt((j.var() + sj.var()) / 2) if (j.var() + sj.var()) > 0 else 0
+            t_mech, p_mech = stats.ttest_ind(sj, j, equal_var=False)
+            d_fmt = (sj.mean() - sm.mean()) / np.sqrt((sm.var() + sj.var()) / 2) if (sm.var() + sj.var()) > 0 else 0
+            t_fmt, p_fmt = stats.ttest_ind(sj, sm, equal_var=False)
+            rows.append({
+                "Domain": dom,
+                "Mechanism Δ tokens": f"{sj.mean() - j.mean():+.0f}",
+                "Mechanism Cohen's d": f"{d_mech:+.2f}",
+                "Mechanism p": f"{p_mech:.4f}",
+                "Format Δ tokens": f"{sj.mean() - sm.mean():+.0f}",
+                "Format Cohen's d": f"{d_fmt:+.2f}",
+                "Format p": f"{p_fmt:.4f}",
+            })
+        st.markdown("#### Statistical comparison (Welch's t-test, Cohen's d)")
+        st.dataframe(pd.DataFrame(rows), width="stretch", hide_index=True)
+        st.caption(
+            "**Mechanism**: JSON-relay vs SHARED_MEMORY_JSON (output format held constant). "
+            "**Format**: SHARED_MEMORY (default) vs SHARED_MEMORY_JSON (mechanism held constant)."
+        )
+
+        # Decomposition narrative for the most striking domain (READING)
+        dom = "READING"
+        j_mean = raw[(raw["protocol"] == "JSON") & (raw["task_domain"] == dom)]["total_tokens"].mean()
+        sm_mean = raw[(raw["protocol"] == "SHARED_MEMORY") & (raw["task_domain"] == dom)]["total_tokens"].mean()
+        sj_mean = df_abl[(df_abl["protocol"] == "SHARED_MEMORY_JSON") & (df_abl["task_domain"] == dom)]["total_tokens"].mean()
+        st.markdown("#### Decomposition for READING (largest effect)")
+        st.markdown(
+            f"- **JSON (relay)** = {j_mean:.0f} tokens  *(baseline)*\n"
+            f"- **SHARED_MEMORY_JSON** = {sj_mean:.0f} tokens → **mechanism alone adds +{sj_mean - j_mean:.0f}** (format held = JSON)\n"
+            f"- **SHARED_MEMORY (default fmt)** = {sm_mean:.0f} tokens → format change saves {sj_mean - sm_mean:+.0f} (mechanism held = blackboard)\n"
+            f"- **Net SM vs JSON in main experiment** = {sm_mean - j_mean:+.0f} tokens "
+            f"= mechanism (+{sj_mean - j_mean:.0f}) + format ({sm_mean - sj_mean:+.0f})\n\n"
+            "→ The main experiment **underestimates the blackboard mechanism cost** because "
+            "the cheaper default output format partially cancels the mechanism overhead."
+        )
 
 
 elif page == "Message Log":

@@ -1,0 +1,470 @@
+run_id,protocol,task_domain,sample_index,repetition,total_prompt_tokens,total_completion_tokens,total_tokens,total_latency_ms,total_messages,any_truncation,any_json_parse_error,completion_score,final_answer
+aa0a59dc,SHARED_MEMORY_JSON,MATH,0,0,1054,250,1304,6369.99,3,False,False,1.0,"{
+  ""final_answer"": {
+    ""description"": ""Janet's total daily earnings from selling eggs at the farmers' market."",
+    ""amount"": 18
+  }
+}"
+5b7aee65,SHARED_MEMORY_JSON,MATH,0,1,1035,242,1277,5333.81,3,False,False,1.0,"{
+  ""final_answer"": {
+    ""description"": ""Janet's daily earnings from selling eggs at the farmers' market."",
+    ""amount"": 18
+  },
+  ""formatted_answer"": ""#### 18""
+}"
+31134dcb,SHARED_MEMORY_JSON,MATH,0,2,1050,241,1291,5527.99,3,False,False,1.0,"{
+  ""final_answer"": {
+    ""description"": ""Total earnings from selling eggs at the farmers' market."",
+    ""amount"": 18
+  }
+}"
+afd4f5a7,SHARED_MEMORY_JSON,MATH,1,0,1062,344,1406,7249.71,3,False,False,1.0,"{
+  ""final_answer"": {
+    ""description"": ""The total number of bolts needed for the robe, combining both blue and white fiber."",
+    ""total_bolts"": 3
+  }
+}"
+d789a0ab,SHARED_MEMORY_JSON,MATH,1,1,1046,328,1374,8573.87,3,False,False,1.0,"{
+  ""final_answer"": {
+    ""description"": ""The total number of bolts required for the robe, combining both blue and white fiber."",
+    ""value"": 3
+  }
+}"
+b15f0df1,SHARED_MEMORY_JSON,MATH,1,2,1065,343,1408,7764.66,3,False,False,1.0,"{
+  ""final_answer"": {
+    ""description"": ""The total number of bolts needed for the robe, combining both blue and white fiber."",
+    ""value"": 3
+  }
+}"
+29e29b8a,SHARED_MEMORY_JSON,MATH,2,0,894,189,1083,4684.88,3,False,False,1.0,"{
+  ""final_answer"": {
+    ""description"": ""Josh's profit from flipping the house after considering his total investment and the increased value of the house."",
+    ""profit"": 70000
+  },
+  ""formatted_ans"
+dacbca01,SHARED_MEMORY_JSON,MATH,2,1,1099,250,1349,6826.67,3,False,False,1.0,"{
+  ""final_answer"": {
+    ""profit"": 70000,
+    ""formatted_answer"": ""#### 70000""
+  }
+}"
+965a2248,SHARED_MEMORY_JSON,MATH,2,2,1003,209,1212,5668.07,3,False,False,1.0,"{
+  ""final_answer"": {
+    ""description"": ""The profit made by Josh after flipping the house."",
+    ""value"": 70000
+  }
+}"
+631757ef,SHARED_MEMORY_JSON,MATH,3,0,1133,341,1474,7068.42,3,False,False,1.0,"{
+  ""final_answer"": 540,
+  ""explanation"": {
+    ""total_distance_one_sprint"": 180,
+    ""total_distance_one_week"": 540,
+    ""weekly_total"": 540
+  }
+}"
+5455b568,SHARED_MEMORY_JSON,MATH,3,1,1009,292,1301,6864.96,3,False,False,1.0,"{
+  ""final_answer"": 540,
+  ""explanation"": {
+    ""sprint_distance"": 180,
+    ""weekly_distance"": 540,
+    ""steps"": [
+      ""James runs 60 meters per sprint and completes 3 sprints, totaling 180 meters i"
+e7464da5,SHARED_MEMORY_JSON,MATH,3,2,1001,227,1228,5231.73,3,False,False,1.0,"{
+  ""final_answer"": {
+    ""description"": ""Total meters James runs in a week"",
+    ""value"": 540
+  }
+}"
+89e4946e,SHARED_MEMORY_JSON,MATH,4,0,1279,282,1561,5825.55,3,False,False,1.0,"{
+  ""final_answer"": {
+    ""description"": ""The amount of feed needed for the final meal of the day for Wendi's chickens."",
+    ""value"": 20
+  },
+  ""formatted_answer"": ""#### 20""
+}"
+5323a85d,SHARED_MEMORY_JSON,MATH,4,1,1269,278,1547,7893.77,3,False,False,1.0,"{
+  ""final_answer"": {
+    ""description"": ""The amount of feed Wendi needs to give her chickens in the final meal of the day."",
+    ""value"": 20
+  },
+  ""formatted_answer"": ""#### 20""
+}"
+c0ca9b94,SHARED_MEMORY_JSON,MATH,4,2,1260,263,1523,6980.67,3,False,False,1.0,"{
+  ""final_answer"": {
+    ""description"": ""The amount of feed Wendi needs to give her chickens in the final meal of the day."",
+    ""value"": 20
+  }
+}"
+04b585a5,SHARED_MEMORY_JSON,MATH,5,0,1203,459,1662,7363.39,3,False,False,1.0,"{
+  ""final_answer"": {
+    ""description"": ""Kylar needs to pay for 16 glasses, with 8 at full price and 8 at a discounted price."",
+    ""cost_details"": {
+      ""cost_first_glass"": 5,
+      ""discounted_pr"
+d1fa12b2,SHARED_MEMORY_JSON,MATH,5,1,999,279,1278,6957.64,3,False,False,1.0,"{
+  ""final_answer"": 64,
+  ""explanation"": {
+    ""first_glass_cost"": 5,
+    ""discounted_price"": 3,
+    ""full_price_glasses"": 8,
+    ""discounted_glasses"": 8,
+    ""total_cost_full_price"": 40,
+    ""total_c"
+f2b07a5b,SHARED_MEMORY_JSON,MATH,5,2,1201,393,1594,7377.66,3,False,False,1.0,"{
+  ""final_result"": {
+    ""description"": ""Kylar needs to pay a total amount for the glasses he purchased."",
+    ""total_amount"": 64
+  }
+}"
+f70618bf,SHARED_MEMORY_JSON,MATH,6,0,1078,263,1341,5502.18,3,False,False,1.0,"{
+  ""final_answer"": {
+    ""description"": ""Total number of sheep for Toulouse, Charleston, and Seattle combined."",
+    ""total_sheep"": 260
+  }
+}"
+352fe798,SHARED_MEMORY_JSON,MATH,6,1,917,225,1142,4869.98,3,False,False,1.0,"{
+  ""final_answer"": 260,
+  ""details"": {
+    ""seattle_sheep"": 20,
+    ""charleston_sheep"": 80,
+    ""toulouse_sheep"": 160,
+    ""total_sheep"": 260
+  }
+}"
+171e32f7,SHARED_MEMORY_JSON,MATH,6,2,919,226,1145,4469.45,3,False,False,1.0,"{
+  ""final_answer"": 260,
+  ""details"": {
+    ""seattle_sheep"": 20,
+    ""charleston_sheep"": 80,
+    ""toulouse_sheep"": 160,
+    ""total_sheep"": 260
+  }
+}"
+1012f12c,SHARED_MEMORY_JSON,MATH,7,0,1109,277,1386,5952.11,3,False,False,0.0,"{
+  ""final_answer"": {
+    ""description"": ""The total time taken for Carla to download the 200 GB file, including the time for the initial download, the update installation, and the remaining download a"
+ac5c568d,SHARED_MEMORY_JSON,MATH,7,1,1108,256,1364,5501.53,3,False,False,0.0,"{
+  ""final_answer"": {
+    ""description"": ""Total time taken to download the file after the restart and update."",
+    ""total_time_minutes"": 100
+  }
+}"
+97382a17,SHARED_MEMORY_JSON,MATH,7,2,1110,245,1355,5337.12,3,False,False,0.0,"{
+  ""total_download_time"": 100,
+  ""final_numeric_answer"": ""#### 100""
+}"
+a5198730,SHARED_MEMORY_JSON,MATH,8,0,1193,249,1442,4853.53,3,False,False,0.0,"{
+  ""final_answer"": {
+    ""description"": ""John is 85 miles away from home at the end of the 4 hours."",
+    ""numeric_answer"": 85
+  }
+}"
+db6eed3d,SHARED_MEMORY_JSON,MATH,8,1,1201,274,1475,5717.88,3,False,False,0.0,"{
+  ""final_answer"": {
+    ""description"": ""The distance John is from home at the end of the 4 hours."",
+    ""distance_from_home"": 135
+  },
+  ""formatted_answer"": ""#### 135""
+}"
+37871385,SHARED_MEMORY_JSON,MATH,8,2,1177,242,1419,5227.14,3,False,False,0.0,"{
+  ""final_answer"": {
+    ""description"": ""The total distance John is from home at the end of the 4 hours."",
+    ""distance_from_home"": 105
+  }
+}"
+1a2383a6,SHARED_MEMORY_JSON,MATH,9,0,1033,243,1276,5229.48,3,False,False,1.0,"{
+  ""final_answer"": {
+    ""description"": ""Eliza's total earnings for the week after working 45 hours, including regular and overtime pay."",
+    ""total_earnings"": 460
+  }
+}"
+e5e309d5,SHARED_MEMORY_JSON,MATH,9,1,1037,239,1276,5290.78,3,False,False,1.0,"{
+  ""final_answer"": {
+    ""description"": ""Eliza's total earnings for the week after working 45 hours."",
+    ""total_earnings"": 460
+  }
+}"
+f7800869,SHARED_MEMORY_JSON,MATH,9,2,1029,242,1271,5568.07,3,False,False,1.0,"{
+  ""final_answer"": {
+    ""description"": ""Eliza's total earnings for the week after working 45 hours, including regular and overtime pay."",
+    ""total_earnings"": 460
+  }
+}"
+cca272ec,SHARED_MEMORY_JSON,READING,0,0,1537,302,1839,10630.92,3,False,False,0.333,"{
+  ""final_answer"": ""The Denver Broncos represented the AFC at Super Bowl 50.""
+}"
+8f912132,SHARED_MEMORY_JSON,READING,0,1,1516,278,1794,6715.34,3,False,False,0.667,"{
+  ""final_answer"": ""Denver Broncos""
+}"
+a0dc0720,SHARED_MEMORY_JSON,READING,0,2,1543,300,1843,7583.02,3,False,False,0.667,"{
+  ""final_answer"": ""Denver Broncos""
+}"
+79b6a659,SHARED_MEMORY_JSON,READING,1,0,1482,256,1738,6923.46,3,False,False,0.667,"{
+  ""final_answer"": ""Carolina Panthers""
+}"
+e57e9349,SHARED_MEMORY_JSON,READING,1,1,1494,264,1758,8777.08,3,False,False,0.667,"{
+  ""final_answer"": ""Carolina Panthers""
+}"
+ffc08e7b,SHARED_MEMORY_JSON,READING,1,2,1586,328,1914,7796.62,3,False,False,0.667,"{
+  ""final_answer"": ""Carolina Panthers""
+}"
+202823a7,SHARED_MEMORY_JSON,READING,2,0,1410,258,1668,7438.46,3,False,False,0.6,"{
+  ""final_answer"": ""Levi's Stadium, Santa Clara, California""
+}"
+0ef755e7,SHARED_MEMORY_JSON,READING,2,1,1420,247,1667,6920.96,3,False,False,0.593,"{
+  ""final_answer"": ""Super Bowl 50 took place at Levi's Stadium in Santa Clara, California.""
+}"
+d1c0e8ec,SHARED_MEMORY_JSON,READING,2,2,1464,269,1733,13720.49,3,False,False,0.593,"{
+  ""final_answer"": ""Super Bowl 50 took place at Levi's Stadium in Santa Clara, California.""
+}"
+85c2da48,SHARED_MEMORY_JSON,READING,3,0,1451,235,1686,7091.63,3,False,False,0.667,"{
+  ""final_answer"": ""Denver Broncos""
+}"
+730351c7,SHARED_MEMORY_JSON,READING,3,1,1463,247,1710,15035.48,3,False,False,0.667,"{
+  ""final_answer"": ""Denver Broncos""
+}"
+3818f6b8,SHARED_MEMORY_JSON,READING,3,2,1439,226,1665,8604.06,3,False,False,0.667,"{
+  ""final_answer"": ""Denver Broncos""
+}"
+e837602d,SHARED_MEMORY_JSON,READING,4,0,1545,304,1849,8722.28,3,False,False,0.5,"{
+  ""final_answer"": ""Gold""
+}"
+515c4f6c,SHARED_MEMORY_JSON,READING,4,1,1483,267,1750,6849.44,3,False,False,0.5,"{
+  ""final_answer"": ""gold""
+}"
+a54b9952,SHARED_MEMORY_JSON,READING,4,2,1466,256,1722,8091.37,3,False,False,0.5,"{
+  ""final_answer"": ""gold""
+}"
+6e227125,SHARED_MEMORY_JSON,READING,5,0,1445,261,1706,7989.11,3,False,False,0.333,"{
+  ""final_answer"": ""The theme of Super Bowl 50 was the 'golden anniversary.'""
+}"
+c96d08d0,SHARED_MEMORY_JSON,READING,5,1,1579,356,1935,10098.07,3,False,False,0.333,"{
+  ""final_answer"": ""The theme of Super Bowl 50 was the 'golden anniversary'.""
+}"
+e4d7c34e,SHARED_MEMORY_JSON,READING,5,2,1518,302,1820,9666.34,3,False,False,0.333,"{
+  ""final_answer"": ""The theme of Super Bowl 50 was the 'golden anniversary'.""
+}"
+58ffb0bc,SHARED_MEMORY_JSON,READING,6,0,1396,225,1621,9004.01,3,False,False,0.75,"{
+  ""final_answer"": ""February 7, 2016""
+}"
+9a2147ce,SHARED_MEMORY_JSON,READING,6,1,1353,199,1552,5633.09,3,False,False,0.75,"{
+  ""final_answer"": ""February 7, 2016""
+}"
+0174abf2,SHARED_MEMORY_JSON,READING,6,2,1441,241,1682,5414.36,3,False,False,0.75,"{
+  ""final_answer"": ""February 7, 2016""
+}"
+a2123c58,SHARED_MEMORY_JSON,READING,7,0,1458,248,1706,5879.67,3,False,False,0.75,"{
+  ""final_answer"": ""American Football Conference""
+}"
+172d09f4,SHARED_MEMORY_JSON,READING,7,1,1492,276,1768,5622.99,3,False,False,0.75,"{
+  ""final_answer"": ""American Football Conference""
+}"
+1ffe5192,SHARED_MEMORY_JSON,READING,7,2,1478,260,1738,6542.49,3,False,False,0.75,"{
+  ""final_answer"": ""American Football Conference""
+}"
+34872a71,SHARED_MEMORY_JSON,READING,8,0,1496,288,1784,29078.39,3,False,False,0.333,"{
+  ""final_answer"": ""The theme of Super Bowl 50 was the 'golden anniversary'.""
+}"
+cff4d03b,SHARED_MEMORY_JSON,READING,8,1,1483,277,1760,5577.5,3,False,False,0.333,"{
+  ""final_answer"": ""The theme of Super Bowl 50 was the 'golden anniversary'.""
+}"
+5c2d59e5,SHARED_MEMORY_JSON,READING,8,2,1500,292,1792,6628.48,3,False,False,0.333,"{
+  ""final_answer"": ""The theme of Super Bowl 50 was the 'golden anniversary'.""
+}"
+8697b1cb,SHARED_MEMORY_JSON,READING,9,0,1408,234,1642,5316.16,3,False,False,0.75,"{
+  ""final_answer"": ""American Football Conference""
+}"
+29dc1e10,SHARED_MEMORY_JSON,READING,9,1,1472,263,1735,7591.08,3,False,False,0.75,"{
+  ""final_answer"": ""American Football Conference""
+}"
+0562b403,SHARED_MEMORY_JSON,READING,9,2,1430,234,1664,7603.1,3,False,False,0.75,"{
+  ""final_answer"": ""American Football Conference""
+}"
+6ea67d7e,SHARED_MEMORY_JSON,NEWS,0,0,1369,462,1831,8882.37,3,False,False,0.353,"{
+  ""summary"": {
+    ""main_topic"": ""The Federal Reserve's decision to hold interest rates steady."",
+    ""key_figures"": {
+      ""current_interest_rate"": ""4.25%-4.50%"",
+      ""inflation_rate"": ""2.8%"",
+ "
+7781c531,SHARED_MEMORY_JSON,NEWS,0,1,1645,757,2402,14463.52,3,False,False,0.255,"{
+  ""summary"": {
+    ""main_subject"": ""The article discusses the Federal Reserve's decision on interest rates."",
+    ""key_figures"": {
+      ""current_interest_rate_range"": ""4.25%-4.50%"",
+      ""inflatio"
+d69cf099,SHARED_MEMORY_JSON,NEWS,0,2,1388,434,1822,10320.76,3,False,False,0.406,"{
+  ""summary"": {
+    ""main_topic"": ""Federal Reserve's decision to hold interest rates steady."",
+    ""key_facts"": {
+      ""interest_rate"": ""4.25%-4.50%"",
+      ""meeting_date"": ""March 2025"",
+      ""chai"
+39fd7644,SHARED_MEMORY_JSON,NEWS,1,0,1688,743,2431,19079.5,3,False,False,0.312,"{
+  ""title"": ""Apple Reports Record Q1 FY2025 Earnings"",
+  ""financial_figures"": {
+    ""revenue"": ""$124.3 billion"",
+    ""year_over_year_growth"": ""4%"",
+    ""iPhone_revenue"": ""$69.1 billion"",
+    ""service"
+35bd7937,SHARED_MEMORY_JSON,NEWS,1,1,1700,728,2428,13151.45,3,False,False,0.348,"{
+  ""title"": ""Apple Reports Record Q1 FY2025 Earnings"",
+  ""financial_figures"": {
+    ""revenue"": ""124.3 billion"",
+    ""iPhone_revenue"": ""69.1 billion"",
+    ""services_revenue"": ""26.3 billion"",
+    ""EPS"""
+7a6f1496,SHARED_MEMORY_JSON,NEWS,1,2,1363,521,1884,9443.04,3,False,False,0.518,"{
+  ""article_title"": ""Apple Reports Record Q1 FY2025 Earnings"",
+  ""financial_summary"": {
+    ""total_revenue"": ""$124.3 billion"",
+    ""iPhone_revenue"": ""$69.1 billion"",
+    ""services_revenue"": ""$26.3 bi"
+380db192,SHARED_MEMORY_JSON,NEWS,2,0,1408,611,2019,8018.14,3,False,False,0.264,"{
+  ""article_summary"": {
+    ""main_subject"": ""Tesla's new affordable electric vehicle model."",
+    ""key_facts"": {
+      ""model_name"": ""Model Q"",
+      ""price"": ""$25,000"",
+      ""range"": ""280 miles"",
+ "
+f3f3627c,SHARED_MEMORY_JSON,NEWS,2,1,1387,602,1989,9289.64,3,False,False,0.255,"{
+  ""article_summary"": {
+    ""main_subject"": ""Tesla's new affordable electric vehicle model."",
+    ""key_facts"": {
+      ""model_name"": ""Model Q"",
+      ""price"": ""$25,000"",
+      ""range"": ""280 miles"",
+ "
+c67b5153,SHARED_MEMORY_JSON,NEWS,2,2,1502,511,2013,7372.2,3,False,False,0.429,"{
+  ""title"": ""Tesla Announces New Affordable EV Model"",
+  ""key_details"": {
+    ""model"": ""Model Q"",
+    ""price"": ""$25,000"",
+    ""range"": ""280 miles"",
+    ""acceleration"": ""0-60 mph in 5.8 seconds""
+  },
+"
+c6390bd6,SHARED_MEMORY_JSON,NEWS,3,0,1323,520,1843,11263.34,3,False,False,0.322,"{
+  ""title"": ""Global Chip Shortage Eases as TSMC Expands"",
+  ""tsmc_production"": {
+    ""production_capability"": ""4nm chips"",
+    ""yield_rate"": ""90%""
+  },
+  ""global_semiconductor_lead_times"": {
+    ""pre"
+3ab0433d,SHARED_MEMORY_JSON,NEWS,3,1,1492,552,2044,8497.21,3,False,False,0.357,"{
+  ""title"": ""Global Chip Shortage Eases as TSMC Expands"",
+  ""tsmc_production"": {
+    ""location"": ""Arizona fab"",
+    ""chip_type"": ""4nm"",
+    ""yield_rate"": ""90%""
+  },
+  ""semiconductor_lead_times"": {
+  "
+1d2c2f10,SHARED_MEMORY_JSON,NEWS,3,2,1304,508,1812,8204.62,3,False,False,0.347,"{
+  ""title"": ""Global Chip Shortage Eases as TSMC Expands"",
+  ""tsmc_production"": {
+    ""production_capabilities"": ""TSMC's Arizona fab is now producing 4nm chips."",
+    ""yield_rates"": ""90% yield rates."""
+d0ed11d6,SHARED_MEMORY_JSON,NEWS,4,0,1231,452,1683,11664.01,3,False,False,0.361,"{
+  ""title"": ""EU Passes Comprehensive AI Regulation Act"",
+  ""summary"": {
+    ""description"": ""The European Union officially enacted the AI Act, the world's first comprehensive AI law."",
+    ""high_risk_"
+9f948ca5,SHARED_MEMORY_JSON,NEWS,4,1,1169,382,1551,9370.79,3,False,False,0.33,"{
+  ""article_title"": ""EU Passes Comprehensive AI Regulation Act"",
+  ""summary"": {
+    ""significance"": ""The EU has enacted the world's first comprehensive AI law."",
+    ""main_provisions"": [
+      ""High-"
+d9157157,SHARED_MEMORY_JSON,NEWS,4,2,1210,426,1636,9053.86,3,False,False,0.406,"{
+  ""title"": ""EU Passes Comprehensive AI Regulation Act"",
+  ""summary"": {
+    ""main_points"": ""The European Union enacted the AI Act, the first comprehensive AI law globally. High-risk AI systems must u"
+07e0771d,SHARED_MEMORY_JSON,NEWS,5,0,1262,433,1695,6872.5,3,False,False,0.333,"{
+  ""article_title"": ""SpaceX Starship Completes First Orbital Flight"",
+  ""orbital_flight"": {
+    ""duration"": ""90 minutes"",
+    ""altitude"": ""250 km"",
+    ""landing_details"": ""splashing down in the India"
+07189c59,SHARED_MEMORY_JSON,NEWS,5,1,1247,429,1676,7784.99,3,False,False,0.363,"{
+  ""article_title"": ""SpaceX Starship Completes First Orbital Flight"",
+  ""orbital_flight"": {
+    ""duration"": ""90 minutes"",
+    ""altitude"": ""250 km"",
+    ""landing_details"": ""splashing down in the India"
+9da7cd60,SHARED_MEMORY_JSON,NEWS,5,2,1261,418,1679,7504.53,3,False,False,0.389,"{
+  ""article_title"": ""SpaceX Starship Completes First Orbital Flight"",
+  ""orbital_flight"": {
+    ""duration"": ""90 minutes"",
+    ""altitude"": ""250 km"",
+    ""landing"": ""splashing down in the Indian Ocean"""
+861aa80b,SHARED_MEMORY_JSON,NEWS,6,0,1531,703,2234,14726.8,3,False,False,0.256,"{
+  ""article_summary"": {
+    ""main_topic"": ""Amazon's launch of drone delivery service."",
+    ""key_facts"": {
+      ""cities"": [""New York"", ""Los Angeles"", ""Chicago""],
+      ""delivery_time"": ""within 30 mi"
+fbcc8445,SHARED_MEMORY_JSON,NEWS,6,1,1302,552,1854,11974.2,3,False,False,0.328,"{
+  ""title"": ""Amazon Launches Drone Delivery in 10 US Cities"",
+  ""key_facts"": {
+    ""expansion"": ""Amazon expanded its Prime Air drone delivery service to 10 major US cities, including New York, Los An"
+80264d12,SHARED_MEMORY_JSON,NEWS,6,2,1456,739,2195,14437.46,3,False,False,0.229,"{
+  ""summary"": {
+    ""main_event"": ""Amazon expanded its Prime Air drone delivery service to 10 major US cities."",
+    ""significance"": ""This expansion marks a significant step in Amazon's logistics and"
+abe7eace,SHARED_MEMORY_JSON,NEWS,7,0,1419,522,1941,8824.37,3,False,False,0.229,"{
+  ""article_title"": ""OpenAI Releases GPT-5 with Reasoning Capabilities"",
+  ""key_improvements"": {
+    ""reasoning_improvement"": ""40% improvement on graduate-level reasoning benchmarks"",
+    ""MATH_bench"
+c00eab42,SHARED_MEMORY_JSON,NEWS,7,1,1413,516,1929,9409.64,3,False,False,0.226,"{
+  ""Title"": ""OpenAI Releases GPT-5 with Reasoning Capabilities"",
+  ""Improvements"": {
+    ""Reasoning Improvement"": ""40% improvement on graduate-level reasoning benchmarks"",
+    ""MATH Benchmark Score"":"
+c6174b21,SHARED_MEMORY_JSON,NEWS,7,2,1417,518,1935,8619.2,3,False,False,0.239,"{
+  ""article_title"": ""OpenAI Releases GPT-5 with Reasoning Capabilities"",
+  ""performance_metrics"": {
+    ""improvement"": ""40% improvement on graduate-level reasoning benchmarks"",
+    ""math_benchmark_sc"
+d7402f51,SHARED_MEMORY_JSON,NEWS,8,0,1358,509,1867,8788.64,3,False,False,0.357,"{
+  ""summary"": {
+    ""main_event"": ""A 7.4 magnitude earthquake struck off the coast of Hokkaido, Japan at 3:42 AM local time, triggering a tsunami warning."",
+    ""key_facts_and_figures"": {
+      ""eart"
+8b9aa3c8,SHARED_MEMORY_JSON,NEWS,8,1,1474,591,2065,9934.98,3,False,False,0.328,"{
+  ""summary"": {
+    ""main_event"": {
+      ""event"": ""earthquake"",
+      ""location"": ""off the coast of Hokkaido, Japan""
+    },
+    ""earthquake_details"": {
+      ""magnitude"": 7.4,
+      ""time_occurred"":"
+490e6ee4,SHARED_MEMORY_JSON,NEWS,8,2,1559,710,2269,12594.3,3,False,False,0.259,"{
+  ""event"": {
+    ""description"": ""A 7.4 magnitude earthquake occurred off Hokkaido, Japan."",
+    ""time"": ""3:42 AM local time""
+  },
+  ""tsunami_warning"": {
+    ""issued_for"": ""coastal areas within 300 k"
+ac6e21cb,SHARED_MEMORY_JSON,NEWS,9,0,1491,572,2063,9218.9,3,False,False,0.312,"{
+  ""title"": ""Global Carbon Emissions Decline for First Time"",
+  ""global_CO2_emissions"": {
+    ""change"": ""fell 2.1%"",
+    ""year"": 2024,
+    ""context"": ""first annual decline not linked to economic rece"
+dca624f2,SHARED_MEMORY_JSON,NEWS,9,1,1342,623,1965,10921.28,3,False,False,0.245,"{
+  ""summary"": {
+    ""title"": ""Global Carbon Emissions Decline for First Time"",
+    ""key_statistics"": {
+      ""CO2_emissions_decline"": ""2.1% in 2024"",
+      ""renewable_energy_share"": ""35% of global el"
+3eae2b30,SHARED_MEMORY_JSON,NEWS,9,2,1326,604,1930,11296.46,3,False,False,0.248,"{
+  ""summary"": {
+    ""main_topic"": ""Global carbon emissions decline for the first time not caused by economic recession."",
+    ""key_statistics"": {
+      ""CO2_emissions_decline"": ""2.1% in 2024"",
+      "

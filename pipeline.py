@@ -33,6 +33,7 @@ class Protocol(str, Enum):
     MARKDOWN = 'MARKDOWN'
     JSON = 'JSON'
     SHARED_MEMORY = 'SHARED_MEMORY'
+    SHARED_MEMORY_JSON = 'SHARED_MEMORY_JSON'
 
 
 class TaskDomain(str, Enum):
@@ -141,6 +142,12 @@ PROTOCOL_INSTRUCTIONS = {
     ),
     # Shared-memory agents get a blackboard preamble instead of a format suffix.
     Protocol.SHARED_MEMORY: '',
+    # Ablation: blackboard mechanism + forced JSON output. Used to disentangle
+    # mechanism (state injection) from format (output structure) in H1 testing.
+    Protocol.SHARED_MEMORY_JSON: (
+        '\n\nFormat your response as a valid JSON object with descriptive field '
+        'names. Output ONLY the JSON, no markdown fences or extra text.'
+    ),
 }
 
 
@@ -191,7 +198,7 @@ def llm_call(
     }
     if seed is not None:
         kwargs['seed'] = seed
-    if protocol == Protocol.JSON:
+    if protocol in (Protocol.JSON, Protocol.SHARED_MEMORY_JSON):
         kwargs['response_format'] = {'type': 'json_object'}
 
     def _invoke() -> Tuple[Any, float]:
@@ -217,7 +224,7 @@ def llm_call(
     json_parse_error = False
 
     # For JSON protocol, validate parseability; one retry if it fails.
-    if protocol == Protocol.JSON:
+    if protocol in (Protocol.JSON, Protocol.SHARED_MEMORY_JSON):
         try:
             json.loads(text)
         except (json.JSONDecodeError, ValueError):
@@ -353,7 +360,7 @@ def agent_planner(
     seed: Optional[int] = None,
     shared: Optional[SharedMemory] = None,
 ) -> str:
-    if protocol == Protocol.SHARED_MEMORY and shared is not None:
+    if protocol in (Protocol.SHARED_MEMORY, Protocol.SHARED_MEMORY_JSON) and shared is not None:
         prompt = _wrap_blackboard(
             shared.snapshot(),
             f'Decompose the task stored in the blackboard into 3-5 subtasks:'
@@ -381,7 +388,7 @@ def agent_executor(
     seed: Optional[int] = None,
     shared: Optional[SharedMemory] = None,
 ) -> str:
-    if protocol == Protocol.SHARED_MEMORY and shared is not None:
+    if protocol in (Protocol.SHARED_MEMORY, Protocol.SHARED_MEMORY_JSON) and shared is not None:
         prompt = _wrap_blackboard(
             shared.snapshot(),
             'Execute the plan stored in the blackboard using the task information '
@@ -420,7 +427,7 @@ def agent_integrator(
     else:
         extra = ' Summarize all key facts and figures from the analysis.'
 
-    if protocol == Protocol.SHARED_MEMORY and shared is not None:
+    if protocol in (Protocol.SHARED_MEMORY, Protocol.SHARED_MEMORY_JSON) and shared is not None:
         prompt = _wrap_blackboard(
             shared.snapshot(),
             f'Synthesize the execution results stored in the blackboard into a '
@@ -476,11 +483,11 @@ def run_pipeline(
         f'{protocol}{domain}{sample_idx}{seed}'.encode()
     ).hexdigest()[:8]
     logger = CommunicationLogger()
-    shared = SharedMemory() if protocol == Protocol.SHARED_MEMORY else None
+    shared = SharedMemory() if protocol in (Protocol.SHARED_MEMORY, Protocol.SHARED_MEMORY_JSON) else None
 
     task_prompt = TASK_BUILDERS[domain](sample)
 
-    if protocol == Protocol.SHARED_MEMORY:
+    if protocol in (Protocol.SHARED_MEMORY, Protocol.SHARED_MEMORY_JSON):
         shared.write('System', 'task_prompt', task_prompt)
         plan = agent_planner(task_prompt, protocol, domain, logger, run_id,
                              client, model, seed=seed, shared=shared)
