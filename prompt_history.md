@@ -425,3 +425,292 @@ xelatex -interaction=nonstopmode final_presentation.tex
 **User:** 更新 prompt_history.md
 
 **Assistant:** 将本次图表替换、透明背景图生成、Slide 6 重叠修正、PDF 编译验证和临时文件清理记录追加到 `prompt_history.md`。
+
+---
+
+## Session 10 — FastAPI Dashboard 补充实验、前端图表与 GitHub 推送
+
+**User:** 这一块还在跑吗，还有用吗  
+（附图：FastAPI dashboard 的 `Supplemental ablations` 区块显示两个占位提示）
+
+**Assistant:**
+检查了 `dashboard/app.js`、`app.py`、notebook 和结果目录，确认：
+
+- 截图中的两块不是正在跑，而是结果文件缺失时的占位提示。
+- `results/` 当时只有旧的 `results_ablation_sm_json.csv`，没有：
+  - `results/results_ablation_full_factorial.csv`
+  - `results/results_deepseek_v4_flash_8protocols.csv`
+- 当前进程中没有 `_run_full_ablation.py` 或 `_run_deepseek_robustness.py`。
+- 结论：这块是可选补充实验，对主 360-run 实验不是必需，但对解释机制 × 格式和 second-model robustness 有价值。
+
+---
+
+**User:** 那要跑一下来生成 table 和鲁棒性检查吗
+
+**Assistant:**
+建议优先跑 `_run_full_ablation.py`，因为它补齐 `Relay / Shared Memory × Default / NL / Markdown / JSON` 的 2x4 机制-格式矩阵；DeepSeek robustness 如果有 key 和时间也值得跑。说明这两个脚本只写自己的补充结果文件，不会覆盖主实验：
+
+- `results/results_raw.csv`
+- `results/results_messages.jsonl`
+- `results/results_summary.csv`
+- `results/experiment_config.json`
+
+---
+
+**User:** 先帮运行一下前端，然后假如要跑这两个，会影响到其他数据吗？
+
+**Assistant:**
+用项目 `.venv` 启动 FastAPI dashboard：
+
+```bash
+.venv/bin/python -m uvicorn fastapi_app:app --host 127.0.0.1 --port 8010 --http h11
+```
+
+确认前端运行在：
+
+```text
+http://127.0.0.1:8010
+```
+
+并请求 `/api/ablation`，当时返回：
+
+```json
+{"fullAblationExists": false, "deepseekExists": false}
+```
+
+进一步说明两个补充脚本只会生成/覆盖各自文件：
+
+- `_run_full_ablation.py`:
+  - `results/results_ablation_full_factorial.csv`
+  - `results/results_ablation_full_factorial_messages.jsonl`
+- `_run_deepseek_robustness.py`:
+  - `results/results_deepseek_v4_flash_8protocols.csv`
+  - `results/results_deepseek_v4_flash_8protocols_messages.jsonl`
+
+主实验数据安全。
+
+---
+
+**User:** 那帮我跑Full 2x4 OpenAI ablation 和 DeepSeek V4 Flash robustness 吧。到时候跑完了检查一下前端能否正常显示这两个运行完的输出
+
+**Assistant:**
+先跑 OpenAI full ablation：
+
+```bash
+.venv/bin/python _run_full_ablation.py
+```
+
+实验规模：
+
+```text
+4 protocols × 3 domains × 10 samples × 3 reps = 360 runs
+```
+
+用户随后要求并行：
+
+**User:** 要不分一个 subagent 出来跑 deepseek
+
+**Assistant:**
+分配后台 subagent `Hilbert` 跑 DeepSeek robustness：
+
+```bash
+.venv/bin/python _run_deepseek_robustness.py
+```
+
+实验规模：
+
+```text
+8 protocols × 3 domains × 5 samples × 2 reps = 240 runs
+```
+
+过程中通过 `results/results_deepseek_v4_flash_8protocols_messages.jsonl` 和 `results/results_ablation_full_factorial_messages.jsonl` 的行数增长确认两个实验都在持续写入。用户提示节省额度后，减少中间文字，只等待长任务完成。
+
+最终结果：
+
+```text
+OpenAI full ablation: 360 rows, 0 errors, total tokens 500,748
+DeepSeek robustness: 240 rows, 0 errors
+```
+
+验证：
+
+```python
+pd.read_csv("results/results_ablation_full_factorial.csv")  # 360 rows
+pd.read_csv("results/results_deepseek_v4_flash_8protocols.csv")  # 240 rows
+```
+
+`/api/ablation` 随后返回：
+
+```json
+{"fullAblationExists": true, "deepseekExists": true}
+```
+
+前端的 supplemental tables 可以正常显示。
+
+---
+
+**User:** 这两个部分需要画图吗
+
+**Assistant:**
+建议不画太多，保留 table，同时加一张核心图：`SM - Relay tokens` 的 mechanism delta bar chart。图意：
+
+- 左：OpenAI full 2x4 ablation
+- 右：DeepSeek V4 Flash robustness
+- x 轴：固定格式 `Default / NL / Markdown / JSON`
+- 颜色：`MATH / READING / NEWS`
+- y 轴：Shared Memory 相对 Relay 的 mean token overhead
+
+---
+
+**User:** 那你帮我画一下
+
+**Assistant:**
+修改 FastAPI dashboard 静态前端：
+
+- `dashboard/app.js`
+  - 增加 `state.ablation`
+  - 新增 `drawAblationDeltaChart`
+  - 在 `loadAblation()` 中插入两个 canvas：
+    - `openaiAblationDeltaChart`
+    - `deepseekAblationDeltaChart`
+  - resize 和 tab 切换时重画 ablation charts
+- `dashboard/styles.css`
+  - 增加 `.ablation-chart-grid`
+  - 增加 `.ablation-chart`
+  - 增加 `.ablation-note`
+- `dashboard/index.html`
+  - 更新静态资源版本号，避免浏览器缓存旧 JS/CSS
+
+验证：
+
+```bash
+node --check dashboard/app.js
+curl -s http://127.0.0.1:8010/api/ablation
+```
+
+---
+
+**User:** 目前是长这个样子，修一下  
+（附图：两个 ablation chart card 出现大空白）
+
+**Assistant:**
+诊断：canvas 在 Results tab 隐藏时初始化，`getBoundingClientRect()` 读到宽高为 0，导致图没有画出来。
+
+修复：
+
+- tab 切换后调用：
+  - `drawCharts()`
+  - `drawAblationCharts()`
+  - `renderComparisonCharts(...)`
+- 给 canvas 绘制函数加宽高 guard：
+
+```javascript
+if (!rect.width || !rect.height) return;
+```
+
+- 固定 `.ablation-chart` 高度为 `300px`，移动端为 `240px`。
+
+---
+
+**User:** 第一张图是什么玩意？第二张图画得还可以  
+（附图：主 Results Dashboard 顶部两张 live canvas 图 label 旋转重叠）
+
+**Assistant:**
+确认第一张是旧的主结果 live canvas 图，和下面正式 `fig1/fig2` 重复，而且 x 轴把 `protocol/domain` 长标签全塞进去导致不可读。
+
+先尝试把主结果 canvas 改成按 domain 分组、protocol 用颜色区分的图：
+
+- x 轴：`MATH / READING / NEWS`
+- 每组 4 个 bars：`NL / Markdown / JSON / Shared Memory`
+- completion chart y 轴固定为 `0-1`
+
+随后用户指出这两张图与原来的 `fig1/fig2` 没有实质区别，并且 resize 后仍然容易比例失调。
+
+---
+
+**User:** 现在这个Mean tokens by protocol/domain 和Completion rate by protocol/domain 的两张图跟原来fig1&2 有什么区别？而且现在你画的这两张图还是会在放大缩小网页的时候比例失调，剩下变成空白，加载不出来。
+
+**Assistant:**
+承认两张 live canvas 与 notebook 生成的 `fig1` / `fig2` 没有实质区别，都是同一份 `results_summary.csv` 的聚合结果。最终删除重复 canvas，保留正式静态图：
+
+```html
+<img src="/figures/fig1_tokens_by_protocol_domain.png" ... />
+<img src="/figures/fig2_completion_by_cell.png" ... />
+```
+
+修改：
+
+- 删除 Results Dashboard 顶部的两个 live canvas panel：
+  - `tokenChart`
+  - `completionChart`
+- 给 `drawBarChart()` 增加空元素 guard，避免旧 resize 回调报错：
+
+```javascript
+const canvas = $(`#${canvasId}`);
+if (!canvas) return;
+```
+
+验证：
+
+```bash
+node --check dashboard/app.js
+```
+
+---
+
+**User:** 没问题的话就帮我 push 到 github 吧，看看 readme 等文件需不需要更新
+
+**Assistant:**
+检查文档和 Git 状态：
+
+- `README.md` 已经包含 supplemental ablations、DeepSeek robustness、输出文件和 FastAPI dashboard 说明，无需更新。
+- `report/REPORT_OUTLINE.md` 当时还只笼统提到 supplemental scripts，后续补充。
+- `AGENTS.md` 不在仓库中，只有对话里的 repository guidelines。
+
+提交并推送：
+
+```bash
+git switch -c codex/add-supplemental-ablation-results
+git add dashboard/app.js dashboard/index.html dashboard/styles.css \
+  results/results_ablation_full_factorial.csv \
+  results/results_ablation_full_factorial_messages.jsonl \
+  results/results_deepseek_v4_flash_8protocols.csv \
+  results/results_deepseek_v4_flash_8protocols_messages.jsonl
+git commit -m "Add supplemental ablation results"
+```
+
+用户确认可直接推 main，并允许包含 `presentation/final_presentation_cd.pdf`：
+
+```bash
+git fetch origin main
+git rebase origin/main
+git add presentation/final_presentation_cd.pdf
+git commit -m "Add final presentation PDF"
+git push origin main
+```
+
+推送成功：
+
+```text
+36c8a29..c483ccd  main -> main
+```
+
+最终远端 `main` 包含：
+
+- `58777c7 Add supplemental ablation results`
+- `c483ccd Add final presentation PDF`
+
+---
+
+**User:** 看看 agents.md, report_outline.md 等需不需要更新。哦对，你能不能把当前 project 的 codex 项目里所有跟修改后端前端代码相关的 prompt 都整理到文件夹下的 prompt_history.md里？
+
+**Assistant:**
+检查并更新：
+
+- 仓库中没有 `AGENTS.md` 文件，因此无文件可改。
+- `README.md` 已覆盖 supplemental scripts、DeepSeek key、输出文件和 FastAPI dashboard，不需要再改。
+- `report/REPORT_OUTLINE.md` 需要小幅更新：
+  - 将 “single base model” 限制改为 “main inferential grid uses one base model; DeepSeek robustness is supplemental directional evidence”。
+  - 在 appendix reproducibility 中加入 `_run_deepseek_robustness.py` 和 DeepSeek 输出文件。
+  - 在 figure/table checklist 中加入 full 2x4 ablation 和 DeepSeek robustness CSV。
+- 本节将本轮所有与 FastAPI dashboard、前端图表、补充实验结果生成和 GitHub 推送相关的 prompt/response 摘要追加进 `prompt_history.md`。

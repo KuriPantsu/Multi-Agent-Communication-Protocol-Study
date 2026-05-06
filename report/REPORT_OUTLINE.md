@@ -197,7 +197,7 @@ Pull from `old_proposal/STAT_5293_Project_Proposal （Limitations and Future Ext
 2. **Additional protocols.** XML, YAML, hybrid (Markdown with embedded JSON fields).
 3. **Heterogeneous LLM agents.** Assign GPT / Gemini / Claude to different roles. 3! = 6 permutations per (protocol, domain) cell, enabling study of which model is best for planning vs execution vs integration.
 4. **Dynamic protocol selection.** Switch protocols mid-pipeline based on intermediate output quality or token budget — e.g. route to JSON once the executor signals confidence.
-5. **Single base model.** All three agents use `gpt-4o-mini`; replication on one other model family (e.g. Claude 3.5 Haiku, Llama-3.1-70B-Instruct) is a one-paragraph follow-up we flag.
+5. **Single base model for the main inferential grid.** The 360-run experiment uses `gpt-4o-mini` for all three agents. A supplemental DeepSeek V4 Flash robustness run is now available as a directional second-model check, but the primary ANOVA/Tukey inference remains anchored in the OpenAI grid.
 
 ## 8. Conclusion  *(≈0.25 page)*
 
@@ -218,6 +218,7 @@ Pure "how-to-rerun" block. Most of this can be a pointer to `README.md`:
 - `uvicorn fastapi_app:app --host 127.0.0.1 --port 8010 --http h11` for the recommended FastAPI dashboard.
 - `streamlit run app.py` for the legacy Streamlit demo, if needed.
 - Optional supplemental ablation scripts (`_run_ablation.py`, `_run_full_ablation.py`) write separate `results/results_ablation_*` files and do not replace the 360-run main grid.
+- DeepSeek V4 Flash robustness script (`_run_deepseek_robustness.py`) writes `results/results_deepseek_v4_flash_8protocols.csv` plus message logs and checks whether the mechanism-format pattern is directionally stable under a second provider.
 - Git commit hash under which the reported numbers were generated.
 - Pointer to `results/experiment_config.json` for the exact parameter dump.
 
@@ -237,6 +238,8 @@ Pure "how-to-rerun" block. Most of this can be a pointer to `README.md`:
 | Table 2 summary (protocol × domain) | [results_summary.csv](../results/results_summary.csv) | §5.3 |
 | Table 3 ANOVA (tokens / latency / completion) | notebook §7 — values inlined above | §5.1 / §5.2 |
 | Table 4 Tukey HSD (pooled tokens + per-domain completion) | notebook §9 — values inlined above | §5.1 / §5.2 |
+| Supplemental 2x4 ablation | [results_ablation_full_factorial.csv](../results/results_ablation_full_factorial.csv) | Appendix / robustness discussion |
+| DeepSeek robustness check | [results_deepseek_v4_flash_8protocols.csv](../results/results_deepseek_v4_flash_8protocols.csv) | Appendix / robustness discussion |
 
 ## Hypotheses — one-line verdicts
 
