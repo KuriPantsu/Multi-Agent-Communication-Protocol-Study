@@ -1,0 +1,763 @@
+run_id,protocol,task_domain,sample_index,repetition,total_prompt_tokens,total_completion_tokens,total_tokens,total_latency_ms,total_messages,any_truncation,any_json_parse_error,completion_score,final_answer,provider,model
+4eadadcf,RELAY_DEFAULT,MATH,0,0,417,100,517,3388.42,3,False,False,1.0,#### 18,deepseek,deepseek-v4-flash
+bf29e2f4,RELAY_DEFAULT,MATH,0,1,374,57,431,2605.52,3,False,False,1.0,#### 18,deepseek,deepseek-v4-flash
+288b2746,RELAY_DEFAULT,MATH,1,0,324,81,405,2892.8,3,False,False,1.0,#### 3,deepseek,deepseek-v4-flash
+cc6edf32,RELAY_DEFAULT,MATH,1,1,295,59,354,3026.44,3,False,False,0.0,"The final answer is 1.
+
+#### 1",deepseek,deepseek-v4-flash
+5362c751,RELAY_DEFAULT,MATH,2,0,480,192,672,4045.9,3,False,False,1.0,#### 70000,deepseek,deepseek-v4-flash
+bbeb5433,RELAY_DEFAULT,MATH,2,1,437,149,586,3993.1,3,False,False,1.0,#### 70000,deepseek,deepseek-v4-flash
+c1a48a1c,RELAY_DEFAULT,MATH,3,0,355,96,451,3121.34,3,False,False,1.0,#### 540,deepseek,deepseek-v4-flash
+a01abae2,RELAY_DEFAULT,MATH,3,1,362,103,465,3306.42,3,False,False,1.0,#### 540,deepseek,deepseek-v4-flash
+bf6579c0,RELAY_DEFAULT,MATH,4,0,565,160,725,3780.14,3,False,False,1.0,#### 20,deepseek,deepseek-v4-flash
+e30187f6,RELAY_DEFAULT,MATH,4,1,537,132,669,3374.14,3,False,False,1.0,#### 20,deepseek,deepseek-v4-flash
+d97b1a41,RELAY_DEFAULT,READING,0,0,618,74,692,3012.86,3,False,False,1.0,The Denver Broncos.,deepseek,deepseek-v4-flash
+de8150e6,RELAY_DEFAULT,READING,0,1,613,68,681,2984.88,3,False,False,1.0,Denver Broncos,deepseek,deepseek-v4-flash
+b701960c,RELAY_DEFAULT,READING,1,0,630,85,715,3278.85,3,False,False,1.0,Carolina Panthers,deepseek,deepseek-v4-flash
+709aed71,RELAY_DEFAULT,READING,1,1,608,63,671,3177.79,3,False,False,1.0,Carolina Panthers,deepseek,deepseek-v4-flash
+2ffa2e9e,RELAY_DEFAULT,READING,2,0,609,77,686,3176.63,3,False,False,0.737,"Levi's Stadium in Santa Clara, California.",deepseek,deepseek-v4-flash
+405767fc,RELAY_DEFAULT,READING,2,1,602,70,672,3080.15,3,False,False,0.737,"Levi's Stadium in Santa Clara, California.",deepseek,deepseek-v4-flash
+9e812498,RELAY_DEFAULT,READING,3,0,613,74,687,2972.36,3,False,False,1.0,Denver Broncos,deepseek,deepseek-v4-flash
+06f6dbd6,RELAY_DEFAULT,READING,3,1,612,73,685,3074.02,3,False,False,1.0,Denver Broncos,deepseek,deepseek-v4-flash
+57d291f5,RELAY_DEFAULT,READING,4,0,620,65,685,2577.86,3,False,False,1.0,Gold,deepseek,deepseek-v4-flash
+f025f9f9,RELAY_DEFAULT,READING,4,1,623,69,692,2862.15,3,False,False,1.0,Gold.,deepseek,deepseek-v4-flash
+9654b33a,RELAY_DEFAULT,NEWS,0,0,783,462,1245,7071.25,3,False,False,0.469,"In March 2025, the Federal Reserve held the benchmark interest rate steady at 4.25%-4.50%, citing inflation at 2.8% (above the 2% target) and a strong labor market with unemployment at 3.9%. Chair Jer",deepseek,deepseek-v4-flash
+269b0212,RELAY_DEFAULT,NEWS,0,1,627,286,913,5420.79,3,False,False,0.511,"The Federal Reserve held interest rates steady at a range of 4.25%–4.50%. Inflation stands at 2.8%, above the 2% target, while the unemployment rate is 3.9%. The Fed signaled two potential rate cuts l",deepseek,deepseek-v4-flash
+8ce94020,RELAY_DEFAULT,NEWS,1,0,697,398,1095,6961.32,3,False,False,0.432,"Apple reported record Q1 FY2025 revenue of $124.3 billion, up 4% year-over-year. iPhone revenue reached $69.1 billion, while Services revenue hit a record $26.3 billion. Earnings per share (EPS) of $2",deepseek,deepseek-v4-flash
+ba7c7a83,RELAY_DEFAULT,NEWS,1,1,606,322,928,6050.64,3,False,False,0.37,"**Final Summary of Apple's Q1 Financial Results:**
+
+Apple reported record Q1 revenue of $124.3 billion, up 4% year-over-year. Key financial highlights include iPhone revenue of $69.1 billion and a rec",deepseek,deepseek-v4-flash
+cb4c34b6,RELAY_DEFAULT,NEWS,2,0,716,407,1123,6513.83,3,False,False,0.433,"Tesla announced the Model Q, an affordable electric vehicle priced at $25,000 with a 280-mile range and 0-60 mph acceleration in 5.8 seconds. Production will begin at Gigafactory Texas in Q3 2025, tar",deepseek,deepseek-v4-flash
+df60a84b,RELAY_DEFAULT,NEWS,2,1,617,310,927,5675.75,3,False,False,0.364,"The Model Q, priced at $25,000, is designed for mass-market adoption. It offers a range of 280 miles and accelerates from 0-60 mph in 5.8 seconds. Production will take place at Gigafactory Texas start",deepseek,deepseek-v4-flash
+c31c5c3f,RELAY_DEFAULT,NEWS,3,0,740,441,1181,7375.03,3,False,False,0.45,"TSMC's Arizona fab is producing 4nm chips with a 90% yield rate. The global semiconductor shortage is easing, as lead times have dropped from 26 weeks to 14 weeks. TSMC's revenue grew 25% year-over-ye",deepseek,deepseek-v4-flash
+1d2aa69d,RELAY_DEFAULT,NEWS,3,1,781,488,1269,7546.64,3,False,False,0.349,"**Final Synthesis:**
+
+TSMC's Arizona fab is producing 4nm chips with a 90% yield rate. The company reported Q1 2025 revenue of $22.5 billion, representing 25% year-over-year growth, and has planned $4",deepseek,deepseek-v4-flash
+ef3897d8,RELAY_DEFAULT,NEWS,4,0,554,269,823,5051.27,3,False,False,0.38,"The AI Act is the world's first comprehensive AI law, officially enacted. It requires high-risk AI systems to undergo conformity assessments. Non-compliance can result in fines of up to 7% of global r",deepseek,deepseek-v4-flash
+dce684d4,RELAY_DEFAULT,NEWS,4,1,605,316,921,5722.04,3,False,False,0.334,"The EU has enacted the AI Act, the world's first comprehensive AI law, affecting all companies serving EU citizens. High-risk AI systems must undergo conformity assessments, while social scoring and r",deepseek,deepseek-v4-flash
+94988703,NL,MATH,0,0,586,259,845,5038.63,3,False,False,1.0,"The farmer's chickens lay 16 eggs per day. Each day, 3 eggs are used for breakfast and 4 for muffins, totaling 7 eggs used. This leaves 9 eggs to sell. At a price of 2 dollars per egg, the daily incom",deepseek,deepseek-v4-flash
+f1719d31,NL,MATH,0,1,575,235,810,4590.65,3,False,False,1.0,"The farmer's chickens lay 16 eggs per day. She eats 3 for breakfast and uses 4 for muffins, leaving 9 eggs to sell. At $2 per egg, she earns $18 each day at the farmers' market.
+
+#### 18",deepseek,deepseek-v4-flash
+80a938f9,NL,MATH,1,0,468,193,661,4071.61,3,False,False,1.0,"The amount of blue fiber needed is 2 bolts, and the amount of white fiber needed is half of that, which is 1 bolt. Adding them together gives a total of 3 bolts. #### 3",deepseek,deepseek-v4-flash
+cfdc3e33,NL,MATH,1,1,472,168,640,3833.72,3,False,False,1.0,"The total amount of fiber needed is 3 bolts.
+
+#### 3",deepseek,deepseek-v4-flash
+c7a4d7bd,NL,MATH,2,0,567,279,846,5123.11,3,False,False,1.0,"Josh spent $80,000 to buy the house and $50,000 on repairs, for a total cost of $130,000. The house's value increased by 150 percent, which is $120,000, making the new value $200,000. Subtracting his ",deepseek,deepseek-v4-flash
+46fa440d,NL,MATH,2,1,571,290,861,5494.63,3,False,False,1.0,"Josh spent $80,000 to buy the house and $50,000 on repairs, for a total cost of $130,000. The house value increased by 150 percent, making it worth 250 percent of the original purchase price, which is",deepseek,deepseek-v4-flash
+4f44b006,NL,MATH,3,0,480,203,683,4396.95,3,False,False,1.0,"James runs 3 sprints per session and has 3 sessions per week, so he runs 9 sprints in total each week. Each sprint is 60 meters, so the total distance run in one week is 540 meters. The final numeric ",deepseek,deepseek-v4-flash
+a30d4649,NL,MATH,3,1,463,177,640,4247.51,3,False,False,1.0,"James runs 3 sprints per session, each 60 meters, for a total of 180 meters per session. With 3 sessions per week, he runs 540 meters per week. The final numeric answer is #### 540.",deepseek,deepseek-v4-flash
+a5803556,NL,MATH,4,0,688,279,967,5406.6,3,False,False,1.0,"The farmer needs to feed 20 chickens 3 cups of feed each per day, which totals 60 cups. So far, 15 cups have been given in the morning and 25 cups in the afternoon, for a total of 40 cups. Therefore, ",deepseek,deepseek-v4-flash
+8b56fb66,NL,MATH,4,1,690,286,976,5609.94,3,False,False,1.0,"The total feed needed per day for 20 chickens is 20 times 3 cups, which equals 60 cups. The morning and afternoon feedings provided 15 cups plus 25 cups, totaling 40 cups. Subtracting the 40 cups alre",deepseek,deepseek-v4-flash
+df729444,NL,READING,0,0,706,98,804,3046.07,3,False,False,0.4,The Denver Broncos represented the AFC at Super Bowl 50.,deepseek,deepseek-v4-flash
+43e470e0,NL,READING,0,1,708,101,809,3302.12,3,False,False,0.364,The Denver Broncos were the AFC representative at Super Bowl 50.,deepseek,deepseek-v4-flash
+c35a398c,NL,READING,1,0,691,83,774,2925.76,3,False,False,0.4,The Carolina Panthers represented the NFC at Super Bowl 50.,deepseek,deepseek-v4-flash
+a6daa25a,NL,READING,1,1,676,68,744,2973.46,3,False,False,0.4,The Carolina Panthers represented the NFC at Super Bowl 50.,deepseek,deepseek-v4-flash
+9688c24e,NL,READING,2,0,695,100,795,3223.0,3,False,False,0.846,"Levi's Stadium is located in Santa Clara, California, in the San Francisco Bay Area.",deepseek,deepseek-v4-flash
+cdc6b748,NL,READING,2,1,675,77,752,3134.05,3,False,False,0.64,"Super Bowl 50 was held at Levi's Stadium in Santa Clara, California.",deepseek,deepseek-v4-flash
+e610a49f,NL,READING,3,0,679,74,753,3177.7,3,False,False,0.5,The Denver Broncos won Super Bowl 50.,deepseek,deepseek-v4-flash
+a2fe7db3,NL,READING,3,1,684,79,763,2877.91,3,False,False,0.5,The Denver Broncos won Super Bowl 50.,deepseek,deepseek-v4-flash
+20242842,NL,READING,4,0,709,98,807,3463.08,3,False,False,0.167,Gold was the color used to emphasize the 50th anniversary of the Super Bowl.,deepseek,deepseek-v4-flash
+4dcb85d4,NL,READING,4,1,704,91,795,3166.97,3,False,False,0.182,Gold was used to emphasize the 50th anniversary of the Super Bowl.,deepseek,deepseek-v4-flash
+e87b80b0,NL,NEWS,0,0,726,344,1070,5910.49,3,False,False,0.283,"The Federal Reserve held its benchmark interest rate steady at a range of 4.25% to 4.50% during its March 2025 meeting. Chair Jerome Powell stated that inflation remains above the 2% target, currently",deepseek,deepseek-v4-flash
+fb2210fb,NL,NEWS,0,1,782,390,1172,6505.73,3,False,False,0.391,"The Federal Reserve held its benchmark interest rate steady at 4.25% to 4.50% during its March 2025 meeting. Chair Jerome Powell stated that inflation remains above the 2% target at 2.8%, while the la",deepseek,deepseek-v4-flash
+6f707b1a,NL,NEWS,1,0,666,310,976,5509.78,3,False,False,0.349,"Apple reported record Q1 fiscal year 2025 earnings with total revenue of 124.3 billion dollars, a 4 percent increase from the previous year. iPhone revenue was 69.1 billion dollars, while services rev",deepseek,deepseek-v4-flash
+98fa6925,NL,NEWS,1,1,655,299,954,5292.48,3,False,False,0.349,"Apple reported record earnings for the first quarter of fiscal year 2025, with total revenue of 124.3 billion dollars, a 4 percent increase from the previous year. iPhone revenue was 69.1 billion doll",deepseek,deepseek-v4-flash
+5532de5d,NL,NEWS,2,0,722,351,1073,6078.72,3,False,False,0.386,"Tesla has announced a new affordable electric vehicle called the Model Q, priced at $25,000. The Model Q offers a 280-mile range and can accelerate from 0 to 60 mph in 5.8 seconds. Production is sched",deepseek,deepseek-v4-flash
+81671743,NL,NEWS,2,1,665,301,966,5653.36,3,False,False,0.359,"Tesla has announced a new affordable electric vehicle named the Model Q, priced at $25,000 and aimed at the mass market. The car offers a 280-mile range and can accelerate from 0 to 60 miles per hour ",deepseek,deepseek-v4-flash
+ceac1f19,NL,NEWS,3,0,712,351,1063,5687.13,3,False,False,0.415,"The global chip shortage is easing as TSMC expands, with its Arizona fab now producing 4nm chips at a 90% yield rate. Global semiconductor lead times have dropped from 26 weeks to 14 weeks. TSMC's rev",deepseek,deepseek-v4-flash
+4dfbdb27,NL,NEWS,3,1,714,345,1059,6096.63,3,False,False,0.392,"The global chip shortage is easing, as TSMC's Arizona fab is now producing 4nm chips with a 90% yield rate, and semiconductor lead times have dropped from 26 weeks to 14 weeks. TSMC reported a 25% yea",deepseek,deepseek-v4-flash
+ccb3d93c,NL,NEWS,4,0,695,346,1041,5767.94,3,False,False,0.401,"The European Union has enacted the AI Act, the world's first comprehensive AI law. Under this regulation, high-risk AI systems must undergo conformity assessments. Companies that violate the law can f",deepseek,deepseek-v4-flash
+6d8dd7c4,NL,NEWS,4,1,654,305,959,5322.26,3,False,False,0.382,"The European Union has enacted the AI Act, the world's first comprehensive AI law, which requires high-risk AI systems to undergo conformity assessments. Companies that violate the law can face fines ",deepseek,deepseek-v4-flash
+c374a16a,MARKDOWN,MATH,0,0,650,347,997,6182.56,3,False,False,1.0,"## Final Answer
+
+The farmer earns $18 per day from selling eggs.
+
+- Total eggs laid daily: 16
+- Eggs used for breakfast: 3
+- Eggs used for muffins: 4
+- Eggs sold daily: 16 - 3 - 4 = 9
+- Price per egg:",deepseek,deepseek-v4-flash
+a237294a,MARKDOWN,MATH,0,1,683,372,1055,6345.85,3,False,False,1.0,"## Final Answer
+
+Janet's ducks lay 16 eggs per day. Each day, 3 eggs are eaten for breakfast and 4 are used for muffins, totaling 7 eggs used. This leaves 16 - 7 = 9 eggs for sale. At $2 per egg, the ",deepseek,deepseek-v4-flash
+ee4be33d,MARKDOWN,MATH,1,0,604,309,913,5371.66,3,False,False,1.0,"## Final Answer
+
+The total amount of fiber is 3 bolts.
+
+#### 3",deepseek,deepseek-v4-flash
+bab39b42,MARKDOWN,MATH,1,1,549,278,827,5429.66,3,False,False,1.0,"## Solution
+
+- Blue fiber: 2 bolts  
+- White fiber: half of blue fiber = 1 bolt  
+- Total fiber: 2 + 1 = 3 bolts  
+
+#### 3",deepseek,deepseek-v4-flash
+3dc10297,MARKDOWN,MATH,2,0,733,478,1211,7311.47,3,False,False,1.0,"## Final Answer
+
+The profit from the house flip is calculated as follows:
+
+- **Total cost**: $80,000 (purchase) + $50,000 (repairs) = $130,000
+- **Final house value**: $80,000 + (150% of $80,000) = $8",deepseek,deepseek-v4-flash
+d6e859d0,MARKDOWN,MATH,2,1,751,489,1240,7643.61,3,False,False,1.0,"## Final Answer
+
+- **Total cost**: $80,000 (purchase) + $50,000 (repairs) = $130,000  
+- **Value increase**: 150% of $80,000 = $120,000  
+- **Final house value**: $80,000 + $120,000 = $200,000  
+- **P",deepseek,deepseek-v4-flash
+cba891ea,MARKDOWN,MATH,3,0,637,368,1005,6353.03,3,False,False,1.0,"## Solution
+
+- **Distance per session**: 3 sprints × 60 meters = 180 meters
+- **Sessions per week**: 3
+- **Weekly total distance**: 180 meters × 3 = 540 meters
+
+The calculation is verified and correct",deepseek,deepseek-v4-flash
+0bfc541c,MARKDOWN,MATH,3,1,539,284,823,5219.24,3,False,False,1.0,"## Total Distance Run Per Week
+
+- **Sprints per session**: 3
+- **Sessions per week**: 3
+- **Total sprints per week**: 3 × 3 = 9
+- **Distance per sprint**: 60 meters
+- **Total distance per week**: 9 × ",deepseek,deepseek-v4-flash
+db09eddf,MARKDOWN,MATH,4,0,828,468,1296,7715.19,3,False,False,1.0,"## Solution
+
+The farmer needs to provide 20 cups of feed for the final meal to meet the daily requirement.
+
+- **Total daily feed needed**: 20 chickens × 3 cups each = 60 cups
+- **Feed already given**:",deepseek,deepseek-v4-flash
+895fb03d,MARKDOWN,MATH,4,1,811,442,1253,6836.14,3,False,False,1.0,"## Solution
+
+The problem involves determining the amount of feed needed for the final meal of the day for a flock of chickens.
+
+- **Total daily feed needed**: 20 chickens × 3 cups per chicken = 60 cup",deepseek,deepseek-v4-flash
+a49b90ac,MARKDOWN,READING,0,0,759,160,919,3929.01,3,False,False,0.364,"## Super Bowl 50 AFC Team
+
+- **AFC team:** Denver Broncos",deepseek,deepseek-v4-flash
+5af336fb,MARKDOWN,READING,0,1,743,140,883,3832.61,3,False,False,0.5,"## Final Answer
+
+- **AFC team:** Denver Broncos",deepseek,deepseek-v4-flash
+f694ae29,MARKDOWN,READING,1,0,755,156,911,3874.34,3,False,False,0.364,"## Super Bowl 50 NFC Team
+
+- **NFC team:** Carolina Panthers",deepseek,deepseek-v4-flash
+c88743a4,MARKDOWN,READING,1,1,741,142,883,3447.61,3,False,False,0.364,"## Super Bowl 50 NFC Team
+
+- **NFC team:** Carolina Panthers",deepseek,deepseek-v4-flash
+8d21143d,MARKDOWN,READING,2,0,751,179,930,4037.93,3,False,False,0.667,"## Super Bowl 50 Location
+
+- **Venue:** Levi's Stadium
+- **City:** Santa Clara
+- **State:** California
+- **Region:** San Francisco Bay Area",deepseek,deepseek-v4-flash
+22ef6ad4,MARKDOWN,READING,2,1,758,187,945,4447.17,3,False,False,0.645,"## Location of Super Bowl 50
+
+- **Venue:** Levi's Stadium
+- **City:** Santa Clara
+- **State:** California
+- **Region:** San Francisco Bay Area",deepseek,deepseek-v4-flash
+6c6cdf28,MARKDOWN,READING,3,0,732,135,867,3951.65,3,False,False,0.5,"## Final Answer
+
+- **Winning team:** Denver Broncos",deepseek,deepseek-v4-flash
+db779948,MARKDOWN,READING,3,1,754,157,911,3800.64,3,False,False,0.5,"## Final Answer
+
+- **Winning team:** Denver Broncos",deepseek,deepseek-v4-flash
+8a234656,MARKDOWN,READING,4,0,728,114,842,3211.46,3,False,False,0.4,"## Final Answer
+
+- **Color:** Gold",deepseek,deepseek-v4-flash
+dd010954,MARKDOWN,READING,4,1,752,138,890,3904.79,3,False,False,0.4,"## Final Answer
+
+- **Color:** Gold",deepseek,deepseek-v4-flash
+bbdf500f,MARKDOWN,NEWS,0,0,912,577,1489,8542.87,3,False,False,0.352,"## Summary of Federal Reserve March 2025 Meeting
+
+### Key Decision
+- The Federal Reserve held interest rates steady at a range of **4.25%–4.50%**.
+
+### Rationale
+- **Inflation**: Remains above the 2% ",deepseek,deepseek-v4-flash
+521f199c,MARKDOWN,NEWS,0,1,906,609,1515,9209.4,3,False,False,0.264,"## Summary of Federal Reserve Decision – March 2025
+
+The Federal Reserve held interest rates steady in March 2025, maintaining the benchmark interest rate range at **4.25%–4.50%**.
+
+### Key Economic F",deepseek,deepseek-v4-flash
+ef510f1c,MARKDOWN,NEWS,1,0,863,582,1445,9214.36,3,False,False,0.266,"## Apple Q1 FY2025 Earnings Summary
+
+Apple reported record financial results for the first quarter of fiscal year 2025, with key figures and trends as follows:
+
+### Key Financial Figures
+- **Revenue**",deepseek,deepseek-v4-flash
+3480e836,MARKDOWN,NEWS,1,1,1097,845,1942,11740.16,3,False,False,0.296,"## Apple Q1 FY2025 Earnings Summary
+
+### Key Financial Figures
+- **Revenue**: $124.3 billion (up 4% year-over-year)
+- **iPhone Revenue**: $69.1 billion
+- **Services Revenue**: $26.3 billion (record)
+-",deepseek,deepseek-v4-flash
+4bd51586,MARKDOWN,NEWS,2,0,870,558,1428,8502.97,3,False,False,0.326,"## Model Q: Key Specifications and Market Impact
+
+- **Model Name**: Model Q
+- **Price**: $25,000
+- **Range**: 280 miles
+- **Acceleration**: 0-60 mph in 5.8 seconds
+- **Target Market**: Mass-market ado",deepseek,deepseek-v4-flash
+a738bd02,MARKDOWN,NEWS,2,1,862,583,1445,8714.72,3,False,False,0.274,"## Tesla Model Q Announcement Summary
+
+### Key Specifications
+- **Model name:** Model Q
+- **Price:** $25,000
+- **Range:** 280 miles
+- **Acceleration:** 0-60 mph in 5.8 seconds
+- **Production location:",deepseek,deepseek-v4-flash
+db44c248,MARKDOWN,NEWS,3,0,914,608,1522,8881.23,3,False,False,0.27,"## Semiconductor Industry Update: Global Chip Shortage Easing
+
+### Key Developments
+- The global chip shortage is easing, driven primarily by TSMC's expansion efforts.
+- TSMC's Arizona fab is now prod",deepseek,deepseek-v4-flash
+7c9253a4,MARKDOWN,NEWS,3,1,985,782,1767,11486.06,3,False,False,0.256,"## Semiconductor Industry Analysis Summary
+
+### Key Figures and Statistics
+- **Yield rates**: 90% for 4nm chips at TSMC's Arizona fab
+- **Lead times**: Dropped from 26 weeks to 14 weeks
+- **Revenue gr",deepseek,deepseek-v4-flash
+4f9de39d,MARKDOWN,NEWS,4,0,927,689,1616,9976.37,3,False,False,0.217,"## Summary of the EU AI Act Analysis
+
+The European Union's AI Act is the world's first comprehensive artificial intelligence regulation, establishing a legal framework for AI systems.
+
+### Key Facts
+-",deepseek,deepseek-v4-flash
+2291292d,MARKDOWN,NEWS,4,1,745,453,1198,6821.93,3,False,False,0.273,"## EU AI Act Summary
+
+### Core Legislative Details
+- **Official Name:** EU AI Act
+- **Status:** Enacted (world's first comprehensive AI law)
+- **Governing Body:** European Union
+- **Scope:** Affects a",deepseek,deepseek-v4-flash
+4c9b3c12,JSON,MATH,0,0,621,231,852,4608.86,3,False,False,1.0,"{
+  ""total_eggs_per_day"": 16,
+  ""eggs_used_daily"": 7,
+  ""eggs_sold_daily"": 9,
+  ""price_per_egg"": 2,
+  ""daily_earnings"": 18,
+  ""final_answer"": ""#### 18""
+}",deepseek,deepseek-v4-flash
+5925e1a6,JSON,MATH,0,1,606,217,823,4611.7,3,False,False,1.0,"{
+  ""total_eggs_per_day"": 16,
+  ""eggs_used_daily"": 7,
+  ""remaining_eggs_for_sale"": 9,
+  ""price_per_egg"": 2,
+  ""daily_earnings"": 18,
+  ""final_answer"": ""#### 18""
+}",deepseek,deepseek-v4-flash
+07decbd1,JSON,MATH,1,0,509,171,680,3892.85,3,False,False,1.0,"{
+  ""blue_fiber_bolts"": 2,
+  ""white_fiber_bolts"": 1,
+  ""total_bolts"": 3,
+  ""final_answer"": ""#### 3""
+}",deepseek,deepseek-v4-flash
+69383ca6,JSON,MATH,1,1,509,171,680,4100.72,3,False,False,1.0,"{
+  ""blue_fiber_bolts"": 2,
+  ""white_fiber_bolts"": 1,
+  ""total_bolts"": 3,
+  ""final_answer"": ""#### 3""
+}",deepseek,deepseek-v4-flash
+512f96e4,JSON,MATH,2,0,559,178,737,4408.39,3,False,False,1.0,"{
+  ""total_cost"": 130000,
+  ""increase_in_value"": 120000,
+  ""final_value"": 200000,
+  ""profit"": 70000,
+  ""final_answer"": ""#### 70000""
+}",deepseek,deepseek-v4-flash
+3ca0f60c,JSON,MATH,2,1,559,178,737,4449.9,3,False,False,1.0,"{
+  ""total_cost"": 130000,
+  ""increased_value"": 200000,
+  ""selling_price"": 200000,
+  ""profit"": 70000,
+  ""final_answer"": ""#### 70000""
+}",deepseek,deepseek-v4-flash
+3925b0bf,JSON,MATH,3,0,517,150,667,3616.84,3,False,False,1.0,"{
+  ""total_meters_per_session"": 180,
+  ""total_meters_per_week"": 540,
+  ""final_answer"": 540
+}",deepseek,deepseek-v4-flash
+e7e5b2a8,JSON,MATH,3,1,518,150,668,3562.7,3,False,False,1.0,"{
+  ""sprints_per_week"": 9,
+  ""total_distance_per_week"": 540,
+  ""final_answer"": 540
+}",deepseek,deepseek-v4-flash
+76574bc4,JSON,MATH,4,0,736,282,1018,5447.35,3,False,False,1.0,"{
+  ""total_daily_feed_per_chicken"": 3,
+  ""number_of_chickens"": 20,
+  ""total_daily_feed"": 60,
+  ""morning_feed"": 15,
+  ""afternoon_feed"": 25,
+  ""feed_given_so_far"": 40,
+  ""final_meal_feed"": 20,
+  ""final_",deepseek,deepseek-v4-flash
+5029e125,JSON,MATH,4,1,729,261,990,5005.89,3,False,False,1.0,"{
+  ""total_daily_feed_per_chicken"": 3,
+  ""number_of_chickens"": 20,
+  ""total_daily_feed"": 60,
+  ""morning_feed"": 15,
+  ""afternoon_feed"": 25,
+  ""given_feed"": 40,
+  ""final_meal_feed"": 20
+}",deepseek,deepseek-v4-flash
+f7d0c2fa,JSON,READING,0,0,790,120,910,3327.6,3,False,False,0.571,"{
+  ""AFC_champion_team"": ""Denver Broncos""
+}",deepseek,deepseek-v4-flash
+76db63db,JSON,READING,0,1,788,145,933,3794.41,3,False,False,0.267,"{
+  ""afc_champion"": ""Denver Broncos"",
+  ""afc_representative"": ""Denver Broncos"",
+  ""verification"": true,
+  ""answer"": ""Denver Broncos""
+}",deepseek,deepseek-v4-flash
+264a7f8e,JSON,READING,1,0,788,147,935,3808.22,3,False,False,0.235,"{
+  ""nfc_champion"": ""Carolina Panthers"",
+  ""nfc_team"": ""Carolina Panthers"",
+  ""is_nfc_team"": true,
+  ""answer"": ""Carolina Panthers""
+}",deepseek,deepseek-v4-flash
+2f5ff00a,JSON,READING,1,1,901,226,1127,4795.01,3,False,False,0.8,"{
+  ""answer"": ""Carolina Panthers""
+}",deepseek,deepseek-v4-flash
+b4effd07,JSON,READING,2,0,828,166,994,4059.36,3,False,False,0.6,"{
+  ""final_answer"": ""Levi's Stadium, Santa Clara, California""
+}",deepseek,deepseek-v4-flash
+8182f895,JSON,READING,2,1,766,103,869,3424.28,3,False,False,0.7,"{
+  ""location"": ""Levi's Stadium in Santa Clara, California""
+}",deepseek,deepseek-v4-flash
+8c6d0da6,JSON,READING,3,0,796,127,923,3485.38,3,False,False,0.8,"{
+  ""answer"": ""Denver Broncos""
+}",deepseek,deepseek-v4-flash
+a830f6be,JSON,READING,3,1,846,177,1023,4065.0,3,False,False,0.8,"{
+  ""answer"": ""Denver Broncos""
+}",deepseek,deepseek-v4-flash
+bbbc078f,JSON,READING,4,0,875,216,1091,4548.06,3,False,False,0.125,"{
+  ""color"": ""gold"",
+  ""reason"": ""All subtasks consistently identify 'gold' as the color representing the 50th anniversary of the NBA.""
+}",deepseek,deepseek-v4-flash
+b0c8e328,JSON,READING,4,1,805,120,925,3444.48,3,False,False,0.667,"{
+  ""color"": ""gold""
+}",deepseek,deepseek-v4-flash
+256728b8,JSON,NEWS,0,0,926,657,1583,9040.09,3,False,False,0.272,"{
+  ""summary"": ""The Federal Reserve held its benchmark interest rate at 4.25%-4.50% in March 2025. Inflation is at 2.8% (above 2% target) and unemployment is 3.9%. The Fed signaled two possible rate c",deepseek,deepseek-v4-flash
+5d7baf6b,JSON,NEWS,0,1,897,463,1360,7651.14,3,False,False,0.469,"{
+  ""event"": ""Federal Reserve Meeting March 2025"",
+  ""decision"": ""Held interest rates steady at 4.25%-4.50%"",
+  ""context"": ""Inflation above target (2.8%), labor market strong (unemployment 3.9%)"",
+  """,deepseek,deepseek-v4-flash
+cb0a5322,JSON,NEWS,1,0,829,469,1298,7633.43,3,False,False,0.258,"{
+  ""company"": ""Apple"",
+  ""fiscal_quarter"": ""Q1 FY2025"",
+  ""revenue_usd"": 124300000000,
+  ""revenue_growth_percentage"": 4,
+  ""iphone_revenue_usd"": 69100000000,
+  ""services_revenue_usd"": 26300000000,
+  ",deepseek,deepseek-v4-flash
+3255532f,JSON,NEWS,1,1,752,364,1116,6108.98,3,False,False,0.524,"{
+  ""revenue"": ""124.3 billion"",
+  ""revenue_yoy_change"": ""up 4%"",
+  ""iphone_revenue"": ""69.1 billion"",
+  ""services_revenue"": ""26.3 billion"",
+  ""services_revenue_record"": true,
+  ""eps"": ""2.40"",
+  ""eps_vs",deepseek,deepseek-v4-flash
+7d2d94ce,JSON,NEWS,2,0,787,414,1201,7208.91,3,False,False,0.197,"{
+  ""product_name"": ""Model Q"",
+  ""price"": 25000,
+  ""range_miles"": 280,
+  ""acceleration_0_60_mph_seconds"": 5.8,
+  ""production_location"": ""Gigafactory Texas"",
+  ""production_timeline"": ""Q3 2025"",
+  ""stoc",deepseek,deepseek-v4-flash
+86c54281,JSON,NEWS,2,1,760,369,1129,6068.41,3,False,False,0.209,"{
+  ""product_name"": ""Model Q"",
+  ""price_usd"": 25000,
+  ""range_miles"": 280,
+  ""acceleration_0_60_mph_seconds"": 5.8,
+  ""production_location"": ""Gigafactory Texas"",
+  ""production_timeline"": ""Q3 2025"",
+  """,deepseek,deepseek-v4-flash
+9da33a59,JSON,NEWS,3,0,859,527,1386,8264.06,3,False,False,0.396,"{
+  ""main_point"": ""Global chip shortage easing due to TSMC expansion."",
+  ""key_facts"": ""TSMC Arizona fab producing 4nm chips at 90% yield rates."",
+  ""key_figures"": ""Lead times dropped from 26 to 14 we",deepseek,deepseek-v4-flash
+462cccce,JSON,NEWS,3,1,903,661,1564,9274.84,3,False,False,0.279,"{
+  ""tsmc_arizona_fab_yield"": ""90% for 4nm chips"",
+  ""global_semiconductor_lead_times"": ""dropped from 26 weeks to 14 weeks"",
+  ""tsmc_q1_2025_revenue"": ""$22.5 billion, 25% YoY growth"",
+  ""tsmc_2025_cap",deepseek,deepseek-v4-flash
+8bed2ee6,JSON,NEWS,4,0,842,527,1369,8137.99,3,False,False,0.283,"{
+  ""main_action"": ""EU enacted AI Act"",
+  ""significance"": ""world's first comprehensive AI law"",
+  ""scope"": ""affects all companies serving EU citizens"",
+  ""fine_percentage"": ""up to 7% of global revenue",deepseek,deepseek-v4-flash
+1e41f5d5,JSON,NEWS,4,1,686,277,963,5152.98,3,False,False,0.401,"{
+  ""law_name"": ""AI Act"",
+  ""status"": ""enacted"",
+  ""fine_percentage"": ""7% of global revenue"",
+  ""high_risk_requirements"": ""conformity assessments"",
+  ""banned_practices"": [""social scoring"", ""real-time ",deepseek,deepseek-v4-flash
+a6a90e53,SHARED_MEMORY,MATH,0,0,727,72,799,2936.21,3,False,False,1.0,#### 18,deepseek,deepseek-v4-flash
+b6a78d56,SHARED_MEMORY,MATH,0,1,751,84,835,3689.38,3,False,False,1.0,#### 18,deepseek,deepseek-v4-flash
+df610c8d,SHARED_MEMORY,MATH,1,0,615,115,730,3383.65,3,False,False,1.0,"The robe requires 2 bolts of blue fiber and half that amount of white fiber, which is 1 bolt. The total is 2 + 1 = 3 bolts.
+
+#### 3",deepseek,deepseek-v4-flash
+579ff182,SHARED_MEMORY,MATH,1,1,602,102,704,3285.33,3,False,False,1.0,"The robe takes 2 bolts of blue fiber and half that amount (1 bolt) of white fiber, for a total of 3 bolts.
+
+#### 3",deepseek,deepseek-v4-flash
+d2fb409e,SHARED_MEMORY,MATH,2,0,772,153,925,3580.82,3,False,False,1.0,#### 70000,deepseek,deepseek-v4-flash
+c72658e4,SHARED_MEMORY,MATH,2,1,858,272,1130,5265.03,3,False,False,1.0,"The total cost is $80,000 + $50,000 = $130,000. The value increases by 150% of $80,000, which is $120,000, so the new value is $80,000 + $120,000 = $200,000. Profit is $200,000 - $130,000 = $70,000.
+
+",deepseek,deepseek-v4-flash
+5ee716d6,SHARED_MEMORY,MATH,3,0,642,73,715,2909.45,3,False,False,1.0,#### 540,deepseek,deepseek-v4-flash
+f04b1d07,SHARED_MEMORY,MATH,3,1,611,105,716,3307.75,3,False,False,1.0,"James runs 3 sprints per session, 3 times a week, with each sprint being 60 meters. The total distance per week is 60 × 3 × 3 = 540 meters.
+
+#### 540",deepseek,deepseek-v4-flash
+0688decd,SHARED_MEMORY,MATH,4,0,1127,294,1421,5601.46,3,False,False,1.0,"20 chickens × 3 cups per chicken = 60 cups total daily feed needed.  
+15 cups (morning) + 25 cups (afternoon) = 40 cups already given.  
+60 cups − 40 cups = 20 cups needed for the final meal.  
+
+#### ",deepseek,deepseek-v4-flash
+fd5de350,SHARED_MEMORY,MATH,4,1,966,179,1145,4950.79,3,False,False,1.0,"The total daily feed needed for 20 chickens is 20 × 3 = 60 cups. The feed already given is 15 + 25 = 40 cups. Therefore, the final meal must provide 60 - 40 = 20 cups.
+
+#### 20",deepseek,deepseek-v4-flash
+ffc7a169,SHARED_MEMORY,READING,0,0,1079,72,1151,2869.55,3,False,False,1.0,Denver Broncos,deepseek,deepseek-v4-flash
+02da4e0f,SHARED_MEMORY,READING,0,1,1103,84,1187,3177.07,3,False,False,1.0,Denver Broncos,deepseek,deepseek-v4-flash
+2291b28e,SHARED_MEMORY,READING,1,0,1065,66,1131,3067.02,3,False,False,1.0,Carolina Panthers,deepseek,deepseek-v4-flash
+d3f052e9,SHARED_MEMORY,READING,1,1,1045,57,1102,2650.06,3,False,False,1.0,Carolina Panthers,deepseek,deepseek-v4-flash
+eecea09e,SHARED_MEMORY,READING,2,0,1042,71,1113,3058.56,3,False,False,0.737,"Levi's Stadium in Santa Clara, California.",deepseek,deepseek-v4-flash
+08f263a1,SHARED_MEMORY,READING,2,1,1062,80,1142,2778.76,3,False,False,0.737,"Levi's Stadium in Santa Clara, California.",deepseek,deepseek-v4-flash
+3225febe,SHARED_MEMORY,READING,3,0,1046,61,1107,2698.52,3,False,False,1.0,Denver Broncos,deepseek,deepseek-v4-flash
+8f9ed5a6,SHARED_MEMORY,READING,3,1,1118,93,1211,2969.13,3,False,False,1.0,Denver Broncos,deepseek,deepseek-v4-flash
+aaaed285,SHARED_MEMORY,READING,4,0,1105,77,1182,2991.3,3,False,False,1.0,gold,deepseek,deepseek-v4-flash
+9ddcf9e1,SHARED_MEMORY,READING,4,1,1085,67,1152,2953.24,3,False,False,1.0,gold,deepseek,deepseek-v4-flash
+3a3626b0,SHARED_MEMORY,NEWS,0,0,1216,468,1684,7174.23,3,False,False,0.44,"**Summary of Key Facts and Figures from the March 2025 Fed Meeting**
+
+- **Policy Decision:** The Federal Reserve held its benchmark interest rate unchanged at 4.25%–4.50%.
+- **Inflation:** Remains abo",deepseek,deepseek-v4-flash
+95fcadc0,SHARED_MEMORY,NEWS,0,1,1322,513,1835,8706.3,3,False,False,0.432,"At its March 2025 meeting, the Federal Reserve held its benchmark interest rate unchanged at 4.25%–4.50%. Chair Jerome Powell noted that inflation remains above the 2% target at 2.8%, while the labor ",deepseek,deepseek-v4-flash
+bae09129,SHARED_MEMORY,NEWS,1,0,1231,498,1729,8075.43,3,False,False,0.437,"Apple reported Q1 FY2025 revenue of $124.3 billion, up 4% year-over-year. iPhone revenue reached $69.1 billion, and Services revenue hit a record $26.3 billion. Earnings per share (EPS) was $2.40, bea",deepseek,deepseek-v4-flash
+ae3aa973,SHARED_MEMORY,NEWS,1,1,1251,544,1795,8822.39,3,False,False,0.524,"**Apple Q1 FY2025 Earnings Summary**
+
+- **Revenue:** $124.3 billion (+4% year-over-year)
+- **iPhone Revenue:** $69.1 billion
+- **Services Revenue:** $26.3 billion (record high)
+- **Earnings Per Share ",deepseek,deepseek-v4-flash
+c3c83e8e,SHARED_MEMORY,NEWS,2,0,1292,537,1829,7993.93,3,False,False,0.467,"**Tesla Announces New Affordable EV Model**
+- **Product:** Model Q – $25,000, 280-mile range, 0-60 mph in 5.8 seconds.
+- **Production:** Begins Q3 2025 at Gigafactory Texas.
+- **Market Impact:** Stock",deepseek,deepseek-v4-flash
+e4dac7ac,SHARED_MEMORY,NEWS,2,1,1187,422,1609,7395.98,3,False,False,0.404,"Tesla announced the Model Q, a new affordable electric vehicle priced at $25,000, targeting mass-market adoption. It features a 280-mile range and accelerates from 0 to 60 mph in 5.8 seconds. Producti",deepseek,deepseek-v4-flash
+6b1bfdf6,SHARED_MEMORY,NEWS,3,0,1342,636,1978,9442.97,3,False,False,0.382,"**Key Facts and Figures from the Article:**
+
+- **Trend:** The global chip shortage is easing.
+- **Key Player:** TSMC is leading the recovery.
+- **Fab Progress:** TSMC's Arizona fab is producing 4nm ch",deepseek,deepseek-v4-flash
+ecaee20f,SHARED_MEMORY,NEWS,3,1,1237,557,1794,8771.27,3,False,False,0.345,"**Analysis Summary: Global Chip Shortage Eases as TSMC Expands**
+
+- **Key Numerical Facts:**
+  - TSMC's Arizona fab is producing 4nm chips with a 90% yield rate.
+  - Global semiconductor lead times de",deepseek,deepseek-v4-flash
+c6b2ab65,SHARED_MEMORY,NEWS,4,0,1221,514,1735,7909.51,3,False,False,0.325,"The European Union has enacted the AI Act, the world's first comprehensive AI regulation. The law prohibits social scoring and real-time biometric surveillance. High-risk AI systems must undergo confo",deepseek,deepseek-v4-flash
+ab16a546,SHARED_MEMORY,NEWS,4,1,1252,495,1747,8529.49,3,False,False,0.277,"The European Union has enacted the AI Act, the world's first comprehensive AI law. Key provisions include mandatory conformity assessments for high-risk AI systems, a ban on social scoring and real-ti",deepseek,deepseek-v4-flash
+1a35cebb,SHARED_MEMORY_NL,MATH,0,0,913,241,1154,5062.63,3,False,False,1.0,"Janet’s ducks lay 16 eggs per day. She uses 3 for breakfast and 4 for muffins, totaling 7 eggs used. That leaves 9 eggs to sell at the farmers' market. At $2 per egg, she makes $18 each day. #### 18",deepseek,deepseek-v4-flash
+effa5dbb,SHARED_MEMORY_NL,MATH,0,1,909,252,1161,5281.1,3,False,False,1.0,"Janet’s ducks lay 16 eggs per day. She uses 3 eggs for breakfast and 4 for baking muffins, totaling 7 eggs used. That leaves 16 minus 7 equals 9 eggs to sell. At $2 per egg, she makes 9 times 2 equals",deepseek,deepseek-v4-flash
+44f2ee11,SHARED_MEMORY_NL,MATH,1,0,729,154,883,4021.01,3,False,False,1.0,"The robe requires 2 bolts of blue fiber and half that amount, which is 1 bolt, of white fiber. Adding these together gives a total of 3 bolts. #### 3",deepseek,deepseek-v4-flash
+6bf15e1a,SHARED_MEMORY_NL,MATH,1,1,791,205,996,4635.8,3,False,False,1.0,"The robe requires 2 bolts of blue fiber and half that amount, which is 1 bolt, of white fiber. Adding these together gives a total of 3 bolts. #### 3",deepseek,deepseek-v4-flash
+96d44321,SHARED_MEMORY_NL,MATH,2,0,959,338,1297,5896.43,3,False,False,1.0,"Josh bought the house for $80,000 and spent $50,000 on repairs, for a total cost of $130,000. The repairs increased the house's value by 150% of the original price, which is $120,000, making the new v",deepseek,deepseek-v4-flash
+0f0b216a,SHARED_MEMORY_NL,MATH,2,1,972,389,1361,6667.75,3,False,False,1.0,"Josh bought a house for $80,000 and spent $50,000 on repairs, for a total cost of $130,000. The repairs increased the house's value by 150%, meaning the new value is 250% of the original purchase pric",deepseek,deepseek-v4-flash
+a8a8154f,SHARED_MEMORY_NL,MATH,3,0,879,263,1142,4913.06,3,False,False,1.0,"James runs 3 sprints per session, each sprint 60 meters, so per session he runs 180 meters. He does 3 sessions per week, so total meters per week is 540. #### 540",deepseek,deepseek-v4-flash
+210f8713,SHARED_MEMORY_NL,MATH,3,1,889,304,1193,5403.07,3,False,False,1.0,"James runs 3 sprints per session, 3 sessions per week, with each sprint being 60 meters. In one session, he runs 3 times 60 meters, which is 180 meters. Over three sessions, he runs 180 times 3, which",deepseek,deepseek-v4-flash
+72441c56,SHARED_MEMORY_NL,MATH,4,0,1096,227,1323,4815.48,3,False,False,1.0,Wendi needs to give her chickens 20 cups of feed in the final meal of the day. #### 20,deepseek,deepseek-v4-flash
+51dd9df2,SHARED_MEMORY_NL,MATH,4,1,1115,291,1406,5962.82,3,False,False,1.0,"Wendi has 20 chickens, and each chicken needs 3 cups of feed per day, so the total daily feed required is 60 cups. She has already given 15 cups in the morning and 25 cups in the afternoon, for a tota",deepseek,deepseek-v4-flash
+903ec971,SHARED_MEMORY_NL,READING,0,0,1181,105,1286,3372.06,3,False,False,0.4,The Denver Broncos represented the AFC at Super Bowl 50.,deepseek,deepseek-v4-flash
+ca582303,SHARED_MEMORY_NL,READING,0,1,1192,97,1289,3158.52,3,False,False,1.0,The Denver Broncos.,deepseek,deepseek-v4-flash
+1b19f13c,SHARED_MEMORY_NL,READING,1,0,1149,89,1238,3077.74,3,False,False,0.4,The Carolina Panthers represented the NFC at Super Bowl 50.,deepseek,deepseek-v4-flash
+4bee26f7,SHARED_MEMORY_NL,READING,1,1,1185,107,1292,3454.09,3,False,False,0.4,The Carolina Panthers represented the NFC at Super Bowl 50.,deepseek,deepseek-v4-flash
+42ea9ae1,SHARED_MEMORY_NL,READING,2,0,1164,110,1274,3488.09,3,False,False,0.8,"Super Bowl 50 took place at Levi's Stadium in the San Francisco Bay Area at Santa Clara, California.",deepseek,deepseek-v4-flash
+ebe4c749,SHARED_MEMORY_NL,READING,2,1,1158,98,1256,3129.34,3,False,False,0.64,"Super Bowl 50 took place at Levi's Stadium in Santa Clara, California.",deepseek,deepseek-v4-flash
+21116c43,SHARED_MEMORY_NL,READING,3,0,1154,84,1238,3124.07,3,False,False,1.0,The Denver Broncos.,deepseek,deepseek-v4-flash
+6504943f,SHARED_MEMORY_NL,READING,3,1,1163,96,1259,3053.99,3,False,False,0.5,The Denver Broncos won Super Bowl 50.,deepseek,deepseek-v4-flash
+de991185,SHARED_MEMORY_NL,READING,4,0,1226,114,1340,3298.52,3,False,False,1.0,Gold.,deepseek,deepseek-v4-flash
+3cb07c6f,SHARED_MEMORY_NL,READING,4,1,1147,67,1214,2971.24,3,False,False,1.0,Gold.,deepseek,deepseek-v4-flash
+cdbcf8fa,SHARED_MEMORY_NL,NEWS,0,0,1095,283,1378,5842.08,3,False,False,0.413,"The Federal Reserve held its benchmark interest rate unchanged at 4.25% to 4.50% at its March 2025 meeting. Chair Jerome Powell noted that inflation remains above the 2% target at 2.8%, and the labor ",deepseek,deepseek-v4-flash
+8b985dd1,SHARED_MEMORY_NL,NEWS,0,1,1213,380,1593,7086.77,3,False,False,0.357,"The Federal Reserve held its benchmark interest rate steady at 4.25% to 4.50% during its March 2025 meeting. Chair Jerome Powell noted that inflation remains above the 2% target at 2.8%, while the lab",deepseek,deepseek-v4-flash
+b1221327,SHARED_MEMORY_NL,NEWS,1,0,1282,511,1793,8479.14,3,False,False,0.392,"Apple reported record Q1 FY2025 earnings with total revenue of $124.3 billion, a 4% increase year-over-year. iPhone revenue was $69.1 billion, while Services revenue reached a record $26.3 billion. Ea",deepseek,deepseek-v4-flash
+22c0fd98,SHARED_MEMORY_NL,NEWS,1,1,1079,315,1394,6004.7,3,False,False,0.396,"Apple reported Q1 FY2025 revenue of 124.3 billion dollars, up 4 percent year-over-year. iPhone revenue was 69.1 billion dollars, and services revenue reached a record 26.3 billion dollars. Earnings pe",deepseek,deepseek-v4-flash
+b356f496,SHARED_MEMORY_NL,NEWS,2,0,1121,368,1489,6395.17,3,False,False,0.33,"Tesla has announced a new affordable electric vehicle called the Model Q, priced at $25,000. The car offers a 280-mile range and can accelerate from 0 to 60 miles per hour in 5.8 seconds. Production i",deepseek,deepseek-v4-flash
+6a912b75,SHARED_MEMORY_NL,NEWS,2,1,1258,475,1733,7510.6,3,False,False,0.388,"Tesla announced the Model Q, a new affordable electric vehicle priced at $25,000, with a 280-mile range and a 0 to 60 miles per hour acceleration time of 5.8 seconds. Production is scheduled to begin ",deepseek,deepseek-v4-flash
+b051638c,SHARED_MEMORY_NL,NEWS,3,0,1252,483,1735,8257.46,3,False,False,0.433,"TSMC's Arizona fab is now producing 4nm chips with a 90% yield rate, contributing to an easing of the global chip shortage. Semiconductor lead times have dropped from 26 weeks to 14 weeks. TSMC report",deepseek,deepseek-v4-flash
+ad60280a,SHARED_MEMORY_NL,NEWS,3,1,1295,523,1818,8396.74,3,False,False,0.442,"The global chip shortage is easing, driven by TSMC's expansion. TSMC's Arizona fab is producing 4nm chips with a 90% yield rate. Global semiconductor lead times have dropped from 26 weeks to 14 weeks.",deepseek,deepseek-v4-flash
+8d1dd284,SHARED_MEMORY_NL,NEWS,4,0,959,238,1197,5122.68,3,False,False,0.404,"The European Union has enacted the AI Act, the world's first comprehensive AI law. High-risk AI systems must undergo conformity assessments. Companies that violate the law face fines of up to 7 percen",deepseek,deepseek-v4-flash
+0fa2959c,SHARED_MEMORY_NL,NEWS,4,1,994,254,1248,5532.54,3,False,False,0.429,"The European Union has officially enacted the AI Act, the world's first comprehensive AI law. High-risk AI systems must undergo conformity assessments. Companies face fines of up to 7 percent of globa",deepseek,deepseek-v4-flash
+42ea52e9,SHARED_MEMORY_MARKDOWN,MATH,0,0,1126,374,1500,6763.31,3,False,False,1.0,"## Solution
+
+- **Total eggs laid per day:** 16
+- **Eggs used daily:** 3 (breakfast) + 4 (muffins) = 7
+- **Eggs remaining for sale:** 16 - 7 = 9
+- **Daily revenue:** 9 eggs × $2 per egg = $18
+
+#### 18",deepseek,deepseek-v4-flash
+3db64f38,SHARED_MEMORY_MARKDOWN,MATH,0,1,1090,352,1442,6454.83,3,False,False,1.0,"## Solution
+
+- Total eggs laid per day: 16
+- Eggs used for breakfast: 3
+- Eggs used for muffins: 4
+- Total eggs consumed: 3 + 4 = 7
+- Eggs sold daily: 16 - 7 = 9
+- Price per egg: $2
+- Daily revenue: 9",deepseek,deepseek-v4-flash
+74cf6794,SHARED_MEMORY_MARKDOWN,MATH,1,0,1122,418,1540,6727.41,3,False,False,1.0,"## Final Answer
+
+The problem states that a robe takes 2 bolts of blue fiber and half that much white fiber.  
+- Blue fiber: 2 bolts  
+- White fiber: half of 2 bolts = 1 bolt  
+- Total fiber: 2 + 1 = 3",deepseek,deepseek-v4-flash
+eb536163,SHARED_MEMORY_MARKDOWN,MATH,1,1,1068,380,1448,6793.92,3,False,False,1.0,"## Solution
+
+The problem states that a robe requires 2 bolts of blue fiber and half that amount of white fiber.
+
+- Blue fiber: 2 bolts
+- White fiber: half of 2 bolts = 1 bolt
+- Total: 2 + 1 = 3 bolts
+",deepseek,deepseek-v4-flash
+3fd3efff,SHARED_MEMORY_MARKDOWN,MATH,2,0,1233,656,1889,9179.73,3,False,False,1.0,"## Solution to the House Flipping Profit Problem
+
+**Step 1: Calculate total investment**
+- Purchase price: $80,000
+- Repair costs: $50,000
+- Total investment = $80,000 + $50,000 = $130,000
+
+**Step 2: ",deepseek,deepseek-v4-flash
+46a67dd3,SHARED_MEMORY_MARKDOWN,MATH,2,1,1266,532,1798,8227.33,3,False,False,1.0,"## Solution to the House Flipping Profit Problem
+
+- **Total cost**: $80,000 (purchase) + $50,000 (repairs) = $130,000
+- **Value increase**: 150% of $80,000 = $120,000
+- **New house value**: $80,000 + ",deepseek,deepseek-v4-flash
+161574f8,SHARED_MEMORY_MARKDOWN,MATH,3,0,1061,371,1432,6462.39,3,False,False,1.0,"## Final Answer
+
+James runs 3 sprints per session, each 60 meters, and does 3 sessions per week.  
+- Distance per session: 3 × 60 = 180 meters  
+- Weekly distance: 180 × 3 = 540 meters  
+
+The total me",deepseek,deepseek-v4-flash
+fea899cb,SHARED_MEMORY_MARKDOWN,MATH,3,1,1201,465,1666,7479.74,3,False,False,1.0,"## Solution
+
+James runs 3 sprints per session, each sprint is 60 meters, and he does this 3 times per week.
+
+- **Meters per session**: \(3 \times 60 = 180\) meters
+- **Total meters per week**: \(180 \",deepseek,deepseek-v4-flash
+851acb42,SHARED_MEMORY_MARKDOWN,MATH,4,0,1322,455,1777,7377.3,3,False,False,1.0,"## Solution
+
+The problem requires determining the cups of feed needed for the final meal of the day for Wendi's flock of 20 chickens.
+
+- **Total daily feed requirement**: 20 chickens × 3 cups per chic",deepseek,deepseek-v4-flash
+7a319585,SHARED_MEMORY_MARKDOWN,MATH,4,1,1506,552,2058,8428.29,3,False,False,1.0,"## Solution
+
+The problem requires determining the amount of feed needed for the final meal for Wendi's flock of 20 chickens.
+
+- **Total daily feed required**: 20 chickens × 3 cups per chicken = 60 cup",deepseek,deepseek-v4-flash
+a903e0cf,SHARED_MEMORY_MARKDOWN,READING,0,0,1388,252,1640,4684.53,3,False,False,0.667,"## Final Answer
+
+- **Denver Broncos**",deepseek,deepseek-v4-flash
+a1220f45,SHARED_MEMORY_MARKDOWN,READING,0,1,1517,345,1862,5836.88,3,False,False,0.667,"## Final Answer
+
+- **Denver Broncos**",deepseek,deepseek-v4-flash
+abf8a0d7,SHARED_MEMORY_MARKDOWN,READING,1,0,1409,267,1676,5230.05,3,False,False,0.667,"## Final Answer
+
+- **Carolina Panthers**",deepseek,deepseek-v4-flash
+d321e869,SHARED_MEMORY_MARKDOWN,READING,1,1,1707,465,2172,7478.09,3,True,False,0.333,"## Final Answer
+
+- **NFC team at Super Bowl 50:** Carolina Panthers",deepseek,deepseek-v4-flash
+3acfddc8,SHARED_MEMORY_MARKDOWN,READING,2,0,1638,440,2078,7213.58,3,True,False,0.636,"## Final Answer
+
+- **Location:** Levi's Stadium in Santa Clara, California.",deepseek,deepseek-v4-flash
+32e6dcd3,SHARED_MEMORY_MARKDOWN,READING,2,1,1699,471,2170,7320.61,3,True,False,0.571,"## Final Answer
+
+- **Location:** Levi's Stadium, Santa Clara, California.",deepseek,deepseek-v4-flash
+2be72aef,SHARED_MEMORY_MARKDOWN,READING,3,0,1450,285,1735,5236.1,3,False,False,0.667,"## Final Answer
+
+- **Denver Broncos**",deepseek,deepseek-v4-flash
+6f59cbda,SHARED_MEMORY_MARKDOWN,READING,3,1,1740,447,2187,7555.41,3,False,False,0.667,"## Final Answer
+
+Denver Broncos",deepseek,deepseek-v4-flash
+ed43ffa5,SHARED_MEMORY_MARKDOWN,READING,4,0,1485,292,1777,5454.63,3,False,False,0.4,"## Final Answer
+
+- **Color:** Gold",deepseek,deepseek-v4-flash
+7e9980d4,SHARED_MEMORY_MARKDOWN,READING,4,1,1431,265,1696,5064.03,3,False,False,0.5,"## Final Answer
+
+Gold",deepseek,deepseek-v4-flash
+106c962d,SHARED_MEMORY_MARKDOWN,NEWS,0,0,1425,596,2021,8705.99,3,False,False,0.271,"## Summary of Federal Reserve March 2025 Meeting
+
+- **Main Event**: The Federal Reserve held its benchmark interest rate steady.
+- **Interest Rate Range**: 4.25% - 4.50% (unchanged)
+- **Inflation Rate",deepseek,deepseek-v4-flash
+72de04cd,SHARED_MEMORY_MARKDOWN,NEWS,0,1,1759,871,2630,12324.22,3,False,False,0.303,"## Summary of Federal Reserve March 2025 Decision
+
+- **Main Subject**: Federal Reserve interest rate decision
+- **Key Figures**:
+  - Benchmark interest rate held unchanged at **4.25%–4.50%**
+  - Infla",deepseek,deepseek-v4-flash
+b9ae4aed,SHARED_MEMORY_MARKDOWN,NEWS,1,0,1400,541,1941,8195.07,3,False,False,0.505,"## Apple Q1 FY2025 Earnings Summary
+
+- **Total Revenue**: $124.3 billion, up 4% year-over-year
+- **iPhone Revenue**: $69.1 billion
+- **Services Revenue**: $26.3 billion (record high)
+- **Earnings Per ",deepseek,deepseek-v4-flash
+a405c97f,SHARED_MEMORY_MARKDOWN,NEWS,1,1,1354,503,1857,8062.94,3,False,False,0.518,"## Apple Q1 FY2025 Earnings Summary
+
+- **Total Revenue**: $124.3 billion (up 4% year-over-year)
+- **iPhone Revenue**: $69.1 billion
+- **Services Revenue**: $26.3 billion (record high)
+- **Earnings Per",deepseek,deepseek-v4-flash
+7c2fe714,SHARED_MEMORY_MARKDOWN,NEWS,2,0,1804,1023,2827,13990.94,3,False,False,0.207,"## Tesla Model Q Announcement Summary
+
+### Key Facts and Figures
+- **Product:** Tesla Model Q (affordable electric vehicle)
+- **Price:** $25,000
+- **Range:** 280 miles
+- **Acceleration:** 0-60 mph in ",deepseek,deepseek-v4-flash
+d1899a2f,SHARED_MEMORY_MARKDOWN,NEWS,2,1,1419,665,2084,9787.83,3,False,False,0.283,"## Analysis of Tesla's New Affordable EV Model Announcement
+
+### Key Facts and Figures
+- **Vehicle name:** Model Q
+- **Price:** $25,000
+- **Range:** 280 miles
+- **Acceleration:** 0-60 mph in 5.8 secon",deepseek,deepseek-v4-flash
+8b17b6c2,SHARED_MEMORY_MARKDOWN,NEWS,3,0,1487,709,2196,10031.64,3,False,False,0.358,"## Key Facts and Figures from News Article Analysis
+
+- **TSMC Arizona Fab**: Producing 4nm chips with a 90% yield rate
+- **Global Semiconductor Lead Times**: Dropped from 26 weeks to 14 weeks
+- **TSMC",deepseek,deepseek-v4-flash
+0a02d695,SHARED_MEMORY_MARKDOWN,NEWS,3,1,1699,935,2634,12540.96,3,False,False,0.232,"## Summary: Global Chip Shortage Eases as TSMC Expands
+
+- **Key Facts and Figures:**
+  - TSMC's Arizona fab is producing 4nm chips at a 90% yield rate.
+  - Global semiconductor lead times dropped from",deepseek,deepseek-v4-flash
+d07d2a60,SHARED_MEMORY_MARKDOWN,NEWS,4,0,1724,795,2519,11822.58,3,False,False,0.256,"## EU AI Act: Key Facts and Summary
+
+### Key Figures
+- **Fine**: Up to 7% of global revenue for violations
+- **Compliance deadline**: 24 months for companies to comply
+
+### Regulatory Scope
+- **High-r",deepseek,deepseek-v4-flash
+65e7899d,SHARED_MEMORY_MARKDOWN,NEWS,4,1,1391,722,2113,10833.58,3,False,False,0.188,"## Key Facts and Figures from the EU AI Act Analysis
+
+- **Title:** EU Passes Comprehensive AI Regulation Act
+- **Main Subject:** The European Union's AI Act, the world's first comprehensive AI law
+- *",deepseek,deepseek-v4-flash
+aa0a59dc,SHARED_MEMORY_JSON,MATH,0,0,1070,220,1290,4393.37,3,False,False,1.0,"{
+  ""answer"": ""Janet makes $18 per day at the farmers' market."",
+  ""numeric_answer"": ""#### 18""
+}",deepseek,deepseek-v4-flash
+5b7aee65,SHARED_MEMORY_JSON,MATH,0,1,1042,189,1231,4648.58,3,False,False,1.0,"{
+  ""final_answer"": 18
+}",deepseek,deepseek-v4-flash
+afd4f5a7,SHARED_MEMORY_JSON,MATH,1,0,833,125,958,3329.26,3,False,False,1.0,"{
+  ""final_answer"": ""#### 3""
+}",deepseek,deepseek-v4-flash
+d789a0ab,SHARED_MEMORY_JSON,MATH,1,1,881,154,1035,4453.89,3,False,False,1.0,"{
+  ""final_answer"": ""#### 3""
+}",deepseek,deepseek-v4-flash
+29e29b8a,SHARED_MEMORY_JSON,MATH,2,0,1078,218,1296,4663.38,3,False,False,1.0,"{
+  ""final_answer"": ""#### 70000""
+}",deepseek,deepseek-v4-flash
+dacbca01,SHARED_MEMORY_JSON,MATH,2,1,1074,217,1291,4816.7,3,False,False,1.0,"{
+  ""final_answer"": ""#### 70000""
+}",deepseek,deepseek-v4-flash
+631757ef,SHARED_MEMORY_JSON,MATH,3,0,989,202,1191,4409.04,3,False,False,1.0,"{
+  ""final_answer"": ""#### 540""
+}",deepseek,deepseek-v4-flash
+5455b568,SHARED_MEMORY_JSON,MATH,3,1,992,204,1196,4708.52,3,False,False,1.0,"{
+  ""final_answer"": ""#### 540""
+}",deepseek,deepseek-v4-flash
+89e4946e,SHARED_MEMORY_JSON,MATH,4,0,1144,167,1311,4002.93,3,False,False,1.0,"{
+  ""final_answer"": 20
+}",deepseek,deepseek-v4-flash
+5323a85d,SHARED_MEMORY_JSON,MATH,4,1,1131,157,1288,4067.84,3,False,False,1.0,"{
+  ""final_answer"": ""#### 20""
+}",deepseek,deepseek-v4-flash
+cca272ec,SHARED_MEMORY_JSON,READING,0,0,1348,163,1511,4079.53,3,False,False,0.8,"{
+  ""answer"": ""Denver Broncos""
+}",deepseek,deepseek-v4-flash
+8f912132,SHARED_MEMORY_JSON,READING,0,1,1359,178,1537,4263.06,3,False,False,0.8,"{
+  ""answer"": ""Denver Broncos""
+}",deepseek,deepseek-v4-flash
+79b6a659,SHARED_MEMORY_JSON,READING,1,0,1505,319,1824,6158.39,3,False,False,0.8,"{
+  ""answer"": ""Carolina Panthers""
+}",deepseek,deepseek-v4-flash
+e57e9349,SHARED_MEMORY_JSON,READING,1,1,1265,100,1365,4382.43,3,False,False,0.8,"{
+  ""answer"": ""Carolina Panthers""
+}",deepseek,deepseek-v4-flash
+202823a7,SHARED_MEMORY_JSON,READING,2,0,1269,110,1379,3589.57,3,False,False,0.7,"{
+  ""answer"": ""Levi's Stadium in Santa Clara, California""
+}",deepseek,deepseek-v4-flash
+0ef755e7,SHARED_MEMORY_JSON,READING,2,1,1285,118,1403,3382.9,3,False,False,0.7,"{
+  ""answer"": ""Levi's Stadium in Santa Clara, California.""
+}",deepseek,deepseek-v4-flash
+85c2da48,SHARED_MEMORY_JSON,READING,3,0,1289,112,1401,3685.76,3,False,False,0.8,"{
+  ""answer"": ""Denver Broncos""
+}",deepseek,deepseek-v4-flash
+730351c7,SHARED_MEMORY_JSON,READING,3,1,1271,106,1377,3562.84,3,False,False,0.8,"{
+  ""answer"": ""Denver Broncos""
+}",deepseek,deepseek-v4-flash
+e837602d,SHARED_MEMORY_JSON,READING,4,0,1372,189,1561,4637.49,3,False,False,0.667,"{
+  ""answer"": ""gold""
+}",deepseek,deepseek-v4-flash
+515c4f6c,SHARED_MEMORY_JSON,READING,4,1,1375,165,1540,4297.72,3,False,False,0.667,"{
+  ""answer"": ""gold""
+}",deepseek,deepseek-v4-flash
+6ea67d7e,SHARED_MEMORY_JSON,NEWS,0,0,1429,486,1915,7687.07,3,False,False,0.535,"{
+  ""summary"": ""In March 2025, the Federal Reserve held its benchmark interest rate unchanged at 4.25%-4.50%. Inflation remains above the 2% target at 2.8%, while unemployment is at 3.9%. Chair Jerome",deepseek,deepseek-v4-flash
+7781c531,SHARED_MEMORY_JSON,NEWS,0,1,1614,716,2330,10549.71,3,False,False,0.362,"{
+  ""title"": ""Fed Holds Interest Rates Steady in March 2025"",
+  ""date"": ""March 2025"",
+  ""decision"": ""held benchmark interest rate unchanged at 4.25%-4.50%"",
+  ""inflation_rate"": ""2.8%"",
+  ""unemployment",deepseek,deepseek-v4-flash
+39fd7644,SHARED_MEMORY_JSON,NEWS,1,0,1446,692,2138,9726.25,3,False,False,0.323,"{
+  ""company"": ""Apple"",
+  ""quarter"": ""Q1 FY2025"",
+  ""revenue"": ""$124.3 billion"",
+  ""revenue_growth"": ""4% year-over-year"",
+  ""iphone_revenue"": ""$69.1 billion"",
+  ""services_revenue"": ""$26.3 billion (rec",deepseek,deepseek-v4-flash
+35bd7937,SHARED_MEMORY_JSON,NEWS,1,1,1368,534,1902,7921.41,3,False,False,0.567,"{
+  ""company"": ""Apple"",
+  ""quarter"": ""Q1 FY2025"",
+  ""revenue"": ""$124.3 billion"",
+  ""revenue_growth"": ""4% year-over-year"",
+  ""iphone_revenue"": ""$69.1 billion"",
+  ""services_revenue"": ""$26.3 billion (rec",deepseek,deepseek-v4-flash
+380db192,SHARED_MEMORY_JSON,NEWS,2,0,1366,528,1894,8206.8,3,False,False,0.314,"{
+  ""vehicle_name"": ""Model Q"",
+  ""price"": ""$25,000"",
+  ""range"": ""280 miles"",
+  ""acceleration"": ""0-60 mph in 5.8 seconds"",
+  ""production_location"": ""Gigafactory Texas"",
+  ""production_timeline"": ""Q3 202",deepseek,deepseek-v4-flash
+f3f3627c,SHARED_MEMORY_JSON,NEWS,2,1,1357,535,1892,8537.5,3,False,False,0.314,"{
+  ""model_name"": ""Model Q"",
+  ""price"": ""$25,000"",
+  ""target_market"": ""mass-market adoption"",
+  ""range"": ""280 miles"",
+  ""acceleration"": ""0-60 mph in 5.8 seconds"",
+  ""production_location"": ""Gigafactory",deepseek,deepseek-v4-flash
+c6390bd6,SHARED_MEMORY_JSON,NEWS,3,0,1335,683,2018,9542.61,3,False,False,0.292,"{
+  ""title"": ""Global Chip Shortage Eases as TSMC Expands"",
+  ""key_facts_and_figures"": {
+    ""tsmc_arizona_fab"": ""Producing 4nm chips at 90% yield rates"",
+    ""global_semiconductor_lead_times"": ""Droppe",deepseek,deepseek-v4-flash
+3ab0433d,SHARED_MEMORY_JSON,NEWS,3,1,1387,723,2110,11314.51,3,False,False,0.277,"{
+  ""title"": ""Global Chip Shortage Eases as TSMC Expands"",
+  ""key_facts"": [
+    ""TSMC's Arizona fab is producing 4nm chips at 90% yield rates."",
+    ""Global semiconductor lead times dropped from 26 we",deepseek,deepseek-v4-flash
+d0ed11d6,SHARED_MEMORY_JSON,NEWS,4,0,1328,591,1919,8792.93,3,False,False,0.267,"{
+  ""title"": ""EU Passes Comprehensive AI Regulation Act"",
+  ""law_name"": ""AI Act"",
+  ""significance"": ""world's first comprehensive AI law"",
+  ""key_provisions"": [
+    ""High-risk AI systems must undergo c",deepseek,deepseek-v4-flash
+9f948ca5,SHARED_MEMORY_JSON,NEWS,4,1,1206,363,1569,6720.07,3,False,False,0.365,"{
+  ""summary"": ""The European Union has enacted the AI Act, the world's first comprehensive AI law. Key requirements include conformity assessments for high-risk AI systems. Prohibitions include social",deepseek,deepseek-v4-flash

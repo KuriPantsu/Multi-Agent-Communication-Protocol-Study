@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Multi-Agent Protocol Study</title>
-    <link rel="stylesheet" href="/static/styles.css?v=fig4-legends-outside" />
+    <link rel="stylesheet" href="/static/styles.css?v=results-static-figures" />
   </head>
   <body>
     <aside class="sidebar">
@@ -203,10 +203,6 @@
       <section id="results" class="view">
         <div class="section-head"><p class="eyebrow">Results Dashboard</p><h3>Aggregate evidence from all saved runs: token cost, latency, and completion quality</h3></div>
         <div class="recommend-grid" id="winnerCards"></div>
-        <div class="chart-grid">
-          <div class="panel"><h4>Mean tokens by protocol/domain</h4><canvas id="tokenChart" height="260"></canvas></div>
-          <div class="panel"><h4>Completion rate by protocol/domain</h4><canvas id="completionChart" height="260"></canvas></div>
-        </div>
         <div class="figure-grid">
           <img src="/figures/fig1_tokens_by_protocol_domain.png" alt="Token cost by protocol and domain" />
           <img src="/figures/fig2_completion_by_cell.png" alt="Completion by protocol and domain" />
@@ -231,6 +227,6 @@
       </section>
     </main>
 
-    <script src="/static/app.js?v=protocol-sections"></script>
+    <script src="/static/app.js?v=results-static-figures"></script>
   </body>
 </html>

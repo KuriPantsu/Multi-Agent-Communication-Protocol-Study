@@ -3,6 +3,7 @@ const state = {
   recommendations: [],
   runIds: [],
   comparisonRows: [],
+  ablation: { fullEffects: [], dsEffects: [] },
 };
 
 const protocolDetails = {
@@ -113,6 +114,11 @@ function setupNav() {
       document.querySelectorAll(".view").forEach((v) => v.classList.remove("active"));
       button.classList.add("active");
       $(`#${button.dataset.section}`).classList.add("active");
+      requestAnimationFrame(() => {
+        drawCharts();
+        drawAblationCharts();
+        if (state.comparisonRows.length) renderComparisonCharts(state.comparisonRows);
+      });
     });
   });
 }
@@ -233,50 +239,176 @@ function renderRecommendations() {
 
 function drawBarChart(canvasId, field, maxValue = null) {
   const canvas = $(`#${canvasId}`);
+  if (!canvas) return;
   const ctx = canvas.getContext("2d");
   const dpr = window.devicePixelRatio || 1;
   const rect = canvas.getBoundingClientRect();
+  if (!rect.width || !rect.height) return;
   canvas.width = rect.width * dpr;
   canvas.height = rect.height * dpr;
   ctx.scale(dpr, dpr);
   ctx.clearRect(0, 0, rect.width, rect.height);
 
   const rows = state.summary;
-  const colors = { MATH: "#2f6f55", READING: "#315f83", NEWS: "#a05d28" };
-  const padding = { left: 44, right: 10, top: 18, bottom: 54 };
+  const protocols = ["NL", "MARKDOWN", "JSON", "SHARED_MEMORY"];
+  const domains = ["MATH", "READING", "NEWS"];
+  const colors = {
+    NL: "#2f6f55",
+    MARKDOWN: "#315f83",
+    JSON: "#a05d28",
+    SHARED_MEMORY: "#9a3f3f",
+  };
+  const labels = {
+    NL: "NL",
+    MARKDOWN: "Markdown",
+    JSON: "JSON",
+    SHARED_MEMORY: "Shared Memory",
+  };
+  const padding = { left: 56, right: 18, top: 52, bottom: 46 };
   const width = rect.width - padding.left - padding.right;
   const height = rect.height - padding.top - padding.bottom;
-  const max = maxValue || Math.max(...rows.map((r) => Number(r[field])));
-  const barW = width / rows.length * 0.72;
+  const rawMax = Math.max(...rows.map((r) => Number(r[field]) || 0), 1);
+  const max = maxValue || Math.ceil(rawMax / 100) * 100;
+  const groupW = width / domains.length;
+  const barW = Math.min(38, groupW / (protocols.length + 1));
 
   ctx.strokeStyle = "#ddd8cc";
-  ctx.beginPath();
-  ctx.moveTo(padding.left, padding.top);
-  ctx.lineTo(padding.left, padding.top + height);
-  ctx.lineTo(padding.left + width, padding.top + height);
-  ctx.stroke();
+  ctx.lineWidth = 1;
+  ctx.fillStyle = "#67706f";
+  ctx.font = "11px system-ui";
+  ctx.textAlign = "right";
+  [0, 0.5, 1].forEach((tick) => {
+    const value = max * tick;
+    const y = padding.top + height - (value / max) * height;
+    ctx.strokeStyle = tick === 0 ? "#bfb8aa" : "#eee9df";
+    ctx.beginPath();
+    ctx.moveTo(padding.left, y);
+    ctx.lineTo(padding.left + width, y);
+    ctx.stroke();
+    const label = field === "Completion Rate" ? formatNumber(value, 2) : formatNumber(value);
+    ctx.fillText(label, padding.left - 8, y + 4);
+  });
 
-  rows.forEach((row, i) => {
-    const value = Number(row[field]);
-    const x = padding.left + (width / rows.length) * i + 4;
-    const h = (value / max) * height;
-    const y = padding.top + height - h;
-    ctx.fillStyle = colors[row.Domain] || "#2f6f55";
-    ctx.fillRect(x, y, barW, h);
-    ctx.save();
-    ctx.translate(x + barW / 2, padding.top + height + 8);
-    ctx.rotate(-Math.PI / 4);
+  protocols.forEach((protocol, i) => {
+    const x = padding.left + i * 130;
+    const y = padding.top - 30;
+    ctx.fillStyle = colors[protocol];
+    ctx.fillRect(x, y, 10, 10);
     ctx.fillStyle = "#67706f";
     ctx.font = "11px system-ui";
-    ctx.fillText(`${row.Protocol}/${row.Domain[0]}`, 0, 0);
-    ctx.restore();
+    ctx.textAlign = "left";
+    ctx.fillText(labels[protocol], x + 14, y + 9);
+  });
+
+  domains.forEach((domain, domainIndex) => {
+    const startX = padding.left + groupW * domainIndex;
+    protocols.forEach((protocol, protocolIndex) => {
+      const row = rows.find((r) => r.Domain === domain && r.Protocol === protocol);
+      const value = Number(row?.[field]) || 0;
+      const h = value / max * height;
+      const x = startX + groupW / 2 - (protocols.length * barW) / 2 + protocolIndex * barW;
+      const y = padding.top + height - h;
+      ctx.fillStyle = colors[protocol];
+      ctx.fillRect(x, y, barW * 0.78, h);
+    });
+
+    ctx.fillStyle = "#67706f";
+    ctx.font = "12px system-ui";
+    ctx.textAlign = "center";
+    ctx.fillText(domain, startX + groupW / 2, padding.top + height + 24);
   });
 }
 
 function drawCharts() {
   requestAnimationFrame(() => {
     drawBarChart("tokenChart", "Mean Tokens");
-    drawBarChart("completionChart", "Completion Rate", 0.9);
+    drawBarChart("completionChart", "Completion Rate", 1);
+  });
+}
+
+function drawAblationDeltaChart(canvasId, rows) {
+  const canvas = $(`#${canvasId}`);
+  if (!canvas || !rows.length) return;
+  const ctx = canvas.getContext("2d");
+  const dpr = window.devicePixelRatio || 1;
+  const rect = canvas.getBoundingClientRect();
+  if (!rect.width || !rect.height) return;
+  canvas.width = rect.width * dpr;
+  canvas.height = rect.height * dpr;
+  ctx.scale(dpr, dpr);
+  ctx.clearRect(0, 0, rect.width, rect.height);
+
+  const domains = ["MATH", "READING", "NEWS"];
+  const formats = ["Default", "NL", "Markdown", "JSON"];
+  const colors = { MATH: "#2f6f55", READING: "#315f83", NEWS: "#a05d28" };
+  const padding = { left: 54, right: 18, top: 20, bottom: 56 };
+  const width = rect.width - padding.left - padding.right;
+  const height = rect.height - padding.top - padding.bottom;
+  const maxAbs = Math.max(...rows.map((r) => Math.abs(Number(r.mechanismDeltaTokens) || 0)), 1);
+  const yMax = Math.ceil(maxAbs / 100) * 100;
+  const zeroY = padding.top + height;
+  const groupW = width / formats.length;
+  const barW = Math.min(18, groupW / (domains.length + 1));
+
+  ctx.strokeStyle = "#ddd8cc";
+  ctx.lineWidth = 1;
+  ctx.beginPath();
+  ctx.moveTo(padding.left, padding.top);
+  ctx.lineTo(padding.left, zeroY);
+  ctx.lineTo(padding.left + width, zeroY);
+  ctx.stroke();
+
+  ctx.fillStyle = "#67706f";
+  ctx.font = "11px system-ui";
+  ctx.textAlign = "right";
+  [0, 0.5, 1].forEach((tick) => {
+    const value = yMax * tick;
+    const y = zeroY - (value / yMax) * height;
+    ctx.strokeStyle = tick === 0 ? "#bfb8aa" : "#eee9df";
+    ctx.beginPath();
+    ctx.moveTo(padding.left, y);
+    ctx.lineTo(padding.left + width, y);
+    ctx.stroke();
+    ctx.fillText(formatNumber(value), padding.left - 8, y + 4);
+  });
+
+  formats.forEach((format, formatIndex) => {
+    const startX = padding.left + groupW * formatIndex;
+    domains.forEach((domain, domainIndex) => {
+      const row = rows.find((r) => r.domain === domain && r.format === format);
+      const value = Number(row?.mechanismDeltaTokens) || 0;
+      const h = Math.abs(value) / yMax * height;
+      const x = startX + groupW / 2 - (domains.length * barW) / 2 + domainIndex * barW;
+      const y = value >= 0 ? zeroY - h : zeroY;
+      ctx.fillStyle = colors[domain];
+      ctx.fillRect(x, y, barW * 0.76, h);
+    });
+
+    ctx.save();
+    ctx.translate(startX + groupW / 2, zeroY + 20);
+    ctx.fillStyle = "#67706f";
+    ctx.font = "12px system-ui";
+    ctx.textAlign = "center";
+    ctx.fillText(format, 0, 0);
+    ctx.restore();
+  });
+
+  domains.forEach((domain, i) => {
+    const x = padding.left + i * 82;
+    const y = padding.top + 2;
+    ctx.fillStyle = colors[domain];
+    ctx.fillRect(x, y, 10, 10);
+    ctx.fillStyle = "#67706f";
+    ctx.font = "11px system-ui";
+    ctx.textAlign = "left";
+    ctx.fillText(domain, x + 14, y + 9);
+  });
+}
+
+function drawAblationCharts() {
+  requestAnimationFrame(() => {
+    drawAblationDeltaChart("openaiAblationDeltaChart", state.ablation.fullEffects);
+    drawAblationDeltaChart("deepseekAblationDeltaChart", state.ablation.dsEffects);
   });
 }
 
@@ -384,7 +516,25 @@ async function loadAblation() {
   const data = await api("/api/ablation");
   const fullEffects = data.fullAblation?.effects || [];
   const dsEffects = data.deepseek?.effects || [];
+  state.ablation = { fullEffects, dsEffects };
   block.innerHTML = `
+    ${(fullEffects.length || dsEffects.length) ? `
+      <div class="split ablation-chart-grid">
+        <div>
+          <h4>OpenAI mechanism delta</h4>
+          ${fullEffects.length
+            ? `<canvas id="openaiAblationDeltaChart" class="ablation-chart" height="260"></canvas>`
+            : `<p class="muted">Run <code>python _run_full_ablation.py</code> to draw this chart.</p>`}
+        </div>
+        <div>
+          <h4>DeepSeek mechanism delta</h4>
+          ${dsEffects.length
+            ? `<canvas id="deepseekAblationDeltaChart" class="ablation-chart" height="260"></canvas>`
+            : `<p class="muted">Run <code>python _run_deepseek_robustness.py</code> to draw this chart.</p>`}
+        </div>
+      </div>
+      <p class="muted ablation-note">Bars show mean token overhead from the blackboard mechanism while holding output format fixed: Shared Memory minus Relay.</p>
+    ` : ""}
     <div class="split">
       <div>
         <h4>Full 2x4 OpenAI ablation</h4>
@@ -412,6 +562,7 @@ async function loadAblation() {
       </div>
     </div>
   `;
+  drawAblationCharts();
 }
 
 function drawDemoMetricChart(canvasId, rows, field, color, yAxisLabel) {
@@ -420,6 +571,7 @@ function drawDemoMetricChart(canvasId, rows, field, color, yAxisLabel) {
   const ctx = canvas.getContext("2d");
   const dpr = window.devicePixelRatio || 1;
   const rect = canvas.getBoundingClientRect();
+  if (!rect.width || !rect.height) return;
   canvas.width = rect.width * dpr;
   canvas.height = rect.height * dpr;
   ctx.scale(dpr, dpr);
@@ -562,6 +714,7 @@ function setupEvents() {
   $("#loadLogs").addEventListener("click", loadLogs);
   window.addEventListener("resize", () => {
     drawCharts();
+    drawAblationCharts();
     if (state.comparisonRows.length) renderComparisonCharts(state.comparisonRows);
   });
 }

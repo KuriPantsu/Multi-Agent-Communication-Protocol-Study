@@ -1,0 +1,1146 @@
+run_id,protocol,task_domain,sample_index,repetition,total_prompt_tokens,total_completion_tokens,total_tokens,total_latency_ms,total_messages,any_truncation,any_json_parse_error,completion_score,final_answer,provider,model
+4eadadcf,RELAY_DEFAULT,MATH,0,0,564,232,796,7730.73,3,False,False,1.0,#### 18,openai,gpt-4o-mini
+bf29e2f4,RELAY_DEFAULT,MATH,0,1,556,224,780,5955.24,3,False,False,1.0,#### 18,openai,gpt-4o-mini
+44e140b2,RELAY_DEFAULT,MATH,0,2,567,235,802,6122.03,3,False,False,1.0,#### 18,openai,gpt-4o-mini
+288b2746,RELAY_DEFAULT,MATH,1,0,385,125,510,3762.87,3,False,False,1.0,#### 3,openai,gpt-4o-mini
+cc6edf32,RELAY_DEFAULT,MATH,1,1,387,127,514,3593.22,3,False,False,1.0,#### 3,openai,gpt-4o-mini
+22ed8b77,RELAY_DEFAULT,MATH,1,2,387,127,514,3111.14,3,False,False,1.0,#### 3,openai,gpt-4o-mini
+5362c751,RELAY_DEFAULT,MATH,2,0,546,241,787,4411.74,3,False,False,1.0,#### 70000,openai,gpt-4o-mini
+bbeb5433,RELAY_DEFAULT,MATH,2,1,512,207,719,3913.84,3,False,False,1.0,#### 70000,openai,gpt-4o-mini
+1ac01bd7,RELAY_DEFAULT,MATH,2,2,533,228,761,4026.63,3,False,False,1.0,#### 70000,openai,gpt-4o-mini
+c1a48a1c,RELAY_DEFAULT,MATH,3,0,439,163,602,4304.53,3,False,False,1.0,#### 540,openai,gpt-4o-mini
+a01abae2,RELAY_DEFAULT,MATH,3,1,417,141,558,3999.89,3,False,False,1.0,#### 540,openai,gpt-4o-mini
+26e24c83,RELAY_DEFAULT,MATH,3,2,495,219,714,3687.5,3,False,False,1.0,#### 540,openai,gpt-4o-mini
+bf6579c0,RELAY_DEFAULT,MATH,4,0,698,276,974,7644.07,3,False,False,1.0,#### 20,openai,gpt-4o-mini
+e30187f6,RELAY_DEFAULT,MATH,4,1,695,273,968,4536.19,3,False,False,1.0,#### 20,openai,gpt-4o-mini
+d6916dc7,RELAY_DEFAULT,MATH,4,2,698,276,974,5442.22,3,False,False,1.0,#### 20,openai,gpt-4o-mini
+621e125d,RELAY_DEFAULT,MATH,5,0,526,214,740,4192.1,3,False,False,1.0,#### 64,openai,gpt-4o-mini
+63ba1b95,RELAY_DEFAULT,MATH,5,1,526,214,740,4829.41,3,False,False,1.0,#### 64,openai,gpt-4o-mini
+c3b394f3,RELAY_DEFAULT,MATH,5,2,609,297,906,4318.02,3,False,False,1.0,#### 64,openai,gpt-4o-mini
+36bf8773,RELAY_DEFAULT,MATH,6,0,441,155,596,3365.22,3,False,False,1.0,#### 260,openai,gpt-4o-mini
+4757c05b,RELAY_DEFAULT,MATH,6,1,441,155,596,3589.43,3,False,False,1.0,#### 260,openai,gpt-4o-mini
+414b53fe,RELAY_DEFAULT,MATH,6,2,441,155,596,3551.93,3,False,False,1.0,#### 260,openai,gpt-4o-mini
+cd38e7c7,RELAY_DEFAULT,MATH,7,0,674,336,1010,5198.71,3,False,False,0.0,#### 120,openai,gpt-4o-mini
+c21850f0,RELAY_DEFAULT,MATH,7,1,659,321,980,5390.29,3,False,False,0.0,#### 120,openai,gpt-4o-mini
+5564b5c5,RELAY_DEFAULT,MATH,7,2,649,311,960,5572.07,3,False,False,0.0,#### 120,openai,gpt-4o-mini
+e3f35990,RELAY_DEFAULT,MATH,8,0,770,360,1130,6422.89,3,False,False,1.0,#### 45,openai,gpt-4o-mini
+cee3b688,RELAY_DEFAULT,MATH,8,1,774,543,1317,6913.5,3,True,False,1.0,"To find the total distance from home at the end of the 4 hours, we need to calculate the distance John has driven away from home and the distance he has returned.
+
+1. Distance driven away from home:
+ ",openai,gpt-4o-mini
+219ef439,RELAY_DEFAULT,MATH,8,2,775,387,1162,6607.82,3,True,False,1.0,"+ 15 miles + 120 miles) = 180 miles - 135 miles = 45 miles.
+
+#### 45",openai,gpt-4o-mini
+aac1a52d,RELAY_DEFAULT,MATH,9,0,564,242,806,6047.85,3,False,False,1.0,#### 460,openai,gpt-4o-mini
+5f6f6575,RELAY_DEFAULT,MATH,9,1,565,243,808,5759.88,3,False,False,1.0,#### 460,openai,gpt-4o-mini
+2b8b6ea1,RELAY_DEFAULT,MATH,9,2,603,281,884,5304.1,3,False,False,1.0,#### 460,openai,gpt-4o-mini
+d97b1a41,RELAY_DEFAULT,READING,0,0,624,59,683,2664.74,3,False,False,1.0,Denver Broncos,openai,gpt-4o-mini
+de8150e6,RELAY_DEFAULT,READING,0,1,646,81,727,3176.85,3,False,False,1.0,Denver Broncos,openai,gpt-4o-mini
+340423a3,RELAY_DEFAULT,READING,0,2,646,81,727,2845.13,3,False,False,1.0,Denver Broncos,openai,gpt-4o-mini
+b701960c,RELAY_DEFAULT,READING,1,0,638,74,712,2539.33,3,False,False,1.0,Carolina Panthers,openai,gpt-4o-mini
+709aed71,RELAY_DEFAULT,READING,1,1,642,79,721,2671.93,3,False,False,1.0,Carolina Panthers.,openai,gpt-4o-mini
+0feb9fd8,RELAY_DEFAULT,READING,1,2,642,79,721,2455.53,3,False,False,1.0,Carolina Panthers.,openai,gpt-4o-mini
+2ffa2e9e,RELAY_DEFAULT,READING,2,0,631,86,717,2484.76,3,False,False,0.64,"Super Bowl 50 was held at Levi's Stadium in Santa Clara, California.",openai,gpt-4o-mini
+405767fc,RELAY_DEFAULT,READING,2,1,628,79,707,2764.06,3,False,False,0.667,"Levi's Stadium is located in Santa Clara, California.",openai,gpt-4o-mini
+d2c49428,RELAY_DEFAULT,READING,2,2,645,100,745,2755.17,3,False,False,0.64,"Super Bowl 50 was held at Levi's Stadium in Santa Clara, California.",openai,gpt-4o-mini
+9e812498,RELAY_DEFAULT,READING,3,0,630,72,702,2544.67,3,False,False,1.0,Denver Broncos.,openai,gpt-4o-mini
+06f6dbd6,RELAY_DEFAULT,READING,3,1,618,59,677,2325.76,3,False,False,1.0,Denver Broncos,openai,gpt-4o-mini
+0a5cf323,RELAY_DEFAULT,READING,3,2,633,74,707,2655.21,3,False,False,1.0,Denver Broncos,openai,gpt-4o-mini
+57d291f5,RELAY_DEFAULT,READING,4,0,658,84,742,2449.11,3,False,False,1.0,Gold,openai,gpt-4o-mini
+f025f9f9,RELAY_DEFAULT,READING,4,1,653,79,732,2582.85,3,False,False,1.0,Gold,openai,gpt-4o-mini
+f332399f,RELAY_DEFAULT,READING,4,2,653,79,732,2463.84,3,False,False,1.0,Gold,openai,gpt-4o-mini
+80da542b,RELAY_DEFAULT,READING,5,0,642,100,742,2991.68,3,False,False,0.25,"The theme of Super Bowl 50 was the ""golden anniversary,"" highlighted by various gold-themed initiatives.",openai,gpt-4o-mini
+93a05e7f,RELAY_DEFAULT,READING,5,1,631,82,713,2482.75,3,False,False,0.4,"The theme of Super Bowl 50 was the ""golden anniversary.""",openai,gpt-4o-mini
+b4ac7825,RELAY_DEFAULT,READING,5,2,641,98,739,2737.48,3,False,False,0.267,"The theme of Super Bowl 50 was the ""golden anniversary,"" highlighted by gold-themed initiatives.",openai,gpt-4o-mini
+a94ae84e,RELAY_DEFAULT,READING,6,0,624,73,697,2916.19,3,False,False,1.0,"February 7, 2016.",openai,gpt-4o-mini
+ac786b0e,RELAY_DEFAULT,READING,6,1,623,72,695,2519.08,3,False,False,1.0,"February 7, 2016.",openai,gpt-4o-mini
+ec4185c9,RELAY_DEFAULT,READING,6,2,621,70,691,2540.03,3,False,False,1.0,"February 7, 2016.",openai,gpt-4o-mini
+e3388b94,RELAY_DEFAULT,READING,7,0,622,72,694,3174.34,3,False,False,0.857,American Football Conference (AFC),openai,gpt-4o-mini
+809e1470,RELAY_DEFAULT,READING,7,1,617,67,684,3042.55,3,False,False,0.857,American Football Conference (AFC),openai,gpt-4o-mini
+848f1199,RELAY_DEFAULT,READING,7,2,622,72,694,2508.67,3,False,False,0.857,American Football Conference (AFC),openai,gpt-4o-mini
+432ce14a,RELAY_DEFAULT,READING,8,0,641,98,739,2875.93,3,False,False,0.267,"The theme of Super Bowl 50 was the ""golden anniversary,"" highlighted by gold-themed initiatives.",openai,gpt-4o-mini
+69566dad,RELAY_DEFAULT,READING,8,1,650,107,757,3168.58,3,False,False,0.267,"The theme of Super Bowl 50 was the ""golden anniversary,"" featuring various gold-themed initiatives.",openai,gpt-4o-mini
+3b4d20d0,RELAY_DEFAULT,READING,8,2,641,98,739,2853.27,3,False,False,0.267,"The theme of Super Bowl 50 was the ""golden anniversary,"" highlighted by gold-themed initiatives.",openai,gpt-4o-mini
+763501a9,RELAY_DEFAULT,READING,9,0,623,76,699,2312.44,3,False,False,0.667,AFC stands for American Football Conference.,openai,gpt-4o-mini
+ed7f3b87,RELAY_DEFAULT,READING,9,1,623,76,699,2503.28,3,False,False,0.667,AFC stands for American Football Conference.,openai,gpt-4o-mini
+be63215e,RELAY_DEFAULT,READING,9,2,623,76,699,2357.53,3,False,False,0.667,AFC stands for American Football Conference.,openai,gpt-4o-mini
+9654b33a,RELAY_DEFAULT,NEWS,0,0,624,285,909,5740.97,3,False,False,0.342,"In March 2025, the Federal Reserve decided to maintain the current benchmark interest rate at 4.25%-4.50%, with no changes made during the meeting. Key economic indicators include an inflation rate of",openai,gpt-4o-mini
+269b0212,RELAY_DEFAULT,NEWS,0,1,649,316,965,6489.25,3,False,False,0.368,"In March 2025, the Federal Reserve maintained its benchmark interest rate at 4.25%-4.50%. The current inflation rate stands at 2.8%, exceeding the Fed's target of 2%. The unemployment rate is at 3.9%,",openai,gpt-4o-mini
+68c96136,RELAY_DEFAULT,NEWS,0,2,603,256,859,4874.78,3,False,False,0.386,"The current benchmark interest rate stands at 4.25%-4.50%, while the inflation rate is at 2.8%, exceeding the target of 2%. The unemployment rate is 3.9%, reflecting a robust labor market. There are p",openai,gpt-4o-mini
+8ce94020,RELAY_DEFAULT,NEWS,1,0,578,262,840,4610.41,3,False,False,0.391,"In Q1 FY2025, the company reported total revenue of $124.3 billion, with significant contributions from iPhone sales at $69.1 billion and Services generating $26.3 billion. Earnings per share (EPS) re",openai,gpt-4o-mini
+ba7c7a83,RELAY_DEFAULT,NEWS,1,1,597,279,876,5237.09,3,False,False,0.45,"In Q1 FY2025, Apple reported total revenue of $124.3 billion, with iPhone revenue at $69.1 billion and Services revenue at $26.3 billion. The earnings per share (EPS) were $2.40, surpassing analyst es",openai,gpt-4o-mini
+a7555efa,RELAY_DEFAULT,NEWS,1,2,604,308,912,5826.41,3,False,False,0.365,"In Q1 FY2025, Apple reported a total revenue of $124.3 billion, with significant contributions from specific product categories: iPhone revenue was $69.1 billion and services revenue reached $26.3 bil",openai,gpt-4o-mini
+cb4c34b6,RELAY_DEFAULT,NEWS,2,0,606,296,902,4904.05,3,False,False,0.333,"Tesla has announced its new affordable electric vehicle model, the Model Q, priced at $25,000. The Model Q boasts a range of 280 miles and can accelerate from 0 to 60 mph in 5.8 seconds. Production is",openai,gpt-4o-mini
+df60a84b,RELAY_DEFAULT,NEWS,2,1,598,277,875,5035.5,3,False,False,0.404,"Tesla has announced a new model, Model Q, priced at $25,000. It features a range of 280 miles and can accelerate from 0-60 mph in 5.8 seconds. Production is set to begin in Q3 2025 at Gigafactory Texa",openai,gpt-4o-mini
+40206486,RELAY_DEFAULT,NEWS,2,2,635,316,951,6739.33,3,False,False,0.408,"Tesla has announced a new affordable electric vehicle model named Model Q, priced at $25,000, with a range of 280 miles and a performance of 0-60 mph in 5.8 seconds. Production is set to begin in Q3 2",openai,gpt-4o-mini
+c31c5c3f,RELAY_DEFAULT,NEWS,3,0,698,416,1114,7404.05,3,False,False,0.295,"TSMC is currently producing 4nm chips at its Arizona fab with impressive yield rates of 90%. The global semiconductor lead times have decreased significantly from 26 weeks to 14 weeks, indicating an e",openai,gpt-4o-mini
+1d2aa69d,RELAY_DEFAULT,NEWS,3,1,664,392,1056,7980.77,3,False,False,0.26,"TSMC's Arizona fab is achieving a 90% yield rate in the production of 4nm chips. The global semiconductor lead times have improved significantly, decreasing from 26 weeks to 14 weeks, signaling a redu",openai,gpt-4o-mini
+18ac02c4,RELAY_DEFAULT,NEWS,3,2,709,442,1151,6759.22,3,False,False,0.263,"TSMC, Intel, and Samsung are key players in the semiconductor industry, with TSMC notably expanding its operations in Arizona, where it is producing advanced 4nm chips with a yield rate of 90%. The gl",openai,gpt-4o-mini
+ef3897d8,RELAY_DEFAULT,NEWS,4,0,543,232,775,5635.67,3,False,False,0.351,"The EU AI Regulation Act is the world's first comprehensive AI law, mandating that high-risk AI systems undergo conformity assessments and prohibiting social scoring and real-time biometric surveillan",openai,gpt-4o-mini
+dce684d4,RELAY_DEFAULT,NEWS,4,1,615,340,955,5430.01,3,False,False,0.252,"The EU has passed the Comprehensive AI Regulation Act, marking the first global law aimed at establishing a regulatory framework for the safe and ethical use of artificial intelligence. The Act focuse",openai,gpt-4o-mini
+eeeb607a,RELAY_DEFAULT,NEWS,4,2,535,227,762,4743.96,3,False,False,0.24,The EU AI Regulation Act mandates that high-risk AI systems undergo conformity assessments and prohibits practices such as social scoring and real-time biometric surveillance. Companies face penalties,openai,gpt-4o-mini
+668beac7,RELAY_DEFAULT,NEWS,5,0,734,416,1150,8043.35,3,False,False,0.27,"SpaceX's Starship successfully completed its first orbital flight, lasting 90 minutes and reaching an altitude of 250 km before splashing down in the Indian Ocean. The Super Heavy booster was caught b",openai,gpt-4o-mini
+ab6bfc3f,RELAY_DEFAULT,NEWS,5,1,678,344,1022,6277.49,3,False,False,0.234,"SpaceX's Starship successfully completed its first orbital flight, lasting 90 minutes and reaching an altitude of 250 km before splashing down in the Indian Ocean. The vehicle carried a test payload w",openai,gpt-4o-mini
+7c32f7aa,RELAY_DEFAULT,NEWS,5,2,722,405,1127,7076.73,3,False,False,0.312,"SpaceX's Starship successfully completed its first orbital flight, achieving an altitude of 250 km and spending 90 minutes in orbit before splashing down in the Indian Ocean. The Super Heavy booster w",openai,gpt-4o-mini
+a88a3cfd,RELAY_DEFAULT,NEWS,6,0,642,343,985,5514.25,3,False,False,0.336,"Amazon has launched its drone delivery service in major US cities, including New York, Los Angeles, and Chicago, among others. The MK30 drone features a delivery capacity for packages under 5 pounds a",openai,gpt-4o-mini
+6e46ea22,RELAY_DEFAULT,NEWS,6,1,672,381,1053,6015.44,3,False,False,0.284,"Amazon has launched its drone delivery service in major US cities including New York, Los Angeles, and Chicago, among others. The MK30 drone, capable of delivering packages weighing up to 5 pounds, ca",openai,gpt-4o-mini
+088baa05,RELAY_DEFAULT,NEWS,6,2,671,389,1060,6588.97,3,False,False,0.27,"Amazon has launched its drone delivery service in major US cities, including New York, Los Angeles, and Chicago. The MK30 drone, which is central to this service, has a delivery capacity of up to 5 po",openai,gpt-4o-mini
+d1241830,RELAY_DEFAULT,NEWS,7,0,607,308,915,5528.42,3,False,False,0.297,"OpenAI has released GPT-5, which boasts a 40% improvement on graduate-level reasoning benchmarks. The model achieved impressive scores of 92% on the MATH benchmark and 88% on GPQA. The API pricing for",openai,gpt-4o-mini
+eabb7808,RELAY_DEFAULT,NEWS,7,1,591,281,872,6085.28,3,False,False,0.324,"OpenAI has released GPT-5, which boasts a 40% improvement on graduate-level reasoning benchmarks, achieving scores of 92% on the MATH benchmark and 88% on GPQA. The API pricing is set at $15 per milli",openai,gpt-4o-mini
+c25e7f7a,RELAY_DEFAULT,NEWS,7,2,618,314,932,5048.04,3,False,False,0.3,"OpenAI has launched GPT-5, which boasts enhanced reasoning capabilities and demonstrates a 40% improvement on graduate-level reasoning benchmarks. It achieved scores of 92% on the MATH benchmark and 8",openai,gpt-4o-mini
+c1009e47,RELAY_DEFAULT,NEWS,8,0,591,281,872,5342.18,3,False,False,0.371,"A 7.4 magnitude earthquake struck off the coast of Hokkaido, Japan, at 3:42 AM local time. A tsunami warning was issued for coastal areas within 300 km, with waves observed reaching up to 3 meters. Th",openai,gpt-4o-mini
+4dfd8684,RELAY_DEFAULT,NEWS,8,1,625,320,945,5778.36,3,False,False,0.348,"A 7.4 magnitude earthquake struck off the coast of Hokkaido, Japan, at 3:42 AM local time, prompting an immediate tsunami warning. The observed tsunami wave height reached up to 3 meters, affecting co",openai,gpt-4o-mini
+a902c8d1,RELAY_DEFAULT,NEWS,8,2,604,298,902,6711.89,3,False,False,0.371,"A 7.4 magnitude earthquake struck off the coast of Hokkaido, Japan, at 3:42 AM local time, prompting a tsunami warning for coastal areas within 300 km. Observed wave heights reached up to 3 meters, re",openai,gpt-4o-mini
+47b73160,RELAY_DEFAULT,NEWS,9,0,665,350,1015,5730.97,3,False,False,0.323,"Global carbon emissions declined by 2.1% in 2024, marking the first annual decrease not associated with an economic recession. Renewable energy now represents 35% of global electricity generation, wit",openai,gpt-4o-mini
+49a88365,RELAY_DEFAULT,NEWS,9,1,599,275,874,5539.19,3,False,False,0.267,"In 2024, global CO2 emissions decreased by 2.1%, marking the first annual decline not associated with an economic recession. Renewable energy now constitutes 35% of global electricity generation, with",openai,gpt-4o-mini
+c5a93088,RELAY_DEFAULT,NEWS,9,2,624,301,925,5860.76,3,False,False,0.299,"Global CO2 emissions are projected to decline by 2.1% in 2024, marking the first annual decrease not associated with an economic recession. Renewable energy now constitutes 35% of global electricity g",openai,gpt-4o-mini
+1a35cebb,SHARED_MEMORY_NL,MATH,0,0,893,269,1162,5529.44,3,False,False,1.0,"Janet's ducks lay 16 eggs per day. She consumes three eggs for breakfast and uses four eggs for baking muffins, totaling seven eggs consumed daily. After her consumption, she has 9 eggs remaining. Jan",openai,gpt-4o-mini
+effa5dbb,SHARED_MEMORY_NL,MATH,0,1,991,336,1327,7185.37,3,False,False,1.0,"Janet’s ducks lay 16 eggs per day. She consumes three eggs for breakfast and four for baking muffins, totaling seven eggs consumed daily. After her consumption, she has 9 eggs remaining. She sells the",openai,gpt-4o-mini
+d3ff39d2,SHARED_MEMORY_NL,MATH,0,2,964,361,1325,8484.51,3,False,False,1.0,"Janet's ducks lay a total of 16 eggs per day. She consumes 3 eggs for breakfast and uses 4 eggs for baking muffins, which totals to 7 eggs consumed daily. After her consumption, the number of eggs rem",openai,gpt-4o-mini
+44f2ee11,SHARED_MEMORY_NL,MATH,1,0,756,268,1024,5649.77,3,False,False,1.0,"To solve the problem, we first identify the quantities of fiber needed for the robe. The problem states that it takes 2 bolts of blue fiber. For the white fiber, it requires half that amount, which is",openai,gpt-4o-mini
+6bf15e1a,SHARED_MEMORY_NL,MATH,1,1,760,258,1018,4731.26,3,False,False,1.0,"To solve the problem, we need to determine the total amount of fiber required for the robe. The robe requires 2 bolts of blue fiber. Additionally, it requires half as much white fiber, which amounts t",openai,gpt-4o-mini
+75806315,SHARED_MEMORY_NL,MATH,1,2,769,276,1045,7349.71,3,False,False,1.0,"To solve the problem, we first identify that the robe requires 2 bolts of blue fiber. Next, we calculate the amount of white fiber needed, which is half of the blue fiber amount. Since half of 2 bolts",openai,gpt-4o-mini
+96d44321,SHARED_MEMORY_NL,MATH,2,0,941,393,1334,8600.71,3,False,False,0.0,"To determine the profit made by Josh from flipping a house, we first calculate his total investment. He purchased the house for $80,000 and spent an additional $50,000 on repairs, bringing his total i",openai,gpt-4o-mini
+0f0b216a,SHARED_MEMORY_NL,MATH,2,1,998,492,1490,7666.99,3,False,False,1.0,"To determine the profit Josh made from flipping the house, we first calculate his total costs. He purchased the house for $80,000 and spent an additional $50,000 on repairs, leading to a total cost of",openai,gpt-4o-mini
+cb87f6c3,SHARED_MEMORY_NL,MATH,2,2,969,448,1417,6877.99,3,False,False,0.0,"To solve the problem, we first calculate the total investment Josh made in the house by adding the purchase price of $80,000 to the repair costs of $50,000, resulting in a total investment of $130,000",openai,gpt-4o-mini
+a8a8154f,SHARED_MEMORY_NL,MATH,3,0,825,294,1119,6664.43,3,False,False,1.0,"To solve the problem, we first determine how many sprints James runs in a week. He runs 3 sprints, 3 times a week, which totals 9 sprints per week. Next, we calculate the total distance he runs in one",openai,gpt-4o-mini
+210f8713,SHARED_MEMORY_NL,MATH,3,1,853,367,1220,5736.9,3,False,False,1.0,"To solve the problem, we first determine how many sprints James runs in a week. He runs 3 sprints each time he trains and trains 3 times a week. Therefore, the total number of sprints he runs in a wee",openai,gpt-4o-mini
+394d5433,SHARED_MEMORY_NL,MATH,3,2,831,323,1154,5284.1,3,False,False,1.0,"To solve the problem, we first determine the number of sprints James runs in a week. He runs 3 sprints, 3 times a week, resulting in a total of 9 sprints per week. Next, we calculate the total distanc",openai,gpt-4o-mini
+72441c56,SHARED_MEMORY_NL,MATH,4,0,1184,421,1605,6863.49,3,False,False,1.0,"Wendi feeds her chickens in three meals throughout the day. In the morning, she gives them 15 cups of feed, and in the afternoon, she provides another 25 cups. This totals to 40 cups of feed given by ",openai,gpt-4o-mini
+51dd9df2,SHARED_MEMORY_NL,MATH,4,1,1194,417,1611,6499.75,3,False,False,1.0,"Wendi feeds her chickens a total of 60 cups of feed each day, as each of her 20 chickens requires 3 cups. She gives 15 cups in the morning and 25 cups in the afternoon, totaling 40 cups for those two ",openai,gpt-4o-mini
+6b06e990,SHARED_MEMORY_NL,MATH,4,2,1238,507,1745,7173.46,3,False,False,1.0,"To determine how much feed Wendi needs to give her chickens in the final meal of the day, we first add the amounts of feed given in the morning and afternoon. Wendi gives 15 cups of feed in the mornin",openai,gpt-4o-mini
+e925f1b3,SHARED_MEMORY_NL,MATH,5,0,1059,490,1549,7278.63,3,False,False,1.0,"Kylar went to the store to buy glasses for his new apartment. The first glass costs $5, and every second glass costs only 60% of that price, which is $3. Since Kylar wants to buy a total of 16 glasses",openai,gpt-4o-mini
+bae8d89b,SHARED_MEMORY_NL,MATH,5,1,1016,395,1411,6219.16,3,False,False,1.0,"Kylar went to the store to buy glasses for his new apartment. The first glass costs $5, while every second glass costs 60% of that price, which is $3. Since Kylar wants to buy 16 glasses, he will purc",openai,gpt-4o-mini
+29e858be,SHARED_MEMORY_NL,MATH,5,2,1001,448,1449,6807.81,3,False,False,1.0,"Kylar wants to buy 16 glasses. The first glass costs $5, while every second glass costs 60% of that price, which is $3. Since he is buying 16 glasses, 8 will be at the full price of $5 each, and 8 wil",openai,gpt-4o-mini
+5ceb0b44,SHARED_MEMORY_NL,MATH,6,0,819,278,1097,5208.92,3,False,False,1.0,"To solve the problem, we first note that Seattle has 20 sheep. Charleston has four times as many sheep as Seattle, which means Charleston has 80 sheep (20 multiplied by 4). Toulouse has twice as many ",openai,gpt-4o-mini
+af205ca4,SHARED_MEMORY_NL,MATH,6,1,913,349,1262,7383.24,3,False,False,1.0,"To solve the problem, we start by noting that Seattle has 20 sheep. Charleston has four times as many sheep as Seattle, which means Charleston has 20 multiplied by 4, resulting in 80 sheep. Next, Toul",openai,gpt-4o-mini
+853fbac7,SHARED_MEMORY_NL,MATH,6,2,889,359,1248,6792.74,3,False,False,1.0,"To solve the problem, we start with the information that Seattle has 20 sheep. To find out how many sheep Charleston has, we multiply the number of sheep Seattle has by 4, resulting in Charleston havi",openai,gpt-4o-mini
+0c352875,SHARED_MEMORY_NL,MATH,7,0,1078,564,1642,8745.02,3,True,False,1.0,"To solve the problem, we start by identifying that Carla is downloading a file that is 200 GB in size, and her normal download speed is 2 GB per minute. First, we calculate how long it takes her to do",openai,gpt-4o-mini
+d962500c,SHARED_MEMORY_NL,MATH,7,1,1070,527,1597,8899.8,3,False,False,0.0,"To solve the problem, we first calculate how long it takes Carla to download 40% of the 200 GB file. Since 40% of 200 GB is 80 GB, and Carla downloads at a rate of 2 GB per minute, the time taken for ",openai,gpt-4o-mini
+d960f83e,SHARED_MEMORY_NL,MATH,7,2,1060,520,1580,8314.67,3,False,False,0.0,"To solve the problem, we first determine how long it takes Carla to download 40% of the 200 GB file. Since 40% of 200 GB is 80 GB, and Carla downloads at a rate of 2 GB per minute, the time taken to d",openai,gpt-4o-mini
+82a5c58e,SHARED_MEMORY_NL,MATH,8,0,1263,561,1824,8481.67,3,True,False,1.0,"To solve the problem, we first calculate the distance John drives in the first 3 hours at a speed of 60 mph, which equals 180 miles. On his return trip, he spends the first 2 hours in standstill traff",openai,gpt-4o-mini
+8dc503d9,SHARED_MEMORY_NL,MATH,8,1,1254,510,1764,7454.45,3,True,False,0.0,"To solve the problem, we first calculate the distance John drives during the first 3 hours at a speed of 60 mph. This results in a distance of 180 miles. Next, during the next 2 hours in standstill tr",openai,gpt-4o-mini
+176220ee,SHARED_MEMORY_NL,MATH,8,2,1258,611,1869,8688.31,3,True,False,0.0,"To solve the problem, we first calculate the distance John drives in the first 3 hours at a speed of 60 mph. This gives us a distance of 180 miles. 
+
+Next, during the first 2 hours of his return trip,",openai,gpt-4o-mini
+cc5e615f,SHARED_MEMORY_NL,MATH,9,0,978,435,1413,6748.13,3,False,False,1.0,"Eliza's regular hourly rate is $10. She worked for a total of 45 hours this week, with the first 40 hours counted as regular hours. Therefore, her earnings for the regular hours worked amount to $400,",openai,gpt-4o-mini
+3e7c9ad2,SHARED_MEMORY_NL,MATH,9,1,966,412,1378,6891.14,3,False,False,1.0,"Eliza's regular hourly rate is $10, and she works for 40 hours at this rate, which gives her earnings of $400 for the regular hours. She worked a total of 45 hours this week, meaning she has 5 overtim",openai,gpt-4o-mini
+370548f6,SHARED_MEMORY_NL,MATH,9,2,981,392,1373,6835.14,3,False,False,1.0,"Eliza's regular hourly rate is $10, and she worked for 45 hours this week. For the first 40 hours, her earnings amount to $400. Since she worked 45 hours in total, she has 5 overtime hours. Her overti",openai,gpt-4o-mini
+903ec971,SHARED_MEMORY_NL,READING,0,0,1205,121,1326,5027.81,3,False,False,0.286,The NFL team that represented the AFC at Super Bowl 50 was the Denver Broncos.,openai,gpt-4o-mini
+ca582303,SHARED_MEMORY_NL,READING,0,1,1139,92,1231,3270.0,3,False,False,0.286,The NFL team that represented the AFC at Super Bowl 50 was the Denver Broncos.,openai,gpt-4o-mini
+65e6a098,SHARED_MEMORY_NL,READING,0,2,1133,89,1222,3310.43,3,False,False,0.286,The NFL team that represented the AFC at Super Bowl 50 was the Denver Broncos.,openai,gpt-4o-mini
+1b19f13c,SHARED_MEMORY_NL,READING,1,0,1189,113,1302,4071.0,3,False,False,0.286,The NFC team that represented the NFC at Super Bowl 50 was the Carolina Panthers.,openai,gpt-4o-mini
+4bee26f7,SHARED_MEMORY_NL,READING,1,1,1197,117,1314,3348.77,3,False,False,0.286,The NFC team that represented the conference at Super Bowl 50 was the Carolina Panthers.,openai,gpt-4o-mini
+41914c2b,SHARED_MEMORY_NL,READING,1,2,1141,102,1243,2899.33,3,False,False,0.235,The NFL team that represented the National Football Conference (NFC) at Super Bowl 50 was the Carolina Panthers.,openai,gpt-4o-mini
+42ea9ae1,SHARED_MEMORY_NL,READING,2,0,1121,86,1207,3336.0,3,False,False,0.64,"Super Bowl 50 took place at Levi's Stadium in Santa Clara, California.",openai,gpt-4o-mini
+ebe4c749,SHARED_MEMORY_NL,READING,2,1,1133,95,1228,2787.68,3,False,False,0.64,"Super Bowl 50 took place at Levi's Stadium in Santa Clara, California.",openai,gpt-4o-mini
+aa7ca3fd,SHARED_MEMORY_NL,READING,2,2,1143,97,1240,3146.91,3,False,False,0.64,"Super Bowl 50 took place at Levi's Stadium in Santa Clara, California.",openai,gpt-4o-mini
+21116c43,SHARED_MEMORY_NL,READING,3,0,1115,80,1195,3622.25,3,False,False,0.333,The NFL team that won Super Bowl 50 is the Denver Broncos.,openai,gpt-4o-mini
+6504943f,SHARED_MEMORY_NL,READING,3,1,1187,107,1294,2966.48,3,False,False,0.5,The Denver Broncos won Super Bowl 50.,openai,gpt-4o-mini
+84d4c351,SHARED_MEMORY_NL,READING,3,2,1130,80,1210,3569.1,3,False,False,0.5,The Denver Broncos won Super Bowl 50.,openai,gpt-4o-mini
+de991185,SHARED_MEMORY_NL,READING,4,0,1169,101,1270,3747.0,3,False,False,0.167,The color used to emphasize the 50th anniversary of the Super Bowl was gold.,openai,gpt-4o-mini
+3cb07c6f,SHARED_MEMORY_NL,READING,4,1,1147,90,1237,3208.55,3,False,False,0.167,The color used to emphasize the 50th anniversary of the Super Bowl was gold.,openai,gpt-4o-mini
+0158948c,SHARED_MEMORY_NL,READING,4,2,1143,88,1231,2824.21,3,False,False,0.167,The color used to emphasize the 50th anniversary of the Super Bowl was gold.,openai,gpt-4o-mini
+66c076cb,SHARED_MEMORY_NL,READING,5,0,1125,95,1220,3042.74,3,False,False,0.25,"The theme of Super Bowl 50 was the ""golden anniversary,"" highlighted by various gold-themed initiatives.",openai,gpt-4o-mini
+8a9998b3,SHARED_MEMORY_NL,READING,5,1,1137,101,1238,3448.6,3,False,False,0.25,"The theme of Super Bowl 50 was the ""golden anniversary,"" highlighted by various gold-themed initiatives.",openai,gpt-4o-mini
+ff85b596,SHARED_MEMORY_NL,READING,5,2,1141,103,1244,3233.77,3,False,False,0.25,"The theme of Super Bowl 50 was the ""golden anniversary,"" highlighted by various gold-themed initiatives.",openai,gpt-4o-mini
+a8e7f201,SHARED_MEMORY_NL,READING,6,0,1171,104,1275,3297.25,3,False,False,0.6,"The game was played on February 7, 2016.",openai,gpt-4o-mini
+226158e7,SHARED_MEMORY_NL,READING,6,1,1167,102,1269,2943.44,3,False,False,0.6,"The game was played on February 7, 2016.",openai,gpt-4o-mini
+c93b9b01,SHARED_MEMORY_NL,READING,6,2,1123,84,1207,3332.05,3,False,False,0.6,"The game was played on February 7, 2016.",openai,gpt-4o-mini
+61245fbf,SHARED_MEMORY_NL,READING,7,0,1107,70,1177,3101.73,3,False,False,0.667,AFC stands for American Football Conference.,openai,gpt-4o-mini
+5ecac0be,SHARED_MEMORY_NL,READING,7,1,1113,73,1186,3232.78,3,False,False,0.667,AFC stands for American Football Conference.,openai,gpt-4o-mini
+a81258b5,SHARED_MEMORY_NL,READING,7,2,1109,71,1180,2321.32,3,False,False,0.667,AFC stands for American Football Conference.,openai,gpt-4o-mini
+a6e67718,SHARED_MEMORY_NL,READING,8,0,1175,119,1294,3619.82,3,False,False,0.25,"The theme of Super Bowl 50 was the ""golden anniversary,"" emphasized through various gold-themed initiatives.",openai,gpt-4o-mini
+87a2cb8b,SHARED_MEMORY_NL,READING,8,1,1135,100,1235,4809.3,3,False,False,0.25,"The theme of Super Bowl 50 was the ""golden anniversary,"" highlighted by various gold-themed initiatives.",openai,gpt-4o-mini
+3303336b,SHARED_MEMORY_NL,READING,8,2,1139,102,1241,4039.59,3,False,False,0.25,"The theme of Super Bowl 50 was the ""golden anniversary,"" highlighted by various gold-themed initiatives.",openai,gpt-4o-mini
+613c65cd,SHARED_MEMORY_NL,READING,9,0,1194,111,1305,3575.15,3,False,False,0.667,AFC stands for American Football Conference.,openai,gpt-4o-mini
+1e2ab65e,SHARED_MEMORY_NL,READING,9,1,1112,74,1186,2912.11,3,False,False,0.667,AFC stands for American Football Conference.,openai,gpt-4o-mini
+1ccae7cc,SHARED_MEMORY_NL,READING,9,2,1120,78,1198,3220.36,3,False,False,0.667,AFC stands for American Football Conference.,openai,gpt-4o-mini
+cdbcf8fa,SHARED_MEMORY_NL,NEWS,0,0,1065,300,1365,6039.22,3,False,False,0.28,"In March 2025, the Federal Reserve decided to maintain its benchmark interest rate at a range of 4.25% to 4.50%. Chair Jerome Powell noted that inflation is currently above the target level, recorded ",openai,gpt-4o-mini
+8b985dd1,SHARED_MEMORY_NL,NEWS,0,1,1121,357,1478,6046.3,3,False,False,0.276,"The Federal Reserve maintained its benchmark interest rate at 4.25%-4.50% during the March 2025 meeting. Chair Jerome Powell highlighted that inflation is above the target, currently at 2.8%, while th",openai,gpt-4o-mini
+b09daeb3,SHARED_MEMORY_NL,NEWS,0,2,1097,343,1440,6344.31,3,False,False,0.292,"The Federal Reserve held its benchmark interest rate steady at 4.25%-4.50% during the March 2025 meeting. Chair Jerome Powell noted that inflation is above the target at 2.8%, while the unemployment r",openai,gpt-4o-mini
+b1221327,SHARED_MEMORY_NL,NEWS,1,0,1045,336,1381,5703.86,3,False,False,0.293,"Apple reported record earnings for the first quarter of fiscal year 2025, achieving a total revenue of $124.3 billion, which represents a 4% increase compared to the previous year. iPhone revenue was ",openai,gpt-4o-mini
+22c0fd98,SHARED_MEMORY_NL,NEWS,1,1,1066,321,1387,5227.15,3,False,False,0.365,"Apple reported record earnings for the first quarter of fiscal year 2025, with total revenue of $124.3 billion, reflecting a 4% increase from the previous year. iPhone revenue was $69.1 billion, and s",openai,gpt-4o-mini
+a4647b54,SHARED_MEMORY_NL,NEWS,1,2,983,291,1274,5935.96,3,False,False,0.335,"Apple reported record earnings for the first quarter of fiscal year 2025, achieving total revenue of $124.3 billion, which is a 4% increase from the previous year. iPhone revenue contributed $69.1 bil",openai,gpt-4o-mini
+b356f496,SHARED_MEMORY_NL,NEWS,2,0,1022,298,1320,6321.2,3,False,False,0.302,"Tesla has announced its new affordable electric vehicle, the Model Q, which is priced at $25,000. This model is designed to encourage mass-market adoption and offers a range of 280 miles, with the abi",openai,gpt-4o-mini
+6a912b75,SHARED_MEMORY_NL,NEWS,2,1,1053,317,1370,6005.67,3,False,False,0.302,"Tesla has announced its new affordable electric vehicle, the Model Q, which is priced at $25,000. This model is designed to encourage mass-market adoption and boasts a range of 280 miles, with the abi",openai,gpt-4o-mini
+7fcf0aa0,SHARED_MEMORY_NL,NEWS,2,2,1025,302,1327,6640.38,3,False,False,0.265,"Tesla has announced a new affordable electric vehicle called the Model Q, which is priced at $25,000. This model is designed for mass-market adoption, featuring a range of 280 miles and an acceleratio",openai,gpt-4o-mini
+b051638c,SHARED_MEMORY_NL,NEWS,3,0,1046,327,1373,6536.74,3,False,False,0.296,"TSMC has announced that its fabrication facility in Arizona is now producing 4nm chips with a yield rate of 90%. This advancement has led to a notable reduction in global semiconductor lead times, whi",openai,gpt-4o-mini
+ad60280a,SHARED_MEMORY_NL,NEWS,3,1,1134,376,1510,7079.07,3,False,False,0.282,"TSMC has reported that its Arizona fabrication facility is now producing 4nm chips with a yield rate of 90%. This advancement has led to a notable reduction in global semiconductor lead times, which h",openai,gpt-4o-mini
+1a3f1bdd,SHARED_MEMORY_NL,NEWS,3,2,1067,352,1419,6705.92,3,False,False,0.281,TSMC has announced that its Arizona fabrication plant is now producing 4nm chips with a yield rate of 90%. This advancement has significantly reduced global semiconductor lead times from 26 weeks to 1,openai,gpt-4o-mini
+8d1dd284,SHARED_MEMORY_NL,NEWS,4,0,992,328,1320,6126.59,3,False,False,0.238,"The European Union has enacted the AI Act, marking it as the world's first comprehensive legislation on artificial intelligence. This law requires high-risk AI systems to undergo conformity assessment",openai,gpt-4o-mini
+0fa2959c,SHARED_MEMORY_NL,NEWS,4,1,967,318,1285,5783.42,3,False,False,0.226,"The European Union has enacted the AI Act, which is recognized as the world's first comprehensive regulation on artificial intelligence. This law requires that high-risk AI systems undergo conformity ",openai,gpt-4o-mini
+addd102d,SHARED_MEMORY_NL,NEWS,4,2,982,329,1311,6042.05,3,False,False,0.229,"The European Union has enacted the AI Act, which is the world's first comprehensive law regulating artificial intelligence. This legislation requires high-risk AI systems to undergo conformity assessm",openai,gpt-4o-mini
+01e26dbc,SHARED_MEMORY_NL,NEWS,5,0,1076,322,1398,5483.89,3,False,False,0.234,"SpaceX's Starship has successfully completed its first orbital flight, which lasted 90 minutes before splashing down in the Indian Ocean. During this mission, the Starship reached an altitude of 250 k",openai,gpt-4o-mini
+392653f1,SHARED_MEMORY_NL,NEWS,5,1,1064,318,1382,7101.12,3,False,False,0.232,"SpaceX's Starship has successfully completed its first orbital flight, which lasted 90 minutes before splashing down in the Indian Ocean. During this mission, the Starship reached an altitude of 250 k",openai,gpt-4o-mini
+b33227f9,SHARED_MEMORY_NL,NEWS,5,2,994,274,1268,6832.64,3,False,False,0.256,"SpaceX's Starship has successfully completed its first orbital flight, which lasted 90 minutes before splashing down in the Indian Ocean. During this flight, the Super Heavy booster was successfully c",openai,gpt-4o-mini
+8fa76b45,SHARED_MEMORY_NL,NEWS,6,0,1006,294,1300,8903.79,3,False,False,0.201,"Amazon has expanded its Prime Air drone delivery service to ten major cities in the United States, including New York, Los Angeles, and Chicago. The service allows for deliveries of packages weighing ",openai,gpt-4o-mini
+703c1ee9,SHARED_MEMORY_NL,NEWS,6,1,989,285,1274,6166.83,3,False,False,0.238,"Amazon has launched its Prime Air drone delivery service in ten major US cities, including New York, Los Angeles, and Chicago. This service enables deliveries of packages weighing under five pounds to",openai,gpt-4o-mini
+962bb343,SHARED_MEMORY_NL,NEWS,6,2,1006,312,1318,6837.5,3,False,False,0.275,"Amazon has launched its Prime Air drone delivery service in ten major US cities, including New York, Los Angeles, and Chicago. The service is designed for packages weighing under five pounds, which ca",openai,gpt-4o-mini
+bf8d9ee9,SHARED_MEMORY_NL,NEWS,7,0,990,276,1266,6114.73,3,False,False,0.246,"OpenAI has launched GPT-5, which demonstrates a 40% improvement in graduate-level reasoning benchmarks compared to its predecessor. It has achieved impressive scores of 92% on the MATH benchmark and 8",openai,gpt-4o-mini
+53f63cdf,SHARED_MEMORY_NL,NEWS,7,1,974,262,1236,4947.73,3,False,False,0.283,"OpenAI has released GPT-5, which shows a 40% improvement on graduate-level reasoning benchmarks compared to its predecessor. The model scores 92% on the MATH benchmark and 88% on the GPQA benchmark. T",openai,gpt-4o-mini
+138f9055,SHARED_MEMORY_NL,NEWS,7,2,980,281,1261,5266.81,3,False,False,0.259,"OpenAI has launched GPT-5, which demonstrates a 40% improvement on graduate-level reasoning benchmarks compared to its predecessor. The model achieves impressive scores of 92% on the MATH benchmark an",openai,gpt-4o-mini
+50976fa2,SHARED_MEMORY_NL,NEWS,8,0,1013,283,1296,7331.88,3,False,False,0.372,"A 7.4 magnitude earthquake struck off the coast of Hokkaido, Japan at 3:42 AM local time, prompting a tsunami warning for coastal areas within a 300 km radius. Waves of up to 3 meters were observed as",openai,gpt-4o-mini
+b06db67d,SHARED_MEMORY_NL,NEWS,8,1,1039,291,1330,6452.53,3,False,False,0.38,"A 7.4 magnitude earthquake struck off the coast of Hokkaido, Japan at 3:42 AM local time. This prompted a tsunami warning for coastal areas within a 300 km radius, with wave heights reaching up to 3 m",openai,gpt-4o-mini
+d921c20c,SHARED_MEMORY_NL,NEWS,8,2,1035,290,1325,6063.51,3,False,False,0.388,"A 7.4 magnitude earthquake struck off the coast of Hokkaido, Japan at 3:42 AM local time, prompting a tsunami warning for coastal areas within a 300 km radius. Waves up to 3 meters were observed as a ",openai,gpt-4o-mini
+045cb779,SHARED_MEMORY_NL,NEWS,9,0,1038,312,1350,5243.65,3,False,False,0.23,"In 2024, global carbon dioxide emissions fell by 2.1%, marking the first annual decline that was not associated with an economic recession. Renewable energy has made significant strides, now accountin",openai,gpt-4o-mini
+d6a82abd,SHARED_MEMORY_NL,NEWS,9,1,1118,410,1528,11977.2,3,False,False,0.205,"In 2024, global carbon dioxide emissions fell by 2.1%, marking the first annual decline not linked to an economic recession. This decline reflects a significant shift towards more sustainable energy p",openai,gpt-4o-mini
+93815d84,SHARED_MEMORY_NL,NEWS,9,2,1057,362,1419,6279.62,3,False,False,0.184,"In 2024, global carbon dioxide emissions decreased by 2.1%, marking the first annual decline not associated with an economic recession. This reduction signifies a shift towards more sustainable energy",openai,gpt-4o-mini
+42ea52e9,SHARED_MEMORY_MARKDOWN,MATH,0,0,1162,462,1624,9765.89,3,False,False,1.0,"## Final Answer Synthesis
+
+- **Daily Egg Production**: Janet’s ducks lay a total of **16 eggs** per day.
+  
+- **Eggs Consumed by Janet**:
+  - Eggs eaten for breakfast: **3 eggs**
+  - Eggs baked into m",openai,gpt-4o-mini
+3db64f38,SHARED_MEMORY_MARKDOWN,MATH,0,1,1205,503,1708,11570.91,3,False,False,1.0,"## Final Answer Synthesis
+
+- **Total Eggs Laid Daily**: 16 eggs
+- **Eggs Eaten for Breakfast**: 3 eggs
+- **Eggs Used for Baking Muffins**: 4 eggs
+- **Total Eggs Eaten and Used for Baking**: 
+  - Calcu",openai,gpt-4o-mini
+8afd03eb,SHARED_MEMORY_MARKDOWN,MATH,0,2,1256,530,1786,10652.72,3,False,False,1.0,"## Problem Breakdown
+
+- **Total Eggs Laid Daily**
+  - Janet’s ducks lay **16 eggs** per day.
+
+- **Eggs Used for Breakfast and Muffins**
+  - Janet eats **3 eggs** for breakfast.
+  - She uses **4 eggs**",openai,gpt-4o-mini
+74cf6794,SHARED_MEMORY_MARKDOWN,MATH,1,0,802,331,1133,7845.18,3,False,False,1.0,"## Step 1: Identify the Quantities of Fiber Needed
+- Blue fiber required: 2 bolts
+- White fiber required: half of the blue fiber
+  - Calculation: 2 bolts of blue fiber / 2 = 1 bolt of white fiber
+
+## ",openai,gpt-4o-mini
+eb536163,SHARED_MEMORY_MARKDOWN,MATH,1,1,850,404,1254,8335.8,3,False,False,1.0,"## Step-by-Step Solution
+
+- **Identify the amount of blue fiber required for the robe:**
+  - The problem states that a robe takes **2 bolts of blue fiber**.
+
+- **Calculate the amount of white fiber re",openai,gpt-4o-mini
+1afa2fd2,SHARED_MEMORY_MARKDOWN,MATH,1,2,810,344,1154,8606.89,3,False,False,1.0,"## Solution to the Math Problem
+
+### Step 1: Identify the Quantities of Blue and White Fiber Needed for the Robe
+- Blue fiber: 2 bolts
+- White fiber: 1 bolt (which is half of the blue fiber)
+
+### Step",openai,gpt-4o-mini
+3fd3efff,SHARED_MEMORY_MARKDOWN,MATH,2,0,975,424,1399,7798.64,3,False,False,0.0,"## Step 1: Calculate the Total Investment Made by Josh
+- Purchase price of the house: $80,000
+- Repair costs: $50,000
+- Total investment = Purchase price + Repair costs  
+  Total investment = $80,000 ",openai,gpt-4o-mini
+46a67dd3,SHARED_MEMORY_MARKDOWN,MATH,2,1,1142,570,1712,8796.15,3,False,False,0.0,"## Solution to the Math Problem
+
+### Step 1: Calculate the Total Investment
+- Purchase price of the house: $80,000
+- Repair costs: $50,000
+- **Total investment**: 
+  1. $80,000 + $50,000 = **$130,000*",openai,gpt-4o-mini
+7f578368,SHARED_MEMORY_MARKDOWN,MATH,2,2,1033,500,1533,8375.33,3,False,False,0.0,"## Solution to the Math Problem
+
+1. **Calculate the Total Investment Made by Josh**
+   - Purchase price of the house: $80,000
+   - Cost of repairs: $50,000
+   - **Total Investment**: 
+     - $80,000 +",openai,gpt-4o-mini
+161574f8,SHARED_MEMORY_MARKDOWN,MATH,3,0,994,450,1444,8255.26,3,False,False,1.0,"## Solution to the Math Problem
+
+1. **Identify the Variables**
+   - Number of sprints per session: 3
+   - Number of sessions per week: 3
+   - Distance of each sprint: 60 meters
+
+2. **Calculate Total S",openai,gpt-4o-mini
+fea899cb,SHARED_MEMORY_MARKDOWN,MATH,3,1,775,280,1055,6386.29,3,False,False,1.0,"## Solution to the Math Problem
+
+- **Total number of sprints James runs in a week:**
+  - James runs 3 sprints, 3 times a week.
+  - Total sprints per week = 3 sprints/week * 3 days/week = **9 sprints/w",openai,gpt-4o-mini
+89bcc674,SHARED_MEMORY_MARKDOWN,MATH,3,2,1027,443,1470,7956.71,3,False,False,1.0,"## Solution to the Math Problem
+
+1. **Calculate Total Sprints per Week**
+   - James runs 3 sprints per session.
+   - He runs 3 sessions per week.
+   - Total sprints per week = 3 sprints/session * 3 se",openai,gpt-4o-mini
+851acb42,SHARED_MEMORY_MARKDOWN,MATH,4,0,1237,468,1705,8022.52,3,False,False,1.0,"## Solution to Wendi's Chicken Feed Problem
+
+1. **Calculate Total Daily Feed Requirement**
+   - Each chicken requires 3 cups of feed per day.
+   - Wendi has 20 chickens.
+   - Total daily feed requirem",openai,gpt-4o-mini
+7a319585,SHARED_MEMORY_MARKDOWN,MATH,4,1,1288,503,1791,8036.99,3,False,False,0.0,"## Final Answer
+
+- **Total Daily Feed Requirement**: 
+  - Morning feed: 15 cups
+  - Afternoon feed: 25 cups
+  - Total: \( 15 + 25 = 40 \) cups
+
+- **Feed Per Chicken**: 
+  - Number of chickens: 20
+  - ",openai,gpt-4o-mini
+564d7a1d,SHARED_MEMORY_MARKDOWN,MATH,4,2,1370,514,1884,8114.55,3,False,False,1.0,"## Final Answer
+
+- Wendi feeds her chickens a total of **60 cups** of feed per day (3 cups per chicken for 20 chickens).
+- She provides **40 cups** of feed in the morning and afternoon combined (15 cu",openai,gpt-4o-mini
+f20bd711,SHARED_MEMORY_MARKDOWN,MATH,5,0,1184,550,1734,8951.79,3,False,False,1.0,"## Pricing Structure
+- The cost of the first glass: $5
+- The cost of every second glass: 60% of $5 = $3
+
+## Total Number of Glasses
+- Total number of glasses Kylar wants to buy: 16 glasses
+
+## Cost Ca",openai,gpt-4o-mini
+bcc4d842,SHARED_MEMORY_MARKDOWN,MATH,5,1,1186,624,1810,8742.04,3,False,False,1.0,"## Problem Breakdown
+
+- **Understand the Pricing Structure**
+  - The cost of the first glass is **$5**.
+  - The discounted price for every second glass is **60% of $5**, which calculates to:
+    - \( ",openai,gpt-4o-mini
+913bafd3,SHARED_MEMORY_MARKDOWN,MATH,5,2,1171,572,1743,7380.22,3,True,False,1.0,"## Final Answer
+
+- Kylar wants to buy **16 glasses**.
+- The pricing structure is as follows:
+  - The cost of the first glass is **$5**.
+  - The discounted price for every second glass is **60% of $5**",openai,gpt-4o-mini
+3ea2ca55,SHARED_MEMORY_MARKDOWN,MATH,6,0,922,427,1349,10137.19,3,False,False,1.0,"## Solution to the Math Problem
+
+- **Identify the number of sheep Seattle has.**
+  - Seattle has 20 sheep.
+
+- **Calculate the number of sheep Charleston has based on Seattle's count.**
+  - Charleston ",openai,gpt-4o-mini
+dec46171,SHARED_MEMORY_MARKDOWN,MATH,6,1,891,388,1279,7380.09,3,False,False,1.0,"## Solution to the Math Problem
+
+- **Determine the number of sheep Seattle has:**
+  - Seattle has 20 sheep.
+
+- **Calculate the number of sheep Charleston has based on Seattle's count:**
+  - Charleston",openai,gpt-4o-mini
+4cc8545d,SHARED_MEMORY_MARKDOWN,MATH,6,2,938,460,1398,8468.14,3,False,False,1.0,"## Solution to the Math Problem
+
+- **Identify the number of sheep Seattle has:**
+  - Seattle has **20 sheep**.
+
+- **Calculate the number of sheep Charleston has based on Seattle's count:**
+  - Charles",openai,gpt-4o-mini
+27ca11a2,SHARED_MEMORY_MARKDOWN,MATH,7,0,1364,707,2071,14265.92,3,True,False,0.0,"## Solution to the Download Problem
+
+1. **Calculate the time taken to download 40% of the file**
+   - Size of 40% of the 200 GB file:  
+     \( 200 \, \text{GB} \times 0.40 = 80 \, \text{GB} \)
+   - T",openai,gpt-4o-mini
+50aeeb8a,SHARED_MEMORY_MARKDOWN,MATH,7,1,1221,645,1866,10453.48,3,True,False,0.0,"## Problem Overview
+- Carla is downloading a 200 GB file.
+- Her download speed is 2 GB/minute.
+- The download is interrupted 40% of the way through by a Windows update requiring a 20-minute restart.
+-",openai,gpt-4o-mini
+08c2ade4,SHARED_MEMORY_MARKDOWN,MATH,7,2,1247,656,1903,9373.38,3,True,False,0.0,"## Problem Overview
+- Carla is downloading a 200 GB file.
+- Her download speed is 2 GB/minute.
+- A Windows restart occurs after she has downloaded 40% of the file, taking 20 minutes.
+- After the resta",openai,gpt-4o-mini
+c609d32d,SHARED_MEMORY_MARKDOWN,MATH,8,0,1440,704,2144,11729.62,3,True,False,0.0,"## Final Answer
+
+### Step-by-Step Solution
+
+1. **Calculate the distance John drives in the first segment of his trip.**
+   - **Speed:** 60 mph
+   - **Time:** 3 hours
+   - **Distance:** 
+     \[
+     \",openai,gpt-4o-mini
+cacdecf6,SHARED_MEMORY_MARKDOWN,MATH,8,1,1450,698,2148,11163.08,3,True,False,0.0,"## Final Calculation of John's Distance from Home
+
+1. **Distance John Drives Away from Home**
+   - Distance traveled during the first 3 hours at 60 mph:
+     - Distance = Speed × Time = 60 mph × 3 hou",openai,gpt-4o-mini
+5d0a87ec,SHARED_MEMORY_MARKDOWN,MATH,8,2,1324,648,1972,11306.64,3,True,False,0.0,"## Solution to the Problem
+
+### 1. Distance Driven Away from Home
+- **Distance driven in the first 3 hours at 60 mph:**
+  - Distance = Speed × Time
+  - Distance = 60 mph × 3 hours = **180 miles**
+
+###",openai,gpt-4o-mini
+377f92c8,SHARED_MEMORY_MARKDOWN,MATH,9,0,1036,574,1610,10410.78,3,True,False,0.0,"## Eliza's Earnings Calculation
+
+1. **Calculate Eliza's earnings for the first 40 hours:**
+   - Regular hourly rate: $10
+   - Hours worked at regular rate: 40 hours
+   - Earnings for the first 40 hour",openai,gpt-4o-mini
+969ca52e,SHARED_MEMORY_MARKDOWN,MATH,9,1,1038,575,1613,9082.72,3,True,False,0.0,"## Eliza's Earnings Calculation
+
+1. **Calculate Eliza's earnings for the first 40 hours:**
+   - Regular hourly rate: $10
+   - Hours worked at regular rate: 40 hours
+   - Earnings for the first 40 hour",openai,gpt-4o-mini
+d2850303,SHARED_MEMORY_MARKDOWN,MATH,9,2,1038,576,1614,8124.79,3,True,False,0.0,"## Eliza's Weekly Earnings Calculation
+
+1. **Calculate Eliza's earnings for the first 40 hours**
+   - Regular hourly rate: $10
+   - Hours worked at regular rate: 40 hours
+   - Earnings for the first 4",openai,gpt-4o-mini
+a903e0cf,SHARED_MEMORY_MARKDOWN,READING,0,0,1283,217,1500,4707.86,3,False,False,0.25,"## Final Answer
+
+- The NFL team that represented the AFC at Super Bowl 50 is the **Denver Broncos**.",openai,gpt-4o-mini
+a1220f45,SHARED_MEMORY_MARKDOWN,READING,0,1,1468,299,1767,7276.28,3,False,False,0.333,"## Final Answer
+- The Denver Broncos represented the AFC at Super Bowl 50.",openai,gpt-4o-mini
+b5328594,SHARED_MEMORY_MARKDOWN,READING,0,2,1347,283,1630,7067.58,3,False,False,0.25,"## Final Answer
+
+- The NFL team that represented the AFC at Super Bowl 50 was the **Denver Broncos**.",openai,gpt-4o-mini
+abf8a0d7,SHARED_MEMORY_MARKDOWN,READING,1,0,1344,224,1568,4840.92,3,False,False,0.286,"## Final Answer
+
+- The NFC team represented at Super Bowl 50 was the Carolina Panthers.",openai,gpt-4o-mini
+d321e869,SHARED_MEMORY_MARKDOWN,READING,1,1,1381,282,1663,6396.45,3,False,False,0.25,"## Final Answer
+
+- The NFL team that represented the NFC at Super Bowl 50 is the **Carolina Panthers**.",openai,gpt-4o-mini
+d1150c1e,SHARED_MEMORY_MARKDOWN,READING,1,2,1276,215,1491,5412.69,3,False,False,0.25,"## Final Answer
+
+- The NFL team that represented the NFC at Super Bowl 50 was the **Carolina Panthers**.",openai,gpt-4o-mini
+3acfddc8,SHARED_MEMORY_MARKDOWN,READING,2,0,1348,280,1628,5993.74,3,False,False,0.593,"## Final Answer
+- Super Bowl 50 took place at Levi's Stadium in Santa Clara, California.",openai,gpt-4o-mini
+32e6dcd3,SHARED_MEMORY_MARKDOWN,READING,2,1,1315,252,1567,6453.88,3,False,False,0.593,"## Final Answer
+- Super Bowl 50 took place at Levi's Stadium in Santa Clara, California.",openai,gpt-4o-mini
+6b3b6796,SHARED_MEMORY_MARKDOWN,READING,2,2,1307,246,1553,5336.34,3,False,False,0.593,"## Final Answer
+
+- Super Bowl 50 took place at Levi's Stadium in Santa Clara, California.",openai,gpt-4o-mini
+2be72aef,SHARED_MEMORY_MARKDOWN,READING,3,0,1309,241,1550,4592.28,3,False,False,0.4,"## Final Answer
+- The Denver Broncos won Super Bowl 50.",openai,gpt-4o-mini
+6f59cbda,SHARED_MEMORY_MARKDOWN,READING,3,1,1323,264,1587,5545.41,3,False,False,0.286,"## Final Answer
+- The NFL team that won Super Bowl 50 is the **Denver Broncos**.",openai,gpt-4o-mini
+23dfba79,SHARED_MEMORY_MARKDOWN,READING,3,2,1324,262,1586,5121.49,3,False,False,0.286,"## Final Answer
+- The NFL team that won Super Bowl 50 is the **Denver Broncos**.",openai,gpt-4o-mini
+ed43ffa5,SHARED_MEMORY_MARKDOWN,READING,4,0,1342,250,1592,4920.41,3,False,False,0.5,"## Final Answer
+- Gold.",openai,gpt-4o-mini
+7e9980d4,SHARED_MEMORY_MARKDOWN,READING,4,1,1422,265,1687,6142.37,3,False,False,0.143,"## Final Answer
+
+- The color used to emphasize the 50th anniversary of the Super Bowl was **gold**.",openai,gpt-4o-mini
+6c667f3a,SHARED_MEMORY_MARKDOWN,READING,4,2,1358,258,1616,5915.02,3,False,False,0.5,"## Final Answer
+- Gold.",openai,gpt-4o-mini
+7ddfc8ec,SHARED_MEMORY_MARKDOWN,READING,5,0,1361,288,1649,5458.85,3,False,False,0.333,"## Final Answer
+- The theme of Super Bowl 50 was the ""golden anniversary.""",openai,gpt-4o-mini
+17034868,SHARED_MEMORY_MARKDOWN,READING,5,1,1351,277,1628,5371.64,3,False,False,0.333,"## Final Answer
+- The theme of Super Bowl 50 was the ""golden anniversary.""",openai,gpt-4o-mini
+64c12e6c,SHARED_MEMORY_MARKDOWN,READING,5,2,1299,231,1530,5761.11,3,False,False,0.333,"## Final Answer
+- The theme of Super Bowl 50 was the ""golden anniversary.""",openai,gpt-4o-mini
+61a9db45,SHARED_MEMORY_MARKDOWN,READING,6,0,1255,203,1458,5051.66,3,False,False,0.5,"## Final Answer
+
+- **The game was played on:** February 7, 2016.",openai,gpt-4o-mini
+fea52f30,SHARED_MEMORY_MARKDOWN,READING,6,1,1281,212,1493,4816.07,3,False,False,0.75,"## Final Answer
+- February 7, 2016",openai,gpt-4o-mini
+c3e5b233,SHARED_MEMORY_MARKDOWN,READING,6,2,1295,239,1534,6154.19,3,False,False,0.5,"## Final Answer
+- The game was played on **February 7, 2016**.",openai,gpt-4o-mini
+12acfc62,SHARED_MEMORY_MARKDOWN,READING,7,0,1251,200,1451,5735.19,3,False,False,0.545,"## Final Answer
+- AFC stands for American Football Conference.",openai,gpt-4o-mini
+ffbb90e2,SHARED_MEMORY_MARKDOWN,READING,7,1,1279,218,1497,5899.98,3,False,False,0.545,"## Final Answer
+- **AFC stands for:** American Football Conference.",openai,gpt-4o-mini
+281bdce1,SHARED_MEMORY_MARKDOWN,READING,7,2,1265,209,1474,4746.45,3,False,False,0.545,"## Final Answer
+- **AFC stands for:** American Football Conference.",openai,gpt-4o-mini
+fdfec4bd,SHARED_MEMORY_MARKDOWN,READING,8,0,1407,332,1739,6144.75,3,False,False,0.333,"## Final Answer
+- The theme of Super Bowl 50 was the ""golden anniversary.""",openai,gpt-4o-mini
+6afcb83c,SHARED_MEMORY_MARKDOWN,READING,8,1,1351,273,1624,7649.46,3,False,False,0.333,"## Final Answer
+
+- The theme of Super Bowl 50 was the ""golden anniversary.""",openai,gpt-4o-mini
+069e7060,SHARED_MEMORY_MARKDOWN,READING,8,2,1363,286,1649,5874.81,3,False,False,0.333,"## Final Answer
+- The theme of Super Bowl 50 was the ""golden anniversary.""",openai,gpt-4o-mini
+728ed3d6,SHARED_MEMORY_MARKDOWN,READING,9,0,1198,152,1350,3894.98,3,False,False,0.545,"## Final Answer
+- **AFC stands for American Football Conference.**",openai,gpt-4o-mini
+57120544,SHARED_MEMORY_MARKDOWN,READING,9,1,1295,228,1523,7272.08,3,False,False,0.75,"## Final Answer
+- American Football Conference",openai,gpt-4o-mini
+0fefe759,SHARED_MEMORY_MARKDOWN,READING,9,2,1255,194,1449,4576.24,3,False,False,0.545,"## Final Answer
+
+- AFC stands for American Football Conference.",openai,gpt-4o-mini
+106c962d,SHARED_MEMORY_MARKDOWN,NEWS,0,0,1436,737,2173,10651.85,3,False,False,0.195,"## Summary of Key Facts and Figures
+
+- **Interest Rate Decision**: 
+  - The Federal Reserve held its benchmark interest rate steady at **4.25%-4.50%** during the March 2025 meeting.
+
+- **Inflation Rat",openai,gpt-4o-mini
+72de04cd,SHARED_MEMORY_MARKDOWN,NEWS,0,1,1435,704,2139,10772.03,3,False,False,0.208,"## Summary of the Federal Reserve's March 2025 Meeting
+
+### Title
+- **Fed Holds Interest Rates Steady in March 2025**
+
+### Key Facts
+- **Interest Rate:** Held steady at 4.25%-4.50%
+- **Inflation Rate:",openai,gpt-4o-mini
+70a33940,SHARED_MEMORY_MARKDOWN,NEWS,0,2,1518,627,2145,9855.95,3,False,False,0.28,"## Summary of Federal Reserve's March 2025 Meeting
+
+- **Main Subject**: Federal Reserve's interest rate decision.
+- **Current Interest Rate Range**: 4.25%-4.50%.
+- **Inflation Rate**: 2.8%, which is a",openai,gpt-4o-mini
+b9ae4aed,SHARED_MEMORY_MARKDOWN,NEWS,1,0,1377,548,1925,10126.82,3,False,False,0.505,"## Apple Q1 FY2025 Earnings Summary
+
+- **Total Revenue**: $124.3 billion (up 4% year-over-year)
+- **iPhone Revenue**: $69.1 billion
+- **Services Revenue**: $26.3 billion (record high)
+- **Earnings Per",openai,gpt-4o-mini
+a405c97f,SHARED_MEMORY_MARKDOWN,NEWS,1,1,1570,697,2267,12394.99,3,False,False,0.405,"## Summary of Apple Q1 FY2025 Earnings
+
+- **Total Revenue:** $124.3 billion
+- **Year-over-Year Growth:** 4%
+- **iPhone Revenue:** $69.1 billion
+- **Services Revenue:** $26.3 billion (record high)
+- **",openai,gpt-4o-mini
+b551fbae,SHARED_MEMORY_MARKDOWN,NEWS,1,2,1379,589,1968,11554.24,3,False,False,0.374,"## Summary of Apple Q1 FY2025 Earnings
+
+- **Total Revenue:** $124.3 billion
+- **Year-over-Year Growth:** 4%
+- **iPhone Revenue:** $69.1 billion
+- **Services Revenue:** $26.3 billion
+- **Earnings Per S",openai,gpt-4o-mini
+7c2fe714,SHARED_MEMORY_MARKDOWN,NEWS,2,0,1143,384,1527,6058.83,3,False,False,0.319,"## Summary of Tesla's New Affordable EV Model Announcement
+
+### Title
+- Tesla Announces New Affordable EV Model
+
+### Key Details of the Model Q
+- **Model Name:** Model Q
+- **Price:** $25,000
+- **Range",openai,gpt-4o-mini
+d1899a2f,SHARED_MEMORY_MARKDOWN,NEWS,2,1,1093,384,1477,7178.53,3,False,False,0.323,"## Title of the News Article
+- Tesla Announces New Affordable EV Model
+
+## Key Facts about the Tesla Model Q
+1. **Price**: $25,000
+2. **Target Market**: Mass-market adoption
+3. **Range and Performance",openai,gpt-4o-mini
+6c433881,SHARED_MEMORY_MARKDOWN,NEWS,2,2,1268,496,1764,11434.46,3,False,False,0.336,"## Summary of Tesla's New Affordable EV Model Announcement
+
+- **Main Subject**: Tesla's new affordable electric vehicle, the Model Q.
+- **Price**: $25,000.
+
+### Technical Specifications
+- **Range**: 2",openai,gpt-4o-mini
+8b17b6c2,SHARED_MEMORY_MARKDOWN,NEWS,3,0,1523,825,2348,12832.91,3,False,False,0.209,"## Key Facts and Figures
+
+1. **Main Entities Mentioned:**
+   - TSMC (Taiwan Semiconductor Manufacturing Company)
+   - Intel
+   - Samsung
+
+2. **Production and Yield Rates:**
+   - TSMC's Arizona fab is ",openai,gpt-4o-mini
+0a02d695,SHARED_MEMORY_MARKDOWN,NEWS,3,1,1423,627,2050,12076.87,3,False,False,0.339,"## Key Facts and Figures from the Article
+
+- **Company Name**: TSMC (Taiwan Semiconductor Manufacturing Company)
+- **Location**: Arizona
+- **Chip Technology**: 4nm chips
+- **Yield Rates**: 90%
+- **Glo",openai,gpt-4o-mini
+c3f5cf8c,SHARED_MEMORY_MARKDOWN,NEWS,3,2,1573,914,2487,18643.62,3,True,False,0.208,"## Title
+Global Chip Shortage Eases as TSMC Expands
+
+## Key Facts
+- **TSMC's Production**: Arizona fab is producing 4nm chips at 90% yield rates.
+- **Global Semiconductor Lead Times**: Decreased from ",openai,gpt-4o-mini
+d07d2a60,SHARED_MEMORY_MARKDOWN,NEWS,4,0,1392,649,2041,9595.47,3,False,False,0.242,"## Summary of the EU AI Regulation Act
+
+The European Union has enacted the AI Act, marking the world's first comprehensive AI law. Below are the key facts, figures, and important details extracted fro",openai,gpt-4o-mini
+65e7899d,SHARED_MEMORY_MARKDOWN,NEWS,4,1,1391,759,2150,10994.94,3,False,False,0.179,"## Summary of the EU AI Regulation Act
+
+### Key Facts
+- **Title**: EU Passes Comprehensive AI Regulation Act
+- **Significance**: The EU has enacted the world's first comprehensive AI law, known as the",openai,gpt-4o-mini
+5152bf7d,SHARED_MEMORY_MARKDOWN,NEWS,4,2,1231,543,1774,9518.64,3,False,False,0.231,"## Summary of the EU AI Regulation Act
+
+### Key Facts
+- **Title of the Article:** EU Passes Comprehensive AI Regulation Act
+- **Main Subject:** AI regulation
+
+### Important Details
+- **Main Provisions",openai,gpt-4o-mini
+b566ad05,SHARED_MEMORY_MARKDOWN,NEWS,5,0,1399,596,1995,10137.23,3,False,False,0.229,"## Summary of SpaceX Starship's First Orbital Flight
+
+- **Successful Flight**: SpaceX's Starship completed its first successful orbital flight.
+- **Flight Duration**: The flight lasted for 90 minutes.",openai,gpt-4o-mini
+bd130886,SHARED_MEMORY_MARKDOWN,NEWS,5,1,1122,383,1505,8602.67,3,False,False,0.317,"## Title of the Article
+- SpaceX Starship Completes First Orbital Flight
+
+## Key Facts Related to the Flight
+1. **Duration of the orbital flight**: 90 minutes
+2. **Location of the splashdown**: Indian",openai,gpt-4o-mini
+bc5820da,SHARED_MEMORY_MARKDOWN,NEWS,5,2,1291,535,1826,12498.28,3,False,False,0.222,"## Summary of SpaceX Starship's First Orbital Flight
+
+### Key Facts
+1. **Main Event**: SpaceX's Starship completed its first successful orbital flight.
+2. **Duration and Location**: 
+   - Flight laste",openai,gpt-4o-mini
+28e94034,SHARED_MEMORY_MARKDOWN,NEWS,6,0,1386,635,2021,10644.23,3,False,False,0.252,"## Summary of Amazon's Drone Delivery Launch
+
+Amazon has expanded its Prime Air drone delivery service to 10 major US cities, including:
+
+- **Cities Involved:**
+  - New York
+  - Los Angeles
+  - Chicag",openai,gpt-4o-mini
+d61eb83d,SHARED_MEMORY_MARKDOWN,NEWS,6,1,1342,598,1940,9022.68,3,False,False,0.246,"## Summary of Amazon's Drone Delivery Launch
+
+- **Main Subject**: Amazon's expansion of its Prime Air drone delivery service.
+  
+- **Cities Launched**: 
+  - New York
+  - Los Angeles
+  - Chicago
+  - (7",openai,gpt-4o-mini
+34449413,SHARED_MEMORY_MARKDOWN,NEWS,6,2,1270,516,1786,8038.86,3,False,False,0.225,"## Summary of Amazon's Drone Delivery Launch
+
+### Key Facts
+- Amazon has expanded its Prime Air drone delivery service to 10 major US cities.
+- Deliveries can handle packages under 5 pounds and arrive",openai,gpt-4o-mini
+7f005ce1,SHARED_MEMORY_MARKDOWN,NEWS,7,0,1231,504,1735,7834.23,3,False,False,0.193,"## Summary of OpenAI's GPT-5 Release
+
+### Key Facts
+- OpenAI has released GPT-5.
+- The model claims a 40% improvement on graduate-level reasoning benchmarks.
+- GPT-5 achieves a score of 92% on the MAT",openai,gpt-4o-mini
+1f49fc5d,SHARED_MEMORY_MARKDOWN,NEWS,7,1,1227,464,1691,8132.59,3,False,False,0.237,"## Summary of OpenAI's GPT-5 Release
+
+- **Release Information**
+  - OpenAI has released GPT-5.
+  - The model claims a 40% improvement on graduate-level reasoning benchmarks.
+
+- **Performance Metrics**",openai,gpt-4o-mini
+17412d4c,SHARED_MEMORY_MARKDOWN,NEWS,7,2,1481,829,2310,12967.86,3,False,False,0.179,"## Summary of OpenAI GPT-5 Release
+
+OpenAI has launched GPT-5, a model that significantly enhances reasoning capabilities and offers various features and pricing structures.
+
+### Key Facts
+- **Release",openai,gpt-4o-mini
+610c2cd7,SHARED_MEMORY_MARKDOWN,NEWS,8,0,1343,577,1920,10571.61,3,False,False,0.351,"## Summary of Japan Earthquake and Tsunami Warning
+
+- **Main Event**: 
+  - 7.4 magnitude earthquake
+
+- **Location and Time**: 
+  - Off the coast of Hokkaido, Japan
+  - Occurred at 3:42 AM local time
+
+",openai,gpt-4o-mini
+5b538685,SHARED_MEMORY_MARKDOWN,NEWS,8,1,1345,614,1959,10934.71,3,False,False,0.277,"## Summary of Japan Earthquake and Tsunami Warning
+
+- **Main Event**: 
+  - **Type**: Earthquake
+  - **Magnitude**: 7.4
+  - **Location**: Off the coast of Hokkaido, Japan
+  - **Time**: 3:42 AM local ti",openai,gpt-4o-mini
+29911868,SHARED_MEMORY_MARKDOWN,NEWS,8,2,1260,492,1752,10193.9,3,False,False,0.311,"## Summary of Japan Earthquake and Tsunami Warning
+
+- **Main Event**: Earthquake
+- **Magnitude**: 7.4
+- **Location**: Off the coast of Hokkaido, Japan
+- **Time of Event**: 3:42 AM local time
+
+## Impac",openai,gpt-4o-mini
+23e47ccd,SHARED_MEMORY_MARKDOWN,NEWS,9,0,1472,758,2230,10906.74,3,False,False,0.224,"## Summary of Global Carbon Emissions Decline
+
+### Key Facts
+- Global CO2 emissions fell by **2.1%** in **2024**.
+- This decline is the first annual decrease not linked to an economic recession.
+- Ren",openai,gpt-4o-mini
+7e14af17,SHARED_MEMORY_MARKDOWN,NEWS,9,1,1631,848,2479,12804.18,3,True,False,0.224,"## Summary of Key Facts and Figures from the Article
+
+### Overview
+- In 2024, global CO2 emissions fell by **2.1%**, marking the first annual decline not associated with an economic recession.
+
+### Re",openai,gpt-4o-mini
+5119251d,SHARED_MEMORY_MARKDOWN,NEWS,9,2,1583,1051,2634,13559.5,3,False,False,0.163,"## Summary of Global Carbon Emissions Decline
+
+In 2024, global CO2 emissions saw a significant decline, marking a pivotal moment in the fight against climate change. Below are the key facts, figures, ",openai,gpt-4o-mini
+aa0a59dc,SHARED_MEMORY_JSON,MATH,0,0,1051,296,1347,6979.33,3,False,False,1.0,"{
+  ""total_eggs_laid"": 16,
+  ""eggs_consumed"": {
+    ""breakfast"": 3,
+    ""muffins"": 4,
+    ""total"": 7
+  },
+  ""remaining_eggs"": 9,
+  ""revenue_per_egg"": 2,
+  ""total_revenue"": 18,
+  ""final_numeric_answer""",openai,gpt-4o-mini
+5b7aee65,SHARED_MEMORY_JSON,MATH,0,1,1035,242,1277,6810.55,3,False,False,1.0,"{
+  ""final_answer"": {
+    ""description"": ""Janet's daily earnings from selling eggs at the farmers' market."",
+    ""amount"": 18
+  },
+  ""formatted_answer"": ""#### 18""
+}",openai,gpt-4o-mini
+31134dcb,SHARED_MEMORY_JSON,MATH,0,2,1217,419,1636,8600.32,3,False,False,1.0,"{
+  ""total_eggs_laid"": 16,
+  ""total_eggs_consumed"": 7,
+  ""remaining_eggs"": 9,
+  ""price_per_egg"": 2,
+  ""total_revenue"": 18,
+  ""final_earnings"": 18,
+  ""final_answer"": ""#### 18""
+}",openai,gpt-4o-mini
+afd4f5a7,SHARED_MEMORY_JSON,MATH,1,0,1056,336,1392,6457.24,3,False,False,1.0,"{
+  ""final_answer"": {
+    ""description"": ""The total number of bolts required for the robe, combining blue and white fiber."",
+    ""value"": 3
+  }
+}",openai,gpt-4o-mini
+d789a0ab,SHARED_MEMORY_JSON,MATH,1,1,1065,350,1415,7269.77,3,False,False,1.0,"{
+  ""final_answer"": {
+    ""description"": ""The total number of bolts required for the robe is calculated by adding the blue fiber and white fiber amounts."",
+    ""total_bolts"": 3
+  }
+}",openai,gpt-4o-mini
+b15f0df1,SHARED_MEMORY_JSON,MATH,1,2,996,243,1239,5446.09,3,False,False,1.0,"{
+  ""final_answer"": {
+    ""description"": ""The total number of bolts of fiber needed for the robe."",
+    ""value"": 3
+  }
+}",openai,gpt-4o-mini
+29e29b8a,SHARED_MEMORY_JSON,MATH,2,0,1041,232,1273,4909.95,3,False,False,0.0,"{
+  ""final_answer"": {
+    ""description"": ""Josh's profit from flipping the house after repairs and increased value."",
+    ""profit"": 65000
+  }
+}",openai,gpt-4o-mini
+dacbca01,SHARED_MEMORY_JSON,MATH,2,1,1047,248,1295,4818.66,3,False,False,0.0,"{
+  ""final_answer"": 195000,
+  ""explanation"": {
+    ""total_investment"": 130000,
+    ""increased_value"": 325000,
+    ""profit"": 195000
+  }
+}",openai,gpt-4o-mini
+965a2248,SHARED_MEMORY_JSON,MATH,2,2,1003,209,1212,4502.94,3,False,False,1.0,"{
+  ""final_answer"": {
+    ""description"": ""The profit made by Josh after flipping the house."",
+    ""value"": 70000
+  }
+}",openai,gpt-4o-mini
+631757ef,SHARED_MEMORY_JSON,MATH,3,0,1010,232,1242,5067.98,3,False,False,1.0,"{
+  ""final_result"": {
+    ""description"": ""Total meters run by James in a week"",
+    ""value"": 540
+  }
+}",openai,gpt-4o-mini
+5455b568,SHARED_MEMORY_JSON,MATH,3,1,1009,292,1301,6096.21,3,False,False,1.0,"{
+  ""final_answer"": 540,
+  ""explanation"": {
+    ""sprint_distance"": 180,
+    ""weekly_distance"": 540,
+    ""steps"": [
+      ""James runs 60 meters per sprint and completes 3 sprints, totaling 180 meters i",openai,gpt-4o-mini
+e7464da5,SHARED_MEMORY_JSON,MATH,3,2,1108,350,1458,7786.12,3,False,False,1.0,"{
+  ""final_answer"": {
+    ""description"": ""Total distance James runs in a week"",
+    ""value"": 540
+  }
+}",openai,gpt-4o-mini
+89e4946e,SHARED_MEMORY_JSON,MATH,4,0,1268,267,1535,5462.73,3,False,False,1.0,"{
+  ""final_answer"": {
+    ""description"": ""The amount of feed Wendi needs to give her chickens in the final meal of the day."",
+    ""value"": 20
+  }
+}",openai,gpt-4o-mini
+5323a85d,SHARED_MEMORY_JSON,MATH,4,1,1275,270,1545,4990.21,3,False,False,1.0,"{
+  ""final_answer"": {
+    ""description"": ""The amount of feed needed for the final meal of the day for Wendi's chickens."",
+    ""value"": 20
+  }
+}",openai,gpt-4o-mini
+c0ca9b94,SHARED_MEMORY_JSON,MATH,4,2,1117,201,1318,5055.94,3,False,False,1.0,"{
+  ""final_answer"": {
+    ""description"": ""The amount of feed needed for the last meal of the day for Wendi's chickens."",
+    ""value"": 20
+  }
+}",openai,gpt-4o-mini
+04b585a5,SHARED_MEMORY_JSON,MATH,5,0,1199,448,1647,8363.35,3,False,False,1.0,"{
+  ""final_answer"": {
+    ""description"": ""The total cost for Kylar to buy 16 glasses, considering the pricing structure, is calculated as follows: 8 glasses at full price ($5 each) total $40, and 8 gl",openai,gpt-4o-mini
+d1fa12b2,SHARED_MEMORY_JSON,MATH,5,1,1179,477,1656,8624.12,3,False,False,1.0,"{
+  ""final_answer"": {
+    ""description"": ""Kylar needs to pay for 16 glasses, where the first glass costs $5 and every second glass costs 60% of the price. The total cost is calculated as follows:"",
+  ",openai,gpt-4o-mini
+f2b07a5b,SHARED_MEMORY_JSON,MATH,5,2,1203,401,1604,7642.74,3,False,False,1.0,"{
+  ""final_answer"": {
+    ""description"": ""The total amount Kylar needs to pay for 16 glasses, considering the pricing structure."",
+    ""amount_needed_to_pay"": 64
+  }
+}",openai,gpt-4o-mini
+f70618bf,SHARED_MEMORY_JSON,MATH,6,0,1065,284,1349,6882.53,3,False,False,1.0,"{
+  ""final_answer"": 260,
+  ""details"": {
+    ""seattle_sheep"": 20,
+    ""charleston_sheep"": 80,
+    ""toulouse_sheep"": 160,
+    ""total_sheep"": 260
+  }
+}",openai,gpt-4o-mini
+352fe798,SHARED_MEMORY_JSON,MATH,6,1,926,232,1158,5150.38,3,False,False,1.0,"{
+  ""final_answer"": 260,
+  ""details"": {
+    ""seattle_sheep"": 20,
+    ""charleston_sheep"": 80,
+    ""toulouse_sheep"": 160,
+    ""total_sheep"": 260
+  }
+}",openai,gpt-4o-mini
+171e32f7,SHARED_MEMORY_JSON,MATH,6,2,1119,311,1430,6462.47,3,False,False,1.0,"{
+  ""final_answer"": 260,
+  ""details"": {
+    ""seattle_sheep"": 20,
+    ""charleston_sheep"": 80,
+    ""toulouse_sheep"": 160,
+    ""total_sheep"": 260
+  }
+}",openai,gpt-4o-mini
+1012f12c,SHARED_MEMORY_JSON,MATH,7,0,1110,294,1404,5510.91,3,False,False,0.0,"{
+  ""final_answer"": {
+    ""description"": ""Total time taken for Carla to download the 200 GB file, including the time for the first 40%, the restart time, and the time for the remaining 60%."",
+    ""tot",openai,gpt-4o-mini
+ac5c568d,SHARED_MEMORY_JSON,MATH,7,1,1333,371,1704,7361.05,3,False,False,0.0,"{
+  ""final_answer"": {
+    ""total_download_time_minutes"": 120
+  },
+  ""formatted_answer"": ""#### 120""
+}",openai,gpt-4o-mini
+97382a17,SHARED_MEMORY_JSON,MATH,7,2,1315,468,1783,13406.46,3,True,True,0.0,"{
+  ""final_answer"": {
+    ""description"": ""Total time taken for Carla to download the 200 GB file after a forced restart."",
+    ""total_time"": 120,
+    ""unit"": ""minutes"",
+    ""final_numeric_answer"": ""##",openai,gpt-4o-mini
+a5198730,SHARED_MEMORY_JSON,MATH,8,0,1194,255,1449,4854.12,3,False,False,0.0,"{
+  ""final_answer"": {
+    ""description"": ""The distance John is from home at the end of 4 hours."",
+    ""distance_from_home"": 15
+  }
+}",openai,gpt-4o-mini
+db6eed3d,SHARED_MEMORY_JSON,MATH,8,1,1201,264,1465,4505.35,3,False,False,0.0,"{
+  ""final_answer"": {
+    ""description"": ""The distance John is from home at the end of the 4 hours."",
+    ""distance_from_home"": 135
+  }
+}",openai,gpt-4o-mini
+37871385,SHARED_MEMORY_JSON,MATH,8,2,1177,242,1419,4312.1,3,False,False,0.0,"{
+  ""final_answer"": {
+    ""description"": ""The total distance John is from home at the end of the 4 hours."",
+    ""distance_from_home"": 105
+  }
+}",openai,gpt-4o-mini
+1a2383a6,SHARED_MEMORY_JSON,MATH,9,0,1051,253,1304,4494.2,3,False,False,1.0,"{
+  ""final_answer"": {
+    ""description"": ""Eliza's total earnings for the week after working 45 hours, including regular and overtime pay."",
+    ""total_earnings"": 460
+  }
+}",openai,gpt-4o-mini
+e5e309d5,SHARED_MEMORY_JSON,MATH,9,1,1037,239,1276,4488.88,3,False,False,1.0,"{
+  ""final_answer"": {
+    ""description"": ""Eliza's total earnings for the week after working 45 hours."",
+    ""total_earnings"": 460
+  }
+}",openai,gpt-4o-mini
+f7800869,SHARED_MEMORY_JSON,MATH,9,2,1033,243,1276,5389.32,3,False,False,1.0,"{
+  ""final_answer"": {
+    ""description"": ""Eliza's total earnings for the week after working 45 hours, including regular and overtime pay."",
+    ""total_earnings"": 460
+  }
+}",openai,gpt-4o-mini
+cca272ec,SHARED_MEMORY_JSON,READING,0,0,1507,272,1779,5536.93,3,False,False,0.667,"{
+  ""final_answer"": ""Denver Broncos""
+}",openai,gpt-4o-mini
+8f912132,SHARED_MEMORY_JSON,READING,0,1,1439,240,1679,6423.13,3,False,False,0.667,"{
+  ""final_answer"": ""Denver Broncos""
+}",openai,gpt-4o-mini
+a0dc0720,SHARED_MEMORY_JSON,READING,0,2,1412,219,1631,4682.55,3,False,False,0.667,"{
+  ""final_answer"": ""Denver Broncos""
+}",openai,gpt-4o-mini
+79b6a659,SHARED_MEMORY_JSON,READING,1,0,1385,174,1559,3733.21,3,False,False,0.667,"{
+  ""final_answer"": ""Carolina Panthers""
+}",openai,gpt-4o-mini
+e57e9349,SHARED_MEMORY_JSON,READING,1,1,1388,203,1591,4922.73,3,False,False,0.667,"{
+  ""final_answer"": ""Carolina Panthers""
+}",openai,gpt-4o-mini
+ffc08e7b,SHARED_MEMORY_JSON,READING,1,2,1586,328,1914,7056.68,3,False,False,0.667,"{
+  ""final_answer"": ""Carolina Panthers""
+}",openai,gpt-4o-mini
+202823a7,SHARED_MEMORY_JSON,READING,2,0,1400,233,1633,5030.32,3,False,False,0.667,"{
+  ""final_answer"": ""Levi's Stadium in Santa Clara, California.""
+}",openai,gpt-4o-mini
+0ef755e7,SHARED_MEMORY_JSON,READING,2,1,1470,275,1745,5253.15,3,False,False,0.593,"{
+  ""final_answer"": ""Super Bowl 50 took place at Levi's Stadium in Santa Clara, California.""
+}",openai,gpt-4o-mini
+d1c0e8ec,SHARED_MEMORY_JSON,READING,2,2,1456,251,1707,8088.09,3,False,False,0.667,"{
+  ""final_answer"": ""Levi's Stadium in Santa Clara, California.""
+}",openai,gpt-4o-mini
+85c2da48,SHARED_MEMORY_JSON,READING,3,0,1474,259,1733,5759.59,3,False,False,0.667,"{
+  ""final_answer"": ""Denver Broncos""
+}",openai,gpt-4o-mini
+730351c7,SHARED_MEMORY_JSON,READING,3,1,1376,202,1578,4319.15,3,False,False,0.4,"{
+  ""final_answer"": ""The winning NFL team is the Denver Broncos.""
+}",openai,gpt-4o-mini
+3818f6b8,SHARED_MEMORY_JSON,READING,3,2,1453,235,1688,5078.06,3,False,False,0.667,"{
+  ""final_answer"": ""Denver Broncos""
+}",openai,gpt-4o-mini
+e837602d,SHARED_MEMORY_JSON,READING,4,0,1496,282,1778,5599.99,3,False,False,0.5,"{
+  ""final_answer"": ""gold""
+}",openai,gpt-4o-mini
+515c4f6c,SHARED_MEMORY_JSON,READING,4,1,1619,360,1979,6323.31,3,False,False,0.5,"{
+  ""final_answer"": ""Gold""
+}",openai,gpt-4o-mini
+a54b9952,SHARED_MEMORY_JSON,READING,4,2,1466,256,1722,4834.99,3,False,False,0.5,"{
+  ""final_answer"": ""gold""
+}",openai,gpt-4o-mini
+6e227125,SHARED_MEMORY_JSON,READING,5,0,1382,236,1618,4991.69,3,False,False,0.222,"{
+  ""final_answer"": ""The theme of Super Bowl 50 was the 'golden anniversary' emphasized with various gold-themed initiatives.""
+}",openai,gpt-4o-mini
+c96d08d0,SHARED_MEMORY_JSON,READING,5,1,1491,285,1776,15474.23,3,False,False,0.333,"{
+  ""final_answer"": ""The theme of Super Bowl 50 was the 'golden anniversary'.""
+}",openai,gpt-4o-mini
+e4d7c34e,SHARED_MEMORY_JSON,READING,5,2,1500,292,1792,6000.69,3,False,False,0.333,"{
+  ""final_answer"": ""The theme of Super Bowl 50 was the 'golden anniversary'.""
+}",openai,gpt-4o-mini
+58ffb0bc,SHARED_MEMORY_JSON,READING,6,0,1373,182,1555,4669.71,3,False,False,0.75,"{
+  ""final_answer"": ""February 7, 2016""
+}",openai,gpt-4o-mini
+9a2147ce,SHARED_MEMORY_JSON,READING,6,1,1450,247,1697,5746.6,3,False,False,0.75,"{
+  ""final_answer"": ""February 7, 2016""
+}",openai,gpt-4o-mini
+0174abf2,SHARED_MEMORY_JSON,READING,6,2,1451,272,1723,5996.57,3,False,False,0.75,"{
+  ""final_answer"": ""February 7, 2016""
+}",openai,gpt-4o-mini
+a2123c58,SHARED_MEMORY_JSON,READING,7,0,1416,236,1652,5479.16,3,False,False,0.75,"{
+  ""final_answer"": ""American Football Conference""
+}",openai,gpt-4o-mini
+172d09f4,SHARED_MEMORY_JSON,READING,7,1,1402,231,1633,5698.11,3,False,False,0.75,"{
+  ""final_answer"": ""American Football Conference""
+}",openai,gpt-4o-mini
+1ffe5192,SHARED_MEMORY_JSON,READING,7,2,1435,233,1668,6531.6,3,False,False,0.75,"{
+  ""final_answer"": ""American Football Conference""
+}",openai,gpt-4o-mini
+34872a71,SHARED_MEMORY_JSON,READING,8,0,1414,242,1656,4691.04,3,False,False,0.333,"{
+  ""final_answer"": ""The theme of Super Bowl 50 was the 'golden anniversary.'""
+}",openai,gpt-4o-mini
+cff4d03b,SHARED_MEMORY_JSON,READING,8,1,1579,356,1935,6217.42,3,False,False,0.333,"{
+  ""final_answer"": ""The theme of Super Bowl 50 was the 'golden anniversary'.""
+}",openai,gpt-4o-mini
+5c2d59e5,SHARED_MEMORY_JSON,READING,8,2,1518,302,1820,5668.63,3,False,False,0.333,"{
+  ""final_answer"": ""The theme of Super Bowl 50 was the 'golden anniversary'.""
+}",openai,gpt-4o-mini
+8697b1cb,SHARED_MEMORY_JSON,READING,9,0,1460,264,1724,5952.78,3,False,False,0.545,"{
+  ""final_answer"": ""AFC stands for American Football Conference.""
+}",openai,gpt-4o-mini
+29dc1e10,SHARED_MEMORY_JSON,READING,9,1,1328,178,1506,4355.24,3,False,False,0.857,"{
+  ""AFC"": ""American Football Conference""
+}",openai,gpt-4o-mini
+0562b403,SHARED_MEMORY_JSON,READING,9,2,1398,230,1628,4784.64,3,False,False,0.75,"{
+  ""final_answer"": ""American Football Conference""
+}",openai,gpt-4o-mini
+6ea67d7e,SHARED_MEMORY_JSON,NEWS,0,0,1380,441,1821,7317.22,3,False,False,0.416,"{
+  ""title"": ""Fed Holds Interest Rates Steady in March 2025"",
+  ""interestRateDecision"": {
+    ""currentRate"": ""4.25%-4.50%"",
+    ""meetingDate"": ""March 2025""
+  },
+  ""inflationAndUnemploymentData"": {
+   ",openai,gpt-4o-mini
+7781c531,SHARED_MEMORY_JSON,NEWS,0,1,1645,757,2402,12015.28,3,False,False,0.255,"{
+  ""summary"": {
+    ""main_subject"": ""The article discusses the Federal Reserve's decision on interest rates."",
+    ""key_figures"": {
+      ""current_interest_rate_range"": ""4.25%-4.50%"",
+      ""inflatio",openai,gpt-4o-mini
+d69cf099,SHARED_MEMORY_JSON,NEWS,0,2,1371,465,1836,8684.69,3,False,False,0.413,"{
+  ""article_summary"": {
+    ""title"": ""Fed Holds Interest Rates Steady in March 2025"",
+    ""interest_rate_decision"": {
+      ""rate"": ""4.25%-4.50%"",
+      ""meeting_date"": ""March 2025""
+    },
+    ""infla",openai,gpt-4o-mini
+39fd7644,SHARED_MEMORY_JSON,NEWS,1,0,1656,713,2369,11835.37,3,False,False,0.309,"{
+  ""title"": ""Apple Reports Record Q1 FY2025 Earnings"",
+  ""financial_summary"": {
+    ""total_revenue"": ""124.3 billion"",
+    ""year_over_year_growth"": ""4%"",
+    ""iphone_revenue"": ""69.1 billion"",
+    ""ser",openai,gpt-4o-mini
+35bd7937,SHARED_MEMORY_JSON,NEWS,1,1,1700,643,2343,10496.58,3,False,False,0.616,"{
+  ""summary"": {
+    ""title"": ""Apple Reports Record Q1 FY2025 Earnings"",
+    ""financial_figures"": {
+      ""revenue"": ""124.3 billion"",
+      ""iPhone_revenue"": ""69.1 billion"",
+      ""services_revenue"": ",openai,gpt-4o-mini
+7a6f1496,SHARED_MEMORY_JSON,NEWS,1,2,1678,729,2407,13149.78,3,False,False,0.316,"{
+  ""title"": ""Apple Reports Record Q1 FY2025 Earnings"",
+  ""financial_figures"": {
+    ""revenue"": ""124.3 billion"",
+    ""year_over_year_growth"": ""4%"",
+    ""iphone_revenue"": ""69.1 billion"",
+    ""services_",openai,gpt-4o-mini
+380db192,SHARED_MEMORY_JSON,NEWS,2,0,1228,395,1623,7169.55,3,False,False,0.292,"{
+  ""title"": ""Tesla Announces New Affordable EV Model"",
+  ""vehicle_details"": {
+    ""name"": ""Model Q"",
+    ""price"": 25000,
+    ""range"": ""280 miles"",
+    ""acceleration"": ""0-60 mph in 5.8 seconds""
+  },
+ ",openai,gpt-4o-mini
+f3f3627c,SHARED_MEMORY_JSON,NEWS,2,1,1398,606,2004,13202.55,3,False,False,0.264,"{
+  ""article_summary"": {
+    ""main_subject"": ""Tesla's new affordable electric vehicle model."",
+    ""key_facts"": {
+      ""model_name"": ""Model Q"",
+      ""price"": ""$25,000"",
+      ""range"": ""280 miles"",
+ ",openai,gpt-4o-mini
+c67b5153,SHARED_MEMORY_JSON,NEWS,2,2,1400,473,1873,9332.69,3,False,False,0.354,"{
+  ""article_summary"": {
+    ""main_subject"": ""Tesla's new affordable electric vehicle model, the Model Q."",
+    ""key_specifications"": {
+      ""price"": ""$25,000"",
+      ""range"": ""280 miles"",
+      ""acc",openai,gpt-4o-mini
+c6390bd6,SHARED_MEMORY_JSON,NEWS,3,0,1270,462,1732,9609.46,3,False,False,0.332,"{
+  ""title"": ""Global Chip Shortage Eases as TSMC Expands"",
+  ""tsmc_production"": {
+    ""chip_type"": ""4nm chips"",
+    ""yield_rate"": ""90%""
+  },
+  ""global_semiconductor_lead_times"": {
+    ""previous"": ""26 ",openai,gpt-4o-mini
+3ab0433d,SHARED_MEMORY_JSON,NEWS,3,1,1393,515,1908,10060.49,3,False,False,0.394,"{
+  ""title"": ""Global Chip Shortage Eases as TSMC Expands"",
+  ""tsmc_production"": {
+    ""location"": ""Arizona fab"",
+    ""chip_size"": ""4nm"",
+    ""yield_rate"": ""90%""
+  },
+  ""global_semiconductor_lead_times",openai,gpt-4o-mini
+1d2c2f10,SHARED_MEMORY_JSON,NEWS,3,2,1302,504,1806,10401.81,3,False,False,0.35,"{
+  ""title"": ""Global Chip Shortage Eases as TSMC Expands"",
+  ""tsmc_production"": {
+    ""production_capabilities"": ""TSMC's Arizona fab is now producing 4nm chips."",
+    ""yield_rates"": ""90% yield rates.""",openai,gpt-4o-mini
+d0ed11d6,SHARED_MEMORY_JSON,NEWS,4,0,1355,470,1825,9715.0,3,False,False,0.345,"{
+  ""article_title"": ""EU Passes Comprehensive AI Regulation Act"",
+  ""summary"": {
+    ""key_facts"": [
+      ""The European Union enacted the AI Act, the world's first comprehensive AI law."",
+      ""High-",openai,gpt-4o-mini
+9f948ca5,SHARED_MEMORY_JSON,NEWS,4,1,1165,375,1540,8155.38,3,False,False,0.344,"{
+  ""title"": ""EU Passes Comprehensive AI Regulation Act"",
+  ""key_facts"": {
+    ""significance"": ""The EU Act is the world's first comprehensive AI law."",
+    ""main_provisions"": [
+      ""High-risk AI sys",openai,gpt-4o-mini
+d9157157,SHARED_MEMORY_JSON,NEWS,4,2,1658,651,2309,13114.06,3,False,False,0.313,"{
+  ""title"": ""EU Passes Comprehensive AI Regulation Act"",
+  ""key_facts"": [
+    ""The European Union enacted the AI Act, the world's first comprehensive AI law."",
+    ""High-risk AI systems must undergo ",openai,gpt-4o-mini
+07e0771d,SHARED_MEMORY_JSON,NEWS,5,0,1323,448,1771,11365.56,3,False,False,0.371,"{
+  ""title"": ""SpaceX Starship Completes First Orbital Flight"",
+  ""keyFacts"": {
+    ""event"": ""SpaceX's Starship completed its first successful orbital flight"",
+    ""duration"": ""90 minutes in orbit"",
+  ",openai,gpt-4o-mini
+07189c59,SHARED_MEMORY_JSON,NEWS,5,1,1228,372,1600,7420.64,3,False,False,0.32,"{
+  ""title"": ""SpaceX Starship Completes First Orbital Flight"",
+  ""orbital_flight"": {
+    ""duration"": ""90 minutes"",
+    ""altitude"": ""250 km"",
+    ""payload"": ""100-ton test payload""
+  },
+  ""super_heavy_b",openai,gpt-4o-mini
+9da7cd60,SHARED_MEMORY_JSON,NEWS,5,2,1264,423,1687,7971.11,3,False,False,0.389,"{
+  ""title"": ""SpaceX Starship Completes First Orbital Flight"",
+  ""orbital_flight"": {
+    ""duration"": ""90 minutes"",
+    ""altitude"": ""250 km"",
+    ""landing"": ""splashing down in the Indian Ocean""
+  },
+  ",openai,gpt-4o-mini
+861aa80b,SHARED_MEMORY_JSON,NEWS,6,0,1252,473,1725,12876.42,3,False,False,0.357,"{
+  ""title"": ""Amazon Launches Drone Delivery in 10 US Cities"",
+  ""key_facts"": {
+    ""expansion"": ""Amazon expanded its Prime Air drone delivery service to 10 major US cities, including New York, Los An",openai,gpt-4o-mini
+fbcc8445,SHARED_MEMORY_JSON,NEWS,6,1,1284,488,1772,13432.54,3,False,False,0.361,"{
+  ""title"": ""Amazon Launches Drone Delivery in 10 US Cities"",
+  ""expansion"": {
+    ""service"": ""Prime Air drone delivery"",
+    ""cities"": [
+      ""New York"",
+      ""Los Angeles"",
+      ""Chicago""
+    ]
+",openai,gpt-4o-mini
+80264d12,SHARED_MEMORY_JSON,NEWS,6,2,1284,501,1785,14013.89,3,False,False,0.294,"{
+  ""article_title"": ""Amazon Launches Drone Delivery in 10 US Cities"",
+  ""expansion_details"": {
+    ""service"": ""Amazon expanded its Prime Air drone delivery service to 10 major US cities."",
+    ""deliv",openai,gpt-4o-mini
+abe7eace,SHARED_MEMORY_JSON,NEWS,7,0,1316,583,1899,13341.86,3,False,False,0.195,"{
+  ""title"": ""OpenAI Releases GPT-5 with Reasoning Capabilities"",
+  ""key_improvements"": {
+    ""reasoning_benchmark_improvement"": ""40%"",
+    ""MATH_benchmark_score"": ""92%"",
+    ""GPQA_benchmark_score"": """,openai,gpt-4o-mini
+c00eab42,SHARED_MEMORY_JSON,NEWS,7,1,1379,486,1865,10137.98,3,False,False,0.235,"{
+  ""Title"": ""OpenAI Releases GPT-5 with Reasoning Capabilities"",
+  ""Improvements"": {
+    ""Reasoning Improvement"": ""40% improvement on graduate-level reasoning benchmarks"",
+    ""MATH Benchmark Score"":",openai,gpt-4o-mini
+c6174b21,SHARED_MEMORY_JSON,NEWS,7,2,1347,513,1860,12975.88,3,False,False,0.187,"{
+  ""article_title"": ""OpenAI Releases GPT-5 with Reasoning Capabilities"",
+  ""key_improvements"": {
+    ""reasoning_benchmark_improvement"": ""40%"",
+    ""MATH_benchmark_score"": ""92%"",
+    ""GPQA_benchmark_s",openai,gpt-4o-mini
+d7402f51,SHARED_MEMORY_JSON,NEWS,8,0,1340,486,1826,11062.75,3,False,False,0.219,"{
+  ""summary"": {
+    ""main_event"": {
+      ""event"": ""Earthquake"",
+      ""magnitude"": 7.4
+    },
+    ""geographical_details"": {
+      ""location"": ""Hokkaido, Japan"",
+      ""time"": ""3:42 AM local time""
+  ",openai,gpt-4o-mini
+8b9aa3c8,SHARED_MEMORY_JSON,NEWS,8,1,1454,530,1984,12390.07,3,False,False,0.319,"{
+  ""summary"": {
+    ""main_event"": {
+      ""event"": ""earthquake"",
+      ""location"": ""off the coast of Hokkaido, Japan""
+    },
+    ""earthquake_details"": {
+      ""magnitude"": 7.4,
+      ""time"": ""3:42 AM",openai,gpt-4o-mini
+490e6ee4,SHARED_MEMORY_JSON,NEWS,8,2,1395,546,1941,10550.98,3,False,False,0.392,"{
+  ""summary"": {
+    ""main_event"": {
+      ""event"": ""Earthquake"",
+      ""magnitude"": 7.4,
+      ""location"": ""Off the coast of Hokkaido, Japan"",
+      ""time"": ""3:42 AM local time""
+    },
+    ""tsunami_w",openai,gpt-4o-mini
+ac6e21cb,SHARED_MEMORY_JSON,NEWS,9,0,1341,582,1923,11876.4,3,False,False,0.267,"{
+  ""title"": ""Global Carbon Emissions Decline for First Time"",
+  ""summary"": {
+    ""CO2_emissions_decline"": ""2.1% in 2024"",
+    ""renewable_energy_share"": ""35% of global electricity generation"",
+    ""so",openai,gpt-4o-mini
+dca624f2,SHARED_MEMORY_JSON,NEWS,9,1,1342,582,1924,11057.93,3,False,False,0.242,"{
+  ""title"": ""Global Carbon Emissions Decline for First Time"",
+  ""summary"": {
+    ""emissions_decline"": {
+      ""percentage"": ""2.1%"",
+      ""year"": 2024,
+      ""context"": ""first annual decline not link",openai,gpt-4o-mini
+3eae2b30,SHARED_MEMORY_JSON,NEWS,9,2,1347,620,1967,12188.8,3,False,False,0.243,"{
+  ""summary"": {
+    ""title"": ""Global Carbon Emissions Decline for First Time"",
+    ""key_statistics"": {
+      ""CO2_emissions_decline"": ""2.1% in 2024"",
+      ""renewable_energy_share"": ""35% of global el",openai,gpt-4o-mini
