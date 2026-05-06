@@ -177,13 +177,29 @@ The "Auto-select protocol" sidebar toggle lets you override the recommendation a
 | | |
 |---|---|
 | **Agent pipeline** | Planning → Execution → Integration (fixed roles, fixed system prompts) |
-| **Independent variable** | Inter-agent communication protocol (4 levels: NL, Markdown, JSON, Shared Memory) |
+| **Independent variable** | Inter-agent communication protocol (4 levels: NL, Markdown, JSON, Shared Memory; +4 supplemental ablation cells — see *Supplemental experiments* below) |
 | **Task domains** | GSM8K (math), SQuAD (reading), 10 curated news articles |
-| **Samples × reps × protocols × domains** | 10 × 3 × 4 × 3 = 360 pipeline runs |
-| **Model** | OpenAI `gpt-4o-mini`, temperature 0.3, per-rep `seed` for best-effort determinism |
+| **Samples × reps × protocols × domains** | 10 × 3 × 4 × 3 = 360 pipeline runs (main) |
+| **Model** | OpenAI `gpt-4o-mini` (main); DeepSeek V4 Flash (supplemental robustness only) — temperature 0.3, per-rep `seed` for best-effort determinism |
 | **Max tokens** | 256 (math, reading), 512 (news) |
 | **Evaluation** | Numeric exact match (math) · SQuAD token-F1 (reading) · mean of ROUGE-2 F1 and ROUGE-L F1 (news) |
 | **Statistics** | Two-way ANOVA with η² · per-domain one-way ANOVA · Tukey HSD · Cohen's d · 2000-resample bootstrap 95% CIs |
+
+### Supplemental experiments
+
+The 360-run main grid above is the proposal-defined experiment. We additionally ran two supplemental experiments — written to separate files so the main results remain proposal-faithful:
+
+| Experiment | Scope | Output file | Purpose |
+|---|---|---|---|
+| **Full 2×4 mechanism × format ablation** | 4 supplemental protocols (Relay Default, Shared Memory + NL, Shared Memory + Markdown, Shared Memory + JSON) × 3 domains × 10 samples × 3 reps = **360 runs** | `results/results_ablation_full_factorial.csv` | Disentangle blackboard mechanism from output format for clean attribution of H1 (state-serialization overhead). |
+| **DeepSeek V4 Flash robustness** | All 8 protocols × 3 domains × 5 samples × 2 reps = **240 runs** | `results/results_deepseek_v4_flash_8protocols.csv` | Test whether the protocol rankings observed on `gpt-4o-mini` transfer directionally to a different model provider. |
+
+Total experimental scope: 360 (main) + 360 (ablation) + 240 (robustness) = **960 pipeline runs**.
+
+Statistical methods specific to the supplemental experiments:
+
+- Welch's t-test + Cohen's d for the mechanism-vs-format pairwise comparisons in the ablation (e.g., JSON vs SHARED_MEMORY_JSON for pure mechanism effect; SHARED_MEMORY vs SHARED_MEMORY_JSON for pure format effect within blackboard).
+- Directional consistency check (best-protocol-per-domain match between models) for the cross-model robustness — intentionally light statistics given the smaller subset size.
 
 ### Protocol implementations
 
