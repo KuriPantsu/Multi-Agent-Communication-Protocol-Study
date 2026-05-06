@@ -6,6 +6,12 @@ const state = {
 };
 
 const protocolDetails = {
+  RELAY_DEFAULT: {
+    label: "Relay + Default",
+    text: "Sequential handoff with no explicit output-format instruction.",
+    best: "Default-format relay baseline",
+    risk: "Model may drift toward its own preferred formatting.",
+  },
   NL: {
     label: "Natural Language",
     text: "Plain prose between agents with explicit instructions to avoid structured formatting.",
@@ -26,13 +32,40 @@ const protocolDetails = {
   },
   SHARED_MEMORY: {
     label: "Shared Memory",
-    text: "A full blackboard snapshot is injected into downstream agents.",
+    text: "A full blackboard snapshot is injected into downstream agents with default formatting.",
     best: "Best reading/news quality",
     risk: "Highest prompt-token overhead.",
   },
+  SHARED_MEMORY_NL: {
+    label: "Shared Memory + NL",
+    text: "Blackboard mechanism with the same plain-English suffix as NL.",
+    best: "NL mechanism comparison",
+    risk: "Less machine-readable intermediate state.",
+  },
+  SHARED_MEMORY_MARKDOWN: {
+    label: "Shared Memory + Markdown",
+    text: "Blackboard mechanism with the same Markdown suffix as MARKDOWN.",
+    best: "Markdown mechanism comparison",
+    risk: "Verbose format plus serialized state.",
+  },
+  SHARED_MEMORY_JSON: {
+    label: "Shared Memory + JSON",
+    text: "Blackboard mechanism with JSON response_format enforcement.",
+    best: "Clean JSON-format H1 ablation",
+    risk: "JSON verbosity layered on top of state injection.",
+  },
 };
 
-const protocolOrder = ["NL", "MARKDOWN", "JSON", "SHARED_MEMORY"];
+const protocolOrder = [
+  "RELAY_DEFAULT",
+  "NL",
+  "MARKDOWN",
+  "JSON",
+  "SHARED_MEMORY",
+  "SHARED_MEMORY_NL",
+  "SHARED_MEMORY_MARKDOWN",
+  "SHARED_MEMORY_JSON",
+];
 
 const examples = {
   math: "Janet has 24 apples. She gives 6 to her friend, buys 12 more, and then sells half of the total for $3 each. How much money does she make?",
@@ -86,8 +119,10 @@ function setupNav() {
 
 async function loadHealth() {
   const health = await api("/api/health");
-  $("#keyDot").classList.toggle("ok", health.has_openai_key);
-  $("#keyStatus").textContent = health.has_openai_key ? "Local key loaded" : "No local key";
+  $("#keyDot").classList.toggle("ok", health.has_openai_key || health.has_deepseek_key);
+  $("#keyStatus").textContent = health.has_openai_key || health.has_deepseek_key
+    ? `Keys: ${health.has_openai_key ? "OpenAI" : ""}${health.has_openai_key && health.has_deepseek_key ? " + " : ""}${health.has_deepseek_key ? "DeepSeek" : ""}`
+    : "No local key";
 }
 
 async function loadSummary() {
@@ -98,7 +133,7 @@ async function loadSummary() {
   $("#topMetrics").innerHTML = [
     ["Pipeline runs", data.runCount || 360, "Saved experiment executions"],
     ["Message logs", data.messageCount || 1080, "Planner, Executor, Integrator traces"],
-    ["Protocols", data.protocols.length, "NL, Markdown, JSON, Shared Memory"],
+    ["Main protocols", data.protocols.length, "Original 4-protocol grid"],
     ["Domains", data.domains.length, "Math, Reading, News"],
   ].map(metricCard).join("");
 
@@ -108,6 +143,7 @@ async function loadSummary() {
   renderSummaryTable();
   renderRecommendations();
   drawCharts();
+  await loadAblation();
 }
 
 function metricCard([label, value, note]) {
@@ -115,7 +151,7 @@ function metricCard([label, value, note]) {
 }
 
 function renderProtocolCards() {
-  $("#protocolCards").innerHTML = Object.entries(protocolDetails).map(([key, item]) => `
+  const card = ([key, item]) => `
     <article class="panel">
       <p class="eyebrow">${key}</p>
       <h4>${item.label}</h4>
@@ -123,7 +159,11 @@ function renderProtocolCards() {
       <span class="pill">${item.best}</span>
       <span class="pill">${item.risk}</span>
     </article>
-  `).join("");
+  `;
+  const main = ["NL", "MARKDOWN", "JSON", "SHARED_MEMORY"].map((key) => [key, protocolDetails[key]]);
+  const supplemental = ["RELAY_DEFAULT", "SHARED_MEMORY_NL", "SHARED_MEMORY_MARKDOWN", "SHARED_MEMORY_JSON"].map((key) => [key, protocolDetails[key]]);
+  $("#mainProtocolCards").innerHTML = main.map(card).join("");
+  $("#ablationProtocolCards").innerHTML = supplemental.map(card).join("");
 }
 
 function tableFromRows(rows, columns) {
@@ -286,6 +326,9 @@ function selectedProtocols() {
 
 function protocolPreviewText(protocol, task) {
   const clipped = task ? task.slice(0, 180) + (task.length > 180 ? "..." : "") : "[your task]";
+  if (protocol === "RELAY_DEFAULT") {
+    return `Relay handoff with no explicit format suffix:\n${clipped}`;
+  }
   if (protocol === "NL") {
     return `Plain English message carrying the task intent:\n${clipped}`;
   }
@@ -295,12 +338,14 @@ function protocolPreviewText(protocol, task) {
   if (protocol === "JSON") {
     return JSON.stringify({ task: clipped, expected_output: "structured intermediate result", protocol: "JSON" }, null, 2);
   }
+  const format = protocol.replace("SHARED_MEMORY_", "") || "DEFAULT";
   return JSON.stringify({
     blackboard_state: {
       task_prompt: clipped,
       planner_notes: "written after Planner runs",
       executor_result: "written after Executor runs",
     },
+    output_format: format === "SHARED_MEMORY" ? "DEFAULT" : format,
   }, null, 2);
 }
 
@@ -317,12 +362,56 @@ function renderProtocolPreview() {
 
 function protocolAxisLabel(protocol) {
   if (protocol === "SHARED_MEMORY") return ["Shared", "Memory"];
+  if (protocol === "RELAY_DEFAULT") return ["Relay", "Default"];
+  if (protocol === "SHARED_MEMORY_NL") return ["SM", "NL"];
+  if (protocol === "SHARED_MEMORY_MARKDOWN") return ["SM", "Markdown"];
+  if (protocol === "SHARED_MEMORY_JSON") return ["SM", "JSON"];
   if (protocol === "MARKDOWN") return ["Markdown"];
   return [protocol];
 }
 
 function sortByProtocolOrder(rows) {
-  return [...rows].sort((a, b) => protocolOrder.indexOf(a.protocol) - protocolOrder.indexOf(b.protocol));
+  return [...rows].sort((a, b) => {
+    const ia = protocolOrder.indexOf(a.protocol);
+    const ib = protocolOrder.indexOf(b.protocol);
+    return (ia < 0 ? 999 : ia) - (ib < 0 ? 999 : ib);
+  });
+}
+
+async function loadAblation() {
+  const block = $("#ablationBlock");
+  if (!block) return;
+  const data = await api("/api/ablation");
+  const fullEffects = data.fullAblation?.effects || [];
+  const dsEffects = data.deepseek?.effects || [];
+  block.innerHTML = `
+    <div class="split">
+      <div>
+        <h4>Full 2x4 OpenAI ablation</h4>
+        ${fullEffects.length
+          ? tableFromRows(fullEffects, [
+              { key: "domain", label: "Domain" },
+              { key: "format", label: "Held format" },
+              { key: "relayTokens", label: "Relay", format: (v) => formatNumber(v) },
+              { key: "sharedMemoryTokens", label: "SM", format: (v) => formatNumber(v) },
+              { key: "mechanismDeltaTokens", label: "SM - Relay", format: (v) => `${Number(v) >= 0 ? "+" : ""}${formatNumber(v)}` },
+            ])
+          : `<p class="muted">Run <code>python _run_full_ablation.py</code> to generate this table.</p>`}
+      </div>
+      <div>
+        <h4>DeepSeek V4 Flash robustness</h4>
+        ${dsEffects.length
+          ? tableFromRows(dsEffects, [
+              { key: "domain", label: "Domain" },
+              { key: "format", label: "Held format" },
+              { key: "relayTokens", label: "Relay", format: (v) => formatNumber(v) },
+              { key: "sharedMemoryTokens", label: "SM", format: (v) => formatNumber(v) },
+              { key: "mechanismDeltaTokens", label: "SM - Relay", format: (v) => `${Number(v) >= 0 ? "+" : ""}${formatNumber(v)}` },
+            ])
+          : `<p class="muted">Run <code>python _run_deepseek_robustness.py</code> after setting <code>DEEPSEEK_API_KEY</code>.</p>`}
+      </div>
+    </div>
+  `;
 }
 
 function drawDemoMetricChart(canvasId, rows, field, color, yAxisLabel) {

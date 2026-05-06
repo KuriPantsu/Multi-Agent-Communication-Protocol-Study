@@ -29,10 +29,13 @@ except ImportError:
 
 # ── Enums ────────────────────────────────────────────────────────────────────
 class Protocol(str, Enum):
+    RELAY_DEFAULT = 'RELAY_DEFAULT'
     NL = 'NL'
     MARKDOWN = 'MARKDOWN'
     JSON = 'JSON'
     SHARED_MEMORY = 'SHARED_MEMORY'
+    SHARED_MEMORY_NL = 'SHARED_MEMORY_NL'
+    SHARED_MEMORY_MARKDOWN = 'SHARED_MEMORY_MARKDOWN'
     SHARED_MEMORY_JSON = 'SHARED_MEMORY_JSON'
 
 
@@ -40,6 +43,74 @@ class TaskDomain(str, Enum):
     MATH = 'MATH'
     READING = 'READING'
     NEWS = 'NEWS'
+
+
+MAIN_PROTOCOLS = (
+    Protocol.NL,
+    Protocol.MARKDOWN,
+    Protocol.JSON,
+    Protocol.SHARED_MEMORY,
+)
+
+FULL_FACTORIAL_PROTOCOLS = (
+    Protocol.RELAY_DEFAULT,
+    Protocol.NL,
+    Protocol.MARKDOWN,
+    Protocol.JSON,
+    Protocol.SHARED_MEMORY,
+    Protocol.SHARED_MEMORY_NL,
+    Protocol.SHARED_MEMORY_MARKDOWN,
+    Protocol.SHARED_MEMORY_JSON,
+)
+
+FULL_FACTORIAL_ABLATION_PROTOCOLS = (
+    Protocol.RELAY_DEFAULT,
+    Protocol.SHARED_MEMORY_NL,
+    Protocol.SHARED_MEMORY_MARKDOWN,
+    Protocol.SHARED_MEMORY_JSON,
+)
+
+PROTOCOL_MECHANISM = {
+    Protocol.RELAY_DEFAULT: 'Relay',
+    Protocol.NL: 'Relay',
+    Protocol.MARKDOWN: 'Relay',
+    Protocol.JSON: 'Relay',
+    Protocol.SHARED_MEMORY: 'Shared Memory',
+    Protocol.SHARED_MEMORY_NL: 'Shared Memory',
+    Protocol.SHARED_MEMORY_MARKDOWN: 'Shared Memory',
+    Protocol.SHARED_MEMORY_JSON: 'Shared Memory',
+}
+
+PROTOCOL_FORMAT = {
+    Protocol.RELAY_DEFAULT: 'Default',
+    Protocol.NL: 'NL',
+    Protocol.MARKDOWN: 'Markdown',
+    Protocol.JSON: 'JSON',
+    Protocol.SHARED_MEMORY: 'Default',
+    Protocol.SHARED_MEMORY_NL: 'NL',
+    Protocol.SHARED_MEMORY_MARKDOWN: 'Markdown',
+    Protocol.SHARED_MEMORY_JSON: 'JSON',
+}
+
+SHARED_MEMORY_PROTOCOLS = (
+    Protocol.SHARED_MEMORY,
+    Protocol.SHARED_MEMORY_NL,
+    Protocol.SHARED_MEMORY_MARKDOWN,
+    Protocol.SHARED_MEMORY_JSON,
+)
+
+JSON_PROTOCOLS = (
+    Protocol.JSON,
+    Protocol.SHARED_MEMORY_JSON,
+)
+
+
+def is_shared_memory_protocol(protocol: Protocol) -> bool:
+    return protocol in SHARED_MEMORY_PROTOCOLS
+
+
+def is_json_protocol(protocol: Protocol) -> bool:
+    return protocol in JSON_PROTOCOLS
 
 
 # ── Communication log ────────────────────────────────────────────────────────
@@ -125,29 +196,34 @@ SYSTEM_PROMPTS = {
 }
 
 
-# NL is now explicit — otherwise the model drifts toward markdown-by-default,
-# which muddles the NL-vs-Markdown comparison.
+NL_FORMAT_INSTRUCTION = (
+    '\n\nRespond in plain English prose. Do not use markdown, bullet points, '
+    'headings, JSON, or any structured formatting.'
+)
+
+MARKDOWN_FORMAT_INSTRUCTION = (
+    '\n\nFormat your response using Markdown with clear headings (##), '
+    'bullet points (-), and numbered lists where appropriate.'
+)
+
+JSON_FORMAT_INSTRUCTION = (
+    '\n\nFormat your response as a valid JSON object with descriptive field '
+    'names. Output ONLY the JSON, no markdown fences or extra text.'
+)
+
+
+# NL is explicit because the model otherwise drifts toward markdown-by-default,
+# which muddles the NL-vs-Markdown comparison. RELAY_DEFAULT intentionally has
+# no suffix and is paired with SHARED_MEMORY as the default-format condition.
 PROTOCOL_INSTRUCTIONS = {
-    Protocol.NL: (
-        '\n\nRespond in plain English prose. Do not use markdown, bullet points, '
-        'headings, JSON, or any structured formatting.'
-    ),
-    Protocol.MARKDOWN: (
-        '\n\nFormat your response using Markdown with clear headings (##), '
-        'bullet points (-), and numbered lists where appropriate.'
-    ),
-    Protocol.JSON: (
-        '\n\nFormat your response as a valid JSON object with descriptive field '
-        'names. Output ONLY the JSON, no markdown fences or extra text.'
-    ),
-    # Shared-memory agents get a blackboard preamble instead of a format suffix.
+    Protocol.RELAY_DEFAULT: '',
+    Protocol.NL: NL_FORMAT_INSTRUCTION,
+    Protocol.MARKDOWN: MARKDOWN_FORMAT_INSTRUCTION,
+    Protocol.JSON: JSON_FORMAT_INSTRUCTION,
     Protocol.SHARED_MEMORY: '',
-    # Ablation: blackboard mechanism + forced JSON output. Used to disentangle
-    # mechanism (state injection) from format (output structure) in H1 testing.
-    Protocol.SHARED_MEMORY_JSON: (
-        '\n\nFormat your response as a valid JSON object with descriptive field '
-        'names. Output ONLY the JSON, no markdown fences or extra text.'
-    ),
+    Protocol.SHARED_MEMORY_NL: NL_FORMAT_INSTRUCTION,
+    Protocol.SHARED_MEMORY_MARKDOWN: MARKDOWN_FORMAT_INSTRUCTION,
+    Protocol.SHARED_MEMORY_JSON: JSON_FORMAT_INSTRUCTION,
 }
 
 
@@ -175,14 +251,16 @@ def llm_call(
     domain: TaskDomain = TaskDomain.MATH,
     temperature: float = 0.3,
     seed: Optional[int] = None,
+    send_seed: bool = True,
+    extra_body: Optional[Dict[str, Any]] = None,
 ) -> Tuple[str, Dict[str, Any]]:
     """
     One LLM call. Returns (response_text, meta) where meta contains
     prompt_tokens, completion_tokens, total_tokens, latency_ms, finish_reason,
     json_parse_error.
 
-    Enforces JSON output for Protocol.JSON via response_format, with one retry
-    on parse failure. Falls back to raw text if both attempts fail.
+    Enforces JSON output for JSON-format protocols via response_format, with
+    one retry on parse failure. Falls back to raw text if both attempts fail.
     """
     max_tokens = DOMAIN_MAX_TOKENS.get(domain, 256)
     full_prompt = prompt + PROTOCOL_INSTRUCTIONS[protocol]
@@ -196,9 +274,11 @@ def llm_call(
         'temperature': temperature,
         'max_tokens': max_tokens,
     }
-    if seed is not None:
+    if seed is not None and send_seed:
         kwargs['seed'] = seed
-    if protocol in (Protocol.JSON, Protocol.SHARED_MEMORY_JSON):
+    if extra_body is not None:
+        kwargs['extra_body'] = extra_body
+    if is_json_protocol(protocol):
         kwargs['response_format'] = {'type': 'json_object'}
 
     def _invoke() -> Tuple[Any, float]:
@@ -223,8 +303,8 @@ def llm_call(
     usage = resp.usage
     json_parse_error = False
 
-    # For JSON protocol, validate parseability; one retry if it fails.
-    if protocol in (Protocol.JSON, Protocol.SHARED_MEMORY_JSON):
+    # For JSON-format protocols, validate parseability; one retry if it fails.
+    if is_json_protocol(protocol):
         try:
             json.loads(text)
         except (json.JSONDecodeError, ValueError):
@@ -358,9 +438,11 @@ def agent_planner(
     client,
     model: str,
     seed: Optional[int] = None,
+    send_seed: bool = True,
+    extra_body: Optional[Dict[str, Any]] = None,
     shared: Optional[SharedMemory] = None,
 ) -> str:
-    if protocol in (Protocol.SHARED_MEMORY, Protocol.SHARED_MEMORY_JSON) and shared is not None:
+    if is_shared_memory_protocol(protocol) and shared is not None:
         prompt = _wrap_blackboard(
             shared.snapshot(),
             f'Decompose the task stored in the blackboard into 3-5 subtasks:'
@@ -368,7 +450,10 @@ def agent_planner(
     else:
         prompt = f'Decompose this task into 3-5 subtasks:\n\n{task_prompt}'
 
-    text, meta = llm_call(client, model, 'planner', prompt, protocol, domain, seed=seed)
+    text, meta = llm_call(
+        client, model, 'planner', prompt, protocol, domain,
+        seed=seed, send_seed=send_seed, extra_body=extra_body,
+    )
     logger.log(Message(
         run_id=run_id, protocol=protocol.value, task_domain=domain.value,
         sender='Planner', receiver='Executor', content=text, **meta,
@@ -386,9 +471,11 @@ def agent_executor(
     client,
     model: str,
     seed: Optional[int] = None,
+    send_seed: bool = True,
+    extra_body: Optional[Dict[str, Any]] = None,
     shared: Optional[SharedMemory] = None,
 ) -> str:
-    if protocol in (Protocol.SHARED_MEMORY, Protocol.SHARED_MEMORY_JSON) and shared is not None:
+    if is_shared_memory_protocol(protocol) and shared is not None:
         prompt = _wrap_blackboard(
             shared.snapshot(),
             'Execute the plan stored in the blackboard using the task information '
@@ -401,7 +488,10 @@ def agent_executor(
             f'Task Information:\n{task_prompt}'
         )
 
-    text, meta = llm_call(client, model, 'executor', prompt, protocol, domain, seed=seed)
+    text, meta = llm_call(
+        client, model, 'executor', prompt, protocol, domain,
+        seed=seed, send_seed=send_seed, extra_body=extra_body,
+    )
     logger.log(Message(
         run_id=run_id, protocol=protocol.value, task_domain=domain.value,
         sender='Executor', receiver='Integrator', content=text, **meta,
@@ -418,6 +508,8 @@ def agent_integrator(
     client,
     model: str,
     seed: Optional[int] = None,
+    send_seed: bool = True,
+    extra_body: Optional[Dict[str, Any]] = None,
     shared: Optional[SharedMemory] = None,
 ) -> str:
     if domain == TaskDomain.MATH:
@@ -427,7 +519,7 @@ def agent_integrator(
     else:
         extra = ' Summarize all key facts and figures from the analysis.'
 
-    if protocol in (Protocol.SHARED_MEMORY, Protocol.SHARED_MEMORY_JSON) and shared is not None:
+    if is_shared_memory_protocol(protocol) and shared is not None:
         prompt = _wrap_blackboard(
             shared.snapshot(),
             f'Synthesize the execution results stored in the blackboard into a '
@@ -439,7 +531,10 @@ def agent_integrator(
             f'answer.{extra}\n\nExecution Results:\n{execution_result}'
         )
 
-    text, meta = llm_call(client, model, 'integrator', prompt, protocol, domain, seed=seed)
+    text, meta = llm_call(
+        client, model, 'integrator', prompt, protocol, domain,
+        seed=seed, send_seed=send_seed, extra_body=extra_body,
+    )
     logger.log(Message(
         run_id=run_id, protocol=protocol.value, task_domain=domain.value,
         sender='Integrator', receiver='Output', content=text, **meta,
@@ -474,6 +569,8 @@ def run_pipeline(
     client,
     model: str = 'gpt-4o-mini',
     seed: int = 0,
+    send_seed: bool = True,
+    extra_body: Optional[Dict[str, Any]] = None,
 ) -> Tuple[RunResult, List[Message]]:
     """Execute one pipeline run and return (summary, full message log)."""
     random.seed(seed)
@@ -483,30 +580,41 @@ def run_pipeline(
         f'{protocol}{domain}{sample_idx}{seed}'.encode()
     ).hexdigest()[:8]
     logger = CommunicationLogger()
-    shared = SharedMemory() if protocol in (Protocol.SHARED_MEMORY, Protocol.SHARED_MEMORY_JSON) else None
+    shared = SharedMemory() if is_shared_memory_protocol(protocol) else None
 
     task_prompt = TASK_BUILDERS[domain](sample)
 
-    if protocol in (Protocol.SHARED_MEMORY, Protocol.SHARED_MEMORY_JSON):
+    if is_shared_memory_protocol(protocol):
         shared.write('System', 'task_prompt', task_prompt)
         plan = agent_planner(task_prompt, protocol, domain, logger, run_id,
-                             client, model, seed=seed, shared=shared)
+                             client, model, seed=seed,
+                             send_seed=send_seed,
+                             extra_body=extra_body, shared=shared)
         shared.write('Planner', 'plan', plan)
 
         exec_out = agent_executor(plan, task_prompt, protocol, domain, logger,
-                                   run_id, client, model, seed=seed, shared=shared)
+                                   run_id, client, model, seed=seed,
+                                   send_seed=send_seed,
+                                   extra_body=extra_body, shared=shared)
         shared.write('Executor', 'execution_result', exec_out)
 
         final = agent_integrator(exec_out, protocol, domain, logger, run_id,
-                                  client, model, seed=seed, shared=shared)
+                                  client, model, seed=seed,
+                                  send_seed=send_seed,
+                                  extra_body=extra_body, shared=shared)
         shared.write('Integrator', 'final_answer', final)
     else:
         plan = agent_planner(task_prompt, protocol, domain, logger, run_id,
-                             client, model, seed=seed)
+                             client, model, seed=seed, send_seed=send_seed,
+                             extra_body=extra_body)
         exec_out = agent_executor(plan, task_prompt, protocol, domain, logger,
-                                   run_id, client, model, seed=seed)
+                                   run_id, client, model, seed=seed,
+                                   send_seed=send_seed,
+                                   extra_body=extra_body)
         final = agent_integrator(exec_out, protocol, domain, logger, run_id,
-                                  client, model, seed=seed)
+                                  client, model, seed=seed,
+                                  send_seed=send_seed,
+                                  extra_body=extra_body)
 
     score = EVALUATORS[domain](final, sample)
     s = logger.summary()

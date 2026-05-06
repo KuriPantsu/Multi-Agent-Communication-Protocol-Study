@@ -24,7 +24,15 @@ from fastapi.staticfiles import StaticFiles
 from openai import OpenAI
 from pydantic import BaseModel, Field
 
-from pipeline import Protocol, TaskDomain, run_pipeline
+from experiment_utils import MODEL_PRICING_PER_1M, PROVIDER_CONFIG
+from pipeline import (
+    FULL_FACTORIAL_PROTOCOLS,
+    PROTOCOL_FORMAT,
+    PROTOCOL_MECHANISM,
+    Protocol,
+    TaskDomain,
+    run_pipeline,
+)
 
 
 ROOT = Path(__file__).resolve().parent
@@ -33,8 +41,10 @@ RESULTS_SUMMARY = ROOT / "results" / "results_summary.csv"
 RESULTS_RAW = ROOT / "results" / "results_raw.csv"
 RESULTS_MESSAGES = ROOT / "results" / "results_messages.jsonl"
 EXPERIMENT_CONFIG = ROOT / "results" / "experiment_config.json"
+RESULTS_ABLATION_FULL = ROOT / "results" / "results_ablation_full_factorial.csv"
+RESULTS_DEEPSEEK = ROOT / "results" / "results_deepseek_v4_flash_8protocols.csv"
 FIGURES_DIR = ROOT / "figures"
-COST_PER_1M = {"prompt": 0.15, "completion": 0.60}
+COST_PER_1M = MODEL_PRICING_PER_1M
 
 load_dotenv(ROOT / ".env")
 
@@ -77,14 +87,38 @@ def read_json(path: Path) -> dict[str, Any]:
         return json.load(f)
 
 
-def client_from_local_key() -> OpenAI:
-    key = os.environ.get("OPENAI_API_KEY", "").strip()
+def provider_for_model(model: str) -> str:
+    return "deepseek" if model.startswith("deepseek-") else "openai"
+
+
+def client_from_local_key(model: str = "gpt-4o-mini") -> OpenAI:
+    provider = provider_for_model(model)
+    config = PROVIDER_CONFIG[provider]
+    key = os.environ.get(config["api_key_env"], "").strip()
     if not key or "YOUR-KEY-HERE" in key:
         raise HTTPException(
             status_code=400,
-            detail="OPENAI_API_KEY is not configured. Add it to your shell or project-root .env file.",
+            detail=f"{config['api_key_env']} is not configured. Add it to your shell or project-root .env file.",
         )
+    if config["base_url"]:
+        return OpenAI(api_key=key, base_url=config["base_url"])
     return OpenAI(api_key=key)
+
+
+def provider_request_options(model: str) -> dict[str, Any]:
+    config = PROVIDER_CONFIG[provider_for_model(model)]
+    return {
+        "send_seed": config["send_seed"],
+        "extra_body": config["extra_body"],
+    }
+
+
+def estimate_cost(result, model: str) -> float:
+    prices = COST_PER_1M.get(model, COST_PER_1M["gpt-4o-mini"])
+    return (
+        result.total_prompt_tokens / 1e6 * prices["prompt"]
+        + result.total_completion_tokens / 1e6 * prices["completion"]
+    )
 
 
 def dataframe_records(df: pd.DataFrame) -> list[dict[str, Any]]:
@@ -116,16 +150,20 @@ def classify_domain(client: OpenAI, model: str, task_text: str) -> tuple[str, fl
         'Respond with JSON: {"domain": "...", "confidence": 0.0-1.0}.\n\n'
         f"TASK:\n{task_text}"
     )
-    resp = client.chat.completions.create(
-        model=model,
-        messages=[
+    kwargs: dict[str, Any] = {
+        "model": model,
+        "messages": [
             {"role": "system", "content": "You are a concise task classifier."},
             {"role": "user", "content": classifier_prompt},
         ],
-        response_format={"type": "json_object"},
-        temperature=0.0,
-        max_tokens=60,
-    )
+        "response_format": {"type": "json_object"},
+        "temperature": 0.0,
+        "max_tokens": 60,
+    }
+    extra_body = provider_request_options(model)["extra_body"]
+    if extra_body is not None:
+        kwargs["extra_body"] = extra_body
+    resp = client.chat.completions.create(**kwargs)
     try:
         parsed = json.loads(resp.choices[0].message.content or "{}")
         domain = str(parsed.get("domain", "OTHER")).upper()
@@ -200,7 +238,10 @@ def protocol_recommendation(domain: str, rows: list[dict[str, Any]]) -> dict[str
 
     if recommended["protocol"] != fastest["protocol"]:
         latency_delta = recommended["latency_ms"] - fastest["latency_ms"]
-        reason += f" The fastest option is {fastest['protocol']} by {abs(latency_delta):.0f} ms."
+        reason += (
+            f" {fastest['protocol']} was about {abs(latency_delta):.0f} ms faster "
+            f"than {recommended['protocol']}."
+        )
     else:
         reason += " It is also the fastest option in this live run."
 
@@ -245,9 +286,12 @@ def health() -> dict[str, Any]:
     return {
         "ok": True,
         "has_openai_key": bool(os.environ.get("OPENAI_API_KEY", "").strip()),
+        "has_deepseek_key": bool(os.environ.get("DEEPSEEK_API_KEY", "").strip()),
         "summary_exists": RESULTS_SUMMARY.exists(),
         "raw_exists": RESULTS_RAW.exists(),
         "messages_exists": RESULTS_MESSAGES.exists(),
+        "full_ablation_exists": RESULTS_ABLATION_FULL.exists(),
+        "deepseek_results_exists": RESULTS_DEEPSEEK.exists(),
     }
 
 
@@ -278,6 +322,80 @@ def summary() -> dict[str, Any]:
         "domains": sorted(df["Domain"].dropna().unique().tolist()),
         "recommendations": recommendations,
     }
+
+
+def add_protocol_axes(df: pd.DataFrame) -> pd.DataFrame:
+    out = df.copy()
+    out["Mechanism"] = out["protocol"].map(
+        {p.value: PROTOCOL_MECHANISM[p] for p in FULL_FACTORIAL_PROTOCOLS}
+    )
+    out["Format"] = out["protocol"].map(
+        {p.value: PROTOCOL_FORMAT[p] for p in FULL_FACTORIAL_PROTOCOLS}
+    )
+    return out
+
+
+def mechanism_effects(df: pd.DataFrame) -> list[dict[str, Any]]:
+    rows = []
+    for domain in ["MATH", "READING", "NEWS"]:
+        sub = df[df["task_domain"] == domain]
+        for fmt in ["Default", "NL", "Markdown", "JSON"]:
+            relay = sub[(sub["Mechanism"] == "Relay") & (sub["Format"] == fmt)]["total_tokens"]
+            shared = sub[(sub["Mechanism"] == "Shared Memory") & (sub["Format"] == fmt)]["total_tokens"]
+            if relay.empty or shared.empty:
+                continue
+            rows.append(
+                {
+                    "domain": domain,
+                    "format": fmt,
+                    "relayTokens": float(relay.mean()),
+                    "sharedMemoryTokens": float(shared.mean()),
+                    "mechanismDeltaTokens": float(shared.mean() - relay.mean()),
+                }
+            )
+    return rows
+
+
+@app.get("/api/ablation")
+def ablation() -> dict[str, Any]:
+    raw = read_csv(RESULTS_RAW) if RESULTS_RAW.exists() else pd.DataFrame()
+    full = read_csv(RESULTS_ABLATION_FULL) if RESULTS_ABLATION_FULL.exists() else pd.DataFrame()
+    deepseek = read_csv(RESULTS_DEEPSEEK) if RESULTS_DEEPSEEK.exists() else pd.DataFrame()
+
+    payload: dict[str, Any] = {
+        "fullAblationExists": not full.empty,
+        "deepseekExists": not deepseek.empty,
+        "fullAblation": {"means": [], "effects": []},
+        "deepseek": {"means": [], "effects": []},
+    }
+
+    if not raw.empty and not full.empty:
+        main = raw[raw["protocol"].isin(["NL", "MARKDOWN", "JSON", "SHARED_MEMORY"])][
+            ["protocol", "task_domain", "total_tokens", "completion_score"]
+        ]
+        supplemental = full[["protocol", "task_domain", "total_tokens", "completion_score"]]
+        combined = add_protocol_axes(pd.concat([main, supplemental], ignore_index=True))
+        means = (
+            combined.groupby(["task_domain", "Mechanism", "Format"])["total_tokens"]
+            .mean().reset_index()
+        )
+        payload["fullAblation"] = {
+            "means": dataframe_records(means),
+            "effects": mechanism_effects(combined),
+        }
+
+    if not deepseek.empty:
+        ds = add_protocol_axes(deepseek)
+        means = (
+            ds.groupby(["task_domain", "Mechanism", "Format"])["total_tokens"]
+            .mean().reset_index()
+        )
+        payload["deepseek"] = {
+            "means": dataframe_records(means),
+            "effects": mechanism_effects(ds),
+        }
+
+    return payload
 
 
 @app.get("/api/config")
@@ -325,14 +443,14 @@ def messages(
 
 @app.post("/api/classify")
 def classify(req: ClassifyRequest) -> dict[str, Any]:
-    client = client_from_local_key()
+    client = client_from_local_key(req.model)
     domain, confidence = classify_domain(client, req.model, req.task)
     return {"domain": domain, "confidence": confidence}
 
 
 @app.post("/api/run")
 def run(req: RunRequest) -> dict[str, Any]:
-    client = client_from_local_key()
+    client = client_from_local_key(req.model)
     domain, confidence = classify_domain(client, req.model, req.task)
     summary_df = read_csv(RESULTS_SUMMARY) if RESULTS_SUMMARY.exists() else pd.DataFrame()
 
@@ -361,11 +479,9 @@ def run(req: RunRequest) -> dict[str, Any]:
         client=client,
         model=req.model,
         seed=0,
+        **provider_request_options(req.model),
     )
-    cost_usd = (
-        result.total_prompt_tokens / 1e6 * COST_PER_1M["prompt"]
-        + result.total_completion_tokens / 1e6 * COST_PER_1M["completion"]
-    )
+    cost_usd = estimate_cost(result, req.model)
     return {
         "domain": domain,
         "confidence": confidence,
@@ -381,7 +497,7 @@ def run(req: RunRequest) -> dict[str, Any]:
 
 @app.post("/api/compare")
 def compare(req: CompareRequest) -> dict[str, Any]:
-    client = client_from_local_key()
+    client = client_from_local_key(req.model)
     domain, confidence = classify_domain(client, req.model, req.task)
     task_domain, sample = build_sample(domain, req.task)
 
@@ -401,11 +517,9 @@ def compare(req: CompareRequest) -> dict[str, Any]:
             client=client,
             model=req.model,
             seed=0,
+            **provider_request_options(req.model),
         )
-        cost_usd = (
-            result.total_prompt_tokens / 1e6 * COST_PER_1M["prompt"]
-            + result.total_completion_tokens / 1e6 * COST_PER_1M["completion"]
-        )
+        cost_usd = estimate_cost(result, req.model)
         rows.append(
             {
                 "protocol": protocol_name,

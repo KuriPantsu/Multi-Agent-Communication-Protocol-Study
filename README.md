@@ -18,6 +18,10 @@ The repository includes the experiment notebook, a thin shared-helper module, a 
 ├── Multi_Agent_Communication_Protocol_Study.ipynb   Experiment driver: data loading → 360-run grid → analysis → figures
 ├── app.py                                       Streamlit dashboard / legacy demo
 ├── fastapi_app.py                               FastAPI backend for the polished experiment dashboard
+├── experiment_utils.py                          Shared helpers for supplemental ablation/robustness runs
+├── _run_ablation.py                             Backward-compatible SM_JSON ablation runner
+├── _run_full_ablation.py                        Full 2x4 supplemental protocol ablation runner
+├── _run_deepseek_robustness.py                  DeepSeek V4 Flash 8-protocol robustness runner
 ├── dashboard/                                   Static frontend served by FastAPI
 │   ├── index.html
 │   ├── styles.css
@@ -68,6 +72,12 @@ cp .env.example .env
 
 The notebook, Streamlit app, and FastAPI dashboard pick the key up from here. You can also simply `export OPENAI_API_KEY=sk-...` in the shell before launching, and skip the `.env` file.
 
+DeepSeek robustness checks are optional. To run them, also set:
+
+```bash
+DEEPSEEK_API_KEY=sk-...
+```
+
 ### 3. Run the experiment end-to-end (~10 min, ~$0.40)
 
 Open `Multi_Agent_Communication_Protocol_Study.ipynb` in Jupyter or VS Code and **Run All**, *or* execute headless:
@@ -86,6 +96,34 @@ Outputs:
 - `results/experiment_config.json` — configuration snapshot
 - `figures/fig1 … fig6.png` — 150 DPI report figures
 
+### 3b. Optional supplemental ablations
+
+The main experiment stays at 360 rows. Supplemental runs write separate files so they do not overwrite `results/results_raw.csv`.
+
+```bash
+# Complete the mechanism x format matrix on gpt-4o-mini:
+# Relay/Shared Memory x Default/NL/Markdown/JSON
+python _run_full_ablation.py
+
+# Small second-model robustness check:
+# 8 protocols x 3 domains x 5 samples/domain x 2 reps = 240 runs
+python _run_deepseek_robustness.py
+```
+
+On the shared course machine/env, the same commands can be run explicitly with:
+
+```bash
+/Users/kuripantsu/venvs/py312_ml/bin/python _run_full_ablation.py
+/Users/kuripantsu/venvs/py312_ml/bin/python _run_deepseek_robustness.py
+```
+
+Outputs:
+
+- `results/results_ablation_full_factorial.csv`
+- `results/results_ablation_full_factorial_messages.jsonl`
+- `results/results_deepseek_v4_flash_8protocols.csv`
+- `results/results_deepseek_v4_flash_8protocols_messages.jsonl`
+
 ### 4. Launch the FastAPI experiment dashboard
 
 ```bash
@@ -100,7 +138,7 @@ This is the recommended interactive project showcase. It is a polished dashboard
 
 1. **Overview** — introduces the research question: whether protocol choice changes cost, latency, and completion quality.
 2. **Experiment Design** — explains the 4 × 3 × 10 × 3 design and the metrics.
-3. **Protocol Explorer** — describes NL, Markdown, JSON, and Shared Memory plus domain-level trade-offs.
+3. **Protocol Explorer** — describes the main protocols plus the supplemental 2x4 ablation cells.
 4. **Live Demo** — runs the same user task under selected protocols and compares total tokens, prompt/completion split, estimated cost, latency, and tokens/sec. It intentionally hides agent messages and final answer text so the focus stays on protocol overhead.
 5. **Experiment Database** — browses saved message-level audit records from the 360-run experiment.
 6. **Results Dashboard** — shows aggregate token, completion, latency, Pareto, and summary-table results.
@@ -149,10 +187,12 @@ The "Auto-select protocol" sidebar toggle lets you override the recommendation a
 
 ### Protocol implementations
 
+- **Relay Default** — sequential Planner → Executor → Integrator handoff with no explicit output-format suffix. This is a supplemental ablation cell, not part of the original 360-run main grid.
 - **NL** — explicit `"plain English prose, no markdown / bullets / JSON"` instruction suffix to prevent the model from defaulting to markdown-style output.
 - **Markdown** — headings, bullet points, numbered lists.
 - **JSON** — OpenAI `response_format={"type": "json_object"}` + descriptive field names. A single parse-retry is attempted on `JSONDecodeError`; remaining failures are logged as `json_parse_error=True`.
 - **Shared Memory** — a true blackboard: every agent is injected the full JSON snapshot of the shared state, so downstream agents' input tokens grow as the state accumulates. This is what makes H1 ("Shared Memory incurs higher overhead") actually testable.
+- **Shared Memory + NL / Markdown / JSON** — supplemental ablation cells that hold output format fixed while switching mechanism from relay to blackboard. `SHARED_MEMORY_JSON` is the original focused H1 ablation; the NL and Markdown variants complete the 2x4 matrix.
 
 ### Evaluators
 

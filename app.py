@@ -25,23 +25,37 @@ import streamlit as st
 from openai import OpenAI
 from scipy import stats
 
-from pipeline import Protocol, TaskDomain, run_pipeline
+from experiment_utils import MODEL_PRICING_PER_1M
+from pipeline import (
+    FULL_FACTORIAL_PROTOCOLS,
+    MAIN_PROTOCOLS,
+    PROTOCOL_FORMAT,
+    PROTOCOL_MECHANISM,
+    Protocol,
+    TaskDomain,
+    run_pipeline,
+)
 
 
 RESULTS_SUMMARY = Path("results/results_summary.csv")
 RESULTS_RAW = Path("results/results_raw.csv")
 RESULTS_MESSAGES = Path("results/results_messages.jsonl")
 EXPERIMENT_CONFIG = Path("results/experiment_config.json")
+RESULTS_ABLATION_SM_JSON = Path("results/results_ablation_sm_json.csv")
+RESULTS_ABLATION_FULL = Path("results/results_ablation_full_factorial.csv")
+RESULTS_DEEPSEEK = Path("results/results_deepseek_v4_flash_8protocols.csv")
 FIGURES_DIR = Path("figures")
-# Per-model API pricing (USD per 1M tokens). Update when OpenAI prices change.
-COST_PER_1M = {
-    "gpt-4o-mini": {"prompt": 0.15, "completion": 0.60},
-    "gpt-4o":      {"prompt": 2.50, "completion": 10.00},
-    "gpt-4.1":     {"prompt": 2.00, "completion": 8.00},
-}
+COST_PER_1M = MODEL_PRICING_PER_1M
 
 
 PROTOCOL_DETAILS = {
+    "RELAY_DEFAULT": {
+        "label": "Relay + Default",
+        "short": "Sequential handoff with no explicit format suffix.",
+        "implementation": "Planner output is passed to Executor, then Executor output to Integrator; no NL/Markdown/JSON instruction is appended.",
+        "strength": "Completes the default-format relay cell for the 2x4 ablation matrix.",
+        "risk": "LLMs may drift toward their own default markdown-ish formatting.",
+    },
     "NL": {
         "label": "Natural Language",
         "short": "Plain prose between agents.",
@@ -65,14 +79,28 @@ PROTOCOL_DETAILS = {
     },
     "SHARED_MEMORY": {
         "label": "Shared Memory",
-        "short": "Blackboard state shared across agents.",
+        "short": "Blackboard state shared across agents with default output format.",
         "implementation": "Injects the full accumulated JSON blackboard snapshot into downstream agents.",
         "strength": "Best quality on reading and news because context persists across the whole chain.",
         "risk": "Highest prompt-token overhead because state grows at each step.",
     },
+    "SHARED_MEMORY_NL": {
+        "label": "Shared Memory + NL",
+        "short": "Blackboard mechanism with explicit plain-English output.",
+        "implementation": "Injects the full blackboard snapshot and appends the same NL format instruction used by the relay NL condition.",
+        "strength": "Completes the NL-format mechanism comparison: NL vs SHARED_MEMORY_NL.",
+        "risk": "Plain prose may make intermediate state less machine-readable.",
+    },
+    "SHARED_MEMORY_MARKDOWN": {
+        "label": "Shared Memory + Markdown",
+        "short": "Blackboard mechanism with Markdown output.",
+        "implementation": "Injects the full blackboard snapshot and appends the same Markdown format instruction used by the relay Markdown condition.",
+        "strength": "Completes the Markdown-format mechanism comparison: MARKDOWN vs SHARED_MEMORY_MARKDOWN.",
+        "risk": "Combines state serialization with verbose formatting.",
+    },
     "SHARED_MEMORY_JSON": {
         "label": "Shared Memory + JSON (ablation)",
-        "short": "Blackboard mechanism with forced JSON output — used to disentangle mechanism from format.",
+        "short": "Blackboard mechanism with forced JSON output; the original H1 ablation cell.",
         "implementation": "Combines the blackboard preamble with response_format=json_object enforcement.",
         "strength": "Cleanly isolates the cost of the blackboard mechanism alone (vs. JSON-relay) for H1 testing.",
         "risk": "Pure ablation protocol — not intended for general use; layers JSON verbosity on top of state injection.",
@@ -188,6 +216,61 @@ def load_config() -> dict:
         return {}
     with EXPERIMENT_CONFIG.open("r", encoding="utf-8") as f:
         return json.load(f)
+
+
+@st.cache_data
+def load_optional_csv(path: str) -> Optional[pd.DataFrame]:
+    csv_path = Path(path)
+    if not csv_path.exists():
+        return None
+    return pd.read_csv(csv_path)
+
+
+def add_protocol_axes(df: pd.DataFrame, protocol_col: str = "protocol") -> pd.DataFrame:
+    out = df.copy()
+    out["Mechanism"] = out[protocol_col].map(
+        {p.value: PROTOCOL_MECHANISM[p] for p in FULL_FACTORIAL_PROTOCOLS}
+    )
+    out["Format"] = out[protocol_col].map(
+        {p.value: PROTOCOL_FORMAT[p] for p in FULL_FACTORIAL_PROTOCOLS}
+    )
+    return out
+
+
+def combined_full_factorial(raw_df: pd.DataFrame, ablation_df: pd.DataFrame) -> pd.DataFrame:
+    main = raw_df[raw_df["protocol"].isin([p.value for p in MAIN_PROTOCOLS])][
+        ["protocol", "task_domain", "total_tokens", "completion_score"]
+    ]
+    supplemental = ablation_df[
+        ["protocol", "task_domain", "total_tokens", "completion_score"]
+    ]
+    return add_protocol_axes(pd.concat([main, supplemental], ignore_index=True))
+
+
+def mechanism_effect_rows(df: pd.DataFrame, domain: str | None = None) -> pd.DataFrame:
+    rows = []
+    sub_df = df if domain is None else df[df["task_domain"] == domain]
+    for fmt in ["Default", "NL", "Markdown", "JSON"]:
+        relay = sub_df[(sub_df["Mechanism"] == "Relay") & (sub_df["Format"] == fmt)]["total_tokens"].values
+        shared = sub_df[
+            (sub_df["Mechanism"] == "Shared Memory") & (sub_df["Format"] == fmt)
+        ]["total_tokens"].values
+        if len(relay) == 0 or len(shared) == 0:
+            continue
+        diff = shared.mean() - relay.mean()
+        pooled = np.sqrt((relay.var() + shared.var()) / 2)
+        d = diff / pooled if pooled > 0 else 0
+        _, p_val = stats.ttest_ind(shared, relay, equal_var=False)
+        rows.append({
+            "Domain": domain or "ALL",
+            "Format": fmt,
+            "Relay tokens": relay.mean(),
+            "Shared Memory tokens": shared.mean(),
+            "Mechanism Δ tokens": diff,
+            "Cohen's d": d,
+            "p": p_val,
+        })
+    return pd.DataFrame(rows)
 
 
 def best_protocol(summary: pd.DataFrame, domain: str) -> tuple[str, float, float]:
@@ -318,7 +401,7 @@ def render_live_demo(summary: Optional[pd.DataFrame]) -> None:
     manual_protocol = st.selectbox(
         "Manual protocol override",
         [p.value for p in Protocol],
-        index=2,
+        index=[p.value for p in Protocol].index("JSON"),
         disabled=auto_protocol,
     )
 
@@ -440,6 +523,9 @@ summary = load_summary()
 raw = load_raw()
 messages = load_messages()
 config = load_config()
+ablation_sm_json = load_optional_csv(str(RESULTS_ABLATION_SM_JSON))
+ablation_full = load_optional_csv(str(RESULTS_ABLATION_FULL))
+deepseek_results = load_optional_csv(str(RESULTS_DEEPSEEK))
 
 with st.sidebar:
     st.title("Dashboard Controls")
@@ -492,7 +578,7 @@ if page == "Overview":
         Multi-agent LLM systems often let developers choose how agents communicate, but that choice is usually treated as an implementation detail.
         This project turns the communication protocol into the experimental factor and asks:
 
-        **How do NL, Markdown, JSON, and Shared Memory affect token cost, latency, and task completion quality?**
+        **How do communication mechanism and output format affect token cost, latency, and task completion quality?**
         """
     )
     render_flow()
@@ -523,7 +609,7 @@ if page == "Overview":
 elif page == "Experiment Design":
     st.subheader("4 x 3 Factorial Experiment")
     c1, c2, c3, c4 = st.columns(4)
-    c1.metric("Protocols", "4", "NL, Markdown, JSON, Shared Memory")
+    c1.metric("Main protocols", "4", "NL, Markdown, JSON, Shared Memory")
     c2.metric("Domains", "3", "Math, Reading, News")
     c3.metric("Samples/domain", "10")
     c4.metric("Repetitions/cell", "3")
@@ -554,7 +640,7 @@ elif page == "Experiment Design":
 
 
 elif page == "Protocol Explorer":
-    st.subheader("Four Communication Protocols")
+    st.subheader("Communication Protocol Conditions")
     cols = st.columns(2)
     for idx, (key, detail) in enumerate(PROTOCOL_DETAILS.items()):
         with cols[idx % 2]:
@@ -631,29 +717,64 @@ elif page == "Results Dashboard":
 
     # ── Ablation Study: Mechanism vs Format ─────────────────────────────────
     st.markdown("---")
-    st.subheader("Ablation Study: Mechanism vs Format (SHARED_MEMORY_JSON)")
+    st.subheader("Ablation Study: Mechanism vs Format")
 
-    ablation_path = Path("results/results_ablation_sm_json.csv")
-    if not ablation_path.exists():
-        st.info(
-            "Ablation results not found. Run notebook §5b "
-            "(or `python _run_ablation.py`) to generate "
-            "`results/results_ablation_sm_json.csv` (90 runs)."
-        )
-    elif raw is None:
+    if raw is None:
         st.info("Main experiment data not found — cannot compute decomposition.")
-    else:
+    elif ablation_full is not None:
+        st.markdown(
+            "The supplemental 2x4 ablation completes the mechanism x format matrix: "
+            "relay vs shared-memory crossed with default, NL, Markdown, and JSON output."
+        )
+        full_compare = combined_full_factorial(raw, ablation_full)
+        full_means = (
+            full_compare.groupby(["task_domain", "Mechanism", "Format"])["total_tokens"]
+            .mean().round(0).reset_index()
+        )
+        full_means["Cell"] = (
+            full_means["Mechanism"] + " / " + full_means["Format"] + " / " + full_means["task_domain"]
+        )
+
+        st.markdown("#### Mean tokens across the full 2x4 matrix")
+        st.bar_chart(
+            full_means,
+            x="Cell", y="total_tokens", color="Mechanism",
+            width="stretch",
+        )
+
+        domain_rows = []
+        for dom in ["MATH", "READING", "NEWS"]:
+            domain_rows.append(mechanism_effect_rows(full_compare, dom))
+        effect_table = pd.concat(domain_rows, ignore_index=True)
+        st.markdown("#### Mechanism effect by held-constant format")
+        st.dataframe(
+            effect_table.style.format({
+                "Relay tokens": "{:.0f}",
+                "Shared Memory tokens": "{:.0f}",
+                "Mechanism Δ tokens": "{:+.0f}",
+                "Cohen's d": "{:+.2f}",
+                "p": "{:.4f}",
+            }),
+            width="stretch",
+            hide_index=True,
+        )
+        st.caption(
+            "Each row compares Relay vs Shared Memory while holding output format fixed. "
+            "The JSON row is the original JSON vs SHARED_MEMORY_JSON comparison."
+        )
+    elif ablation_sm_json is not None:
+        st.info(
+            "Only the original SHARED_MEMORY_JSON ablation file is present. "
+            "Run `python _run_full_ablation.py` to generate the complete 2x4 matrix."
+        )
         st.markdown(
             "The main 4-protocol grid confounds **mechanism** (blackboard injection) and "
-            "**default output format** in `SHARED_MEMORY`. We added a 5th protocol — "
-            "`SHARED_MEMORY_JSON` — that combines the blackboard mechanism with forced "
-            "JSON output (90 supplementary runs). This decomposes the SM cost into clean "
-            "mechanism and format components."
+            "**default output format** in `SHARED_MEMORY`. The existing `SHARED_MEMORY_JSON` "
+            "file still isolates the JSON-format mechanism effect."
         )
 
-        df_abl = pd.read_csv(ablation_path)
+        df_abl = ablation_sm_json
 
-        # Combined 3-protocol view for the chart
         compare = pd.concat([
             raw[raw["protocol"].isin(["JSON", "SHARED_MEMORY"])][
                 ["protocol", "task_domain", "total_tokens", "completion_score"]
@@ -675,16 +796,15 @@ elif page == "Results Dashboard":
             width="stretch",
         )
 
-        # Comparison table: Welch's t-test + Cohen's d
         rows = []
         for dom in ["MATH", "READING", "NEWS"]:
             j = raw[(raw["protocol"] == "JSON") & (raw["task_domain"] == dom)]["total_tokens"].values
             sm = raw[(raw["protocol"] == "SHARED_MEMORY") & (raw["task_domain"] == dom)]["total_tokens"].values
             sj = df_abl[(df_abl["protocol"] == "SHARED_MEMORY_JSON") & (df_abl["task_domain"] == dom)]["total_tokens"].values
             d_mech = (sj.mean() - j.mean()) / np.sqrt((j.var() + sj.var()) / 2) if (j.var() + sj.var()) > 0 else 0
-            t_mech, p_mech = stats.ttest_ind(sj, j, equal_var=False)
+            _, p_mech = stats.ttest_ind(sj, j, equal_var=False)
             d_fmt = (sj.mean() - sm.mean()) / np.sqrt((sm.var() + sj.var()) / 2) if (sm.var() + sj.var()) > 0 else 0
-            t_fmt, p_fmt = stats.ttest_ind(sj, sm, equal_var=False)
+            _, p_fmt = stats.ttest_ind(sj, sm, equal_var=False)
             rows.append({
                 "Domain": dom,
                 "Mechanism Δ tokens": f"{sj.mean() - j.mean():+.0f}",
@@ -696,25 +816,55 @@ elif page == "Results Dashboard":
             })
         st.markdown("#### Statistical comparison (Welch's t-test, Cohen's d)")
         st.dataframe(pd.DataFrame(rows), width="stretch", hide_index=True)
-        st.caption(
-            "**Mechanism**: JSON-relay vs SHARED_MEMORY_JSON (output format held constant). "
-            "**Format**: SHARED_MEMORY (default) vs SHARED_MEMORY_JSON (mechanism held constant)."
-        )
 
-        # Decomposition narrative for the most striking domain (READING)
         dom = "READING"
         j_mean = raw[(raw["protocol"] == "JSON") & (raw["task_domain"] == dom)]["total_tokens"].mean()
         sm_mean = raw[(raw["protocol"] == "SHARED_MEMORY") & (raw["task_domain"] == dom)]["total_tokens"].mean()
         sj_mean = df_abl[(df_abl["protocol"] == "SHARED_MEMORY_JSON") & (df_abl["task_domain"] == dom)]["total_tokens"].mean()
         st.markdown("#### Decomposition for READING (largest effect)")
         st.markdown(
-            f"- **JSON (relay)** = {j_mean:.0f} tokens  *(baseline)*\n"
-            f"- **SHARED_MEMORY_JSON** = {sj_mean:.0f} tokens → **mechanism alone adds +{sj_mean - j_mean:.0f}** (format held = JSON)\n"
-            f"- **SHARED_MEMORY (default fmt)** = {sm_mean:.0f} tokens → format change saves {sj_mean - sm_mean:+.0f} (mechanism held = blackboard)\n"
+            f"- **JSON (relay)** = {j_mean:.0f} tokens *(baseline)*\n"
+            f"- **SHARED_MEMORY_JSON** = {sj_mean:.0f} tokens -> **mechanism alone adds +{sj_mean - j_mean:.0f}** (format held = JSON)\n"
+            f"- **SHARED_MEMORY (default fmt)** = {sm_mean:.0f} tokens -> format change saves {sj_mean - sm_mean:+.0f} (mechanism held = blackboard)\n"
             f"- **Net SM vs JSON in main experiment** = {sm_mean - j_mean:+.0f} tokens "
-            f"= mechanism (+{sj_mean - j_mean:.0f}) + format ({sm_mean - sj_mean:+.0f})\n\n"
-            "→ The main experiment **underestimates the blackboard mechanism cost** because "
-            "the cheaper default output format partially cancels the mechanism overhead."
+            f"= mechanism (+{sj_mean - j_mean:.0f}) + format ({sm_mean - sj_mean:+.0f})"
+        )
+    else:
+        st.info(
+            "Ablation results not found. Run `python _run_full_ablation.py` "
+            "to generate `results/results_ablation_full_factorial.csv`."
+        )
+
+    st.markdown("---")
+    st.subheader("DeepSeek V4 Flash Robustness Check")
+    if deepseek_results is None:
+        st.info(
+            "DeepSeek robustness results not found. Run `python _run_deepseek_robustness.py` "
+            "after setting `DEEPSEEK_API_KEY` to generate the 8-protocol small-sample check."
+        )
+    else:
+        ds = add_protocol_axes(deepseek_results)
+        ds_means = (
+            ds.groupby(["task_domain", "Mechanism", "Format"])["total_tokens"]
+            .mean().round(0).reset_index()
+        )
+        ds_means["Cell"] = ds_means["Mechanism"] + " / " + ds_means["Format"] + " / " + ds_means["task_domain"]
+        st.bar_chart(ds_means, x="Cell", y="total_tokens", color="Mechanism", width="stretch")
+
+        ds_rows = []
+        for dom in ["MATH", "READING", "NEWS"]:
+            ds_rows.append(mechanism_effect_rows(ds, dom))
+        ds_effects = pd.concat(ds_rows, ignore_index=True)
+        st.dataframe(
+            ds_effects.style.format({
+                "Relay tokens": "{:.0f}",
+                "Shared Memory tokens": "{:.0f}",
+                "Mechanism Δ tokens": "{:+.0f}",
+                "Cohen's d": "{:+.2f}",
+                "p": "{:.4f}",
+            }),
+            width="stretch",
+            hide_index=True,
         )
 
 

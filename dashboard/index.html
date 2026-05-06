@@ -28,7 +28,7 @@
         <span class="status-dot" id="keyDot"></span>
         <div>
           <strong id="keyStatus">Checking key</strong>
-          <p>OpenAI key is read locally by FastAPI, never typed into this page.</p>
+          <p>OpenAI and DeepSeek keys are read locally by FastAPI, never typed into this page.</p>
         </div>
       </div>
     </aside>
@@ -55,7 +55,7 @@
         <div class="metrics-grid" id="topMetrics"></div>
         <div class="panel">
           <p class="eyebrow">Research Question</p>
-          <h3>How do NL, Markdown, JSON, and Shared Memory affect multi-agent cost, latency, and completion quality?</h3>
+          <h3>How do communication mechanism and output format affect multi-agent cost, latency, and completion quality?</h3>
           <p>
             The project holds the model, agent roles, task domains, and prompts constant, then varies only the
             inter-agent communication protocol.
@@ -106,17 +106,29 @@
       </section>
 
       <section id="protocols" class="view">
-        <div class="section-head"><p class="eyebrow">Protocol Explorer</p><h3>Four communication formats, four different cost/quality profiles</h3></div>
-        <div class="protocol-grid" id="protocolCards"></div>
+        <div class="section-head"><p class="eyebrow">Protocol Explorer</p><h3>Main experiment protocols and supplemental ablation conditions</h3></div>
+        <div class="panel">
+          <p class="eyebrow">Main experiment</p>
+          <h4>Original 4-protocol grid</h4>
+          <p>The main 360-run experiment and the domain trade-off table below use only these four protocols.</p>
+        </div>
+        <div class="protocol-grid" id="mainProtocolCards"></div>
+        <div class="panel">
+          <p class="eyebrow">Supplemental ablation</p>
+          <h4>Additional cells for the 2x4 mechanism x format matrix</h4>
+          <p>These conditions are run separately and write additive ablation files, so they do not overwrite the original 360-run results.</p>
+        </div>
+        <div class="protocol-grid" id="ablationProtocolCards"></div>
         <div class="panel">
           <div class="toolbar">
-            <h4>Domain trade-off table</h4>
+            <h4>Main experiment domain trade-off table</h4>
             <select id="protocolDomain">
               <option>MATH</option>
               <option>READING</option>
               <option>NEWS</option>
             </select>
           </div>
+          <p class="muted">This table is based on <code>results/results_summary.csv</code>, so it intentionally shows only the original four main protocols.</p>
           <div id="protocolTable"></div>
         </div>
       </section>
@@ -140,9 +152,13 @@
               <label><input type="checkbox" class="protocolChoice" value="MARKDOWN" checked /> Markdown</label>
               <label><input type="checkbox" class="protocolChoice" value="JSON" checked /> JSON</label>
               <label><input type="checkbox" class="protocolChoice" value="SHARED_MEMORY" checked /> Shared Memory</label>
+              <label><input type="checkbox" class="protocolChoice" value="RELAY_DEFAULT" /> Relay Default</label>
+              <label><input type="checkbox" class="protocolChoice" value="SHARED_MEMORY_NL" /> SM + NL</label>
+              <label><input type="checkbox" class="protocolChoice" value="SHARED_MEMORY_MARKDOWN" /> SM + Markdown</label>
+              <label><input type="checkbox" class="protocolChoice" value="SHARED_MEMORY_JSON" /> SM + JSON</label>
             </div>
             <div class="run-controls">
-              <select id="modelSelect"><option>gpt-4o-mini</option><option>gpt-4o</option></select>
+              <select id="modelSelect"><option>gpt-4o-mini</option><option>gpt-4o</option><option>deepseek-v4-flash</option></select>
             </div>
             <button id="runBtn">Run protocol comparison</button>
             <p class="muted" id="runStatus">Uses OPENAI_API_KEY from your local backend environment.</p>
@@ -198,6 +214,11 @@
           <img src="/figures/fig6_latency.png" alt="Latency distribution" />
         </div>
         <div class="panel"><h4>Summary table</h4><div id="summaryTable"></div></div>
+        <div class="panel">
+          <h4>Supplemental ablations</h4>
+          <p class="muted">These tables are additive checks. They do not replace the original 360-run main experiment.</p>
+          <div id="ablationBlock"></div>
+        </div>
       </section>
 
       <section id="recommendations" class="view">
@@ -210,6 +231,6 @@
       </section>
     </main>
 
-    <script src="/static/app.js"></script>
+    <script src="/static/app.js?v=protocol-sections"></script>
   </body>
 </html>
