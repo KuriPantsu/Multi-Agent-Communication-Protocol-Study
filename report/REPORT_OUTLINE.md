@@ -30,7 +30,7 @@ Close with a contribution bullet list (4 items, matches proposal §7):
 - Empirical: first controlled multi-domain comparison of inter-agent communication protocols.
 - Practical: protocol-selection guideline usable with LangGraph / AutoGen / CrewAI.
 - Statistical: two-factor ANOVA + Tukey HSD + bootstrap inference, uncommon in LLM systems papers.
-- Artifacts: reusable framework ([pipeline.py](../pipeline.py)), 360-run dataset, Streamlit demo ([app.py](../app.py)).
+- Artifacts: reusable framework ([pipeline.py](../pipeline.py)), 360-run dataset, and the recommended FastAPI dashboard ([fastapi_app.py](../fastapi_app.py) + [dashboard/](../dashboard/)). The older Streamlit app ([app.py](../app.py)) remains as a legacy/demo path but should not be the main presentation artifact.
 
 ## 3. Related Work  *(≈1.5 pages, rubric: Depth of Research 8%)*
 
@@ -157,7 +157,7 @@ Figure: [fig4](../figures/fig4_pareto.png). Raw cell-level data in `results/resu
 | READING | NL (819, 0.426) — cheapest; SHARED_MEMORY (1192, 0.556) — highest completion | Markdown (995, 0.347), JSON (955, 0.419) |
 | NEWS | NL (995, 0.275) — cheapest; SHARED_MEMORY (1418, 0.346) — highest completion | Markdown (1433, 0.271), JSON (1313, 0.296) |
 
-**Practitioner recommendations.** (This is what drives the Streamlit `auto_protocol` feature.)
+**Practitioner recommendations.** (This is what drives the FastAPI dashboard's Live Demo recommendation panel.)
 
 - **MATH → Markdown** if completion matters most (86.7%), **JSON** if cost matters (73.3% at −20% tokens vs Markdown).
 - **READING → Shared Memory** when a 30%+ completion lift is worth +45% tokens; **NL** if the budget is tight (cheapest AND second-best completion).
@@ -201,7 +201,7 @@ Pull from `old_proposal/STAT_5293_Project_Proposal （Limitations and Future Ext
 
 ## 8. Conclusion  *(≈0.25 page)*
 
-Two sentences: restate the finding (protocol has a large efficiency effect that interacts with domain; Shared Memory is the best choice for reading/news despite +25–45% token overhead; JSON is the cheapest for math; NL is the best default when budget dominates) and restate the artifact contribution (reusable framework `pipeline.py`, 360-run dataset in `results/`, Streamlit demo `app.py`).
+Two sentences: restate the finding (protocol has a large efficiency effect that interacts with domain; Shared Memory is the best choice for reading/news despite +25–45% token overhead; JSON is the cheapest for math; NL is the best default when budget dominates) and restate the artifact contribution (reusable framework `pipeline.py`, 360-run dataset in `results/`, and FastAPI dashboard in `fastapi_app.py` + `dashboard/`).
 
 ## 9. References
 
@@ -215,7 +215,9 @@ Pure "how-to-rerun" block. Most of this can be a pointer to `README.md`:
 - `requirements.txt` pinning.
 - `OPENAI_API_KEY` requirement (via `.env`).
 - `jupyter nbconvert --execute Multi_Agent_Communication_Protocol_Study.ipynb` for the full grid (~10 min, ~$0.40).
-- `streamlit run app.py` for the demo.
+- `uvicorn fastapi_app:app --host 127.0.0.1 --port 8010 --http h11` for the recommended FastAPI dashboard.
+- `streamlit run app.py` for the legacy Streamlit demo, if needed.
+- Optional supplemental ablation scripts (`_run_ablation.py`, `_run_full_ablation.py`) write separate `results/results_ablation_*` files and do not replace the 360-run main grid.
 - Git commit hash under which the reported numbers were generated.
 - Pointer to `results/experiment_config.json` for the exact parameter dump.
 
