@@ -39,3 +39,13 @@ AGENTS.md
 *.snm
 *.synctex.gz
 *.toc
+
+# Demo recording artifacts
+demo_recording_script.md
+demo_recording_script.pdf
+presentation/presentation_speaker_script.md
+presentation/presentation_speaker_script.pdf
+presentation/demo_*.mp4
+presentation/demo_*.mov
+presentation/final_demo_recording*.mp4
+presentation/*.fcpbundle/
