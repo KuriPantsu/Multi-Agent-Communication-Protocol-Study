@@ -8,7 +8,7 @@
 
 A controlled experimental study of how inter-agent communication protocol choice affects multi-agent LLM system performance. Using a fixed three-agent pipeline (**Planning → Execution → Integration**), we compare four communication protocols — Natural Language, Markdown, JSON, Shared Memory — across three task domains (GSM8K mathematical reasoning, SQuAD reading comprehension, curated news analysis) drawn from standard benchmarks. A full 4 × 3 factorial design with 10 samples per domain and 3 repetitions per cell yields 360 pipeline runs. We measure token consumption (input / output / total), wall-clock latency, and task completion quality, and analyze the results with two-way ANOVA, Tukey HSD post-hoc, Cohen's d effect sizes, and 2 000-resample bootstrap confidence intervals.
 
-The repository includes the experiment notebook, a thin shared-helper module, a Streamlit demo, a FastAPI-powered experiment dashboard, and figures + tables for the final report.
+The repository includes the experiment notebook, shared Python helpers, a Streamlit demo, a FastAPI-powered experiment dashboard, committed result tables, and figures for the final report.
 
 ## Repository layout
 
@@ -40,11 +40,12 @@ The repository includes the experiment notebook, a thin shared-helper module, a 
 │   ├── fig5_input_vs_output.png
 │   └── fig6_latency.png
 ├── report/
-│   └── REPORT_OUTLINE.md                        Skeleton for the final report
+│   └── REPORT_OUTLINE.md                        Final-report narrative outline and evidence map
+├── presentation/
+│   ├── final_presentation.tex                   Presentation source
+│   └── final_presentation.pdf                   Final presentation deck
 ├── Project_Rubric_STATGR5293_2026.pdf           Course grading rubric (authoritative)
-├── STAT_GR5293_Proposal_yz5104_xz3447_tz2704.pdf    Submitted proposal (authoritative)
-├── old_code/                                    Prior notebook iterations (not used)
-└── old_proposal/                                Earlier proposal drafts (not used, except §10/§7 notes)
+└── STAT_GR5293_Proposal_yz5104_xz3447_tz2704.pdf    Submitted proposal (authoritative)
 ```
 
 ## Quickstart
@@ -103,11 +104,11 @@ The main experiment stays at 360 rows. Supplemental runs write separate files so
 ```bash
 # Complete the mechanism x format matrix on gpt-4o-mini:
 # Relay/Shared Memory x Default/NL/Markdown/JSON
-python _run_full_ablation.py
+python3 _run_full_ablation.py
 
 # Small second-model robustness check:
 # 8 protocols x 3 domains x 5 samples/domain x 2 reps = 240 runs
-python _run_deepseek_robustness.py
+python3 _run_deepseek_robustness.py
 ```
 
 On the shared course machine/env, the same commands can be run explicitly with:
@@ -218,7 +219,7 @@ Chosen to avoid false positives from negation or keyword matching:
 - **Reading.** SQuAD-style token-level F1 against the gold answer set. Catches cases like *"The building is not 187 feet tall"* that substring match scores as correct.
 - **News.** Mean of ROUGE-2 F1 (bigram overlap) and ROUGE-L F1 (longest common subsequence) against the concatenated `key_facts` reference. Catches cases like *"S&P 500 did not rise"* that keyword coverage scores as correct.
 
-All three evaluators are self-tested at the bottom of `pipeline.py` — run `python pipeline.py` to check.
+All three evaluators are self-tested at the bottom of `pipeline.py` — run `python3 pipeline.py` to check.
 
 ## Reproducibility
 
@@ -226,6 +227,21 @@ All three evaluators are self-tested at the bottom of `pipeline.py` — run `pyt
 - `random.seed(rep)` and `np.random.seed(rep)` cover any downstream sampling.
 - All prompts, system messages, and configuration are defined as module-level constants in `pipeline.py` and dumped to `results/experiment_config.json` after each run.
 - `results/results_messages.jsonl` records every inter-agent message (sender, receiver, content, token breakdown, latency, finish_reason, timestamp) for post-hoc case-study and error analysis.
+- The committed result set includes the full main experiment (`results/results_raw.csv`, 360 rows), message audit log (`results/results_messages.jsonl`, 1 080 rows), supplemental mechanism/format ablation (`results/results_ablation_full_factorial.csv`, 360 rows), and DeepSeek robustness check (`results/results_deepseek_v4_flash_8protocols.csv`, 240 rows).
+
+### Validation checklist
+
+Use these lightweight checks before grading or rerunning the full experiment:
+
+```bash
+python3 pipeline.py
+jupyter nbconvert --to notebook --execute \
+    Multi_Agent_Communication_Protocol_Study.ipynb \
+    --output Multi_Agent_Communication_Protocol_Study.ipynb
+uvicorn fastapi_app:app --host 127.0.0.1 --port 8010 --http h11
+```
+
+The first command runs evaluator regression checks without calling the OpenAI API. The notebook command reproduces the main experiment and analysis artifacts. The FastAPI command launches the recommended demo dashboard for visual/UI verification.
 
 ## Rubric alignment
 
@@ -235,13 +251,13 @@ All three evaluators are self-tested at the bottom of `pipeline.py` — run `pyt
 | Final Presentation | 30% | slides (see `report/REPORT_OUTLINE.md` for the narrative) |
 | Final Report | 30% | see `report/REPORT_OUTLINE.md` |
 | Project Demo | 20% | `fastapi_app.py` + `dashboard/` — full experiment walkthrough, live protocol comparison, database audit, results dashboard, recommendations |
-| GitHub Repo | 10% | this repository |
+| GitHub Repo | 10% | organized code/data/artifact structure, complete setup instructions, committed reproducibility outputs, evaluator self-tests |
 
 ## Related files worth reading
 
 - **Proposal (submitted, authoritative)** — `STAT_GR5293_Proposal_yz5104_xz3447_tz2704.pdf`
 - **Rubric** — `Project_Rubric_STATGR5293_2026.pdf`
-- **Limitations & Future Work notes** — `old_proposal/STAT_5293_Project_Proposal （Limitations and Future Extensions added）.pdf` §10, which is the source for the Limitations section of the final report.
+- **Prompt and project history** — `prompt_history.md`
 
 ## License
 
